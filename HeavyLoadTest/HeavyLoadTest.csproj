@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{228924C1-162A-48BD-BEA9-770524A7C7CE}</ProjectGuid>
+    <ProjectGuid>{A41DAFB7-A2D2-49D7-A952-A6AA41546348}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DebugProject</RootNamespace>
-    <AssemblyName>DebugProject</AssemblyName>
+    <RootNamespace>HeavyLoadTest</RootNamespace>
+    <AssemblyName>HeavyLoadTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

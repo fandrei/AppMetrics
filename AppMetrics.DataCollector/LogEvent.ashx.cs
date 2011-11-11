@@ -17,17 +17,19 @@ namespace AppMetrics.DataCollector
 		{
 			try
 			{
-				var sessionId = context.Request.Params["Session"];
-				var rootPath = context.Request.PhysicalApplicationPath;
+				var sessionId = context.Request.Params["TrackerSession"];
+				var dataRootPath = Path.GetFullPath(context.Request.PhysicalApplicationPath);
 				var time = DateTime.UtcNow.ToString("u");
 				time = time.Replace(':', '_');
-				var fileName = string.Format("{0}\\Data\\{1}.{2}.txt", rootPath, time, sessionId);
+				var filePath = Path.GetFullPath(string.Format("{0}\\Data\\{1}.{2}.txt", dataRootPath, time, sessionId));
+				if (!filePath.StartsWith(dataRootPath)) // block malicious session ids
+					throw new ArgumentException(filePath);
 
-				var logData = context.Request.Params["Data"];
+				var logData = context.Request.Params["TrackerData"];
 
-				using (var writer = new StreamWriter(fileName, true, Encoding.Unicode))
+				using (var writer = new StreamWriter(filePath, true, Encoding.Unicode))
 				{
-					writer.Write(logData);
+					writer.WriteLine(logData);
 				}
 			}
 			catch (Exception exc)
