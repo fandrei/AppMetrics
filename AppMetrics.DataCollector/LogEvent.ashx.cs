@@ -25,11 +25,20 @@ namespace AppMetrics.DataCollector
 				if (!filePath.StartsWith(dataRootPath)) // block malicious session ids
 					throw new ArgumentException(filePath);
 
-				var logData = context.Request.Params["TrackerData"];
-
-				using (var writer = new StreamWriter(filePath, true, Encoding.Unicode))
+				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
-					writer.WriteLine(logData);
+					var i = 0;
+					while (true)
+					{
+						var paramName = "TrackerData" + i;
+						var logData = context.Request.Params[paramName];
+						if (logData == null)
+							break;
+
+						writer.WriteLine(logData);
+
+						i++;
+					}
 				}
 			}
 			catch (Exception exc)

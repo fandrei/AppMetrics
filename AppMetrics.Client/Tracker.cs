@@ -14,7 +14,13 @@ namespace AppMetrics.Client
 
 		public void Log(string name, object val)
 		{
-			var vals = new NameValueCollection { { "TrackerSession", _session }, { "TrackerData", name + "\r\n" + val } };
+			Log(name, val, 0);
+		}
+
+		public void Log(string name, object val, int index)
+		{
+			var paramName = "TrackerData" + index;
+			var vals = new NameValueCollection { { "TrackerSession", _session }, { paramName, name + "\r\n" + val } };
 			using (var client = new WebClient())
 			{
 				var response = client.UploadValues(_url, "POST", vals);
