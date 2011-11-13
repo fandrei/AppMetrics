@@ -25,7 +25,8 @@ namespace AppMetrics.Client
 			{
 				var response = client.UploadValues(_url, "POST", vals);
 				var responseText = Encoding.ASCII.GetString(response);
-				Console.WriteLine(responseText);
+				if (!string.IsNullOrEmpty(responseText))
+					throw new ApplicationException(responseText);
 			}
 		}
 
