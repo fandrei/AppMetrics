@@ -21,6 +21,7 @@ namespace DebugProject
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue3", Guid.NewGuid().ToString());
+				tracker.Log("SomeValue4", "aaa\r\nbbb\r\nccc");
 
 				Tracker.Terminate();
 			}

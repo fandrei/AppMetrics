@@ -34,9 +34,18 @@ namespace AppMetrics.DataCollector
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
 
-					writer.Write("{0}\t{1}", clientTime, name);
-					if (!data.Contains('\n'))
-						writer.WriteLine("\t{0}", data);
+					bool multiLineData = data.Contains('\n');
+					if (multiLineData)
+					{
+						writer.WriteLine("{0}\t{1}", clientTime, name);
+						writer.WriteLine(_delimiter);
+						writer.WriteLine(data);
+						writer.WriteLine(_delimiter);
+					}
+					else
+					{
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
+					}
 				}
 			}
 			catch (Exception exc)
@@ -47,6 +56,8 @@ namespace AppMetrics.DataCollector
 #endif
 			}
 		}
+
+		private readonly string _delimiter = new string('-', 80);
 
 		public bool IsReusable
 		{
