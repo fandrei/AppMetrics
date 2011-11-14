@@ -44,6 +44,9 @@ namespace AppMetrics.DataCollector
 			catch (Exception exc)
 			{
 				Trace.WriteLine(exc);
+#if DEBUG
+				context.Response.Write(exc);
+#endif
 			}
 		}
 
