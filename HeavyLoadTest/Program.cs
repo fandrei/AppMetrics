@@ -33,7 +33,7 @@ namespace HeavyLoadTest
 
 				watch.Stop();
 				var secs = watch.Elapsed.TotalSeconds;
-				Console.WriteLine("Resuests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent/secs);
+				Console.WriteLine("Requests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent/secs);
 			}
 			catch (Exception exc)
 			{
