@@ -18,9 +18,11 @@ namespace DebugProject
 				var url = args[0];
 				var tracker = new Tracker(url);
 
-				tracker.Log("CurTime", DateTime.Now.ToString());
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);
+				tracker.Log("SomeValue3", Guid.NewGuid().ToString());
+
+				Tracker.Terminate();
 			}
 			catch (Exception exc)
 			{

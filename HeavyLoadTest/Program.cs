@@ -30,6 +30,7 @@ namespace HeavyLoadTest
 
 				_terminate = true;
 				thread.Join();
+				Tracker.Terminate();
 
 				watch.Stop();
 				var secs = watch.Elapsed.TotalSeconds;
@@ -54,9 +55,9 @@ namespace HeavyLoadTest
 				var tracker = new Tracker(_url);
 				while (!_terminate)
 				{
-					tracker.Log("CurTime", DateTime.Now.ToString());
-					CountNewRequest();
 					tracker.Log("RandomValue", Guid.NewGuid().ToString());
+					CountNewRequest();
+					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
 					CountNewRequest();
 				}
 			}

@@ -17,7 +17,7 @@ namespace AppMetrics.DataCollector
 		{
 			try
 			{
-				var sessionId = context.Request.Params["TrackerSession"];
+				var sessionId = context.Request.Params["MessageSession"];
 				if (string.IsNullOrEmpty(sessionId))
 					throw new ApplicationException("No session ID");
 
@@ -30,18 +30,13 @@ namespace AppMetrics.DataCollector
 
 				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
-					var i = 0;
-					while (true)
-					{
-						var paramName = "TrackerData" + i;
-						var logData = context.Request.Params[paramName];
-						if (logData == null)
-							break;
+					var name = context.Request.Params["MessageName"];
+					var data = context.Request.Params["MessageData"];
+					var clientTime = context.Request.Params["MessageTime"];
 
-						writer.WriteLine(logData);
-
-						i++;
-					}
+					writer.Write("{0}\t{1}", clientTime, name);
+					if (!data.Contains('\n'))
+						writer.WriteLine("\t{0}", data);
 				}
 			}
 			catch (Exception exc)
