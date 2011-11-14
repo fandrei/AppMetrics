@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,14 +14,20 @@ namespace HeavyLoadTest
 	{
 		static void Main(string[] args)
 		{
+			var watch = Stopwatch.StartNew();
+
 			var thread = new Thread(
 				state => RunMultipleTests());
 			thread.Start();
 
 			Console.ReadKey();
-			_terminate = true;
 
+			_terminate = true;
 			thread.Join();
+
+			watch.Stop();
+			var secs = watch.Elapsed.TotalSeconds;
+			Console.WriteLine("Resuests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent / secs);
 		}
 
 		private static void RunMultipleTests()
