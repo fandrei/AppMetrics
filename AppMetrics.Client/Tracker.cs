@@ -7,8 +7,9 @@ namespace AppMetrics.Client
 {
 	public class Tracker : IDisposable
 	{
-		public Tracker()
+		public Tracker(string url)
 		{
+			_url = url;
 			_session = Guid.NewGuid().ToString();
 		}
 
@@ -32,7 +33,7 @@ namespace AppMetrics.Client
 
 		private readonly WebClient _client = new WebClient();
 		private readonly string _session;
-		private const string _url = "http://localhost:51379/LogEvent.ashx";
+		private readonly string _url;
 
 		public void Dispose()
 		{

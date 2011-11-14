@@ -13,7 +13,7 @@ namespace DebugProject
 		{
 			try
 			{
-				var tracker = new Tracker();
+				var tracker = new Tracker("http://localhost:51379/LogEvent.ashx");
 				tracker.Log("CurTime", DateTime.Now.ToString());
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);

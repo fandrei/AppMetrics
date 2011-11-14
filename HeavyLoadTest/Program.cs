@@ -14,20 +14,31 @@ namespace HeavyLoadTest
 	{
 		static void Main(string[] args)
 		{
-			var watch = Stopwatch.StartNew();
+			try
+			{
+				if (args.Length != 1)
+					throw new ApplicationException("Invalid args");
+				_url = args[0];
 
-			var thread = new Thread(
-				state => RunMultipleTests());
-			thread.Start();
+				var watch = Stopwatch.StartNew();
 
-			Console.ReadKey();
+				var thread = new Thread(
+					state => RunMultipleTests());
+				thread.Start();
 
-			_terminate = true;
-			thread.Join();
+				Console.ReadKey();
 
-			watch.Stop();
-			var secs = watch.Elapsed.TotalSeconds;
-			Console.WriteLine("Resuests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent / secs);
+				_terminate = true;
+				thread.Join();
+
+				watch.Stop();
+				var secs = watch.Elapsed.TotalSeconds;
+				Console.WriteLine("Resuests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent/secs);
+			}
+			catch (Exception exc)
+			{
+				Console.WriteLine(exc);
+			}
 		}
 
 		private static void RunMultipleTests()
@@ -38,7 +49,7 @@ namespace HeavyLoadTest
 
 		static void RunTest()
 		{
-			var tracker = new Tracker();
+			var tracker = new Tracker(_url);
 			while (!_terminate)
 			{
 				tracker.Log("CurTime", DateTime.Now.ToString());
@@ -56,5 +67,6 @@ namespace HeavyLoadTest
 		static long _requestsSent;
 		private static volatile bool _terminate;
 		private const int ThreadsCount = 100;
+		private static string _url;
 	}
 }
