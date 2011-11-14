@@ -49,13 +49,20 @@ namespace HeavyLoadTest
 
 		static void RunTest()
 		{
-			var tracker = new Tracker(_url);
-			while (!_terminate)
+			try
 			{
-				tracker.Log("CurTime", DateTime.Now.ToString());
-				CountNewRequest();
-				tracker.Log("RandomValue", Guid.NewGuid().ToString());
-				CountNewRequest();
+				var tracker = new Tracker(_url);
+				while (!_terminate)
+				{
+					tracker.Log("CurTime", DateTime.Now.ToString());
+					CountNewRequest();
+					tracker.Log("RandomValue", Guid.NewGuid().ToString());
+					CountNewRequest();
+				}
+			}
+			catch (Exception exc)
+			{
+				Console.WriteLine(exc);
 			}
 		}
 
