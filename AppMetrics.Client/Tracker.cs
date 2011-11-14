@@ -18,7 +18,7 @@ namespace AppMetrics.Client
 
 		public void Dispose()
 		{
-			Client.Dispose();
+			_client.Dispose();
 		}
 
 		static Tracker()
@@ -45,7 +45,6 @@ namespace AppMetrics.Client
 							Url = _url,
 							Time = DateTime.UtcNow
 						});
-				_index++;
 			}
 		}
 
@@ -53,6 +52,8 @@ namespace AppMetrics.Client
 		{
 			try
 			{
+				_client = new WebClient();
+
 				while (true)
 				{
 					SendMessages();
@@ -63,7 +64,7 @@ namespace AppMetrics.Client
 			{ }
 
 			SendMessages();
-			Client.Dispose();
+			_client.Dispose();
 		}
 
 		private static void SendMessages()
@@ -91,7 +92,7 @@ namespace AppMetrics.Client
 					{ "MessageTime", message.Time.ToString("u") },
 				};
 
-			var response = Client.UploadValues(message.Url, "POST", vals);
+			var response = _client.UploadValues(message.Url, "POST", vals);
 			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
 				throw new ApplicationException(responseText);
@@ -99,11 +100,11 @@ namespace AppMetrics.Client
 
 		private readonly string _session;
 		private readonly string _url;
-		private int _index;
 
-		private static readonly WebClient Client = new WebClient();
-		static readonly object Sync = new object();
-		static readonly List<MessageInfo> Messages = new List<MessageInfo>();
+		private static WebClient _client;
+
+		private static readonly object Sync = new object();
+		private static readonly List<MessageInfo> Messages = new List<MessageInfo>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 	}
 }
