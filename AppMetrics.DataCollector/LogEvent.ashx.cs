@@ -18,6 +18,9 @@ namespace AppMetrics.DataCollector
 			try
 			{
 				var sessionId = context.Request.Params["TrackerSession"];
+				if (string.IsNullOrEmpty(sessionId))
+					throw new ApplicationException("No session ID");
+
 				var dataRootPath = Path.GetFullPath(context.Request.PhysicalApplicationPath);
 				var time = DateTime.UtcNow.ToString("u");
 				time = time.Replace(':', '_');
