@@ -93,9 +93,20 @@ namespace AppMetrics.Client
 				};
 
 			var response = _client.UploadValues(message.Url, "POST", vals);
+			CountNewRequest();
 			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
 				throw new ApplicationException(responseText);
+		}
+
+		static void CountNewRequest()
+		{
+			Interlocked.Increment(ref _requestsSent);
+		}
+
+		public static long GetServedRequestsCount()
+		{
+			return _requestsSent;
 		}
 
 		private readonly string _session;
@@ -106,5 +117,7 @@ namespace AppMetrics.Client
 		private static readonly object Sync = new object();
 		private static readonly List<MessageInfo> Messages = new List<MessageInfo>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
+
+		private static long _requestsSent;
 	}
 }

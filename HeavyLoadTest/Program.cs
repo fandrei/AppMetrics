@@ -34,7 +34,8 @@ namespace HeavyLoadTest
 
 				watch.Stop();
 				var secs = watch.Elapsed.TotalSeconds;
-				Console.WriteLine("Requests sent: {0} in {1} secs ({2} per sec)", _requestsSent, secs, _requestsSent/secs);
+				var requestsSent = Tracker.GetServedRequestsCount();
+				Console.WriteLine("Requests sent: {0} in {1} secs ({2} per sec)", requestsSent, secs, requestsSent/secs);
 			}
 			catch (Exception exc)
 			{
@@ -56,9 +57,7 @@ namespace HeavyLoadTest
 				while (!_terminate)
 				{
 					tracker.Log("RandomValue", Guid.NewGuid().ToString());
-					CountNewRequest();
 					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
-					CountNewRequest();
 				}
 			}
 			catch (Exception exc)
@@ -67,12 +66,6 @@ namespace HeavyLoadTest
 			}
 		}
 
-		static void CountNewRequest()
-		{
-			Interlocked.Increment(ref _requestsSent);
-		}
-
-		static long _requestsSent;
 		private static volatile bool _terminate;
 		private const int ThreadsCount = 100;
 		private static string _url;
