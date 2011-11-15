@@ -26,7 +26,7 @@ namespace HeavyLoadTest
 			{
 				Console.WriteLine(exc);
 			}
-			Tracker.Terminate();
+			Tracker.Terminate(true);
 			return Tracker.GetServedRequestsCount();
 		}
 

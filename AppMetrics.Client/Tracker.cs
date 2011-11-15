@@ -23,11 +23,12 @@ namespace AppMetrics.Client
 			LoggingThread.Start();
 		}
 
-		public static void Terminate()
+		public static void Terminate(bool waitAll = false)
 		{
 			_terminated = true;
 			LoggingThread.Interrupt();
-			LoggingThread.Join(TimeSpan.FromSeconds(5));
+			var period = waitAll ? Timeout.Infinite : 5 * 1000;
+			LoggingThread.Join(period);
 		}
 
 		public void Log(string name, object val, MessageSeverity severity = MessageSeverity.Low)
