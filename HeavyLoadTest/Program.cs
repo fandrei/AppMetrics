@@ -40,12 +40,19 @@ namespace HeavyLoadTest
 			Parallel.For(0, ThreadsCount,
 				i =>
 				{
-					var domain = AppDomain.CreateDomain("TestRunner" + i);
-					var proxy = (TestRunner)domain.CreateInstanceAndUnwrap(proxyType.Assembly.FullName, proxyType.FullName);
-					var subRes = proxy.Execute(_url);
-					lock (sync)
+					try
 					{
-						res += subRes;
+						var domain = AppDomain.CreateDomain("TestRunner" + i);
+						var proxy = (TestRunner) domain.CreateInstanceAndUnwrap(proxyType.Assembly.FullName, proxyType.FullName);
+						var subRes = proxy.Execute(_url);
+						lock (sync)
+						{
+							res += subRes;
+						}
+					}
+					catch (Exception exc)
+					{
+						Console.WriteLine(exc);
 					}
 				});
 
