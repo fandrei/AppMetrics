@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-
-using AppMetrics.Client;
 
 namespace HeavyLoadTest
 {
@@ -22,20 +19,11 @@ namespace HeavyLoadTest
 
 				var watch = Stopwatch.StartNew();
 
-				var thread = new Thread(
-					state => RunMultipleTests());
-				thread.Start();
-
-				Console.ReadKey();
-
-				_terminate = true;
-				thread.Join();
-				Tracker.Terminate();
+				var requestsSent = RunMultipleTests();
 
 				watch.Stop();
 				var secs = watch.Elapsed.TotalSeconds;
-				var requestsSent = Tracker.GetServedRequestsCount();
-				Console.WriteLine("Requests sent: {0} in {1} secs ({2} per sec)", requestsSent, secs, requestsSent/secs);
+				Console.WriteLine("Requests sent: {0} in {1} secs ({2} per sec)", requestsSent, secs, requestsSent / secs);
 			}
 			catch (Exception exc)
 			{
@@ -43,32 +31,28 @@ namespace HeavyLoadTest
 			}
 		}
 
-		private static void RunMultipleTests()
+		private static long RunMultipleTests()
 		{
+			var proxyType = typeof(TestRunner);
+			var sync = new object();
+			long res = 0;
+
 			Parallel.For(0, ThreadsCount,
-						 i => RunTest());
-		}
-
-		static void RunTest()
-		{
-			try
-			{
-				var tracker = new Tracker(_url);
-				while (!_terminate)
+				i =>
 				{
-					tracker.Log("RandomValue", Guid.NewGuid().ToString());
-					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
-					Thread.Sleep(1);
-				}
-			}
-			catch (Exception exc)
-			{
-				Console.WriteLine(exc);
-			}
+					var domain = AppDomain.CreateDomain("TestRunner" + i);
+					var proxy = (TestRunner)domain.CreateInstanceAndUnwrap(proxyType.Assembly.FullName, proxyType.FullName);
+					var subRes = proxy.Execute(_url);
+					lock (sync)
+					{
+						res += subRes;
+					}
+				});
+
+			return res;
 		}
 
-		private static volatile bool _terminate;
-		private const int ThreadsCount = 100;
+		private const int ThreadsCount = 16;
 		private static string _url;
 	}
 }

@@ -12,6 +12,8 @@ namespace AppMetrics.Client
 	{
 		public Tracker(string url)
 		{
+			if (string.IsNullOrEmpty(url))
+				throw new ArgumentNullException();
 			_url = url;
 			_session = Guid.NewGuid().ToString();
 		}
