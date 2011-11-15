@@ -45,6 +45,7 @@ namespace HeavyLoadTest
 						var domain = AppDomain.CreateDomain("TestRunner" + i);
 						var proxy = (TestRunner) domain.CreateInstanceAndUnwrap(proxyType.Assembly.FullName, proxyType.FullName);
 						var subRes = proxy.Execute(_url);
+						Console.WriteLine("Thread result: {0}", subRes);
 						lock (sync)
 						{
 							res += subRes;
@@ -59,7 +60,7 @@ namespace HeavyLoadTest
 			return res;
 		}
 
-		private const int ThreadsCount = 128;
+		private const int ThreadsCount = 32;
 		private static string _url;
 	}
 }

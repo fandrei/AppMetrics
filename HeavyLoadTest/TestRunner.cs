@@ -27,7 +27,8 @@ namespace HeavyLoadTest
 				Console.WriteLine(exc);
 			}
 			Tracker.Terminate(true);
-			return Tracker.GetServedRequestsCount();
+			var res = Tracker.GetServedRequestsCount();
+			return res;
 		}
 
 		private const int LoopsCount = 1000;
