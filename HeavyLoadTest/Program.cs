@@ -58,6 +58,7 @@ namespace HeavyLoadTest
 				{
 					tracker.Log("RandomValue", Guid.NewGuid().ToString());
 					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
+					Thread.Sleep(1);
 				}
 			}
 			catch (Exception exc)

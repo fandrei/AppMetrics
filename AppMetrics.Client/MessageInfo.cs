@@ -12,5 +12,14 @@ namespace AppMetrics.Client
 		public string SessionId;
 		public string Url;
 		public DateTime Time;
+		public MessageSeverity Severity;
+
+		public override string ToString()
+		{
+			var res = string.Format("[{0} {1}] {2}: {3}", Time, Severity, Name, Value);
+			return res;
+		}
 	}
+
+	public enum MessageSeverity { Low = 0, High }
 }

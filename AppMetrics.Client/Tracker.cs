@@ -8,17 +8,12 @@ using System.Threading;
 
 namespace AppMetrics.Client
 {
-	public class Tracker : IDisposable
+	public class Tracker
 	{
 		public Tracker(string url)
 		{
 			_url = url;
 			_session = Guid.NewGuid().ToString();
-		}
-
-		public void Dispose()
-		{
-			_client.Dispose();
 		}
 
 		static Tracker()
@@ -32,7 +27,30 @@ namespace AppMetrics.Client
 			LoggingThread.Join(TimeSpan.FromSeconds(5));
 		}
 
-		public void Log(string name, object val)
+		public void Log(string name, object val, MessageSeverity severity = MessageSeverity.Low)
+		{
+			lock (Sync)
+			{
+				if (Messages.Count >= MaxMessagesCount)
+				{
+					Messages.RemoveAll(message => message.Severity == MessageSeverity.Low);
+					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessageSeverity.High);
+					if (Messages.Count >= MaxMessagesCount) // too much high-priority messages
+					{
+						Messages.Clear();
+						AddMessage(ErrorName, "Critical message queue overflow. All messages are removed.", MessageSeverity.High);
+					}
+					SendMessages(); // send warning message immediately
+				}
+
+				AddMessage(name, val, severity);
+			}
+		}
+
+		private const string WarningName = "AppMetrics.Warning";
+		private const string ErrorName = "AppMetrics.Error";
+
+		private void AddMessage(string name, object val, MessageSeverity severity)
 		{
 			lock (Sync)
 			{
@@ -43,7 +61,8 @@ namespace AppMetrics.Client
 							Value = val.ToString(),
 							SessionId = _session,
 							Url = _url,
-							Time = DateTime.UtcNow
+							Time = DateTime.UtcNow,
+							Severity = severity
 						});
 			}
 		}
@@ -52,8 +71,6 @@ namespace AppMetrics.Client
 		{
 			try
 			{
-				_client = new WebClient();
-
 				while (true)
 				{
 					SendMessages();
@@ -64,25 +81,36 @@ namespace AppMetrics.Client
 			{ }
 
 			SendMessages();
-			_client.Dispose();
 		}
 
 		private static void SendMessages()
 		{
-			List<MessageInfo> messages;
-			lock (Sync)
+			try
 			{
-				messages = new List<MessageInfo>(Messages);
-				Messages.Clear();
-			}
+				List<MessageInfo> messages;
+				lock (Sync)
+				{
+					messages = new List<MessageInfo>(Messages);
+					Messages.Clear();
+				}
 
-			foreach (var message in messages)
+				using (var client = new WebClient())
+				{
+					foreach (var message in messages)
+					{
+						SendMessage(client, message);
+					}
+				}
+			}
+			catch (ThreadInterruptedException)
+			{ }
+			catch (Exception exc)
 			{
-				SendMessage(message);
+				Trace.WriteLine(exc);
 			}
 		}
 
-		static void SendMessage(MessageInfo message)
+		static void SendMessage(WebClient client, MessageInfo message)
 		{
 			var vals = new NameValueCollection
 				{
@@ -92,7 +120,7 @@ namespace AppMetrics.Client
 					{ "MessageTime", message.Time.ToString("u") },
 				};
 
-			var response = _client.UploadValues(message.Url, "POST", vals);
+			var response = client.UploadValues(message.Url, "POST", vals);
 			CountNewRequest();
 			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
@@ -112,10 +140,9 @@ namespace AppMetrics.Client
 		private readonly string _session;
 		private readonly string _url;
 
-		private static WebClient _client;
-
 		private static readonly object Sync = new object();
-		private static readonly List<MessageInfo> Messages = new List<MessageInfo>();
+		private static readonly List<MessageInfo> Messages = new List<MessageInfo>(MaxMessagesCount);
+		private const int MaxMessagesCount = 1024;
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
 		private static long _requestsSent;
