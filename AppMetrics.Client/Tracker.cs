@@ -37,7 +37,12 @@ namespace AppMetrics.Client
 			{
 				if (Messages.Count >= MaxMessagesCount)
 				{
-					Messages.RemoveAll(message => message.Severity == MessageSeverity.Low);
+					var tmp = new List<MessageInfo>(Messages);
+					Messages.Clear();
+					tmp.RemoveAll(message => message.Severity == MessageSeverity.Low);
+					foreach (var cur in tmp)
+						Messages.Enqueue(cur);
+
 					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessageSeverity.High);
 					if (Messages.Count >= MaxMessagesCount) // too much high-priority messages
 					{
@@ -58,7 +63,7 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
-				Messages.Add(
+				Messages.Enqueue(
 					new MessageInfo
 						{
 							Name = name,
@@ -91,18 +96,22 @@ namespace AppMetrics.Client
 		{
 			try
 			{
-				List<MessageInfo> messages;
-				lock (Sync)
-				{
-					messages = new List<MessageInfo>(Messages);
-					Messages.Clear();
-				}
-
 				using (var client = new WebClient())
 				{
-					foreach (var message in messages)
+					while (true)
 					{
+						MessageInfo message;
+						lock (Sync)
+						{
+							message = Messages.Peek();
+						}
+
 						SendMessage(client, message);
+
+						lock (Sync)
+						{
+							Messages.Dequeue();
+						}
 					}
 				}
 			}
@@ -145,8 +154,8 @@ namespace AppMetrics.Client
 		private readonly string _url;
 
 		private static readonly object Sync = new object();
-		private static readonly List<MessageInfo> Messages = new List<MessageInfo>(MaxMessagesCount);
-		private const int MaxMessagesCount = 1024;
+		private static readonly Queue<MessageInfo> Messages = new Queue<MessageInfo>(MaxMessagesCount);
+		private const int MaxMessagesCount = 4096;
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
 		private static long _requestsSent;
