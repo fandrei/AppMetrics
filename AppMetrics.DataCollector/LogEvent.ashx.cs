@@ -21,12 +21,7 @@ namespace AppMetrics.DataCollector
 				if (string.IsNullOrEmpty(sessionId))
 					throw new ApplicationException("No session ID");
 
-				var dataRootPath = Path.GetFullPath(context.Request.PhysicalApplicationPath);
-				var time = DateTime.UtcNow.ToString("u");
-				time = time.Replace(':', '_');
-				var filePath = Path.GetFullPath(string.Format("{0}\\Data\\{1}.{2}.txt", dataRootPath, time, sessionId));
-				if (!filePath.StartsWith(dataRootPath)) // block malicious session ids
-					throw new ArgumentException(filePath);
+				var filePath = GetDataFilePath(context, sessionId);
 
 				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
@@ -54,6 +49,28 @@ namespace AppMetrics.DataCollector
 #if DEBUG
 				context.Response.Write(exc);
 #endif
+			}
+		}
+
+		private static string GetDataFilePath(HttpContext context, string sessionId)
+		{
+			var dataRootPath = Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			var filesMask = string.Format("*.{0}.txt", sessionId);
+			var files = Directory.GetFiles(dataRootPath, filesMask);
+			if (files.Length > 0)
+			{
+				if (files.Length != 1)
+					throw new ApplicationException(string.Format("Too much data files for session {0}", sessionId));
+				return files[0];
+			}
+			else
+			{
+				var time = DateTime.UtcNow.ToString("u");
+				time = time.Replace(':', '_');
+				var filePath = Path.GetFullPath(string.Format("{0}\\{1}.{2}.txt", dataRootPath, time, sessionId));
+				if (!filePath.StartsWith(dataRootPath)) // block malicious session ids
+					throw new ArgumentException(filePath);
+				return filePath;
 			}
 		}
 
