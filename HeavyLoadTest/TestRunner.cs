@@ -21,12 +21,12 @@ namespace HeavyLoadTest
 					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
 					Thread.Sleep(1);
 				}
-				Tracker.Terminate();
 			}
 			catch (Exception exc)
 			{
 				Console.WriteLine(exc);
 			}
+			Tracker.Terminate();
 			return Tracker.GetServedRequestsCount();
 		}
 

@@ -25,6 +25,7 @@ namespace AppMetrics.Client
 
 		public static void Terminate()
 		{
+			_terminated = true;
 			LoggingThread.Interrupt();
 			LoggingThread.Join(TimeSpan.FromSeconds(5));
 		}
@@ -73,7 +74,7 @@ namespace AppMetrics.Client
 		{
 			try
 			{
-				while (true)
+				while (!_terminated)
 				{
 					SendMessages();
 					Thread.Sleep(TimeSpan.FromMilliseconds(100));
@@ -148,5 +149,6 @@ namespace AppMetrics.Client
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
 		private static long _requestsSent;
+		private static volatile bool _terminated;
 	}
 }

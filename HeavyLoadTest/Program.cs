@@ -52,7 +52,7 @@ namespace HeavyLoadTest
 			return res;
 		}
 
-		private const int ThreadsCount = 16;
+		private const int ThreadsCount = 128;
 		private static string _url;
 	}
 }
