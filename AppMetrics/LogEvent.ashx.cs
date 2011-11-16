@@ -37,9 +37,9 @@ namespace AppMetrics
 					if (multiLineData)
 					{
 						writer.WriteLine("{0}\t{1}", clientTime, name);
-						writer.WriteLine(_delimiter);
+						writer.WriteLine(Delimiter);
 						writer.WriteLine(data);
-						writer.WriteLine(_delimiter);
+						writer.WriteLine(Delimiter);
 					}
 					else
 					{
@@ -85,8 +85,6 @@ namespace AppMetrics
 			}
 		}
 
-		private readonly string _delimiter = new string('-', 80);
-
 		public bool IsReusable
 		{
 			get
@@ -94,5 +92,7 @@ namespace AppMetrics
 				return true;
 			}
 		}
+
+		private static readonly string Delimiter = new string('-', 80);
 	}
 }
