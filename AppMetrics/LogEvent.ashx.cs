@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Web;
+using Timer = System.Timers.Timer;
 
 namespace AppMetrics
 {
@@ -13,10 +15,25 @@ namespace AppMetrics
 	/// </summary>
 	public class LogEvent : IHttpHandler
 	{
+		static void Init()
+		{
+			lock (Sync)
+			{
+				if (_timer == null)
+				{
+					_timer = new Timer { Interval = 1000, AutoReset = true};
+					_timer.Elapsed += OnTimer;
+					_timer.Start();
+				}
+			}
+		}
+
 		public void ProcessRequest(HttpContext context)
 		{
 			try
 			{
+				Init();
+
 				var applicationKey = context.Request.Params["MessageAppKey"];
 				if (string.IsNullOrEmpty(applicationKey))
 					throw new ApplicationException("No application key");
@@ -46,6 +63,8 @@ namespace AppMetrics
 						writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 					}
 				}
+
+				CountNewRequest();
 			}
 			catch (Exception exc)
 			{
@@ -93,6 +112,28 @@ namespace AppMetrics
 			}
 		}
 
+		static void CountNewRequest()
+		{
+			Interlocked.Increment(ref _requestCounter);
+		}
+
+		static void OnTimer(object sender, System.Timers.ElapsedEventArgs e)
+		{
+			try
+			{
+				var count = Interlocked.Exchange(ref _requestCounter, 0);
+				if (count != 0)
+					Trace.WriteLine(string.Format("Requests per second: {0}", count));
+			}
+			catch (Exception exc)
+			{
+				Trace.WriteLine(exc);
+			}
+		}
+
 		private static readonly string Delimiter = new string('-', 80);
+		private static long _requestCounter;
+		private static Timer _timer;
+		static readonly object Sync = new object();
 	}
 }
