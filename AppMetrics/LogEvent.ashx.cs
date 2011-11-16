@@ -17,11 +17,15 @@ namespace AppMetrics
 		{
 			try
 			{
+				var applicationKey = context.Request.Params["MessageAppKey"];
+				if (string.IsNullOrEmpty(applicationKey))
+					throw new ApplicationException("No application key");
+
 				var sessionId = context.Request.Params["MessageSession"];
 				if (string.IsNullOrEmpty(sessionId))
 					throw new ApplicationException("No session ID");
 
-				var filePath = GetDataFilePath(context, sessionId);
+				var filePath = GetDataFilePath(context, applicationKey, sessionId);
 
 				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
@@ -52,9 +56,16 @@ namespace AppMetrics
 			}
 		}
 
-		private static string GetDataFilePath(HttpContext context, string sessionId)
+		private static string GetDataFilePath(HttpContext context, string applicationKey, string sessionId)
 		{
-			var dataRootPath = Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			var basePath = Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			var dataRootPath = Path.Combine(basePath, applicationKey);
+			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
+				throw new ArgumentException(dataRootPath);
+
+			if (!Directory.Exists(dataRootPath))
+				Directory.CreateDirectory(dataRootPath);
+
 			var filesMask = string.Format("*.{0}.txt", sessionId);
 			var files = Directory.GetFiles(dataRootPath, filesMask);
 			if (files.Length > 0)

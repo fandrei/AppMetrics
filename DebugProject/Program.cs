@@ -16,7 +16,7 @@ namespace DebugProject
 				if (args.Length != 1)
 					throw new ApplicationException("Invalid args");
 				var url = args[0];
-				var tracker = new Tracker(url);
+				var tracker = new Tracker(url, "DebugProject");
 
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);

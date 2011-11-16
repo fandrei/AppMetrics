@@ -10,11 +10,16 @@ namespace AppMetrics.Client
 {
 	public class Tracker
 	{
-		public Tracker(string url)
+		public Tracker(string url, string applicationKey)
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
 			_url = url;
+
+			if (string.IsNullOrEmpty(applicationKey))
+				throw new ArgumentNullException();
+			_applicationKey = applicationKey;
+
 			_session = Guid.NewGuid().ToString();
 		}
 
@@ -66,6 +71,7 @@ namespace AppMetrics.Client
 				Messages.Enqueue(
 					new MessageInfo
 						{
+							ApplicationKey = _applicationKey,
 							Name = name,
 							Value = val.ToString(),
 							SessionId = _session,
@@ -127,6 +133,7 @@ namespace AppMetrics.Client
 		{
 			var vals = new NameValueCollection
 				{
+					{ "MessageAppKey", message.ApplicationKey }, 
 					{ "MessageSession", message.SessionId }, 
 					{ "MessageName", message.Name },
 					{ "MessageData", message.Value },
@@ -152,6 +159,7 @@ namespace AppMetrics.Client
 
 		private readonly string _session;
 		private readonly string _url;
+		private readonly string _applicationKey;
 
 		private static readonly object Sync = new object();
 		private static readonly Queue<MessageInfo> Messages = new Queue<MessageInfo>(MaxMessagesCount);
