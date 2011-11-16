@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.DataCollector", "AppMetrics.DataCollector\AppMetrics.DataCollector.csproj", "{136B2C53-0675-4BB0-9EB5-2406A0027794}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugProject", "DebugProject\DebugProject.csproj", "{228924C1-162A-48BD-BEA9-770524A7C7CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavyLoadTest", "HeavyLoadTest\HeavyLoadTest.csproj", "{A41DAFB7-A2D2-49D7-A952-A6AA41546348}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.Client", "AppMetrics.Client\AppMetrics.Client.csproj", "{C331A108-6E8F-47AB-A043-723BE19AE51F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics", "AppMetrics\AppMetrics.csproj", "{136B2C53-0675-4BB0-9EB5-2406A0027794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Any CPU.Build.0 = Release|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|x86.ActiveCfg = Release|Any CPU
 		{228924C1-162A-48BD-BEA9-770524A7C7CE}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{228924C1-162A-48BD-BEA9-770524A7C7CE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{228924C1-162A-48BD-BEA9-770524A7C7CE}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -59,6 +49,16 @@ Global
 		{C331A108-6E8F-47AB-A043-723BE19AE51F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C331A108-6E8F-47AB-A043-723BE19AE51F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C331A108-6E8F-47AB-A043-723BE19AE51F}.Release|x86.ActiveCfg = Release|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{136B2C53-0675-4BB0-9EB5-2406A0027794}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

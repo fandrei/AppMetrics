@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace AppMetrics.DataCollector
+namespace AppMetrics
 {
 	/// <summary>
 	/// Summary description for LogEvent
