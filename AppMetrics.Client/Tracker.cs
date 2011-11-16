@@ -109,6 +109,8 @@ namespace AppMetrics.Client
 						MessageInfo message;
 						lock (Sync)
 						{
+							if (Messages.Count == 0)
+								return;
 							message = Messages.Peek();
 						}
 
