@@ -24,6 +24,12 @@ namespace AppMetrics
 					_timer = new Timer { Interval = 1000, AutoReset = true};
 					_timer.Elapsed += OnTimer;
 					_timer.Start();
+
+					if (_logFile == null)
+					{
+						var logPath = Path.Combine(GetDataFolderPath(HttpContext.Current), EventLogFileName);
+						_logFile = new StreamWriter(logPath, true, Encoding.UTF8);
+					}
 				}
 			}
 		}
@@ -68,7 +74,7 @@ namespace AppMetrics
 			}
 			catch (Exception exc)
 			{
-				Log(exc);
+				Report(exc);
 #if DEBUG
 				context.Response.Write(exc);
 #endif
@@ -77,7 +83,7 @@ namespace AppMetrics
 
 		private static string GetDataFilePath(HttpContext context, string applicationKey, string sessionId)
 		{
-			var basePath = Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			var basePath = GetDataFolderPath(context);
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);
@@ -104,6 +110,11 @@ namespace AppMetrics
 			}
 		}
 
+		private static string GetDataFolderPath(HttpContext context)
+		{
+			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+		}
+
 		public bool IsReusable
 		{
 			get
@@ -123,19 +134,25 @@ namespace AppMetrics
 			{
 				var count = Interlocked.Exchange(ref _requestCounter, 0);
 				if (count != 0)
-					Log(string.Format("Requests per second: {0}", count));
+					Report(string.Format("Requests per second: {0}", count));
 			}
 			catch (Exception exc)
 			{
-				Log(exc);
+				Report(exc);
 			}
 		}
 
-		static void Log(object val)
+		static void Report(object val)
 		{
 			try
 			{
 				EventLog.WriteEntry(EventLogSourceName, val.ToString());
+
+				if (_logFile != null)
+				{
+					_logFile.WriteLine(val);
+					_logFile.Flush();
+				}
 			}
 			catch (Exception exc)
 			{
@@ -144,8 +161,10 @@ namespace AppMetrics
 			}
 		}
 
-		private const string EventLogName = "AppMetrics";
 		private const string EventLogSourceName = "AppMetricsEventSource";
+
+		private static StreamWriter _logFile;
+		private const string EventLogFileName = "AppMetrics.Log.txt";
 
 		private static readonly string Delimiter = new string('-', 80);
 		private static long _requestCounter;
