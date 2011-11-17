@@ -29,6 +29,7 @@ namespace AppMetrics
 					{
 						var logPath = Path.Combine(GetDataFolderPath(HttpContext.Current), EventLogFileName);
 						_logFile = new StreamWriter(logPath, true, Encoding.UTF8);
+						_logFile.AutoFlush = true;
 					}
 				}
 			}
@@ -146,12 +147,25 @@ namespace AppMetrics
 		{
 			try
 			{
-				EventLog.WriteEntry(EventLogSourceName, val.ToString());
+				var text = val.ToString();
+
+				EventLog.WriteEntry(EventLogSourceName, text);
 
 				if (_logFile != null)
 				{
-					_logFile.WriteLine(val);
-					_logFile.Flush();
+					var time = DateTime.Now;
+					bool multiLineData = text.Contains('\n');
+					if (multiLineData)
+					{
+						_logFile.WriteLine(time);
+						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(text);
+						_logFile.WriteLine(Delimiter);
+					}
+					else
+					{
+						_logFile.WriteLine("{0}\t{1}", time, text);
+					}
 				}
 			}
 			catch (Exception exc)
