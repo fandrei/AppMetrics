@@ -135,7 +135,7 @@ namespace AppMetrics
 			{
 				var count = Interlocked.Exchange(ref _requestCounter, 0);
 				if (count != 0)
-					Report(string.Format("Requests per second: {0}", count));
+					Report(string.Format("Requests per second: {0}", count), Priority.Low);
 			}
 			catch (Exception exc)
 			{
@@ -143,13 +143,16 @@ namespace AppMetrics
 			}
 		}
 
-		static void Report(object val)
+		enum Priority { Low, High }
+
+		static void Report(object val, Priority priority = Priority.High)
 		{
 			try
 			{
 				var text = val.ToString();
 
-				EventLog.WriteEntry(EventLogSourceName, text);
+				if (priority != Priority.Low)
+					EventLog.WriteEntry(EventLogSourceName, text);
 
 				if (_logFile != null)
 				{
