@@ -68,7 +68,7 @@ namespace AppMetrics
 			}
 			catch (Exception exc)
 			{
-				Trace.WriteLine(exc);
+				Log(exc);
 #if DEBUG
 				context.Response.Write(exc);
 #endif
@@ -123,13 +123,29 @@ namespace AppMetrics
 			{
 				var count = Interlocked.Exchange(ref _requestCounter, 0);
 				if (count != 0)
-					Trace.WriteLine(string.Format("Requests per second: {0}", count));
+					Log(string.Format("Requests per second: {0}", count));
 			}
 			catch (Exception exc)
 			{
+				Log(exc);
+			}
+		}
+
+		static void Log(object val)
+		{
+			try
+			{
+				EventLog.WriteEntry(EventLogSourceName, val.ToString());
+			}
+			catch (Exception exc)
+			{
+				Trace.WriteLine(val);
 				Trace.WriteLine(exc);
 			}
 		}
+
+		private const string EventLogName = "AppMetrics";
+		private const string EventLogSourceName = "AppMetricsEventSource";
 
 		private static readonly string Delimiter = new string('-', 80);
 		private static long _requestCounter;
