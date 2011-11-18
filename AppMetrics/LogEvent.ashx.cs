@@ -113,7 +113,7 @@ namespace AppMetrics
 
 		private static string GetDataFolderPath(HttpContext context)
 		{
-			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\App_Data");
 		}
 
 		public bool IsReusable
