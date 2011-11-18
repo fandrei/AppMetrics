@@ -33,7 +33,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
+  <PropertyGroup>
+    <OnBeforePackageUsingManifest>AddSkipRules</OnBeforePackageUsingManifest>
+  </PropertyGroup>
+  <Target Name="AddSkipRules">
+    <ItemGroup>
+      <MsDeploySkipRules Include="SkipAppDataOnDeploy">
+        <SkipAction></SkipAction>
+        <ObjectName>dirPath</ObjectName>
+        <AbsolutePath>App_Data</AbsolutePath>
+        <XPath></XPath>
+      </MsDeploySkipRules>
+    </ItemGroup>
+  </Target>  <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
