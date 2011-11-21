@@ -21,7 +21,7 @@ namespace AppMetrics
 			{
 				if (_timer == null)
 				{
-					_timer = new Timer { Interval = 1000, AutoReset = true};
+					_timer = new Timer { Interval = 1000, AutoReset = true };
 					_timer.Elapsed += OnTimer;
 					_timer.Start();
 
@@ -57,18 +57,8 @@ namespace AppMetrics
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
 
-					bool multiLineData = data.Contains('\n');
-					if (multiLineData)
-					{
-						writer.WriteLine("{0}\t{1}", clientTime, name);
-						writer.WriteLine(Delimiter);
-						writer.WriteLine(data);
-						writer.WriteLine(Delimiter);
-					}
-					else
-					{
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
-					}
+					data = data.Replace("\r", "\\r").Replace("\n", "\\n");
+					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 
 				CountNewRequest();
