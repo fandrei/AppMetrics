@@ -27,7 +27,7 @@ namespace AppMetrics
 
 					if (_logFile == null)
 					{
-						var logPath = Path.Combine(Util.GetDataFolderPath(), Const.EventLogFileName);
+						var logPath = Path.Combine(Util.GetDataFolderPath(), Const.LogFileName);
 						_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
 					}
 				}
