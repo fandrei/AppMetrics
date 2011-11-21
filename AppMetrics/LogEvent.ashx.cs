@@ -27,7 +27,7 @@ namespace AppMetrics
 
 					if (_logFile == null)
 					{
-						var logPath = Path.Combine(GetDataFolderPath(HttpContext.Current), EventLogFileName);
+						var logPath = Path.Combine(GetDataFolderPath(), EventLogFileName);
 						_logFile = new StreamWriter(logPath, true, Encoding.UTF8);
 						_logFile.AutoFlush = true;
 					}
@@ -74,7 +74,7 @@ namespace AppMetrics
 
 		private static string GetDataFilePath(HttpContext context, string applicationKey, string sessionId)
 		{
-			var basePath = GetDataFolderPath(context);
+			var basePath = GetDataFolderPath();
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);
@@ -101,9 +101,9 @@ namespace AppMetrics
 			}
 		}
 
-		private static string GetDataFolderPath(HttpContext context)
+		public static string GetDataFolderPath()
 		{
-			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\App_Data");
+			return Path.GetFullPath(HttpContext.Current.Request.PhysicalApplicationPath + "\\App_Data");
 		}
 
 		public bool IsReusable
