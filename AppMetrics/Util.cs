@@ -11,7 +11,8 @@ namespace AppMetrics
 		public static string GetDataFolderPath()
 		{
 			var root = HttpContext.Current.Request.PhysicalApplicationPath;
-			return Path.GetFullPath(root + "\\App_Data");
+			var res = Path.Combine(root, "App_Data");
+			return res;
 		}
 	}
 }
