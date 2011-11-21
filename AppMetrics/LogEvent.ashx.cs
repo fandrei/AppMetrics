@@ -27,7 +27,7 @@ namespace AppMetrics
 
 					if (_logFile == null)
 					{
-						var logPath = Path.Combine(Util.GetDataFolderPath(), EventLogFileName);
+						var logPath = Path.Combine(Util.GetDataFolderPath(), Const.EventLogFileName);
 						_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
 					}
 				}
@@ -136,7 +136,7 @@ namespace AppMetrics
 				var text = val.ToString();
 
 				if (priority != Priority.Low)
-					EventLog.WriteEntry(EventLogSourceName, text);
+					EventLog.WriteEntry(Const.EventLogSourceName, text);
 
 				if (_logFile != null)
 				{
@@ -145,9 +145,9 @@ namespace AppMetrics
 					if (multiLineData)
 					{
 						_logFile.WriteLine(time);
-						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(Const.Delimiter);
 						_logFile.WriteLine(text);
-						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(Const.Delimiter);
 					}
 					else
 					{
@@ -162,12 +162,8 @@ namespace AppMetrics
 			}
 		}
 
-		private const string EventLogSourceName = "AppMetricsEventSource";
-
 		private static StreamWriter _logFile;
-		private const string EventLogFileName = "AppMetrics.Log.txt";
 
-		private static readonly string Delimiter = new string('-', 80);
 		private static long _requestCounter;
 		private static Timer _timer;
 		static readonly object Sync = new object();
