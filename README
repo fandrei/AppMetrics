@@ -1,0 +1,5 @@
+AppMetrics
+application metrics collecting tool
+
+Deployment: build deployment package, copy to the target PC and then use this command:
+AppMetrics.deploy.cmd /Y

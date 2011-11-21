@@ -76,7 +76,7 @@ namespace AppMetrics.Client
 							Value = val.ToString(),
 							SessionId = _session,
 							Url = _url,
-							Time = DateTime.UtcNow,
+							Time = DateTime.Now,
 							Severity = severity
 						});
 			}
@@ -139,7 +139,7 @@ namespace AppMetrics.Client
 					{ "MessageSession", message.SessionId }, 
 					{ "MessageName", message.Name },
 					{ "MessageData", message.Value },
-					{ "MessageTime", message.Time.ToString("u") },
+					{ "MessageTime", message.Time.ToString("yyyy-MM-dd HH:mm:ss") },
 				};
 
 			var response = client.UploadValues(message.Url, "POST", vals);

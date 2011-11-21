@@ -21,9 +21,16 @@ namespace AppMetrics
 			{
 				if (_timer == null)
 				{
-					_timer = new Timer { Interval = 1000, AutoReset = true};
+					_timer = new Timer { Interval = 1000, AutoReset = true };
 					_timer.Elapsed += OnTimer;
 					_timer.Start();
+
+					if (_logFile == null)
+					{
+						var logPath = Path.Combine(GetDataFolderPath(HttpContext.Current), EventLogFileName);
+						_logFile = new StreamWriter(logPath, true, Encoding.UTF8);
+						_logFile.AutoFlush = true;
+					}
 				}
 			}
 		}
@@ -50,25 +57,15 @@ namespace AppMetrics
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
 
-					bool multiLineData = data.Contains('\n');
-					if (multiLineData)
-					{
-						writer.WriteLine("{0}\t{1}", clientTime, name);
-						writer.WriteLine(Delimiter);
-						writer.WriteLine(data);
-						writer.WriteLine(Delimiter);
-					}
-					else
-					{
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
-					}
+					data = data.Replace("\r", "\\r").Replace("\n", "\\n");
+					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 
 				CountNewRequest();
 			}
 			catch (Exception exc)
 			{
-				Log(exc);
+				Report(exc);
 #if DEBUG
 				context.Response.Write(exc);
 #endif
@@ -77,7 +74,7 @@ namespace AppMetrics
 
 		private static string GetDataFilePath(HttpContext context, string applicationKey, string sessionId)
 		{
-			var basePath = Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\Data");
+			var basePath = GetDataFolderPath(context);
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);
@@ -104,6 +101,11 @@ namespace AppMetrics
 			}
 		}
 
+		private static string GetDataFolderPath(HttpContext context)
+		{
+			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\App_Data");
+		}
+
 		public bool IsReusable
 		{
 			get
@@ -123,19 +125,41 @@ namespace AppMetrics
 			{
 				var count = Interlocked.Exchange(ref _requestCounter, 0);
 				if (count != 0)
-					Log(string.Format("Requests per second: {0}", count));
+					Report(string.Format("Requests per second: {0}", count), Priority.Low);
 			}
 			catch (Exception exc)
 			{
-				Log(exc);
+				Report(exc);
 			}
 		}
 
-		static void Log(object val)
+		enum Priority { Low, High }
+
+		static void Report(object val, Priority priority = Priority.High)
 		{
 			try
 			{
-				EventLog.WriteEntry(EventLogSourceName, val.ToString());
+				var text = val.ToString();
+
+				if (priority != Priority.Low)
+					EventLog.WriteEntry(EventLogSourceName, text);
+
+				if (_logFile != null)
+				{
+					var time = DateTime.Now;
+					bool multiLineData = text.Contains('\n');
+					if (multiLineData)
+					{
+						_logFile.WriteLine(time);
+						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(text);
+						_logFile.WriteLine(Delimiter);
+					}
+					else
+					{
+						_logFile.WriteLine("{0}\t{1}", time, text);
+					}
+				}
 			}
 			catch (Exception exc)
 			{
@@ -144,8 +168,10 @@ namespace AppMetrics
 			}
 		}
 
-		private const string EventLogName = "AppMetrics";
 		private const string EventLogSourceName = "AppMetricsEventSource";
+
+		private static StreamWriter _logFile;
+		private const string EventLogFileName = "AppMetrics.Log.txt";
 
 		private static readonly string Delimiter = new string('-', 80);
 		private static long _requestCounter;

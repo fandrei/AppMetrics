@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2010.LoadTests", "VS2010.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2287790-94CB-440B-B27A-B05ABA8EEAE6}"
 	ProjectSection(SolutionItems) = preProject
+		README = README
 		AppMetrics.vsmdi = AppMetrics.vsmdi
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
