@@ -29,7 +29,13 @@ namespace AppMetrics
 					var name = file.Substring(dataPath.Length + 1);
 					var text = File.ReadAllText(file);
 					var fileTime = File.GetLastWriteTime(file);
-					var item = new SyndicationItem(name, text, null, name, fileTime);
+					var item = new SyndicationItem
+						{
+							Title = SyndicationContent.CreatePlaintextContent(name),
+							Id = name,
+							LastUpdatedTime = fileTime,
+							Content = SyndicationContent.CreatePlaintextContent(text),
+						};
 					items.Add(item);
 				}
 				items.Sort((x, y) => x.LastUpdatedTime.CompareTo(y.LastUpdatedTime));
