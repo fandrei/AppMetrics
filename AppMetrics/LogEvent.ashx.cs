@@ -56,7 +56,7 @@ namespace AppMetrics
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
 
-					data = data.Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
+					data = Util.Escape(data);
 					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 

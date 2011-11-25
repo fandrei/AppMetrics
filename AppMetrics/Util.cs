@@ -14,5 +14,17 @@ namespace AppMetrics
 			var res = Path.Combine(root, "App_Data");
 			return res;
 		}
+
+		public static string Escape(string val)
+		{
+			var res = val.Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
+			return res;
+		}
+
+		public static string Unescape(string val)
+		{
+			var res = val.Replace("\\r", "\r").Replace("\\n", "\n").Replace("\\t", "\t");
+			return res;
+		}
 	}
 }
