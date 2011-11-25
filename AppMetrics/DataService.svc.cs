@@ -4,7 +4,8 @@ using System.Data.Services;
 using System.Data.Services.Common;
 using System.Diagnostics;
 using System.Linq;
-
+using System.Linq.Expressions;
+using System.ServiceModel.Web;
 using AppMetrics.DataModel;
 
 namespace AppMetrics

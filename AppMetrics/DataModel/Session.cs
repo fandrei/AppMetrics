@@ -11,6 +11,7 @@ namespace AppMetrics.DataModel
 	{
 		public string Id { get; set; }
 		public DateTime LastUpdated { get; set; }
-		public IList<Record> Records { get; set; }
+
+		internal string FileName { get; set; }
 	}
 }
