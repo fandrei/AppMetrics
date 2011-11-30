@@ -85,6 +85,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicAuthenticationModule.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="DataModel\DataSource.cs" />
     <Compile Include="DataModel\Record.cs" />
