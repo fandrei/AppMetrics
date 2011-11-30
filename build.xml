@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
+    <BuildVersion>0</BuildVersion> <!-- This gets set by the build server -->
   </PropertyGroup>
 
   <Target Name="Build" >
@@ -17,6 +18,7 @@
   </Target>
 
   <Target Name="BuildPackage" DependsOnTargets="Package" >
+    <Message Text="Creating version $(BuildVersion)" />
   </Target>
 
 </Project>
