@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <Target Name="Build" >
+    <Message Text="Building version $(BuildVersion)" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild" 
       Properties="Configuration=$(Configuration)" />
   </Target>
@@ -18,7 +19,7 @@
   </Target>
 
   <Target Name="BuildPackage" DependsOnTargets="Package" >
-    <Message Text="Creating version $(BuildVersion)" />
+    
   </Target>
 
 </Project>
