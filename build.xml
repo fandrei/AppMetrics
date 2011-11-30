@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="BuildPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
+  </PropertyGroup>
+
+  <Target Name="Build" >
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild" 
+      Properties="Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="Package" DependsOnTargets="Build" >
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package" 
+      Properties="Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="BuildPackage" DependsOnTargets="Package" >
+  </Target>
+
+</Project>
