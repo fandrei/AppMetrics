@@ -4,3 +4,7 @@ application metrics collecting tool
 Deployment: build deployment package, copy to the target PC and then use this command:
 AppMetrics.deploy.cmd /Y
 (administrator rights required)
+After first installation, it's necessary to grant ASP.NET user (NETWORK SERVICE) with write access to the folder App_Data.
+Contents of App_Data is preserved on update.
+List of users is stored in App_Data/users.config file, format is like this:
+user-name\tpassword\r\n
