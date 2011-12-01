@@ -19,6 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4DDCB86E-E148-4715-975E-C704B6AE6486}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1F710A1D-A2FE-4A96-86E1-FC35E33F7747}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TECHNICAL_GOALS.md = Documentation\TECHNICAL_GOALS.md
+		Documentation\TECHNICAL_NOTES.md = Documentation\TECHNICAL_NOTES.md
+		Documentation\VISION.md = Documentation\VISION.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
