@@ -32,6 +32,11 @@
   <Target Name="Package" DependsOnTargets="Build" >
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package" 
       Properties="Configuration=$(Configuration)" />
+	<FileUpdate 
+			Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
+			Regex="Default Web Site/AppMetrics"
+			ReplacementText="Default Web Site/AppMetrics$(BuildVersion)" 
+			/>
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
