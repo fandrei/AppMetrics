@@ -7,6 +7,10 @@
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
   <PropertyGroup>
+    <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
 	<MajorVersion>0</MajorVersion>
@@ -39,7 +43,17 @@
 			/>
   </Target>
 
-  <Target Name="DoItAll" DependsOnTargets="Package" >
+  <Target Name="Deploy" DependsOnTargets="Package" >
+  </Target>
+
+  <Target Name="Test" DependsOnTargets="Deploy" >
+    <CreateItem Include="$(MSBuildProjectDirectory)\Tests\bin\$(Configuration)\Tests.dll">
+	  <Output TaskParameter="Include" ItemName="TestAssembly" />
+	</CreateItem>
+    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
+  </Target>
+
+  <Target Name="DoItAll" DependsOnTargets="Deploy" >
   </Target>
 
 </Project>
