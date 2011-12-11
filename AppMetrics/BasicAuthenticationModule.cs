@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 
 namespace AppMetrics
 {
@@ -33,6 +34,9 @@ namespace AppMetrics
 
 		static bool Authenticate(HttpContext context)
 		{
+			if (IsAnonymousAccessAllowed(context.Request))
+				return true;
+
 			var authHeader = context.Request.Headers.Get("Authorization");
 			if (string.IsNullOrEmpty(authHeader))
 				return false;
@@ -110,5 +114,12 @@ namespace AppMetrics
 				return res;
 			}
 		}
+
+		public static bool IsAnonymousAccessAllowed(HttpRequest request)
+		{
+			return UrlAuthorizationModule.CheckUrlAccessForPrincipal(request.Path, AnonymousUser, request.RequestType);
+		}
+
+		static readonly GenericPrincipal AnonymousUser = new GenericPrincipal(new GenericIdentity(""), new string[0]);
 	}
 }
