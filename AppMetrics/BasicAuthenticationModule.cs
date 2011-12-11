@@ -21,42 +21,30 @@ namespace AppMetrics
 		static void AuthenticateRequest(object sender, EventArgs e)
 		{
 			var application = (HttpApplication)sender;
-			if (!Authenticate(application.Context))
+			var context = application.Context;
+			if (!Authenticate(context))
 			{
-				application.Context.Response.Status = "401 Unauthorized";
-				application.Context.Response.StatusCode = 401;
-				application.Context.Response.AddHeader("WWW-Authenticate", "Basic");
-				application.CompleteRequest();
+				context.Response.Status = "401 Unauthorized";
+				context.Response.StatusCode = 401;
+				context.Response.AddHeader("WWW-Authenticate", "Basic");
+				context.Response.End();
 			}
 		}
 
 		static bool Authenticate(HttpContext context)
 		{
-			//if (!context.Request.IsSecureConnection)
-			//    return false;
-
-			if (!context.Request.Headers.AllKeys.Contains("Authorization"))
+			var authHeader = context.Request.Headers.Get("Authorization");
+			if (string.IsNullOrEmpty(authHeader))
 				return false;
 
-			var authHeader = context.Request.Headers["Authorization"];
-
-			IPrincipal principal;
-			if (TryGetPrincipal(authHeader, out principal))
-			{
-				context.User = principal;
-				return true;
-			}
-			return false;
-		}
-
-		private static bool TryGetPrincipal(string authHeader, out IPrincipal principal)
-		{
 			var creds = ParseAuthHeader(authHeader);
-			if (creds != null && TryGetPrincipal(creds, out principal))
-				return true;
+			if (creds == null)
+				return true; // anonymous user
 
-			principal = null;
-			return false;
+			var principal = TryGetPrincipal(creds);
+			
+			context.User = principal;
+			return true;
 		}
 
 		private static string[] ParseAuthHeader(string authHeader)
@@ -73,7 +61,7 @@ namespace AppMetrics
 			return credentials;
 		}
 
-		private static bool TryGetPrincipal(string[] creds, out IPrincipal principal)
+		private static IPrincipal TryGetPrincipal(string[] creds)
 		{
 			var users = GetUsers();
 
@@ -81,13 +69,11 @@ namespace AppMetrics
 			{
 				if (creds[0] == pair.Key && creds[1] == pair.Value)
 				{
-					principal = new GenericPrincipal(new GenericIdentity(pair.Key), new[] { "Administrator", "User" });
-					return true;
+					return new GenericPrincipal(new GenericIdentity(pair.Key), new[] { "Administrator", "User" });
 				}
 			}
 
-			principal = null;
-			return false;
+			return null;
 		}
 
 		private static Dictionary<string, string> _users;
@@ -105,7 +91,7 @@ namespace AppMetrics
 						var text = File.ReadAllText(fileName);
 
 						_users = new Dictionary<string, string>();
-						var lines = text.Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+						var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 						foreach (var line in lines)
 						{
 							var parts = line.Split('\t');
