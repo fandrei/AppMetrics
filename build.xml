@@ -7,53 +7,40 @@
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
   <PropertyGroup>
-    <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
-	<MajorVersion>0</MajorVersion>
-	<MinorVersion>1</MinorVersion>
-    <BuildVersion>0</BuildVersion> <!-- This gets set by the build server -->
-	<FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
+    <MajorVersion>0</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <BuildVersion>0</BuildVersion>
+    <!-- This gets set by the build server -->
+    <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
   </PropertyGroup>
 
   <Target Name="UpdateVersion" >
-	<Message Text="Updating version to $(FullVersion)" />
-	<FileUpdate 
-			Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
-			Regex="AssemblyVersion\(&quot;.*&quot;\)"
-			ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)" 
+    <Message Text="Updating version to $(FullVersion)" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
+        Regex="AssemblyVersion\(&quot;.*&quot;\)"
+        ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)"
 			/>
   </Target>
 
   <Target Name="Build" DependsOnTargets="UpdateVersion" >
-    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild" 
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild"
       Properties="Configuration=$(Configuration)" />
   </Target>
 
   <Target Name="Package" DependsOnTargets="Build" >
-    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package" 
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
-	<FileUpdate 
-			Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
-			Regex="Default Web Site/AppMetrics"
-			ReplacementText="Default Web Site/AppMetrics$(BuildVersion)" 
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
+        Regex="Default Web Site/AppMetrics"
+        ReplacementText="Default Web Site/AppMetrics$(BuildVersion)"
 			/>
   </Target>
 
-  <Target Name="Deploy" DependsOnTargets="Package" >
-  </Target>
-
-  <Target Name="Test" DependsOnTargets="Deploy" >
-    <CreateItem Include="$(MSBuildProjectDirectory)\Tests\bin\$(Configuration)\Tests.dll">
-	  <Output TaskParameter="Include" ItemName="TestAssembly" />
-	</CreateItem>
-    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
-  </Target>
-
-  <Target Name="DoItAll" DependsOnTargets="Deploy" >
+  <Target Name="DoItAll" DependsOnTargets="Package" >
   </Target>
 
 </Project>
