@@ -19,9 +19,15 @@ namespace Tests
 		public string Password { get; set; }
 
 		[XmlIgnore]
-		public string MetricsLoggingUrl { get { return ServiceRootUrl + "/AppMetrics/LogEvent.ashx"; } }
+		public string MetricsLoggingUrl { get { return CombineUri(ServiceRootUrl, "LogEvent.ashx"); } }
 		[XmlIgnore]
-		public string MetricsExportUrl { get { return ServiceRootUrl + "/AppMetrics/DataService.svc/"; } }
+		public string MetricsExportUrl { get { return CombineUri(ServiceRootUrl, "DataService.svc/"); } }
+
+		public static string CombineUri(string root, string tail)
+		{
+			var res = new Uri(new Uri(root), tail);
+			return res.AbsoluteUri;
+		}
 
 		#region Config storing implementation
 
