@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 11/28/2011 9:05:15 PM
+// Generation date: 12/13/2011 7:44:55 PM
 namespace Tests.AppMetricsDataService
 {
     
@@ -123,13 +123,15 @@ namespace Tests.AppMetricsDataService
         /// Create a new Session object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
-        /// <param name="lastUpdated">Initial value of LastUpdated.</param>
+        /// <param name="creationTime">Initial value of CreationTime.</param>
+        /// <param name="lastUpdateTime">Initial value of LastUpdateTime.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Session CreateSession(string ID, global::System.DateTime lastUpdated)
+        public static Session CreateSession(string ID, global::System.DateTime creationTime, global::System.DateTime lastUpdateTime)
         {
             Session session = new Session();
             session.Id = ID;
-            session.LastUpdated = lastUpdated;
+            session.CreationTime = creationTime;
+            session.LastUpdateTime = lastUpdateTime;
             return session;
         }
         /// <summary>
@@ -155,27 +157,49 @@ namespace Tests.AppMetricsDataService
         partial void OnIdChanging(string value);
         partial void OnIdChanged();
         /// <summary>
-        /// There are no comments for Property LastUpdated in the schema.
+        /// There are no comments for Property CreationTime in the schema.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.DateTime LastUpdated
+        public global::System.DateTime CreationTime
         {
             get
             {
-                return this._LastUpdated;
+                return this._CreationTime;
             }
             set
             {
-                this.OnLastUpdatedChanging(value);
-                this._LastUpdated = value;
-                this.OnLastUpdatedChanged();
-                this.OnPropertyChanged("LastUpdated");
+                this.OnCreationTimeChanging(value);
+                this._CreationTime = value;
+                this.OnCreationTimeChanged();
+                this.OnPropertyChanged("CreationTime");
             }
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.DateTime _LastUpdated;
-        partial void OnLastUpdatedChanging(global::System.DateTime value);
-        partial void OnLastUpdatedChanged();
+        private global::System.DateTime _CreationTime;
+        partial void OnCreationTimeChanging(global::System.DateTime value);
+        partial void OnCreationTimeChanged();
+        /// <summary>
+        /// There are no comments for Property LastUpdateTime in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.DateTime LastUpdateTime
+        {
+            get
+            {
+                return this._LastUpdateTime;
+            }
+            set
+            {
+                this.OnLastUpdateTimeChanging(value);
+                this._LastUpdateTime = value;
+                this.OnLastUpdateTimeChanged();
+                this.OnPropertyChanged("LastUpdateTime");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.DateTime _LastUpdateTime;
+        partial void OnLastUpdateTimeChanging(global::System.DateTime value);
+        partial void OnLastUpdateTimeChanged();
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]

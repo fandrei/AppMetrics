@@ -6,7 +6,8 @@
           <PropertyRef Name="Id" />
         </Key>
         <Property Name="Id" Type="Edm.String" Nullable="false" />
-        <Property Name="LastUpdated" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LastUpdateTime" Type="Edm.DateTime" Nullable="false" />
       </EntityType>
       <EntityType Name="Record">
         <Key>

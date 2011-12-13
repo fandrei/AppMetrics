@@ -10,7 +10,9 @@ namespace AppMetrics.DataModel
 	public class Session
 	{
 		public string Id { get; set; }
-		public DateTime LastUpdated { get; set; }
+
+		public DateTime CreationTime { get; set; }
+		public DateTime LastUpdateTime { get; set; }
 
 		internal string FileName { get; set; }
 	}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="011a7b8c-cb7e-4a47-8fe1-418a7cb5fe75" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d98b5185-3279-441d-a6c0-4922426d7f19" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
   <MetadataSources>
-    <MetadataSource Address="http://localhost/AppMetrics/DataService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:51379/DataService.svc/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.edmx" MetadataType="Edmx" ID="cf0c6431-ca44-40f6-834f-b10bb01dd0c8" SourceId="1" SourceUrl="http://localhost/AppMetrics/DataService.svc" />
+    <MetadataFile FileName="service.edmx" MetadataType="Edmx" ID="cd803497-ad5d-48d0-b54f-ce2887b43e93" SourceId="1" SourceUrl="http://localhost:51379/DataService.svc/" />
   </Metadata>
   <Extensions />
   <Parameters>

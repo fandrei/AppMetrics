@@ -53,26 +53,30 @@ namespace AppMetrics.DataModel
 			
 			var beginningTime = DateTime.Now - period;
 			var dataPath = Path.Combine(Util.GetDataFolderPath(), appKey);
+
 			foreach (var file in Directory.GetFiles(dataPath, "*.*.txt", SearchOption.AllDirectories))
 			{
 				if (file.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
 					continue;
 
-				var fileTime = File.GetCreationTime(file);
-				if (fileTime < beginningTime)
+				var creationTime = File.GetCreationTime(file);
+				if (creationTime < beginningTime)
 					continue;
+
+				var lastUpdateTime = File.GetCreationTime(file);
 
 				var name = file.Substring(dataPath.Length + 1);
 				var session = new Session
 				{
 					FileName = file,
 					Id = name,
-					LastUpdated = fileTime,
+					CreationTime = creationTime,
+					LastUpdateTime = lastUpdateTime,
 				};
 				res.Add(session);
 			}
 
-			res.Sort((x, y) => x.LastUpdated.CompareTo(y.LastUpdated));
+			res.Sort((x, y) => x.LastUpdateTime.CompareTo(y.LastUpdateTime));
 
 			return res;
 		}
@@ -82,6 +86,7 @@ namespace AppMetrics.DataModel
 			var res = new List<Record>();
 
 			var sessions = GetSessions(appKey, period);
+
 			foreach (var session in sessions)
 			{
 				var text = File.ReadAllText(session.FileName);
