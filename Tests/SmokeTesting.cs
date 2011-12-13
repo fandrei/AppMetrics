@@ -33,6 +33,9 @@ namespace Tests
 			var sessions = new List<Session>(
 				dataSource.Sessions.AddQueryOption("appKey", AppKey).AddQueryOption("period", RequestPeriod));
 			Assert.IsTrue(sessions.Count > 0);
+
+			var thisSession = sessions.Find(val => val.Id == tracker.SessionId);
+			Assert.IsTrue(thisSession != null);
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace AppMetrics.Client
 				throw new ArgumentNullException();
 			_applicationKey = applicationKey;
 
-			_session = Guid.NewGuid().ToString();
+			SessionId = Guid.NewGuid().ToString();
 		}
 
 		static Tracker()
@@ -74,7 +74,7 @@ namespace AppMetrics.Client
 							ApplicationKey = _applicationKey,
 							Name = name,
 							Value = val.ToString(),
-							SessionId = _session,
+							SessionId = SessionId,
 							Url = _url,
 							Time = DateTime.Now,
 							Severity = severity
@@ -159,7 +159,7 @@ namespace AppMetrics.Client
 			return _requestsSent;
 		}
 
-		private readonly string _session;
+		public string SessionId { get; private set; }
 		private readonly string _url;
 		private readonly string _applicationKey;
 
