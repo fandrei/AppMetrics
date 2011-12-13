@@ -67,7 +67,7 @@ namespace AppMetrics.DataModel
 				if (creationTime < beginningTime)
 					continue;
 
-				var lastUpdateTime = File.GetCreationTime(filePath);
+				var lastUpdateTime = File.GetLastWriteTime(filePath);
 
 				var session = new Session
 				{
