@@ -20,7 +20,7 @@
     <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
   </Target>
 
-  <Target Name="DoItAll" DependsOnTargets="Deploy" >
+  <Target Name="DoItAll" DependsOnTargets="Test" >
   </Target>
 
 </Project>
