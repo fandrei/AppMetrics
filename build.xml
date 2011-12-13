@@ -21,8 +21,7 @@
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
         Regex="AssemblyVersion\(&quot;.*&quot;\)"
-        ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)"
-			/>
+        ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)" />
   </Target>
 
   <Target Name="Build" DependsOnTargets="UpdateVersion" >
@@ -36,8 +35,7 @@
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
         Regex="Default Web Site/AppMetrics"
-        ReplacementText="Default Web Site/AppMetrics$(BuildVersion)"
-			/>
+        ReplacementText="next.metrics.labs.cityindex.com/" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
