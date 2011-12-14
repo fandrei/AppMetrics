@@ -32,6 +32,10 @@
   <Target Name="Package" DependsOnTargets="Build" >
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
+        Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
+        ReplacementText="$1&quot;test.metrics.labs.cityindex.com/&quot;" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
