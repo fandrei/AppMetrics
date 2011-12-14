@@ -27,7 +27,7 @@ namespace AppMetrics
 
 					if (_logFile == null)
 					{
-						var logPath = Path.Combine(Util.GetDataFolderPath(), Const.LogFileName);
+						var logPath = Path.Combine(AppSettings.DataStoragePath, Const.LogFileName);
 						_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
 					}
 				}
@@ -73,7 +73,7 @@ namespace AppMetrics
 
 		private static string GetDataFilePath(string applicationKey, string sessionId)
 		{
-			var basePath = Util.GetDataFolderPath();
+			var basePath = AppSettings.DataStoragePath;
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);

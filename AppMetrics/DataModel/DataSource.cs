@@ -52,7 +52,7 @@ namespace AppMetrics.DataModel
 			var res = new List<Session>();
 			
 			var beginningTime = DateTime.Now - period;
-			var dataPath = Path.Combine(Util.GetDataFolderPath(), appKey);
+			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
 
 			foreach (var filePath in Directory.GetFiles(dataPath, "*.*.txt", SearchOption.AllDirectories))
 			{
