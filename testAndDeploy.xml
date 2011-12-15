@@ -19,7 +19,7 @@
   </Target>
 
   <Target Name="Test" DependsOnTargets="Deploy1" >
-    <CreateItem Include="$(MSBuildProjectDirectory)\Tests\bin\$(Configuration)\Tests.dll">
+    <CreateItem Include="$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.dll">
       <Output TaskParameter="Include" ItemName="TestAssembly" />
     </CreateItem>
     <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
