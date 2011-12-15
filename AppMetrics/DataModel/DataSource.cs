@@ -50,36 +50,39 @@ namespace AppMetrics.DataModel
 		public static List<Session> GetSessions(string appKey, TimeSpan period)
 		{
 			var res = new List<Session>();
-			
+
 			var beginningTime = DateTime.Now - period;
 			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
 
-			foreach (var filePath in Directory.GetFiles(dataPath, "*.*.txt", SearchOption.AllDirectories))
+			if (Directory.Exists(dataPath))
 			{
-				if (filePath.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
-					continue;
-
-				var fileName = Path.GetFileNameWithoutExtension(filePath);
-				var nameParts = fileName.Split('.');
-				var sessionId = nameParts.Last();
-
-				var creationTime = File.GetCreationTime(filePath);
-				if (creationTime < beginningTime)
-					continue;
-
-				var lastUpdateTime = File.GetLastWriteTime(filePath);
-
-				var session = new Session
+				foreach (var filePath in Directory.GetFiles(dataPath, "*.*.txt", SearchOption.AllDirectories))
 				{
-					FileName = filePath,
-					Id = sessionId,
-					CreationTime = creationTime,
-					LastUpdateTime = lastUpdateTime,
-				};
-				res.Add(session);
-			}
+					if (filePath.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
+						continue;
 
-			res.Sort((x, y) => x.LastUpdateTime.CompareTo(y.LastUpdateTime));
+					var fileName = Path.GetFileNameWithoutExtension(filePath);
+					var nameParts = fileName.Split('.');
+					var sessionId = nameParts.Last();
+
+					var creationTime = File.GetCreationTime(filePath);
+					if (creationTime < beginningTime)
+						continue;
+
+					var lastUpdateTime = File.GetLastWriteTime(filePath);
+
+					var session = new Session
+									{
+										FileName = filePath,
+										Id = sessionId,
+										CreationTime = creationTime,
+										LastUpdateTime = lastUpdateTime,
+									};
+					res.Add(session);
+				}
+
+				res.Sort((x, y) => x.LastUpdateTime.CompareTo(y.LastUpdateTime));
+			}
 
 			return res;
 		}
