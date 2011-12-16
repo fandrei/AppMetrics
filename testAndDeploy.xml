@@ -25,6 +25,13 @@
     <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
   </Target>
 
+  <Target Name="Deploy2" >
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
+        Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
+        ReplacementText="$1&quot;next.metrics.labs.cityindex.com/&quot;" />
+  </Target>
+
   <Target Name="DoItAll" DependsOnTargets="Test" >
   </Target>
 
