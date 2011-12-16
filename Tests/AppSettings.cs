@@ -11,7 +11,6 @@ namespace Tests
 	{
 		public AppSettings()
 		{
-			SetDefaults();
 		}
 
 		public string ServiceRootUrl { get; set; }
@@ -29,6 +28,18 @@ namespace Tests
 			return res.AbsoluteUri;
 		}
 
+		private void SetDefaultsIfEmpty()
+		{
+			if (string.IsNullOrEmpty(ServiceRootUrl))
+				ServiceRootUrl = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootUrl");
+
+			if (string.IsNullOrEmpty(UserName))
+				UserName = Environment.GetEnvironmentVariable("AppMetricsTest_UserName");
+
+			if (string.IsNullOrEmpty(Password))
+				Password = Environment.GetEnvironmentVariable("AppMetricsTest_Password");
+		}
+
 		#region Config storing implementation
 
 		private static AppSettings _instance;
@@ -38,8 +49,7 @@ namespace Tests
 			get { return _instance ?? (_instance = Load()); }
 		}
 
-		private static readonly string FileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-			+ @"\City Index\AppMetrics.Tests\AppSettings.xml";
+		private static readonly string FileName = Util.GetAppLocation() + @"\AppSettings.xml";
 
 		public static void Reload()
 		{
@@ -61,6 +71,8 @@ namespace Tests
 			else
 				settings = new AppSettings();
 
+			settings.SetDefaultsIfEmpty();
+
 			return settings;
 		}
 
@@ -75,10 +87,6 @@ namespace Tests
 			{
 				s.Serialize(writer, this);
 			}
-		}
-
-		private void SetDefaults()
-		{
 		}
 
 		#endregion
