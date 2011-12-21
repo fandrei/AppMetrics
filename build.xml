@@ -35,7 +35,7 @@
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
         Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
-        ReplacementText="Default Web Site/AppMetrics_$(BuildVersion)" />
+        ReplacementText="$1&quot;Default Web Site/AppMetrics_$(BuildVersion)&quot;" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
