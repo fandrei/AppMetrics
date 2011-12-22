@@ -17,6 +17,9 @@ namespace HeavyLoadTest
 					throw new ApplicationException("Invalid args");
 				_url = args[0];
 
+				var listeners = new[] { new TextWriterTraceListener(Console.Out) };
+				Debug.Listeners.AddRange(listeners);
+
 				var watch = Stopwatch.StartNew();
 
 				var requestsSent = RunMultipleTests();

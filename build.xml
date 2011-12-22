@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
+    <MajorVersion>0</MajorVersion>
+    <MinorVersion>1</MinorVersion>
+    <BuildVersion>0</BuildVersion>
+    <!-- This gets set by the build server -->
+    <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
+  </PropertyGroup>
+
+  <Target Name="UpdateVersion" >
+    <Message Text="Updating version to $(FullVersion)" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
+        Regex="AssemblyVersion\(&quot;.*&quot;\)"
+        ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="UpdateVersion" >
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild"
+      Properties="Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="Package" DependsOnTargets="Build" >
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
+      Properties="Configuration=$(Configuration)" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
+        Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
+        ReplacementText="$1&quot;Default Web Site/AppMetrics_$(BuildVersion)&quot;" />
+    
+    <!-- store build number in the file to be used in other build jobs -->
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\properties.xml"
+        Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
+        ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
+  </Target>
+
+  <Target Name="DoItAll" DependsOnTargets="Package" >
+  </Target>
+
+</Project>

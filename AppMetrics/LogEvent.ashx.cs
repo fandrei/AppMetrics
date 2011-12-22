@@ -27,9 +27,8 @@ namespace AppMetrics
 
 					if (_logFile == null)
 					{
-						var logPath = Path.Combine(GetDataFolderPath(HttpContext.Current), EventLogFileName);
-						_logFile = new StreamWriter(logPath, true, Encoding.UTF8);
-						_logFile.AutoFlush = true;
+						var logPath = Path.Combine(AppSettings.DataStoragePath, Const.LogFileName);
+						_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
 					}
 				}
 			}
@@ -49,7 +48,7 @@ namespace AppMetrics
 				if (string.IsNullOrEmpty(sessionId))
 					throw new ApplicationException("No session ID");
 
-				var filePath = GetDataFilePath(context, applicationKey, sessionId);
+				var filePath = GetDataFilePath(applicationKey, sessionId);
 
 				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
@@ -57,7 +56,7 @@ namespace AppMetrics
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
 
-					data = data.Replace("\r", "\\r").Replace("\n", "\\n");
+					data = Util.Escape(data);
 					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 
@@ -72,9 +71,9 @@ namespace AppMetrics
 			}
 		}
 
-		private static string GetDataFilePath(HttpContext context, string applicationKey, string sessionId)
+		private static string GetDataFilePath(string applicationKey, string sessionId)
 		{
-			var basePath = GetDataFolderPath(context);
+			var basePath = AppSettings.DataStoragePath;
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);
@@ -99,11 +98,6 @@ namespace AppMetrics
 					throw new ArgumentException(filePath);
 				return filePath;
 			}
-		}
-
-		private static string GetDataFolderPath(HttpContext context)
-		{
-			return Path.GetFullPath(context.Request.PhysicalApplicationPath + "\\App_Data");
 		}
 
 		public bool IsReusable
@@ -142,7 +136,7 @@ namespace AppMetrics
 				var text = val.ToString();
 
 				if (priority != Priority.Low)
-					EventLog.WriteEntry(EventLogSourceName, text);
+					EventLog.WriteEntry(Const.EventLogSourceName, text);
 
 				if (_logFile != null)
 				{
@@ -151,9 +145,9 @@ namespace AppMetrics
 					if (multiLineData)
 					{
 						_logFile.WriteLine(time);
-						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(Const.Delimiter);
 						_logFile.WriteLine(text);
-						_logFile.WriteLine(Delimiter);
+						_logFile.WriteLine(Const.Delimiter);
 					}
 					else
 					{
@@ -168,12 +162,8 @@ namespace AppMetrics
 			}
 		}
 
-		private const string EventLogSourceName = "AppMetricsEventSource";
-
 		private static StreamWriter _logFile;
-		private const string EventLogFileName = "AppMetrics.Log.txt";
 
-		private static readonly string Delimiter = new string('-', 80);
 		private static long _requestCounter;
 		private static Timer _timer;
 		static readonly object Sync = new object();

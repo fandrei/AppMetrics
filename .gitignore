@@ -20,9 +20,11 @@ Thumbs.db
 *.ilk
 *.log
 [Bb]in
+_bin/
 [Dd]ebug/
 *.lib
 *.sbr
+*.chw
 obj/
 [Rr]elease/
 _ReSharper*/
@@ -30,3 +32,6 @@ _ReSharper*/
 temp/
 
 AppMetrics/App_Data/
+AppMetrics/log.txt
+
+~$*

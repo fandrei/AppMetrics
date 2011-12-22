@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <Import Project="properties.xml" />
+
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
+  </PropertyGroup>
+
+  <Target Name="Test" >
+    <CreateItem Include="$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.dll">
+      <Output TaskParameter="Include" ItemName="TestAssembly" />
+    </CreateItem>
+    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
+  </Target>
+
+  <Target Name="DoItAll" DependsOnTargets="Test" >
+  </Target>
+
+</Project>

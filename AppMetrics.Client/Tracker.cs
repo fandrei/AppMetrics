@@ -20,7 +20,7 @@ namespace AppMetrics.Client
 				throw new ArgumentNullException();
 			_applicationKey = applicationKey;
 
-			_session = Guid.NewGuid().ToString();
+			SessionId = Guid.NewGuid().ToString();
 		}
 
 		static Tracker()
@@ -31,9 +31,9 @@ namespace AppMetrics.Client
 		public static void Terminate(bool waitAll = false)
 		{
 			_terminated = true;
-			LoggingThread.Interrupt();
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
+			LoggingThread.Abort();
 		}
 
 		public void Log(string name, object val, MessageSeverity severity = MessageSeverity.Low)
@@ -54,7 +54,6 @@ namespace AppMetrics.Client
 						Messages.Clear();
 						AddMessage(ErrorName, "Critical message queue overflow. All messages are removed.", MessageSeverity.High);
 					}
-					SendMessages(); // send warning message immediately
 				}
 
 				AddMessage(name, val, severity);
@@ -66,6 +65,9 @@ namespace AppMetrics.Client
 
 		private void AddMessage(string name, object val, MessageSeverity severity)
 		{
+			if (_terminated)
+				return;
+
 			lock (Sync)
 			{
 				Messages.Enqueue(
@@ -74,7 +76,7 @@ namespace AppMetrics.Client
 							ApplicationKey = _applicationKey,
 							Name = name,
 							Value = val.ToString(),
-							SessionId = _session,
+							SessionId = SessionId,
 							Url = _url,
 							Time = DateTime.Now,
 							Severity = severity
@@ -91,11 +93,15 @@ namespace AppMetrics.Client
 					SendMessages();
 					Thread.Sleep(TimeSpan.FromMilliseconds(100));
 				}
-			}
-			catch (ThreadInterruptedException)
-			{ }
 
-			SendMessages();
+				SendMessages();
+			}
+			catch (ThreadAbortException)
+			{ }
+			catch (Exception exc)
+			{
+				Trace.WriteLine(exc);
+			}
 		}
 
 		private static void SendMessages()
@@ -159,7 +165,7 @@ namespace AppMetrics.Client
 			return _requestsSent;
 		}
 
-		private readonly string _session;
+		public string SessionId { get; private set; }
 		private readonly string _url;
 		private readonly string _applicationKey;
 
