@@ -36,6 +36,12 @@
         Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
         Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
         ReplacementText="$1&quot;Default Web Site/AppMetrics_$(BuildVersion)&quot;" />
+    
+    <!-- store build number in the file to be used in other build jobs -->
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\properties.xml"
+        Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
+        ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
