@@ -25,8 +25,10 @@ namespace Tests
 
 		public static string CombineUri(string root, string tail)
 		{
-			var res = new Uri(new Uri(root), tail);
-			return res.AbsoluteUri;
+			if (!root.EndsWith("/") && !tail.StartsWith("/"))
+				root += "/";
+			var res = root + tail;
+			return res;
 		}
 
 		private void SetDefaultsIfEmpty()
