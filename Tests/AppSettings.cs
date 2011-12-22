@@ -10,10 +10,6 @@ namespace Tests
 {
 	public class AppSettings
 	{
-		public AppSettings()
-		{
-		}
-
 		public string ServiceRootUrl { get; set; }
 		public string UserName { get; set; }
 		public string Password { get; set; }
