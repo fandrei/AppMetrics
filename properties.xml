@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
   <PropertyGroup>
-    <MyBuildNumber>_</MyBuildNumber>
+    <MyBuildNumber></MyBuildNumber>
   </PropertyGroup>
 
 </Project>

@@ -20,6 +20,8 @@ namespace Tests
 		[Test]
 		public void SmokeTest()
 		{
+			Console.WriteLine("\r\nTesting service located at {0}\r\n", TestSettings.Instance.ServiceRootUrl);
+
 			var tracker = new Tracker(TestSettings.Instance.MetricsLoggingUrl, AppKey);
 			tracker.Log("TestMessage", "TestValue");
 
