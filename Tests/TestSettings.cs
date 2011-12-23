@@ -21,6 +21,9 @@ namespace Tests
 
 		public static string CombineUri(string root, string tail)
 		{
+			if (string.IsNullOrEmpty(root))
+				throw new ArgumentNullException();
+
 			if (!root.EndsWith("/") && !tail.StartsWith("/"))
 				root += "/";
 			var res = root + tail;
