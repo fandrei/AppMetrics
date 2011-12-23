@@ -104,6 +104,7 @@ namespace AppMetrics.DataModel
 
 					var record = new Record
 					{
+						SessionId = session.Id,
 						Time = DateTime.Parse(fields[0]),
 						Name = fields[1],
 						Value = fields[2],
