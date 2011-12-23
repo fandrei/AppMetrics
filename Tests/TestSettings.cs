@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Tests
 {
-	public class AppSettings
+	public class TestSettings
 	{
 		public string ServiceRootUrl { get; set; }
 		public string UserName { get; set; }
@@ -41,34 +41,34 @@ namespace Tests
 
 		#region Config storing implementation
 
-		private static AppSettings _instance;
+		private static TestSettings _instance;
 
-		public static AppSettings Instance
+		public static TestSettings Instance
 		{
 			get { return _instance ?? (_instance = Load()); }
 		}
 
-		private static readonly string FileName = Util.GetAppLocation() + @"\AppSettings.xml";
+		private static readonly string FileName = Util.GetAppLocation() + @"\TestSettings.xml";
 
 		public static void Reload()
 		{
 			_instance = Load();
 		}
 
-		public static AppSettings Load()
+		public static TestSettings Load()
 		{
-			AppSettings settings;
+			TestSettings settings;
 
 			if (File.Exists(FileName))
 			{
-				var s = new XmlSerializer(typeof(AppSettings));
+				var s = new XmlSerializer(typeof(TestSettings));
 				using (var rd = new StreamReader(FileName))
 				{
-					settings = (AppSettings)s.Deserialize(rd);
+					settings = (TestSettings)s.Deserialize(rd);
 				}
 			}
 			else
-				settings = new AppSettings();
+				settings = new TestSettings();
 
 			settings.SetDefaultsIfEmpty();
 
@@ -81,7 +81,7 @@ namespace Tests
 			if (!Directory.Exists(directory))
 				Directory.CreateDirectory(directory);
 
-			var s = new XmlSerializer(typeof(AppSettings));
+			var s = new XmlSerializer(typeof(TestSettings));
 			using (var writer = new StreamWriter(FileName))
 			{
 				s.Serialize(writer, this);
