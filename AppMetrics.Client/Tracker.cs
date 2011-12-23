@@ -40,6 +40,8 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
+				ReportSystemInfo();
+
 				if (Messages.Count >= MaxMessagesCount)
 				{
 					var tmp = new List<MessageInfo>(Messages);
@@ -163,6 +165,43 @@ namespace AppMetrics.Client
 		public static long GetServedRequestsCount()
 		{
 			return _requestsSent;
+		}
+
+		private bool _systemInfoIsReported;
+
+		void ReportSystemInfo()
+		{
+			lock (Sync)
+			{
+				if (_systemInfoIsReported)
+					return;
+				_systemInfoIsReported = true;
+			}
+
+			var computerInfo = new Microsoft.VisualBasic.Devices.ComputerInfo();
+
+			Log("System_OsName", computerInfo.OSFullName);
+			Log("System_OsVersion", Environment.OSVersion.VersionString);
+
+			Log("System_ComputerName", Environment.MachineName);
+			Log("System_UserName", Environment.UserName);
+
+			Log("System_ClrVersion", Environment.Version.ToString());
+
+			Log("System_PhysicalMemory", computerInfo.TotalPhysicalMemory / (1024 * 1024));
+			Log("System_AvailablePhysicalMemory", computerInfo.AvailablePhysicalMemory / (1024 * 1024));
+
+			Log("System_VirtualMemory", computerInfo.TotalVirtualMemory / (1024 * 1024));
+			Log("System_AvailableVirtualMemory", computerInfo.AvailableVirtualMemory / (1024 * 1024));
+
+			Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
+			Log("System_CurrentUiCulture", Thread.CurrentThread.CurrentUICulture.Name);
+
+			Log("System_SystemDefaultEncoding", Encoding.Default.WebName);
+
+			Log("System_CalendarType", computerInfo.InstalledUICulture.Calendar.GetType().Name);
+
+			Log("System_NumberDecimalSeparator", computerInfo.InstalledUICulture.NumberFormat.NumberDecimalSeparator);
 		}
 
 		public string SessionId { get; private set; }
