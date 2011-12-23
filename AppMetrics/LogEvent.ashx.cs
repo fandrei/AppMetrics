@@ -59,8 +59,9 @@ namespace AppMetrics
 
 					if (!fileExisted)
 					{
-						writer.WriteLine("{0}\t{1}\tIP={2} name={3} agent=\"{4}\"", clientTime, "ClientInfo",
-							context.Request.UserHostAddress, context.Request.UserHostName, context.Request.UserAgent);
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
 					}
 
 					data = Util.Escape(data);
