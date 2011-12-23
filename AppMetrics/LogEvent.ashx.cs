@@ -49,12 +49,19 @@ namespace AppMetrics
 					throw new ApplicationException("No session ID");
 
 				var filePath = GetDataFilePath(applicationKey, sessionId);
+				var fileExisted = File.Exists(filePath);
 
 				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
 				{
 					var name = context.Request.Params["MessageName"];
 					var data = context.Request.Params["MessageData"];
 					var clientTime = context.Request.Params["MessageTime"];
+
+					if (!fileExisted)
+					{
+						writer.WriteLine("{0}\t{1}\tIP={2} name={3} agent=\"{4}\"", clientTime, "ClientInfo",
+							context.Request.UserHostAddress, context.Request.UserHostName, context.Request.UserAgent);
+					}
 
 					data = Util.Escape(data);
 					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);

@@ -3,6 +3,9 @@
 
   <Import Project="properties.xml" />
 
+  <UsingTask TaskName="SetEnvVariable" 
+             AssemblyFile="$(MSBuildProjectDirectory)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
+  
   <PropertyGroup>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
@@ -11,9 +14,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
+
+    <!-- append _ prefix if variable is not empty -->
+    <MyBuildNumber Condition="$(MyBuildNumber) != ''">_$(MyBuildNumber)</MyBuildNumber>
   </PropertyGroup>
 
   <Target Name="Test" >
+    <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)$(MyBuildNumber)"/>
+    <SetEnvVariable Name="AppMetricsTest_UserName" Value="$(AppMetricsTest_UserName)"/>
+    <SetEnvVariable Name="AppMetricsTest_Password" Value="$(AppMetricsTest_Password)"/>
+    
     <CreateItem Include="$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.dll">
       <Output TaskParameter="Include" ItemName="TestAssembly" />
     </CreateItem>

@@ -20,14 +20,16 @@ namespace Tests
 		[Test]
 		public void SmokeTest()
 		{
-			var tracker = new Tracker(AppSettings.Instance.MetricsLoggingUrl, AppKey);
+			Console.WriteLine("\r\nTesting service located at {0}\r\n", TestSettings.Instance.ServiceRootUrl);
+
+			var tracker = new Tracker(TestSettings.Instance.MetricsLoggingUrl, AppKey);
 			tracker.Log("TestMessage", "TestValue");
 
 			Tracker.Terminate(true);
 
-			var dataSource = new DataSource(new Uri(AppSettings.Instance.MetricsExportUrl))
+			var dataSource = new DataSource(new Uri(TestSettings.Instance.MetricsExportUrl))
 				{
-					Credentials = new NetworkCredential(AppSettings.Instance.UserName, AppSettings.Instance.Password)
+					Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password)
 				};
 
 			var sessions = new List<Session>(
