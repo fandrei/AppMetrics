@@ -28,12 +28,12 @@ namespace DebugProject
 				tracker.Log("SomeValue3", Guid.NewGuid().ToString());
 				tracker.Log("SomeValue4", "aaa\r\nbbb\r\nccc");
 
-				for (int i = 0; i < 100; i++)
+				for (int i = 0; i < 20; i++)
 				{
 					tracker.Log(string.Format("SomeRandomValue{0}", i), Guid.NewGuid().ToString());
 				}
 
-				Tracker.Terminate();
+				Tracker.Terminate(true);
 			}
 			catch (Exception exc)
 			{
