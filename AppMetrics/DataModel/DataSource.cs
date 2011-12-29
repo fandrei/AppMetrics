@@ -49,10 +49,15 @@ namespace AppMetrics.DataModel
 
 		public static List<Session> GetSessions(string appKey, TimeSpan period)
 		{
+			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
+			return GetSessionsFromPath(dataPath, period);
+		}
+
+		public static List<Session> GetSessionsFromPath(string dataPath, TimeSpan period)
+		{
 			var res = new List<Session>();
 
 			var beginningTime = DateTime.Now - period;
-			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
 
 			if (Directory.Exists(dataPath))
 			{
@@ -89,31 +94,42 @@ namespace AppMetrics.DataModel
 
 		public static List<Record> GetRecords(string appKey, TimeSpan period)
 		{
+			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
+			return GetRecordsFromPath(dataPath, period);
+		}
+
+		public static List<Record> GetRecordsFromPath(string dataPath, TimeSpan period)
+		{
 			var res = new List<Record>();
 
-			var sessions = GetSessions(appKey, period);
+			var sessions = GetSessionsFromPath(dataPath, period);
 
 			foreach (var session in sessions)
 			{
-				var text = File.ReadAllText(session.FileName);
-				var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-				foreach (var line in lines)
-				{
-					var fields = line.Split('\t');
-
-					var record = new Record
-					{
-						SessionId = session.Id,
-						Time = DateTime.Parse(fields[0]),
-						Name = fields[1],
-						Value = fields[2],
-					};
-					res.Add(record);
-				}
+				GetRecordsFromSession(session, res);
 			}
 
 			return res;
+		}
+
+		public static void GetRecordsFromSession(Session session, List<Record> res)
+		{
+			var text = File.ReadAllText(session.FileName);
+			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+			foreach (var line in lines)
+			{
+				var fields = line.Split('\t');
+
+				var record = new Record
+								{
+									SessionId = session.Id,
+									Time = DateTime.Parse(fields[0]),
+									Name = fields[1],
+									Value = fields[2],
+								};
+				res.Add(record);
+			}
 		}
 	}
 }
