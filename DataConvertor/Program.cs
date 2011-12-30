@@ -20,16 +20,9 @@ namespace AppMetrics.DataConvertor
 
 				var records = DataSource.GetRecordsFromPath(dataPath, DateTime.Now - DateTime.MinValue);
 
-				var latencies = new List<decimal>();
-
-				foreach (var record in records)
-				{
-					if (record.Name.StartsWith("Latency"))
-					{
-						var val = decimal.Parse(record.Value);
-						latencies.Add(val);
-					}
-				}
+				var latencies = (from record in records
+								 where record.Name.StartsWith("Latency")
+								 select decimal.Parse(record.Value)).ToList();
 
 				decimal median, lowerQuartile, upperQuartile, min, max;
 				Stats.CalculateSummaries(latencies, out median, out lowerQuartile, out upperQuartile, out min, out max);
