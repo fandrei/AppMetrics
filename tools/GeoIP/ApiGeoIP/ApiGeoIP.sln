@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGeoIP", "ApiGeoIP.csproj", "{BD16139C-A8A5-468F-A90B-FF57C499495A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD16139C-A8A5-468F-A90B-FF57C499495A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD16139C-A8A5-468F-A90B-FF57C499495A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD16139C-A8A5-468F-A90B-FF57C499495A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD16139C-A8A5-468F-A90B-FF57C499495A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
