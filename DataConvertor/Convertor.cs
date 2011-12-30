@@ -19,8 +19,8 @@ namespace AppMetrics.DataConvertor
 			var watch = Stopwatch.StartNew();
 
 			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
-
-			var summaries = new List<StatSummary>();
+			var res = new List<StatSummary>();
+			var allRecords = new List<RecordEx>();
 
 			foreach (var pair in sessionsByCountries)
 			{
@@ -28,6 +28,7 @@ namespace AppMetrics.DataConvertor
 
 				var records = GetRecords(pair);
 				records.RemoveAll(record => !record.Name.StartsWith("Latency"));
+				allRecords.AddRange(records);
 
 				var curSummaries = CalculateSummariesByCities(records);
 				foreach (var summary in curSummaries)
@@ -35,14 +36,17 @@ namespace AppMetrics.DataConvertor
 					summary.Country = countryName;
 				}
 
-				summaries.AddRange(curSummaries);
+				res.AddRange(curSummaries);
 				GC.Collect();
 			}
+
+			var overallSummaries = CalculateSummariesByFunction(allRecords);
+			res.AddRange(overallSummaries);
 
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
 
-			WriteReport(summaries, resPath);
+			WriteReport(res, resPath);
 		}
 
 		private static void WriteReport(IEnumerable<StatSummary> summaries, string resPath)
