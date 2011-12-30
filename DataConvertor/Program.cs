@@ -31,8 +31,8 @@ namespace AppMetrics.DataConvertor
 					}
 				}
 
-				decimal median, lowerQuartile, upperQuartile;
-				Stats.FindQuartiles(latencies, out median, out lowerQuartile, out upperQuartile);
+				decimal median, lowerQuartile, upperQuartile, min, max;
+				Stats.CalculateSummaries(latencies, out median, out lowerQuartile, out upperQuartile, out min, out max);
 			}
 			catch (Exception exc)
 			{
