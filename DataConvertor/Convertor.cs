@@ -42,6 +42,11 @@ namespace AppMetrics.DataConvertor
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
 
+			WriteReport(summaries, resPath);
+		}
+
+		private static void WriteReport(IEnumerable<StatSummary> summaries, string resPath)
+		{
 			resPath = Path.GetFullPath(resPath);
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
