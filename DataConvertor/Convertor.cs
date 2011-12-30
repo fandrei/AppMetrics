@@ -70,8 +70,8 @@ namespace AppMetrics.DataConvertor
 		{
 			var res = new List<StatSummary>();
 
-			var tmp = CalculateStatSummary(records);
-			res.Add(tmp);
+			var tmp = CalculateSummariesByFunction(records);
+			res.AddRange(tmp);
 
 			var recordsByCities = GroupBy(records, record => (record.Session.Location.city) ?? "");
 			foreach (var pair in recordsByCities)
