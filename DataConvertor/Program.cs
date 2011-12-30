@@ -12,13 +12,14 @@ namespace AppMetrics.DataConvertor
 		{
 			try
 			{
-				if (args.Length != 1)
+				if (args.Length != 2)
 					throw new ApplicationException("Invalid command line args");
 
 				var dataPath = args[0];
+				var resPath = args[1];
 
 				var convertor = new Convertor();
-				convertor.Process(dataPath);
+				convertor.Process(dataPath, resPath);
 			}
 			catch (Exception exc)
 			{

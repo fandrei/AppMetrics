@@ -7,23 +7,28 @@ namespace AppMetrics.DataConvertor
 {
 	static class Stats
 	{
-		public static void CalculateSummaries(IEnumerable<decimal> vals,
-			out decimal median, out decimal lowerQuartile, out decimal upperQuartile, out decimal min, out decimal max)
+		public static StatSummary CalculateSummaries(IEnumerable<decimal> vals)
 		{
+			var res = new StatSummary();
+
+			res.Average = vals.Average();
+			
 			var sorted = new List<decimal>(vals);
 			sorted.Sort();
 
 			var medianIndex = GetMedianIndex(sorted.Count) - 1;
-			median = FindValue(sorted, medianIndex);
+			res.Median = FindValue(sorted, medianIndex);
 
 			var lowerQuartileIndex = GetMedianIndex(Math.Floor(medianIndex) + 1) - 1;
-			lowerQuartile = FindValue(sorted, lowerQuartileIndex);
+			res.LowerQuartile = FindValue(sorted, lowerQuartileIndex);
 
 			var upperQuartileIndex = Math.Ceiling(medianIndex) + GetMedianIndex(sorted.Count - Math.Ceiling(medianIndex)) - 1;
-			upperQuartile = FindValue(sorted, upperQuartileIndex);
+			res.UpperQuartile = FindValue(sorted, upperQuartileIndex);
 
-			min = sorted.First();
-			max = sorted.Last();
+			res.Min = sorted.First();
+			res.Max = sorted.Last();
+
+			return res;
 		}
 
 		private static decimal GetMedianIndex(decimal count)

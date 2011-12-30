@@ -66,6 +66,7 @@
     <Compile Include="RecordEx.cs" />
     <Compile Include="SessionEx.cs" />
     <Compile Include="Stats.cs" />
+    <Compile Include="StatSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
