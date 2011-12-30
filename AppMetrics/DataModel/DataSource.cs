@@ -106,14 +106,17 @@ namespace AppMetrics.DataModel
 
 			foreach (var session in sessions)
 			{
-				GetRecordsFromSession(session, res);
+				var tmp = GetRecordsFromSession(session);
+				res.AddRange(tmp);
 			}
 
 			return res;
 		}
 
-		public static void GetRecordsFromSession(Session session, List<Record> res)
+		public static List<Record> GetRecordsFromSession(Session session)
 		{
+			var res = new List<Record>();
+
 			var text = File.ReadAllText(session.FileName);
 			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -130,6 +133,8 @@ namespace AppMetrics.DataModel
 								};
 				res.Add(record);
 			}
+
+			return res;
 		}
 	}
 }
