@@ -25,7 +25,9 @@ namespace AppMetrics.DataConvertor
 			foreach (var pair in sessionsByCountries)
 			{
 				var records = GetRecords(pair);
-				var curSummaries = CalculateSlicedSummaries(records);
+				records.RemoveAll(record => !record.Name.StartsWith("Latency"));
+
+				var curSummaries = CalculateSummariesByRegions(records);
 				foreach (var summary in curSummaries)
 				{
 					summary.Country = pair.Key;
@@ -41,17 +43,19 @@ namespace AppMetrics.DataConvertor
 			resPath = Path.GetFullPath(resPath);
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
-				file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}", "Country", "City", "Average",
-					"Min", "LowerQuartile", "Median", "UpperQuartile", "Max");
+				file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}", "Country", "City", "FunctionName",
+					"Average", "Min", "LowerQuartile", "Median", "UpperQuartile", "Max");
+
 				foreach (var summary in summaries)
 				{
-					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}", summary.Country, summary.City, summary.Average,
-						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
+					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}",
+						summary.Country, summary.City, summary.FunctionName,
+						summary.Average, summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
 				}
 			}
 		}
 
-		private static List<StatSummary> CalculateSlicedSummaries(IEnumerable<RecordEx> records)
+		private static List<StatSummary> CalculateSummariesByRegions(IEnumerable<RecordEx> records)
 		{
 			var res = new List<StatSummary>();
 
@@ -65,8 +69,33 @@ namespace AppMetrics.DataConvertor
 				if (string.IsNullOrEmpty(cityName))
 					continue;
 
+				var curSummaries = CalculateSummariesByFunction(pair.Value);
+				foreach (var summary in curSummaries)
+				{
+					summary.City = cityName;
+				}
+				res.AddRange(curSummaries);
+			}
+
+			return res;
+		}
+
+		private static List<StatSummary> CalculateSummariesByFunction(IEnumerable<RecordEx> records)
+		{
+			var res = new List<StatSummary>();
+
+			var tmp = CalculateStatSummary(records);
+			res.Add(tmp);
+
+			var recordsByFunction = GroupBy(records, record => record.Name.Split(' ')[1]);
+			foreach (var pair in recordsByFunction)
+			{
+				var functionName = pair.Key;
+				if (string.IsNullOrEmpty(functionName))
+					throw new ApplicationException();
+
 				var curSummary = CalculateStatSummary(pair.Value);
-				curSummary.City = pair.Key;
+				curSummary.FunctionName = functionName;
 				res.Add(curSummary);
 			}
 
@@ -75,11 +104,10 @@ namespace AppMetrics.DataConvertor
 
 		private static StatSummary CalculateStatSummary(IEnumerable<RecordEx> records)
 		{
-			var overallLatencies = (from record in records
-									where record.Name.StartsWith("Latency")
-									select decimal.Parse(record.Value)).ToList();
+			var latencies = (from record in records
+							 select decimal.Parse(record.Value)).ToList();
 
-			var res = Stats.CalculateSummaries(overallLatencies);
+			var res = Stats.CalculateSummaries(latencies);
 			return res;
 		}
 

@@ -15,12 +15,13 @@ namespace AppMetrics.DataConvertor
 		public decimal Min;
 		public decimal Max;
 
+		public string FunctionName;
 		public string City;
 		public string Country;
 
 		public override string ToString()
 		{
-			var res = string.Format("'{0}' '{1}'", Country, City);
+			var res = string.Format("'{0}' '{1}' '{2}'", Country, City, FunctionName);
 			return res;
 		}
 	}
