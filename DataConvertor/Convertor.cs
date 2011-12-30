@@ -24,13 +24,15 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var pair in sessionsByCountries)
 			{
+				var countryName = pair.Key;
+
 				var records = GetRecords(pair);
 				records.RemoveAll(record => !record.Name.StartsWith("Latency"));
 
-				var curSummaries = CalculateSummariesByRegions(records);
+				var curSummaries = CalculateSummariesByCities(records);
 				foreach (var summary in curSummaries)
 				{
-					summary.Country = pair.Key;
+					summary.Country = countryName;
 				}
 
 				summaries.AddRange(curSummaries);
@@ -55,7 +57,7 @@ namespace AppMetrics.DataConvertor
 			}
 		}
 
-		private static List<StatSummary> CalculateSummariesByRegions(IEnumerable<RecordEx> records)
+		private static List<StatSummary> CalculateSummariesByCities(IEnumerable<RecordEx> records)
 		{
 			var res = new List<StatSummary>();
 
