@@ -18,7 +18,7 @@ namespace AppMetrics.DataConvertor
 
 			var res = CalculateLatencyInfo();
 			WriteStatSummariesReport(res, resPath);
-			GC.Collect();
+			WriteDistributionReport(res, resPath);
 		}
 
 		private List<CalcResult> CalculateLatencyInfo()
@@ -56,7 +56,7 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private static List<CalcResult> CalculateByCities(IEnumerable<RecordEx> records)
+		private static List<CalcResult> CalculateByCities(ICollection<RecordEx> records)
 		{
 			var res = new List<CalcResult>();
 
@@ -82,7 +82,7 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private static List<CalcResult> CalculateByFunction(IEnumerable<RecordEx> records)
+		private static List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
 		{
 			var res = new List<CalcResult>();
 
@@ -104,10 +104,11 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private static CalcResult Calculate(IEnumerable<RecordEx> records)
+		private static CalcResult Calculate(ICollection<RecordEx> records)
 		{
 			var res = new CalcResult();
 			res.StatSummary = CalculateStatSummary(records);
+			res.Distribution = CalculateDistribution(records);
 			return res;
 		}
 
@@ -117,6 +118,25 @@ namespace AppMetrics.DataConvertor
 							 select decimal.Parse(record.Value)).ToList();
 
 			var res = Stats.CalculateSummaries(latencies);
+			return res;
+		}
+
+		private static Distribution CalculateDistribution(ICollection<RecordEx> records)
+		{
+			var res = new Distribution { Count = records.Count };
+
+			var latencies = (from record in records
+							 select decimal.Parse(record.Value)).ToArray();
+
+			foreach (var latency in latencies)
+			{
+				var rounded = Math.Ceiling(latency);
+				if (res.Vals.ContainsKey(rounded))
+					res.Vals[rounded]++;
+				else
+					res.Vals[rounded] = 1;
+			}
+
 			return res;
 		}
 
@@ -205,6 +225,26 @@ namespace AppMetrics.DataConvertor
 						result.Country, result.City, result.FunctionName,
 						summary.Count, summary.Average,
 						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
+				}
+			}
+		}
+
+		private static void WriteDistributionReport(IEnumerable<CalcResult> results, string resPath)
+		{
+			resPath = Path.GetFullPath(resPath + "\\LatencyDistribution.txt");
+
+			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
+			{
+				file.WriteLine("Country\tCity\tFunctionName\tLatency\tCount");
+
+				foreach (var result in results)
+				{
+					foreach (var pair in result.Distribution.Vals)
+					{
+						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}",
+						result.Country, result.City, result.FunctionName,
+						pair.Key, pair.Value);
+					}
 				}
 			}
 		}

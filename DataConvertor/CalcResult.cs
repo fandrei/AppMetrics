@@ -8,7 +8,7 @@ namespace AppMetrics.DataConvertor
 	class CalcResult
 	{
 		public StatSummary StatSummary;
-		public Spread Spread;
+		public Distribution Distribution;
 
 		public string FunctionName;
 		public string City;

@@ -5,8 +5,9 @@ using System.Text;
 
 namespace AppMetrics.DataConvertor
 {
-	class Spread
+	class Distribution
 	{
 		public SortedDictionary<decimal, decimal> Vals = new SortedDictionary<decimal, decimal>();
+		public int Count;
 	}
 }
