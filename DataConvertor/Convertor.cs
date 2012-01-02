@@ -16,18 +16,28 @@ namespace AppMetrics.DataConvertor
 			ReadData(dataPath);
 			GC.Collect();
 
+			CalculateLatencySummaries(resPath + "\\LatencyStatSummaries.txt");
+			GC.Collect();
+		}
+
+		private void CalculateLatencySummaries(string resPath)
+		{
 			var watch = Stopwatch.StartNew();
+			var res = new List<StatSummary>();
 
 			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
-			var res = new List<StatSummary>();
-			var allRecords = new List<RecordEx>();
+
+			{
+				var allRecords = GetRecords(_sessions);
+				var overallSummariesByFunction = CalculateSummariesByFunction(allRecords);
+				res.AddRange(overallSummariesByFunction);
+			}
+
 			foreach (var pair in sessionsByCountries)
 			{
 				var countryName = pair.Key;
 
 				var records = GetRecords(pair.Value);
-				records.RemoveAll(record => !record.Name.StartsWith("Latency"));
-				allRecords.AddRange(records);
 
 				var curSummaries = CalculateSummariesByCities(records);
 				foreach (var summary in curSummaries)
@@ -38,9 +48,6 @@ namespace AppMetrics.DataConvertor
 				res.AddRange(curSummaries);
 				GC.Collect();
 			}
-
-			var overallSummariesByFunction = CalculateSummariesByFunction(allRecords);
-			res.InsertRange(0, overallSummariesByFunction);
 
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
@@ -59,7 +66,7 @@ namespace AppMetrics.DataConvertor
 				{
 					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
 						summary.Country, summary.City, summary.FunctionName,
-						summary.Count, summary.Average, 
+						summary.Count, summary.Average,
 						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
 				}
 			}
@@ -135,6 +142,9 @@ namespace AppMetrics.DataConvertor
 			{
 				session.Ip = session.Records.Find(record => record.Name == "ClientIP").Value;
 				session.Location = geoLookup.getLocation(session.Ip);
+
+				// leave only latency info
+				session.Records.RemoveAll(record => !record.Name.StartsWith("Latency"));
 			}
 
 			Console.WriteLine("Preparing data: {0} secs", watch.Elapsed.TotalSeconds);
@@ -152,27 +162,28 @@ namespace AppMetrics.DataConvertor
 				var records = DataSource.GetRecordsFromSession(session);
 
 				var sessionEx = new SessionEx
-					{
-						Id = session.Id,
-						CreationTime = session.CreationTime,
-						LastUpdateTime = session.LastUpdateTime
-					};
+				{
+					Id = session.Id,
+					CreationTime = session.CreationTime,
+					LastUpdateTime = session.LastUpdateTime
+				};
 				_sessions.Add(sessionEx);
 
 				sessionEx.Records = records.ConvertAll(
 					val => new RecordEx(sessionEx)
-						{
-							SessionId = val.SessionId,
-							Name = val.Name,
-							Time = val.Time,
-							Value = val.Value
-						});
+					{
+						SessionId = val.SessionId,
+						Name = val.Name,
+						Time = val.Time,
+						Value = val.Value
+					});
 			}
 
 			Console.WriteLine("Parsing data: {0} secs", watch.Elapsed.TotalSeconds);
 		}
 
-		static Dictionary<TKey, List<TSource>> GroupBy<TSource, TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+		static Dictionary<TKey, List<TSource>> GroupBy<TSource, TKey>(IEnumerable<TSource> source,
+			Func<TSource, TKey> keySelector)
 		{
 			var res = source.GroupBy(keySelector).ToDictionary(pair => pair.Key, pair => pair.ToList());
 			return res;
