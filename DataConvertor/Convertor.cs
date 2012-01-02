@@ -20,13 +20,12 @@ namespace AppMetrics.DataConvertor
 
 			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
 			var res = new List<StatSummary>();
-			var allRecords = new List<RecordEx>();
-
+			var allRecords = new List<RecordEx>();
 			foreach (var pair in sessionsByCountries)
 			{
 				var countryName = pair.Key;
 
-				var records = GetRecords(pair);
+				var records = GetRecords(pair.Value);
 				records.RemoveAll(record => !record.Name.StartsWith("Latency"));
 				allRecords.AddRange(records);
 
@@ -40,8 +39,8 @@ namespace AppMetrics.DataConvertor
 				GC.Collect();
 			}
 
-			var overallSummaries = CalculateSummariesByFunction(allRecords);
-			res.AddRange(overallSummaries);
+			var overallSummariesByFunction = CalculateSummariesByFunction(allRecords);
+			res.InsertRange(0, overallSummariesByFunction);
 
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
@@ -178,10 +177,10 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private static List<RecordEx> GetRecords(KeyValuePair<string, List<SessionEx>> pair)
+		private static List<RecordEx> GetRecords(IEnumerable<SessionEx> sessions)
 		{
 			var records = new List<RecordEx>();
-			foreach (var session in pair.Value)
+			foreach (var session in sessions)
 			{
 				records.AddRange(session.Records);
 			}
