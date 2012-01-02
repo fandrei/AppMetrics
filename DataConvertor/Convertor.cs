@@ -16,7 +16,7 @@ namespace AppMetrics.DataConvertor
 			ReadData(dataPath);
 			GC.Collect();
 
-			CalculateLatencySummaries(resPath + "\\LatencyStatSummaries.txt");
+			CalculateLatencySummaries(resPath);
 			GC.Collect();
 		}
 
@@ -52,12 +52,13 @@ namespace AppMetrics.DataConvertor
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
 
-			WriteReport(res, resPath);
+			WriteStatSummariesReport(res, resPath);
 		}
 
-		private static void WriteReport(IEnumerable<StatSummary> summaries, string resPath)
+		private static void WriteStatSummariesReport(IEnumerable<StatSummary> summaries, string resPath)
 		{
-			resPath = Path.GetFullPath(resPath);
+			resPath = Path.GetFullPath(resPath + "\\LatencyStatSummaries.txt");
+
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
 				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
