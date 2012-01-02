@@ -147,7 +147,7 @@ namespace AppMetrics.Client
 					{ "MessageSession", message.SessionId }, 
 					{ "MessageName", message.Name },
 					{ "MessageData", message.Value },
-					{ "MessageTime", message.Time.ToString("yyyy-MM-dd HH:mm:ss") },
+					{ "MessageTime", message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff") },
 				};
 
 			var response = client.UploadValues(message.Url, "POST", vals);
