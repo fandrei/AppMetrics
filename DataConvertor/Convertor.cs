@@ -16,20 +16,21 @@ namespace AppMetrics.DataConvertor
 			ReadData(dataPath);
 			GC.Collect();
 
-			CalculateLatencySummaries(resPath);
+			var res = CalculateLatencyInfo();
+			WriteStatSummariesReport(res, resPath);
 			GC.Collect();
 		}
 
-		private void CalculateLatencySummaries(string resPath)
+		private List<CalcResult> CalculateLatencyInfo()
 		{
 			var watch = Stopwatch.StartNew();
-			var res = new List<StatSummary>();
+			var res = new List<CalcResult>();
 
 			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
 
 			{
 				var allRecords = GetRecords(_sessions);
-				var overallSummariesByFunction = CalculateSummariesByFunction(allRecords);
+				var overallSummariesByFunction = CalculateByFunction(allRecords);
 				res.AddRange(overallSummariesByFunction);
 			}
 
@@ -39,7 +40,7 @@ namespace AppMetrics.DataConvertor
 
 				var records = GetRecords(pair.Value);
 
-				var curSummaries = CalculateSummariesByCities(records);
+				var curSummaries = CalculateByCities(records);
 				foreach (var summary in curSummaries)
 				{
 					summary.Country = countryName;
@@ -52,14 +53,14 @@ namespace AppMetrics.DataConvertor
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
 			watch.Stop();
 
-			WriteStatSummariesReport(res, resPath);
+			return res;
 		}
 
-		private static List<StatSummary> CalculateSummariesByCities(IEnumerable<RecordEx> records)
+		private static List<CalcResult> CalculateByCities(IEnumerable<RecordEx> records)
 		{
-			var res = new List<StatSummary>();
+			var res = new List<CalcResult>();
 
-			var tmp = CalculateSummariesByFunction(records);
+			var tmp = CalculateByFunction(records);
 			res.AddRange(tmp);
 
 			var recordsByCities = GroupBy(records, record => (record.Session.Location.city) ?? "");
@@ -70,7 +71,7 @@ namespace AppMetrics.DataConvertor
 				if (string.IsNullOrEmpty(cityName))
 					continue;
 
-				var curSummaries = CalculateSummariesByFunction(pair.Value);
+				var curSummaries = CalculateByFunction(pair.Value);
 				foreach (var summary in curSummaries)
 				{
 					summary.City = cityName;
@@ -81,11 +82,11 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private static List<StatSummary> CalculateSummariesByFunction(IEnumerable<RecordEx> records)
+		private static List<CalcResult> CalculateByFunction(IEnumerable<RecordEx> records)
 		{
-			var res = new List<StatSummary>();
+			var res = new List<CalcResult>();
 
-			var tmp = CalculateStatSummary(records);
+			var tmp = Calculate(records);
 			res.Add(tmp);
 
 			var recordsByFunction = GroupBy(records, record => record.Name.Split(' ')[1]);
@@ -95,11 +96,18 @@ namespace AppMetrics.DataConvertor
 				if (string.IsNullOrEmpty(functionName))
 					throw new ApplicationException();
 
-				var curSummary = CalculateStatSummary(pair.Value);
+				var curSummary = Calculate(pair.Value);
 				curSummary.FunctionName = functionName;
 				res.Add(curSummary);
 			}
 
+			return res;
+		}
+
+		private static CalcResult Calculate(IEnumerable<RecordEx> records)
+		{
+			var res = new CalcResult();
+			res.StatSummary = CalculateStatSummary(records);
 			return res;
 		}
 
@@ -182,7 +190,7 @@ namespace AppMetrics.DataConvertor
 			return records;
 		}
 
-		private static void WriteStatSummariesReport(IEnumerable<StatSummary> summaries, string resPath)
+		private static void WriteStatSummariesReport(IEnumerable<CalcResult> results, string resPath)
 		{
 			resPath = Path.GetFullPath(resPath + "\\LatencyStatSummaries.txt");
 
@@ -190,10 +198,11 @@ namespace AppMetrics.DataConvertor
 			{
 				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
 
-				foreach (var summary in summaries)
+				foreach (var result in results)
 				{
+					var summary = result.StatSummary;
 					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
-						summary.Country, summary.City, summary.FunctionName,
+						result.Country, result.City, result.FunctionName,
 						summary.Count, summary.Average,
 						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
 				}

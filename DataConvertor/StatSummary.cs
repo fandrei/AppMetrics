@@ -16,15 +16,5 @@ namespace AppMetrics.DataConvertor
 		public decimal Max;
 
 		public int Count;
-
-		public string FunctionName;
-		public string City;
-		public string Country;
-
-		public override string ToString()
-		{
-			var res = string.Format("'{0}' '{1}' '{2}'", Country, City, FunctionName);
-			return res;
-		}
 	}
 }
