@@ -114,9 +114,7 @@ namespace AppMetrics.DataConvertor
 
 		private static StatSummary CalculateStatSummary(IEnumerable<RecordEx> records)
 		{
-			var latencies = (from record in records
-							 select decimal.Parse(record.Value)).ToList();
-
+			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
 			var res = Stats.CalculateSummaries(latencies);
 			return res;
 		}
@@ -125,8 +123,7 @@ namespace AppMetrics.DataConvertor
 		{
 			var res = new Distribution { Count = records.Count };
 
-			var latencies = (from record in records
-							 select decimal.Parse(record.Value)).ToArray();
+			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
 
 			foreach (var latency in latencies)
 			{
@@ -156,6 +153,11 @@ namespace AppMetrics.DataConvertor
 
 				// leave only latency info
 				session.Records.RemoveAll(record => !record.Name.StartsWith("Latency"));
+
+				foreach (var record in session.Records)
+				{
+					record.ValueAsNumber = decimal.Parse(record.Value);
+				}
 			}
 
 			Console.WriteLine("Preparing data: {0} secs", watch.Elapsed.TotalSeconds);

@@ -15,5 +15,7 @@ namespace AppMetrics.DataConvertor
 		}
 
 		public SessionEx Session { get; private set; }
+
+		public decimal ValueAsNumber { get; set; }
 	}
 }
