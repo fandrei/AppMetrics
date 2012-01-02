@@ -127,7 +127,7 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var latency in latencies)
 			{
-				var rounded = Math.Ceiling(latency);
+				var rounded = Math.Ceiling(latency * 2) / 2; // find nearest ceiling with period of 0.5
 				if (res.Vals.ContainsKey(rounded))
 					res.Vals[rounded]++;
 				else
