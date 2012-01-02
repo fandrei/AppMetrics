@@ -7,10 +7,11 @@ namespace AppMetrics.DataConvertor
 {
 	static class Stats
 	{
-		public static StatSummary CalculateSummaries(IEnumerable<decimal> vals)
+		public static StatSummary CalculateSummaries(ICollection<decimal> vals)
 		{
 			var res = new StatSummary();
 
+			res.Count = vals.Count;
 			res.Average = vals.Average();
 			
 			var sorted = new List<decimal>(vals);

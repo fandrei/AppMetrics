@@ -15,6 +15,8 @@ namespace AppMetrics.DataConvertor
 		public decimal Min;
 		public decimal Max;
 
+		public int Count;
+
 		public string FunctionName;
 		public string City;
 		public string Country;

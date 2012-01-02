@@ -54,14 +54,14 @@ namespace AppMetrics.DataConvertor
 			resPath = Path.GetFullPath(resPath);
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
-				file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}", "Country", "City", "FunctionName",
-					"Average", "Min", "LowerQuartile", "Median", "UpperQuartile", "Max");
+				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
 
 				foreach (var summary in summaries)
 				{
-					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}",
+					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
 						summary.Country, summary.City, summary.FunctionName,
-						summary.Average, summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
+						summary.Count, summary.Average, 
+						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
 				}
 			}
 		}
