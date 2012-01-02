@@ -55,24 +55,6 @@ namespace AppMetrics.DataConvertor
 			WriteStatSummariesReport(res, resPath);
 		}
 
-		private static void WriteStatSummariesReport(IEnumerable<StatSummary> summaries, string resPath)
-		{
-			resPath = Path.GetFullPath(resPath + "\\LatencyStatSummaries.txt");
-
-			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
-			{
-				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
-
-				foreach (var summary in summaries)
-				{
-					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
-						summary.Country, summary.City, summary.FunctionName,
-						summary.Count, summary.Average,
-						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
-				}
-			}
-		}
-
 		private static List<StatSummary> CalculateSummariesByCities(IEnumerable<RecordEx> records)
 		{
 			var res = new List<StatSummary>();
@@ -198,6 +180,24 @@ namespace AppMetrics.DataConvertor
 				records.AddRange(session.Records);
 			}
 			return records;
+		}
+
+		private static void WriteStatSummariesReport(IEnumerable<StatSummary> summaries, string resPath)
+		{
+			resPath = Path.GetFullPath(resPath + "\\LatencyStatSummaries.txt");
+
+			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
+			{
+				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
+
+				foreach (var summary in summaries)
+				{
+					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
+						summary.Country, summary.City, summary.FunctionName,
+						summary.Count, summary.Average,
+						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
+				}
+			}
 		}
 
 		private List<SessionEx> _sessions;
