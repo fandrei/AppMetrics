@@ -73,6 +73,7 @@ namespace AppMetrics.DataConvertor
 			res.AddRange(tmp);
 
 			var recordsByCities = GroupBy(records, record => (record.Session.Location.city) ?? "");
+			recordsByCities.Remove("");
 			foreach (var pair in recordsByCities)
 			{
 				var cityName = pair.Key;
