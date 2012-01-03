@@ -18,6 +18,7 @@
 
   <Target Name="UpdateVersion" >
     <Message Text="Updating version to $(FullVersion)" />
+    <!-- Update assembly version number using build number -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
         Regex="AssemblyVersion\(&quot;.*&quot;\)"
