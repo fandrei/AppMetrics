@@ -33,5 +33,6 @@ temp/
 
 AppMetrics/App_Data/
 AppMetrics/log.txt
+_nuget/
 
 ~$*
