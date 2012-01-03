@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>AppMetrics</id>
-    <title>AppMetrics</title>
+    <id>AppMetrics.Client</id>
+    <title>AppMetrics.Client</title>
     <version>1.0.0.0</version>
     <authors>CityIndex Ltd, Andrei Faber</authors>
     <description>.NET client library for the AppMetrics application runtime intelligence system</description>
