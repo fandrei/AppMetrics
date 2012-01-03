@@ -30,6 +30,11 @@
   </Target>
 
   <Target Name="Package" DependsOnTargets="Build" >
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\AppMetrics\App_Data\web.config"
+      Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
+      ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
+
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
 
@@ -38,7 +43,7 @@
         Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
         Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
         ReplacementText="$1&quot;Default Web Site/AppMetrics_$(BuildVersion)&quot;" />
-    
+
     <!-- store build number in the file to be used in other build jobs -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\properties.xml"
