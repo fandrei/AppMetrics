@@ -44,11 +44,15 @@
         Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
         ReplacementText="$1&quot;Default Web Site/AppMetrics_$(BuildVersion)&quot;" />
 
-    <!-- store build number in the file to be used in other build jobs -->
+    <!-- store build number and full version in the file to be used in other build jobs -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\properties.xml"
         Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
         ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\properties.xml"
+        Regex="(FullVersion)&gt;.*?&lt;(/FullVersion)"
+        ReplacementText="$1&gt;$(FullVersion)&lt;$2" />
 
     <!-- set version for NuGet package spec -->
     <FileUpdate
