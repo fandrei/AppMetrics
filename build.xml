@@ -32,6 +32,8 @@
   <Target Name="Package" DependsOnTargets="Build" >
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
+
+    <!-- Set deployment target location -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
         Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
