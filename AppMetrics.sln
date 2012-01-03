@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{321076B2
 	ProjectSection(SolutionItems) = preProject
 		build.xml = build.xml
 		properties.xml = properties.xml
+		publishToNuGet.xml = publishToNuGet.xml
 		test.xml = test.xml
 	EndProjectSection
 EndProject

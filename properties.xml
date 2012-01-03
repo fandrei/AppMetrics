@@ -3,6 +3,7 @@
 
   <PropertyGroup>
     <MyBuildNumber></MyBuildNumber>
+    <FullVersion></FullVersion>
   </PropertyGroup>
 
 </Project>
