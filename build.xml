@@ -9,10 +9,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
-    <MajorVersion>0</MajorVersion>
-    <MinorVersion>1</MinorVersion>
-    <BuildVersion>0</BuildVersion>
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>0</MinorVersion>
     <!-- This gets set by the build server -->
+    <BuildVersion>0</BuildVersion>
     <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
   </PropertyGroup>
 
@@ -49,6 +49,12 @@
         Files="$(MSBuildProjectDirectory)\properties.xml"
         Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
         ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
+
+    <!-- set version for NuGet package spec -->
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.nuspec"
+      Regex="version&gt;(.*?)&lt;/version"
+      ReplacementText="version&gt;$(FullVersion)&lt;/version" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
