@@ -41,11 +41,31 @@
   </PropertyGroup>
   <Target Name="AddSkipRules">
     <ItemGroup>
-      <MsDeploySkipRules Include="SkipAppDataOnDeploy">
-        <SkipAction>
-        </SkipAction>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
+        <ObjectName>filePath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
         <ObjectName>dirPath</ObjectName>
-        <AbsolutePath>App_Data</AbsolutePath>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+      <MsDeploySkipRules Include="SkipUpdateAppData">
+        <SkipAction>Update</SkipAction>
+        <ObjectName>filePath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+      <MsDeploySkipRules Include="SkipUpdateAppData">
+        <SkipAction>Update</SkipAction>
+        <ObjectName>dirPath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\.*</AbsolutePath>
         <XPath>
         </XPath>
       </MsDeploySkipRules>
