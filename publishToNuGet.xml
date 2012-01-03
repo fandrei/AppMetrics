@@ -18,7 +18,7 @@
           WorkingDirectory='$(MSBuildProjectDirectory)\_nuget\'/>
   </Target>
 
-  <Target Name="Publish" >
+  <Target Name="Publish" DependsOnTargets="Package" >
     <Message Text="Publishing to NuGet.org" />
     <Exec Command='"$(NuGetEXE)" push $(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.$(FullVersion).nupkg' ContinueOnError='false' />
   </Target>
