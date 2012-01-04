@@ -29,6 +29,10 @@ namespace AppMetrics.DataConvertor
 			{
 				var allRecords = GetRecords(_sessions);
 				var overallSummariesByFunction = CalculateByFunction(allRecords);
+				foreach (var summary in overallSummariesByFunction)
+				{
+					summary.Country = "(World)";
+				}
 				res.AddRange(overallSummariesByFunction);
 			}
 
@@ -58,8 +62,14 @@ namespace AppMetrics.DataConvertor
 		{
 			var res = new List<CalcResult>();
 
-			var tmp = CalculateByFunction(records);
-			res.AddRange(tmp);
+			{
+				var tmp = CalculateByFunction(records);
+				res.AddRange(tmp);
+				foreach (var summary in tmp)
+				{
+					summary.City = "(All)";
+				}
+			}
 
 			var recordsByCities = GroupBy(records, record => (record.Session.Location.city) ?? "");
 			recordsByCities.Remove("");
@@ -208,13 +218,13 @@ namespace AppMetrics.DataConvertor
 
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
-				file.WriteLine("Country\tCity\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
+				file.WriteLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
 
 				foreach (var result in results)
 				{
 					var summary = result.StatSummary;
-					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}",
-						result.Country, result.City, result.FunctionName,
+					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}",
+						result.Country, result.City, result.Location, result.FunctionName,
 						summary.Count, summary.Average,
 						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
 				}
@@ -227,14 +237,14 @@ namespace AppMetrics.DataConvertor
 
 			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
 			{
-				file.WriteLine("Country\tCity\tFunctionName\tLatency\tCount");
+				file.WriteLine("Country\tCity\tLocation\tFunctionName\tLatency\tCount");
 
 				foreach (var result in results)
 				{
 					foreach (var pair in result.Distribution.Vals)
 					{
-						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}",
-						result.Country, result.City, result.FunctionName,
+						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
+						result.Country, result.City, result.Location, result.FunctionName,
 						pair.Key, pair.Value);
 					}
 				}
