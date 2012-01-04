@@ -26,14 +26,13 @@ namespace AppMetrics.DataConvertor
 			var watch = Stopwatch.StartNew();
 			var res = new List<CalcResult>();
 
-			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
-
 			{
 				var allRecords = GetRecords(_sessions);
 				var overallSummariesByFunction = CalculateByFunction(allRecords);
 				res.AddRange(overallSummariesByFunction);
 			}
 
+			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
 			foreach (var pair in sessionsByCountries)
 			{
 				var countryName = pair.Key;
@@ -47,7 +46,6 @@ namespace AppMetrics.DataConvertor
 				}
 
 				res.AddRange(curSummaries);
-				GC.Collect();
 			}
 
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
