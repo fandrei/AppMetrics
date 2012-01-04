@@ -107,23 +107,15 @@ namespace AppMetrics.DataConvertor
 		private static CalcResult Calculate(ICollection<RecordEx> records)
 		{
 			var res = new CalcResult();
-			res.StatSummary = CalculateStatSummary(records);
-			res.Distribution = CalculateDistribution(records);
+			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
+			res.StatSummary = Stats.CalculateSummaries(latencies);
+			res.Distribution = CalculateDistribution(latencies);
 			return res;
 		}
 
-		private static StatSummary CalculateStatSummary(IEnumerable<RecordEx> records)
+		private static Distribution CalculateDistribution(decimal[] latencies)
 		{
-			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
-			var res = Stats.CalculateSummaries(latencies);
-			return res;
-		}
-
-		private static Distribution CalculateDistribution(ICollection<RecordEx> records)
-		{
-			var res = new Distribution { Count = records.Count };
-
-			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
+			var res = new Distribution { Count = latencies.Length };
 
 			foreach (var latency in latencies)
 			{
