@@ -11,14 +11,16 @@ namespace AppMetrics.DataConvertor
 {
 	class Convertor
 	{
-		public void Process(string dataPath, string resPath)
+		public void Process(string dataPath, string resFolder)
 		{
 			ReadData(dataPath);
 			GC.Collect();
 
+			WriteSummaryReport(_sessions, resFolder);
+
 			var res = CalculateByCountries();
-			WriteStatSummariesReport(res, resPath);
-			WriteDistributionReport(res, resPath);
+			WriteStatSummariesReport(res, resFolder);
+			WriteDistributionReport(res, resFolder);
 		}
 
 		private List<CalcResult> CalculateByCountries()
@@ -210,6 +212,27 @@ namespace AppMetrics.DataConvertor
 				records.AddRange(session.Records);
 			}
 			return records;
+		}
+
+		private static void WriteSummaryReport(ICollection<SessionEx> sessions, string resPath)
+		{
+			resPath = Path.GetFullPath(resPath + "\\Summary.txt");
+
+			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
+			{
+				file.WriteLine("Name\tValue");
+
+				var minDate = sessions.Min(session => session.LastUpdateTime);
+				file.WriteLine("MinDate\t{0}", minDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+				var maxDate = sessions.Max(session => session.LastUpdateTime);
+				file.WriteLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+				file.WriteLine("SessionsCount\t{0}", sessions.Count);
+
+				var recordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Count);
+				file.WriteLine("RecordsCount\t{0}", recordsCount);
+			}
 		}
 
 		private static void WriteStatSummariesReport(IEnumerable<CalcResult> results, string resPath)

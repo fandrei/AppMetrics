@@ -1,0 +1,5 @@
+﻿Name	Value
+MinDate	2011-12-23 17:26:55
+MaxDate	2012-01-04 12:43:01
+SessionsCount	52
+RecordsCount	835306
