@@ -20,7 +20,8 @@
 
   <Target Name="Publish" DependsOnTargets="Package" >
     <Message Text="Publishing to NuGet.org" />
-    <Exec Command='"$(NuGetEXE)" push $(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.$(FullVersion).nupkg' ContinueOnError='false' />
+    <Exec Command='"$(NuGetEXE)" push $(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
+          ContinueOnError='false' />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Publish" >
