@@ -16,12 +16,12 @@ namespace AppMetrics.DataConvertor
 			ReadData(dataPath);
 			GC.Collect();
 
-			var res = CalculateLatencyInfo();
+			var res = CalculateByCountries();
 			WriteStatSummariesReport(res, resPath);
 			WriteDistributionReport(res, resPath);
 		}
 
-		private List<CalcResult> CalculateLatencyInfo()
+		private List<CalcResult> CalculateByCountries()
 		{
 			var watch = Stopwatch.StartNew();
 			var res = new List<CalcResult>();
