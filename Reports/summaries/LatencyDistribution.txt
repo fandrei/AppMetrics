@@ -1,375 +1,510 @@
 ﻿Country	City	Location	FunctionName	Latency	Count
-(World)		(World)		0	121
-(World)		(World)		0.5	352303
-(World)		(World)		1	223556
-(World)		(World)		1.5	132858
-(World)		(World)		2	67286
-(World)		(World)		2.5	24170
-(World)		(World)		3	13831
-(World)		(World)		3.5	12107
-(World)		(World)		4	3346
-(World)		(World)		4.5	1594
-(World)		(World)		5	1613
-(World)		(World)		5.5	1317
-(World)		(World)		6	397
-(World)		(World)		6.5	183
-(World)		(World)		7	153
-(World)		(World)		7.5	63
-(World)		(World)		8	49
-(World)		(World)		8.5	44
-(World)		(World)		9	39
-(World)		(World)		9.5	18
-(World)		(World)		10	16
-(World)		(World)		10.5	20
-(World)		(World)		11	5
-(World)		(World)		11.5	4
-(World)		(World)		12	6
-(World)		(World)		12.5	15
-(World)		(World)		13	12
-(World)		(World)		13.5	10
-(World)		(World)		14	7
-(World)		(World)		14.5	4
-(World)		(World)		15	4
-(World)		(World)		15.5	3
-(World)		(World)		16	3
-(World)		(World)		16.5	4
-(World)		(World)		17	5
-(World)		(World)		17.5	6
-(World)		(World)		18	1
-(World)		(World)		18.5	2
-(World)		(World)		19	6
-(World)		(World)		19.5	1
-(World)		(World)		20.5	3
-(World)		(World)		21	6
-(World)		(World)		21.5	1
-(World)		(World)		22	2
-(World)		(World)		22.5	2
-(World)		(World)		23	2
-(World)		(World)		23.5	3
-(World)		(World)		24	4
-(World)		(World)		24.5	2
-(World)		(World)		25	5
-(World)		(World)		25.5	3
-(World)		(World)		26	5
-(World)		(World)		26.5	1
-(World)		(World)		27	2
-(World)		(World)		27.5	1
-(World)		(World)		28	2
-(World)		(World)		29	3
-(World)		(World)		29.5	1
+(World)		(World)		0	130
+(World)		(World)		0.5	376687
+(World)		(World)		1	258803
+(World)		(World)		1.5	148798
+(World)		(World)		2	75935
+(World)		(World)		2.5	30797
+(World)		(World)		3	18601
+(World)		(World)		3.5	13790
+(World)		(World)		4	3939
+(World)		(World)		4.5	2155
+(World)		(World)		5	2098
+(World)		(World)		5.5	1598
+(World)		(World)		6	577
+(World)		(World)		6.5	258
+(World)		(World)		7	190
+(World)		(World)		7.5	103
+(World)		(World)		8	81
+(World)		(World)		8.5	90
+(World)		(World)		9	84
+(World)		(World)		9.5	47
+(World)		(World)		10	40
+(World)		(World)		10.5	32
+(World)		(World)		11	41
+(World)		(World)		11.5	28
+(World)		(World)		12	24
+(World)		(World)		12.5	24
+(World)		(World)		13	22
+(World)		(World)		13.5	18
+(World)		(World)		14	17
+(World)		(World)		14.5	15
+(World)		(World)		15	17
+(World)		(World)		15.5	8
+(World)		(World)		16	17
+(World)		(World)		16.5	10
+(World)		(World)		17	36
+(World)		(World)		17.5	10
+(World)		(World)		18	9
+(World)		(World)		18.5	9
+(World)		(World)		19	12
+(World)		(World)		19.5	10
+(World)		(World)		20	8
+(World)		(World)		20.5	9
+(World)		(World)		21	8
+(World)		(World)		21.5	6
+(World)		(World)		22	8
+(World)		(World)		22.5	5
+(World)		(World)		23	7
+(World)		(World)		23.5	5
+(World)		(World)		24	9
+(World)		(World)		24.5	5
+(World)		(World)		25	7
+(World)		(World)		25.5	6
+(World)		(World)		26	8
+(World)		(World)		26.5	5
+(World)		(World)		27	4
+(World)		(World)		27.5	4
+(World)		(World)		28	4
+(World)		(World)		28.5	2
+(World)		(World)		29	6
+(World)		(World)		29.5	6
+(World)		(World)		30	3
 (World)		(World)		30.5	12
-(World)		(World)		31	3
-(World)		(World)		31.5	2
-(World)		(World)		32	1
-(World)		(World)		32.5	4
-(World)		(World)		33	1
-(World)		(World)		33.5	2
-(World)		(World)		34.5	1
-(World)		(World)		35	2
-(World)		(World)		36.5	1
-(World)		(World)		38	1
-(World)		(World)		40.5	1
+(World)		(World)		31	30
+(World)		(World)		31.5	12
+(World)		(World)		32	6
+(World)		(World)		32.5	7
+(World)		(World)		33	4
+(World)		(World)		33.5	5
+(World)		(World)		34	3
+(World)		(World)		34.5	3
+(World)		(World)		35	4
+(World)		(World)		35.5	1
+(World)		(World)		36	3
+(World)		(World)		36.5	2
+(World)		(World)		37	1
+(World)		(World)		38	2
+(World)		(World)		38.5	1
+(World)		(World)		39	2
+(World)		(World)		39.5	4
+(World)		(World)		40	1
+(World)		(World)		40.5	4
 (World)		(World)		41	3
-(World)		(World)		41.5	1
-(World)		(World)		42	1
+(World)		(World)		41.5	3
+(World)		(World)		42	3
 (World)		(World)		42.5	1
-(World)		(World)		43	3
+(World)		(World)		43	4
 (World)		(World)		43.5	2
-(World)		(World)		44	1
-(World)		(World)		44.5	2
+(World)		(World)		44	4
+(World)		(World)		44.5	4
 (World)		(World)		45.5	1
-(World)		(World)		46	2
+(World)		(World)		46	3
 (World)		(World)		47	1
-(World)		(World)		48	3
-(World)		(World)		49	2
-(World)		(World)		52.5	1
-(World)		(World)		53.5	2
+(World)		(World)		48	5
+(World)		(World)		49	3
+(World)		(World)		51	1
+(World)		(World)		52.5	2
+(World)		(World)		53.5	3
 (World)		(World)		54	1
 (World)		(World)		54.5	2
-(World)		(World)		55	2
-(World)		(World)		56.5	1
+(World)		(World)		55	3
+(World)		(World)		56.5	2
 (World)		(World)		57.5	1
 (World)		(World)		59	1
+(World)		(World)		60	1
 (World)		(World)		60.5	2
 (World)		(World)		61	1
+(World)		(World)		61.5	1
 (World)		(World)		62	1
+(World)		(World)		63	1
+(World)		(World)		65.5	1
 (World)		(World)		67	1
 (World)		(World)		68	1
+(World)		(World)		68.5	1
 (World)		(World)		69.5	4
+(World)		(World)		74.5	1
 (World)		(World)		88	1
+(World)		(World)		91.5	1
 (World)		(World)	LogIn	0.5	12
 (World)		(World)	LogIn	1	17
 (World)		(World)	LogIn	1.5	5
-(World)		(World)	LogIn	2	4
+(World)		(World)	LogIn	2	6
 (World)		(World)	LogIn	2.5	2
-(World)		(World)	LogIn	3	7
+(World)		(World)	LogIn	3	9
 (World)		(World)	LogIn	3.5	7
-(World)		(World)	LogIn	4	4
+(World)		(World)	LogIn	4	5
 (World)		(World)	LogIn	4.5	4
 (World)		(World)	LogIn	5	1
 (World)		(World)	LogIn	5.5	1
+(World)		(World)	LogIn	6	1
 (World)		(World)	LogIn	7.5	1
-(World)		(World)	CreateStreamingClient	0	35
-(World)		(World)	CreateStreamingClient	0.5	30
-(World)		(World)	GetClientAndTradingAccount	0.5	55
-(World)		(World)	GetClientAndTradingAccount	1	10
+(World)		(World)	CreateStreamingClient	0	38
+(World)		(World)	CreateStreamingClient	0.5	33
+(World)		(World)	GetClientAndTradingAccount	0.5	59
+(World)		(World)	GetClientAndTradingAccount	1	11
+(World)		(World)	GetClientAndTradingAccount	2.5	1
 (World)		(World)	ListOpenPositions	0	5
-(World)		(World)	ListOpenPositions	0.5	119201
-(World)		(World)	ListOpenPositions	1	34691
-(World)		(World)	ListOpenPositions	1.5	22435
-(World)		(World)	ListOpenPositions	2	11291
-(World)		(World)	ListOpenPositions	2.5	4084
-(World)		(World)	ListOpenPositions	3	2292
-(World)		(World)	ListOpenPositions	3.5	2326
-(World)		(World)	ListOpenPositions	4	685
-(World)		(World)	ListOpenPositions	4.5	336
-(World)		(World)	ListOpenPositions	5	367
-(World)		(World)	ListOpenPositions	5.5	269
-(World)		(World)	ListOpenPositions	6	60
-(World)		(World)	ListOpenPositions	6.5	32
-(World)		(World)	ListOpenPositions	7	37
-(World)		(World)	ListOpenPositions	7.5	12
-(World)		(World)	ListOpenPositions	8	7
-(World)		(World)	ListOpenPositions	8.5	11
-(World)		(World)	ListOpenPositions	9	5
-(World)		(World)	ListOpenPositions	9.5	3
-(World)		(World)	ListOpenPositions	10	2
-(World)		(World)	ListOpenPositions	10.5	4
-(World)		(World)	ListOpenPositions	11	1
-(World)		(World)	ListOpenPositions	11.5	1
-(World)		(World)	ListOpenPositions	12	2
-(World)		(World)	ListOpenPositions	12.5	4
-(World)		(World)	ListOpenPositions	13	5
-(World)		(World)	ListOpenPositions	13.5	3
-(World)		(World)	ListOpenPositions	15	1
-(World)		(World)	ListOpenPositions	15.5	1
-(World)		(World)	ListOpenPositions	16.5	1
-(World)		(World)	ListOpenPositions	17	2
-(World)		(World)	ListOpenPositions	18.5	1
-(World)		(World)	ListOpenPositions	19	1
-(World)		(World)	ListOpenPositions	20.5	1
-(World)		(World)	ListOpenPositions	21.5	1
-(World)		(World)	ListOpenPositions	23.5	1
+(World)		(World)	ListOpenPositions	0.5	129813
+(World)		(World)	ListOpenPositions	1	39985
+(World)		(World)	ListOpenPositions	1.5	24902
+(World)		(World)	ListOpenPositions	2	12871
+(World)		(World)	ListOpenPositions	2.5	5287
+(World)		(World)	ListOpenPositions	3	3003
+(World)		(World)	ListOpenPositions	3.5	2599
+(World)		(World)	ListOpenPositions	4	834
+(World)		(World)	ListOpenPositions	4.5	447
+(World)		(World)	ListOpenPositions	5	455
+(World)		(World)	ListOpenPositions	5.5	319
+(World)		(World)	ListOpenPositions	6	96
+(World)		(World)	ListOpenPositions	6.5	44
+(World)		(World)	ListOpenPositions	7	45
+(World)		(World)	ListOpenPositions	7.5	21
+(World)		(World)	ListOpenPositions	8	13
+(World)		(World)	ListOpenPositions	8.5	24
+(World)		(World)	ListOpenPositions	9	12
+(World)		(World)	ListOpenPositions	9.5	12
+(World)		(World)	ListOpenPositions	10	5
+(World)		(World)	ListOpenPositions	10.5	7
+(World)		(World)	ListOpenPositions	11	10
+(World)		(World)	ListOpenPositions	11.5	2
+(World)		(World)	ListOpenPositions	12	6
+(World)		(World)	ListOpenPositions	12.5	5
+(World)		(World)	ListOpenPositions	13	7
+(World)		(World)	ListOpenPositions	13.5	5
+(World)		(World)	ListOpenPositions	14	3
+(World)		(World)	ListOpenPositions	14.5	1
+(World)		(World)	ListOpenPositions	15	3
+(World)		(World)	ListOpenPositions	15.5	3
+(World)		(World)	ListOpenPositions	16	3
+(World)		(World)	ListOpenPositions	16.5	3
+(World)		(World)	ListOpenPositions	17	15
+(World)		(World)	ListOpenPositions	18	2
+(World)		(World)	ListOpenPositions	18.5	3
+(World)		(World)	ListOpenPositions	19	3
+(World)		(World)	ListOpenPositions	19.5	1
+(World)		(World)	ListOpenPositions	20	2
+(World)		(World)	ListOpenPositions	20.5	2
+(World)		(World)	ListOpenPositions	21.5	3
+(World)		(World)	ListOpenPositions	22	1
+(World)		(World)	ListOpenPositions	23.5	3
 (World)		(World)	ListOpenPositions	24.5	1
 (World)		(World)	ListOpenPositions	25	1
+(World)		(World)	ListOpenPositions	27	2
+(World)		(World)	ListOpenPositions	28	1
+(World)		(World)	ListOpenPositions	28.5	1
+(World)		(World)	ListOpenPositions	29.5	1
 (World)		(World)	ListOpenPositions	30.5	3
-(World)		(World)	ListOpenPositions	31	2
+(World)		(World)	ListOpenPositions	31	10
 (World)		(World)	ListOpenPositions	31.5	1
-(World)		(World)	ListOpenPositions	32.5	1
+(World)		(World)	ListOpenPositions	32	2
+(World)		(World)	ListOpenPositions	32.5	2
 (World)		(World)	ListOpenPositions	33.5	1
+(World)		(World)	ListOpenPositions	34	1
 (World)		(World)	ListOpenPositions	35	1
+(World)		(World)	ListOpenPositions	36	1
 (World)		(World)	ListOpenPositions	36.5	1
+(World)		(World)	ListOpenPositions	38	1
+(World)		(World)	ListOpenPositions	39	1
+(World)		(World)	ListOpenPositions	39.5	1
+(World)		(World)	ListOpenPositions	40	1
 (World)		(World)	ListOpenPositions	40.5	1
 (World)		(World)	ListOpenPositions	41.5	1
 (World)		(World)	ListOpenPositions	43.5	1
 (World)		(World)	ListOpenPositions	44.5	1
+(World)		(World)	ListOpenPositions	52.5	1
 (World)		(World)	ListOpenPositions	53.5	2
 (World)		(World)	ListOpenPositions	55	1
 (World)		(World)	ListOpenPositions	56.5	1
+(World)		(World)	ListOpenPositions	60	1
 (World)		(World)	ListOpenPositions	60.5	1
 (World)		(World)	ListOpenPositions	69.5	4
-(World)		(World)	GetPriceBars	0.5	10206
-(World)		(World)	GetPriceBars	1	19387
-(World)		(World)	GetPriceBars	1.5	4924
-(World)		(World)	GetPriceBars	2	2038
-(World)		(World)	GetPriceBars	2.5	959
-(World)		(World)	GetPriceBars	3	587
-(World)		(World)	GetPriceBars	3.5	238
-(World)		(World)	GetPriceBars	4	113
-(World)		(World)	GetPriceBars	4.5	89
-(World)		(World)	GetPriceBars	5	62
-(World)		(World)	GetPriceBars	5.5	45
-(World)		(World)	GetPriceBars	6	19
-(World)		(World)	GetPriceBars	6.5	10
-(World)		(World)	GetPriceBars	7	7
-(World)		(World)	GetPriceBars	7.5	3
-(World)		(World)	GetPriceBars	8	3
-(World)		(World)	GetPriceBars	8.5	2
-(World)		(World)	GetPriceBars	9	3
-(World)		(World)	GetPriceBars	9.5	2
-(World)		(World)	GetPriceBars	10.5	3
-(World)		(World)	GetPriceBars	11	2
-(World)		(World)	GetPriceBars	12.5	2
-(World)		(World)	GetPriceBars	13.5	1
-(World)		(World)	GetPriceBars	14	1
-(World)		(World)	GetPriceBars	15	3
-(World)		(World)	GetPriceBars	15.5	1
-(World)		(World)	GetPriceBars	16	1
-(World)		(World)	GetPriceBars	17	1
-(World)		(World)	GetPriceBars	17.5	2
-(World)		(World)	GetPriceBars	19	2
+(World)		(World)	GetPriceBars	0.5	11610
+(World)		(World)	GetPriceBars	1	23156
+(World)		(World)	GetPriceBars	1.5	5904
+(World)		(World)	GetPriceBars	2	2373
+(World)		(World)	GetPriceBars	2.5	1211
+(World)		(World)	GetPriceBars	3	788
+(World)		(World)	GetPriceBars	3.5	314
+(World)		(World)	GetPriceBars	4	154
+(World)		(World)	GetPriceBars	4.5	123
+(World)		(World)	GetPriceBars	5	104
+(World)		(World)	GetPriceBars	5.5	65
+(World)		(World)	GetPriceBars	6	28
+(World)		(World)	GetPriceBars	6.5	22
+(World)		(World)	GetPriceBars	7	12
+(World)		(World)	GetPriceBars	7.5	8
+(World)		(World)	GetPriceBars	8	13
+(World)		(World)	GetPriceBars	8.5	8
+(World)		(World)	GetPriceBars	9	6
+(World)		(World)	GetPriceBars	9.5	4
+(World)		(World)	GetPriceBars	10	4
+(World)		(World)	GetPriceBars	10.5	5
+(World)		(World)	GetPriceBars	11	7
+(World)		(World)	GetPriceBars	11.5	6
+(World)		(World)	GetPriceBars	12	4
+(World)		(World)	GetPriceBars	12.5	5
+(World)		(World)	GetPriceBars	13	5
+(World)		(World)	GetPriceBars	13.5	2
+(World)		(World)	GetPriceBars	14	2
+(World)		(World)	GetPriceBars	14.5	2
+(World)		(World)	GetPriceBars	15	4
+(World)		(World)	GetPriceBars	15.5	2
+(World)		(World)	GetPriceBars	16	2
+(World)		(World)	GetPriceBars	17	2
+(World)		(World)	GetPriceBars	17.5	3
+(World)		(World)	GetPriceBars	18.5	2
+(World)		(World)	GetPriceBars	19	3
 (World)		(World)	GetPriceBars	19.5	1
-(World)		(World)	GetPriceBars	20.5	2
-(World)		(World)	GetPriceBars	25.5	2
+(World)		(World)	GetPriceBars	20	2
+(World)		(World)	GetPriceBars	20.5	4
+(World)		(World)	GetPriceBars	21.5	1
+(World)		(World)	GetPriceBars	22	1
+(World)		(World)	GetPriceBars	23	2
+(World)		(World)	GetPriceBars	24	1
+(World)		(World)	GetPriceBars	25.5	3
 (World)		(World)	GetPriceBars	26	1
 (World)		(World)	GetPriceBars	26.5	1
 (World)		(World)	GetPriceBars	27	2
+(World)		(World)	GetPriceBars	27.5	1
+(World)		(World)	GetPriceBars	28.5	1
 (World)		(World)	GetPriceBars	29.5	1
+(World)		(World)	GetPriceBars	30	3
 (World)		(World)	GetPriceBars	31	1
+(World)		(World)	GetPriceBars	31.5	3
+(World)		(World)	GetPriceBars	32	1
+(World)		(World)	GetPriceBars	32.5	1
+(World)		(World)	GetPriceBars	33	1
+(World)		(World)	GetPriceBars	39	1
+(World)		(World)	GetPriceBars	42	1
 (World)		(World)	GetPriceBars	42.5	1
-(World)		(World)	GetPriceBars	43	3
+(World)		(World)	GetPriceBars	43	4
+(World)		(World)	GetPriceBars	44	2
+(World)		(World)	GetPriceBars	44.5	1
+(World)		(World)	GetPriceBars	46	1
 (World)		(World)	GetPriceBars	47	1
-(World)		(World)	GetPriceBars	48	1
+(World)		(World)	GetPriceBars	48	2
+(World)		(World)	GetPriceBars	55	1
+(World)		(World)	GetPriceBars	63	1
+(World)		(World)	GetPriceBars	65.5	1
+(World)		(World)	GetPriceBars	68.5	1
+(World)		(World)	GetPriceBars	74.5	1
+(World)		(World)	GetPriceBars	91.5	1
 (World)		(World)	ListStopLimitOrderHistory	0	4
-(World)		(World)	ListStopLimitOrderHistory	0.5	72427
-(World)		(World)	ListStopLimitOrderHistory	1	46972
-(World)		(World)	ListStopLimitOrderHistory	1.5	40758
-(World)		(World)	ListStopLimitOrderHistory	2	21073
-(World)		(World)	ListStopLimitOrderHistory	2.5	7144
-(World)		(World)	ListStopLimitOrderHistory	3	4195
-(World)		(World)	ListStopLimitOrderHistory	3.5	3258
-(World)		(World)	ListStopLimitOrderHistory	4	901
-(World)		(World)	ListStopLimitOrderHistory	4.5	394
-(World)		(World)	ListStopLimitOrderHistory	5	402
-(World)		(World)	ListStopLimitOrderHistory	5.5	337
-(World)		(World)	ListStopLimitOrderHistory	6	116
-(World)		(World)	ListStopLimitOrderHistory	6.5	51
-(World)		(World)	ListStopLimitOrderHistory	7	34
-(World)		(World)	ListStopLimitOrderHistory	7.5	19
-(World)		(World)	ListStopLimitOrderHistory	8	18
-(World)		(World)	ListStopLimitOrderHistory	8.5	6
-(World)		(World)	ListStopLimitOrderHistory	9	12
-(World)		(World)	ListStopLimitOrderHistory	9.5	5
-(World)		(World)	ListStopLimitOrderHistory	10	4
-(World)		(World)	ListStopLimitOrderHistory	10.5	4
-(World)		(World)	ListStopLimitOrderHistory	11	1
-(World)		(World)	ListStopLimitOrderHistory	11.5	1
-(World)		(World)	ListStopLimitOrderHistory	12	1
-(World)		(World)	ListStopLimitOrderHistory	12.5	1
-(World)		(World)	ListStopLimitOrderHistory	13	3
+(World)		(World)	ListStopLimitOrderHistory	0.5	74690
+(World)		(World)	ListStopLimitOrderHistory	1	55697
+(World)		(World)	ListStopLimitOrderHistory	1.5	45406
+(World)		(World)	ListStopLimitOrderHistory	2	23813
+(World)		(World)	ListStopLimitOrderHistory	2.5	8954
+(World)		(World)	ListStopLimitOrderHistory	3	5592
+(World)		(World)	ListStopLimitOrderHistory	3.5	3752
+(World)		(World)	ListStopLimitOrderHistory	4	1026
+(World)		(World)	ListStopLimitOrderHistory	4.5	529
+(World)		(World)	ListStopLimitOrderHistory	5	520
+(World)		(World)	ListStopLimitOrderHistory	5.5	413
+(World)		(World)	ListStopLimitOrderHistory	6	169
+(World)		(World)	ListStopLimitOrderHistory	6.5	77
+(World)		(World)	ListStopLimitOrderHistory	7	47
+(World)		(World)	ListStopLimitOrderHistory	7.5	23
+(World)		(World)	ListStopLimitOrderHistory	8	25
+(World)		(World)	ListStopLimitOrderHistory	8.5	12
+(World)		(World)	ListStopLimitOrderHistory	9	17
+(World)		(World)	ListStopLimitOrderHistory	9.5	10
+(World)		(World)	ListStopLimitOrderHistory	10	10
+(World)		(World)	ListStopLimitOrderHistory	10.5	7
+(World)		(World)	ListStopLimitOrderHistory	11	7
+(World)		(World)	ListStopLimitOrderHistory	11.5	8
+(World)		(World)	ListStopLimitOrderHistory	12	6
+(World)		(World)	ListStopLimitOrderHistory	12.5	4
+(World)		(World)	ListStopLimitOrderHistory	13	5
 (World)		(World)	ListStopLimitOrderHistory	13.5	2
-(World)		(World)	ListStopLimitOrderHistory	14	4
-(World)		(World)	ListStopLimitOrderHistory	14.5	3
-(World)		(World)	ListStopLimitOrderHistory	16	2
+(World)		(World)	ListStopLimitOrderHistory	14	5
+(World)		(World)	ListStopLimitOrderHistory	14.5	4
+(World)		(World)	ListStopLimitOrderHistory	15	2
+(World)		(World)	ListStopLimitOrderHistory	16	4
 (World)		(World)	ListStopLimitOrderHistory	16.5	1
-(World)		(World)	ListStopLimitOrderHistory	17	1
+(World)		(World)	ListStopLimitOrderHistory	17	7
 (World)		(World)	ListStopLimitOrderHistory	17.5	2
-(World)		(World)	ListStopLimitOrderHistory	18	1
-(World)		(World)	ListStopLimitOrderHistory	19	1
+(World)		(World)	ListStopLimitOrderHistory	18	3
+(World)		(World)	ListStopLimitOrderHistory	19	2
+(World)		(World)	ListStopLimitOrderHistory	19.5	3
 (World)		(World)	ListStopLimitOrderHistory	21	2
-(World)		(World)	ListStopLimitOrderHistory	22	1
-(World)		(World)	ListStopLimitOrderHistory	22.5	2
-(World)		(World)	ListStopLimitOrderHistory	23	1
+(World)		(World)	ListStopLimitOrderHistory	22	2
+(World)		(World)	ListStopLimitOrderHistory	22.5	4
+(World)		(World)	ListStopLimitOrderHistory	23	3
 (World)		(World)	ListStopLimitOrderHistory	25	2
-(World)		(World)	ListStopLimitOrderHistory	26	3
+(World)		(World)	ListStopLimitOrderHistory	25.5	1
+(World)		(World)	ListStopLimitOrderHistory	26	4
+(World)		(World)	ListStopLimitOrderHistory	26.5	2
+(World)		(World)	ListStopLimitOrderHistory	27.5	1
 (World)		(World)	ListStopLimitOrderHistory	28	1
+(World)		(World)	ListStopLimitOrderHistory	29	3
+(World)		(World)	ListStopLimitOrderHistory	29.5	1
 (World)		(World)	ListStopLimitOrderHistory	30.5	2
-(World)		(World)	ListStopLimitOrderHistory	31.5	1
+(World)		(World)	ListStopLimitOrderHistory	31	5
+(World)		(World)	ListStopLimitOrderHistory	31.5	6
 (World)		(World)	ListStopLimitOrderHistory	32	1
+(World)		(World)	ListStopLimitOrderHistory	32.5	1
+(World)		(World)	ListStopLimitOrderHistory	33	2
 (World)		(World)	ListStopLimitOrderHistory	33.5	1
 (World)		(World)	ListStopLimitOrderHistory	35	1
+(World)		(World)	ListStopLimitOrderHistory	39.5	1
 (World)		(World)	ListStopLimitOrderHistory	41	1
+(World)		(World)	ListStopLimitOrderHistory	44.5	1
 (World)		(World)	ListStopLimitOrderHistory	46	2
 (World)		(World)	ListStopLimitOrderHistory	48	1
+(World)		(World)	ListStopLimitOrderHistory	49	1
+(World)		(World)	ListStopLimitOrderHistory	53.5	1
 (World)		(World)	ListStopLimitOrderHistory	55	1
 (World)		(World)	ListStopLimitOrderHistory	59	1
 (World)		(World)	ListStopLimitOrderHistory	62	1
 (World)		(World)	ListActiveOrders	0	4
-(World)		(World)	ListActiveOrders	0.5	83002
-(World)		(World)	ListActiveOrders	1	57918
-(World)		(World)	ListActiveOrders	1.5	28890
-(World)		(World)	ListActiveOrders	2	15337
-(World)		(World)	ListActiveOrders	2.5	5731
-(World)		(World)	ListActiveOrders	3	2823
-(World)		(World)	ListActiveOrders	3.5	2580
-(World)		(World)	ListActiveOrders	4	756
-(World)		(World)	ListActiveOrders	4.5	322
-(World)		(World)	ListActiveOrders	5	326
-(World)		(World)	ListActiveOrders	5.5	246
-(World)		(World)	ListActiveOrders	6	78
-(World)		(World)	ListActiveOrders	6.5	37
-(World)		(World)	ListActiveOrders	7	37
-(World)		(World)	ListActiveOrders	7.5	14
-(World)		(World)	ListActiveOrders	8	9
-(World)		(World)	ListActiveOrders	8.5	10
-(World)		(World)	ListActiveOrders	9	11
-(World)		(World)	ListActiveOrders	9.5	3
-(World)		(World)	ListActiveOrders	10	6
-(World)		(World)	ListActiveOrders	10.5	6
-(World)		(World)	ListActiveOrders	12	2
-(World)		(World)	ListActiveOrders	12.5	6
+(World)		(World)	ListActiveOrders	0.5	89109
+(World)		(World)	ListActiveOrders	1	65900
+(World)		(World)	ListActiveOrders	1.5	32193
+(World)		(World)	ListActiveOrders	2	17280
+(World)		(World)	ListActiveOrders	2.5	7335
+(World)		(World)	ListActiveOrders	3	3783
+(World)		(World)	ListActiveOrders	3.5	2876
+(World)		(World)	ListActiveOrders	4	862
+(World)		(World)	ListActiveOrders	4.5	435
+(World)		(World)	ListActiveOrders	5	425
+(World)		(World)	ListActiveOrders	5.5	306
+(World)		(World)	ListActiveOrders	6	113
+(World)		(World)	ListActiveOrders	6.5	48
+(World)		(World)	ListActiveOrders	7	44
+(World)		(World)	ListActiveOrders	7.5	24
+(World)		(World)	ListActiveOrders	8	16
+(World)		(World)	ListActiveOrders	8.5	25
+(World)		(World)	ListActiveOrders	9	27
+(World)		(World)	ListActiveOrders	9.5	6
+(World)		(World)	ListActiveOrders	10	10
+(World)		(World)	ListActiveOrders	10.5	7
+(World)		(World)	ListActiveOrders	11	8
+(World)		(World)	ListActiveOrders	11.5	4
+(World)		(World)	ListActiveOrders	12	3
+(World)		(World)	ListActiveOrders	12.5	7
 (World)		(World)	ListActiveOrders	13	2
-(World)		(World)	ListActiveOrders	14	1
+(World)		(World)	ListActiveOrders	13.5	3
+(World)		(World)	ListActiveOrders	14	3
+(World)		(World)	ListActiveOrders	14.5	3
+(World)		(World)	ListActiveOrders	15	3
 (World)		(World)	ListActiveOrders	15.5	1
+(World)		(World)	ListActiveOrders	16	2
 (World)		(World)	ListActiveOrders	16.5	1
-(World)		(World)	ListActiveOrders	17	1
+(World)		(World)	ListActiveOrders	17	5
+(World)		(World)	ListActiveOrders	17.5	1
+(World)		(World)	ListActiveOrders	18	2
 (World)		(World)	ListActiveOrders	18.5	1
-(World)		(World)	ListActiveOrders	21	3
+(World)		(World)	ListActiveOrders	19	1
+(World)		(World)	ListActiveOrders	19.5	1
+(World)		(World)	ListActiveOrders	20	2
+(World)		(World)	ListActiveOrders	20.5	1
+(World)		(World)	ListActiveOrders	21	4
+(World)		(World)	ListActiveOrders	22	1
 (World)		(World)	ListActiveOrders	23	1
-(World)		(World)	ListActiveOrders	24	2
+(World)		(World)	ListActiveOrders	24	3
 (World)		(World)	ListActiveOrders	25	1
-(World)		(World)	ListActiveOrders	27.5	1
-(World)		(World)	ListActiveOrders	28	1
+(World)		(World)	ListActiveOrders	27.5	2
+(World)		(World)	ListActiveOrders	28	2
 (World)		(World)	ListActiveOrders	29	2
+(World)		(World)	ListActiveOrders	29.5	1
 (World)		(World)	ListActiveOrders	30.5	3
+(World)		(World)	ListActiveOrders	31	9
 (World)		(World)	ListActiveOrders	32.5	3
 (World)		(World)	ListActiveOrders	33	1
+(World)		(World)	ListActiveOrders	33.5	2
+(World)		(World)	ListActiveOrders	34	1
+(World)		(World)	ListActiveOrders	34.5	1
+(World)		(World)	ListActiveOrders	35	1
 (World)		(World)	ListActiveOrders	38	1
+(World)		(World)	ListActiveOrders	38.5	1
+(World)		(World)	ListActiveOrders	40.5	1
 (World)		(World)	ListActiveOrders	41	2
-(World)		(World)	ListActiveOrders	48	1
+(World)		(World)	ListActiveOrders	48	2
 (World)		(World)	ListActiveOrders	49	1
 (World)		(World)	ListActiveOrders	52.5	1
 (World)		(World)	ListActiveOrders	54	1
 (World)		(World)	ListActiveOrders	54.5	1
+(World)		(World)	ListActiveOrders	56.5	1
 (World)		(World)	ListActiveOrders	61	1
 (World)		(World)	ListActiveOrders	67	1
 (World)		(World)	ListActiveOrders	68	1
 (World)		(World)	ListActiveOrders	88	1
-(World)		(World)	ListTradeHistory	0	1
-(World)		(World)	ListTradeHistory	0.5	66102
-(World)		(World)	ListTradeHistory	1	63081
-(World)		(World)	ListTradeHistory	1.5	35384
-(World)		(World)	ListTradeHistory	2	17387
-(World)		(World)	ListTradeHistory	2.5	6163
-(World)		(World)	ListTradeHistory	3	3890
-(World)		(World)	ListTradeHistory	3.5	3668
-(World)		(World)	ListTradeHistory	4	866
-(World)		(World)	ListTradeHistory	4.5	437
-(World)		(World)	ListTradeHistory	5	443
-(World)		(World)	ListTradeHistory	5.5	410
-(World)		(World)	ListTradeHistory	6	119
-(World)		(World)	ListTradeHistory	6.5	53
-(World)		(World)	ListTradeHistory	7	37
-(World)		(World)	ListTradeHistory	7.5	13
-(World)		(World)	ListTradeHistory	8	10
-(World)		(World)	ListTradeHistory	8.5	13
-(World)		(World)	ListTradeHistory	9	7
-(World)		(World)	ListTradeHistory	9.5	5
-(World)		(World)	ListTradeHistory	10	3
-(World)		(World)	ListTradeHistory	10.5	3
-(World)		(World)	ListTradeHistory	11	1
-(World)		(World)	ListTradeHistory	11.5	1
-(World)		(World)	ListTradeHistory	12	1
-(World)		(World)	ListTradeHistory	12.5	2
+(World)		(World)	ListTradeHistory	0	2
+(World)		(World)	ListTradeHistory	0.5	69454
+(World)		(World)	ListTradeHistory	1	71597
+(World)		(World)	ListTradeHistory	1.5	39801
+(World)		(World)	ListTradeHistory	2	19381
+(World)		(World)	ListTradeHistory	2.5	7865
+(World)		(World)	ListTradeHistory	3	5340
+(World)		(World)	ListTradeHistory	3.5	4205
+(World)		(World)	ListTradeHistory	4	1034
+(World)		(World)	ListTradeHistory	4.5	601
+(World)		(World)	ListTradeHistory	5	577
+(World)		(World)	ListTradeHistory	5.5	481
+(World)		(World)	ListTradeHistory	6	164
+(World)		(World)	ListTradeHistory	6.5	67
+(World)		(World)	ListTradeHistory	7	41
+(World)		(World)	ListTradeHistory	7.5	23
+(World)		(World)	ListTradeHistory	8	12
+(World)		(World)	ListTradeHistory	8.5	17
+(World)		(World)	ListTradeHistory	9	20
+(World)		(World)	ListTradeHistory	9.5	15
+(World)		(World)	ListTradeHistory	10	10
+(World)		(World)	ListTradeHistory	10.5	6
+(World)		(World)	ListTradeHistory	11	8
+(World)		(World)	ListTradeHistory	11.5	6
+(World)		(World)	ListTradeHistory	12	5
+(World)		(World)	ListTradeHistory	12.5	3
 (World)		(World)	ListTradeHistory	13	2
-(World)		(World)	ListTradeHistory	13.5	4
-(World)		(World)	ListTradeHistory	14	1
-(World)		(World)	ListTradeHistory	14.5	1
-(World)		(World)	ListTradeHistory	16.5	1
-(World)		(World)	ListTradeHistory	17.5	2
-(World)		(World)	ListTradeHistory	19	2
-(World)		(World)	ListTradeHistory	21	1
-(World)		(World)	ListTradeHistory	22	1
+(World)		(World)	ListTradeHistory	13.5	6
+(World)		(World)	ListTradeHistory	14	4
+(World)		(World)	ListTradeHistory	14.5	5
+(World)		(World)	ListTradeHistory	15	5
+(World)		(World)	ListTradeHistory	15.5	2
+(World)		(World)	ListTradeHistory	16	6
+(World)		(World)	ListTradeHistory	16.5	4
+(World)		(World)	ListTradeHistory	17	7
+(World)		(World)	ListTradeHistory	17.5	4
+(World)		(World)	ListTradeHistory	18	2
+(World)		(World)	ListTradeHistory	18.5	3
+(World)		(World)	ListTradeHistory	19	3
+(World)		(World)	ListTradeHistory	19.5	3
+(World)		(World)	ListTradeHistory	20	2
+(World)		(World)	ListTradeHistory	20.5	2
+(World)		(World)	ListTradeHistory	21	2
+(World)		(World)	ListTradeHistory	21.5	2
+(World)		(World)	ListTradeHistory	22	3
+(World)		(World)	ListTradeHistory	22.5	1
+(World)		(World)	ListTradeHistory	23	1
 (World)		(World)	ListTradeHistory	23.5	2
-(World)		(World)	ListTradeHistory	24	2
-(World)		(World)	ListTradeHistory	24.5	1
-(World)		(World)	ListTradeHistory	25	1
-(World)		(World)	ListTradeHistory	25.5	1
-(World)		(World)	ListTradeHistory	26	1
+(World)		(World)	ListTradeHistory	24	5
+(World)		(World)	ListTradeHistory	24.5	4
+(World)		(World)	ListTradeHistory	25	3
+(World)		(World)	ListTradeHistory	25.5	2
+(World)		(World)	ListTradeHistory	26	3
+(World)		(World)	ListTradeHistory	26.5	2
 (World)		(World)	ListTradeHistory	29	1
+(World)		(World)	ListTradeHistory	29.5	2
 (World)		(World)	ListTradeHistory	30.5	4
-(World)		(World)	ListTradeHistory	34.5	1
-(World)		(World)	ListTradeHistory	42	1
+(World)		(World)	ListTradeHistory	31	5
+(World)		(World)	ListTradeHistory	31.5	2
+(World)		(World)	ListTradeHistory	32	2
+(World)		(World)	ListTradeHistory	33.5	1
+(World)		(World)	ListTradeHistory	34	1
+(World)		(World)	ListTradeHistory	34.5	2
+(World)		(World)	ListTradeHistory	35	1
+(World)		(World)	ListTradeHistory	35.5	1
+(World)		(World)	ListTradeHistory	36	2
+(World)		(World)	ListTradeHistory	36.5	1
+(World)		(World)	ListTradeHistory	37	1
+(World)		(World)	ListTradeHistory	39.5	2
+(World)		(World)	ListTradeHistory	40.5	2
+(World)		(World)	ListTradeHistory	41.5	1
+(World)		(World)	ListTradeHistory	42	2
 (World)		(World)	ListTradeHistory	43.5	1
-(World)		(World)	ListTradeHistory	44	1
+(World)		(World)	ListTradeHistory	44	2
 (World)		(World)	ListTradeHistory	44.5	1
 (World)		(World)	ListTradeHistory	45.5	1
 (World)		(World)	ListTradeHistory	49	1
+(World)		(World)	ListTradeHistory	51	1
 (World)		(World)	ListTradeHistory	54.5	1
 (World)		(World)	ListTradeHistory	57.5	1
 (World)		(World)	ListTradeHistory	60.5	1
+(World)		(World)	ListTradeHistory	61.5	1
 (World)		(World)	SubscribeClientAccountMargin	0.5	2
-(World)		(World)	SubscribeClientAccountMargin	1	10
+(World)		(World)	SubscribeClientAccountMargin	1	11
 (World)		(World)	SubscribeClientAccountMargin	1.5	6
 (World)		(World)	SubscribeClientAccountMargin	2	7
 (World)		(World)	SubscribeClientAccountMargin	2.5	4
@@ -378,15 +513,16 @@
 (World)		(World)	SubscribeClientAccountMargin	4	4
 (World)		(World)	SubscribeClientAccountMargin	4.5	5
 (World)		(World)	SubscribeClientAccountMargin	5	6
-(World)		(World)	SubscribeClientAccountMargin	5.5	4
+(World)		(World)	SubscribeClientAccountMargin	5.5	6
 (World)		(World)	SubscribeClientAccountMargin	6	2
 (World)		(World)	SubscribeClientAccountMargin	8	1
 (World)		(World)	SubscribeClientAccountMargin	8.5	1
 (World)		(World)	SubscribeClientAccountMargin	9	1
-(World)		(World)	SubscribeClientAccountMargin	11.5	1
+(World)		(World)	SubscribeClientAccountMargin	11	1
+(World)		(World)	SubscribeClientAccountMargin	11.5	2
 (World)		(World)	GetMarketInfo	0	1
-(World)		(World)	GetMarketInfo	0.5	22
-(World)		(World)	GetMarketInfo	1	21
+(World)		(World)	GetMarketInfo	0.5	25
+(World)		(World)	GetMarketInfo	1	23
 (World)		(World)	GetMarketInfo	1.5	17
 (World)		(World)	GetMarketInfo	2	2
 (World)		(World)	GetMarketInfo	2.5	2
@@ -397,368 +533,540 @@
 (World)		(World)	SubscribePriceStreams	1	8
 (World)		(World)	SubscribePriceStreams	1.5	6
 (World)		(World)	SubscribePriceStreams	2	7
-(World)		(World)	SubscribePriceStreams	2.5	9
+(World)		(World)	SubscribePriceStreams	2.5	12
 (World)		(World)	SubscribePriceStreams	3	6
 (World)		(World)	SubscribePriceStreams	3.5	3
 (World)		(World)	SubscribePriceStreams	4	7
 (World)		(World)	SubscribePriceStreams	4.5	6
-(World)		(World)	SubscribePriceStreams	5	3
+(World)		(World)	SubscribePriceStreams	5	4
 (World)		(World)	SubscribePriceStreams	5.5	2
 (World)		(World)	SubscribePriceStreams	6	3
 (World)		(World)	SubscribePriceStreams	7	1
 (World)		(World)	SubscribePriceStreams	7.5	1
 (World)		(World)	SubscribePriceStreams	8.5	1
 (World)		(World)	SubscribePriceStreams	10	1
-(World)		(World)	UnsubscribePriceStream	0	54
+(World)		(World)	SubscribePriceStreams	13	1
+(World)		(World)	UnsubscribePriceStream	0	58
 (World)		(World)	UnsubscribePriceStream	0.5	1
-(World)		(World)	StreamingClient.Dispose	0	5
-(World)		(World)	StreamingClient.Dispose	0.5	47
+(World)		(World)	StreamingClient.Dispose	0	6
+(World)		(World)	StreamingClient.Dispose	0.5	50
 (World)		(World)	StreamingClient.Dispose	1	2
 (World)		(World)	StreamingClient.Dispose	1.5	2
 (World)		(World)	StreamingClient.Dispose	2.5	1
 (World)		(World)	StreamingClient.Dispose	3.5	1
-(World)		(World)	LogOut	0.5	49
-(World)		(World)	LogOut	1	6
+(World)		(World)	LogOut	0.5	51
+(World)		(World)	LogOut	1	8
 (World)		(World)	LogOut	2	1
 (World)		(World)	LogOut	3	1
 (World)		(World)	LogOut	3.5	1
 (World)		(World)	ListCfdMarkets	0.5	5
 (World)		(World)	ListCfdMarkets	2	1
-(World)		(World)	PlaceTrade	0.5	1127
-(World)		(World)	PlaceTrade	1	1433
-(World)		(World)	PlaceTrade	1.5	430
-(World)		(World)	PlaceTrade	2	138
-(World)		(World)	PlaceTrade	2.5	71
-(World)		(World)	PlaceTrade	3	23
-(World)		(World)	PlaceTrade	3.5	19
-(World)		(World)	PlaceTrade	4	10
-(World)		(World)	PlaceTrade	4.5	1
-(World)		(World)	PlaceTrade	5	3
-(World)		(World)	PlaceTrade	5.5	3
+(World)		(World)	PlaceTrade	0.5	1758
+(World)		(World)	PlaceTrade	1	2388
+(World)		(World)	PlaceTrade	1.5	555
+(World)		(World)	PlaceTrade	2	193
+(World)		(World)	PlaceTrade	2.5	123
+(World)		(World)	PlaceTrade	3	72
+(World)		(World)	PlaceTrade	3.5	26
+(World)		(World)	PlaceTrade	4	13
+(World)		(World)	PlaceTrade	4.5	5
+(World)		(World)	PlaceTrade	5	6
+(World)		(World)	PlaceTrade	5.5	5
+(World)		(World)	PlaceTrade	6	1
+(World)		(World)	PlaceTrade	7.5	2
 (World)		(World)	PlaceTrade	8	1
+(World)		(World)	PlaceTrade	8.5	2
+(World)		(World)	PlaceTrade	9	1
+(World)		(World)	PlaceTrade	16.5	1
+(World)		(World)	PlaceTrade	19.5	1
+(World)		(World)	PlaceTrade	41.5	1
 (World)		(World)	ClosePosition	1.5	1
-Cambodia	(All)	Cambodia/(All)		0	23
-Cambodia	(All)	Cambodia/(All)		0.5	4454
-Cambodia	(All)	Cambodia/(All)		1	18552
-Cambodia	(All)	Cambodia/(All)		1.5	6407
-Cambodia	(All)	Cambodia/(All)		2	1724
-Cambodia	(All)	Cambodia/(All)		2.5	845
-Cambodia	(All)	Cambodia/(All)		3	520
-Cambodia	(All)	Cambodia/(All)		3.5	226
-Cambodia	(All)	Cambodia/(All)		4	160
-Cambodia	(All)	Cambodia/(All)		4.5	114
-Cambodia	(All)	Cambodia/(All)		5	84
-Cambodia	(All)	Cambodia/(All)		5.5	52
-Cambodia	(All)	Cambodia/(All)		6	31
-Cambodia	(All)	Cambodia/(All)		6.5	16
-Cambodia	(All)	Cambodia/(All)		7	20
-Cambodia	(All)	Cambodia/(All)		7.5	19
-Cambodia	(All)	Cambodia/(All)		8	16
-Cambodia	(All)	Cambodia/(All)		8.5	19
-Cambodia	(All)	Cambodia/(All)		9	23
-Cambodia	(All)	Cambodia/(All)		9.5	8
-Cambodia	(All)	Cambodia/(All)		10	8
-Cambodia	(All)	Cambodia/(All)		10.5	4
-Cambodia	(All)	Cambodia/(All)		11	3
-Cambodia	(All)	Cambodia/(All)		11.5	1
-Cambodia	(All)	Cambodia/(All)		12	2
-Cambodia	(All)	Cambodia/(All)		12.5	5
-Cambodia	(All)	Cambodia/(All)		13	3
-Cambodia	(All)	Cambodia/(All)		13.5	6
-Cambodia	(All)	Cambodia/(All)		14	6
-Cambodia	(All)	Cambodia/(All)		14.5	1
-Cambodia	(All)	Cambodia/(All)		15	2
-Cambodia	(All)	Cambodia/(All)		15.5	1
-Cambodia	(All)	Cambodia/(All)		16	3
-Cambodia	(All)	Cambodia/(All)		16.5	2
-Cambodia	(All)	Cambodia/(All)		17	5
-Cambodia	(All)	Cambodia/(All)		17.5	6
-Cambodia	(All)	Cambodia/(All)		18	1
-Cambodia	(All)	Cambodia/(All)		18.5	2
-Cambodia	(All)	Cambodia/(All)		19	2
-Cambodia	(All)	Cambodia/(All)		19.5	1
-Cambodia	(All)	Cambodia/(All)		20.5	3
-Cambodia	(All)	Cambodia/(All)		21	6
-Cambodia	(All)	Cambodia/(All)		21.5	1
-Cambodia	(All)	Cambodia/(All)		22	2
-Cambodia	(All)	Cambodia/(All)		23	2
-Cambodia	(All)	Cambodia/(All)		23.5	3
-Cambodia	(All)	Cambodia/(All)		24	3
-Cambodia	(All)	Cambodia/(All)		24.5	2
-Cambodia	(All)	Cambodia/(All)		25.5	1
-Cambodia	(All)	Cambodia/(All)		26	4
-Cambodia	(All)	Cambodia/(All)		27.5	1
-Cambodia	(All)	Cambodia/(All)		28	1
-Cambodia	(All)	Cambodia/(All)		29	3
-Cambodia	(All)	Cambodia/(All)		31	1
-Cambodia	(All)	Cambodia/(All)		31.5	1
-Cambodia	(All)	Cambodia/(All)		32	1
-Cambodia	(All)	Cambodia/(All)		32.5	4
-Cambodia	(All)	Cambodia/(All)		33.5	2
-Cambodia	(All)	Cambodia/(All)		34.5	1
-Cambodia	(All)	Cambodia/(All)		35	2
-Cambodia	(All)	Cambodia/(All)		36.5	1
-Cambodia	(All)	Cambodia/(All)		38	1
-Cambodia	(All)	Cambodia/(All)		40.5	1
+Cambodia	(All)	Cambodia/(All)		0	28
+Cambodia	(All)	Cambodia/(All)		0.5	5135
+Cambodia	(All)	Cambodia/(All)		1	21461
+Cambodia	(All)	Cambodia/(All)		1.5	7094
+Cambodia	(All)	Cambodia/(All)		2	2135
+Cambodia	(All)	Cambodia/(All)		2.5	1117
+Cambodia	(All)	Cambodia/(All)		3	704
+Cambodia	(All)	Cambodia/(All)		3.5	360
+Cambodia	(All)	Cambodia/(All)		4	248
+Cambodia	(All)	Cambodia/(All)		4.5	182
+Cambodia	(All)	Cambodia/(All)		5	171
+Cambodia	(All)	Cambodia/(All)		5.5	103
+Cambodia	(All)	Cambodia/(All)		6	77
+Cambodia	(All)	Cambodia/(All)		6.5	52
+Cambodia	(All)	Cambodia/(All)		7	38
+Cambodia	(All)	Cambodia/(All)		7.5	43
+Cambodia	(All)	Cambodia/(All)		8	38
+Cambodia	(All)	Cambodia/(All)		8.5	57
+Cambodia	(All)	Cambodia/(All)		9	59
+Cambodia	(All)	Cambodia/(All)		9.5	28
+Cambodia	(All)	Cambodia/(All)		10	30
+Cambodia	(All)	Cambodia/(All)		10.5	16
+Cambodia	(All)	Cambodia/(All)		11	36
+Cambodia	(All)	Cambodia/(All)		11.5	23
+Cambodia	(All)	Cambodia/(All)		12	17
+Cambodia	(All)	Cambodia/(All)		12.5	14
+Cambodia	(All)	Cambodia/(All)		13	13
+Cambodia	(All)	Cambodia/(All)		13.5	13
+Cambodia	(All)	Cambodia/(All)		14	16
+Cambodia	(All)	Cambodia/(All)		14.5	11
+Cambodia	(All)	Cambodia/(All)		15	12
+Cambodia	(All)	Cambodia/(All)		15.5	6
+Cambodia	(All)	Cambodia/(All)		16	17
+Cambodia	(All)	Cambodia/(All)		16.5	8
+Cambodia	(All)	Cambodia/(All)		17	36
+Cambodia	(All)	Cambodia/(All)		17.5	10
+Cambodia	(All)	Cambodia/(All)		18	8
+Cambodia	(All)	Cambodia/(All)		18.5	9
+Cambodia	(All)	Cambodia/(All)		19	8
+Cambodia	(All)	Cambodia/(All)		19.5	10
+Cambodia	(All)	Cambodia/(All)		20	8
+Cambodia	(All)	Cambodia/(All)		20.5	9
+Cambodia	(All)	Cambodia/(All)		21	8
+Cambodia	(All)	Cambodia/(All)		21.5	6
+Cambodia	(All)	Cambodia/(All)		22	8
+Cambodia	(All)	Cambodia/(All)		22.5	1
+Cambodia	(All)	Cambodia/(All)		23	7
+Cambodia	(All)	Cambodia/(All)		23.5	5
+Cambodia	(All)	Cambodia/(All)		24	8
+Cambodia	(All)	Cambodia/(All)		24.5	5
+Cambodia	(All)	Cambodia/(All)		25	2
+Cambodia	(All)	Cambodia/(All)		25.5	4
+Cambodia	(All)	Cambodia/(All)		26	5
+Cambodia	(All)	Cambodia/(All)		26.5	4
+Cambodia	(All)	Cambodia/(All)		27	2
+Cambodia	(All)	Cambodia/(All)		27.5	4
+Cambodia	(All)	Cambodia/(All)		28	3
+Cambodia	(All)	Cambodia/(All)		28.5	2
+Cambodia	(All)	Cambodia/(All)		29	6
+Cambodia	(All)	Cambodia/(All)		29.5	5
+Cambodia	(All)	Cambodia/(All)		30	3
+Cambodia	(All)	Cambodia/(All)		31	28
+Cambodia	(All)	Cambodia/(All)		31.5	11
+Cambodia	(All)	Cambodia/(All)		32	6
+Cambodia	(All)	Cambodia/(All)		32.5	7
+Cambodia	(All)	Cambodia/(All)		33	2
+Cambodia	(All)	Cambodia/(All)		33.5	4
+Cambodia	(All)	Cambodia/(All)		34	3
+Cambodia	(All)	Cambodia/(All)		34.5	3
+Cambodia	(All)	Cambodia/(All)		35	4
+Cambodia	(All)	Cambodia/(All)		35.5	1
+Cambodia	(All)	Cambodia/(All)		36	3
+Cambodia	(All)	Cambodia/(All)		36.5	2
+Cambodia	(All)	Cambodia/(All)		37	1
+Cambodia	(All)	Cambodia/(All)		38	2
+Cambodia	(All)	Cambodia/(All)		38.5	1
+Cambodia	(All)	Cambodia/(All)		39	2
+Cambodia	(All)	Cambodia/(All)		39.5	4
+Cambodia	(All)	Cambodia/(All)		40	1
+Cambodia	(All)	Cambodia/(All)		40.5	4
 Cambodia	(All)	Cambodia/(All)		41	3
-Cambodia	(All)	Cambodia/(All)		41.5	1
-Cambodia	(All)	Cambodia/(All)		42	1
+Cambodia	(All)	Cambodia/(All)		41.5	3
+Cambodia	(All)	Cambodia/(All)		42	3
 Cambodia	(All)	Cambodia/(All)		42.5	1
-Cambodia	(All)	Cambodia/(All)		43	3
+Cambodia	(All)	Cambodia/(All)		43	4
 Cambodia	(All)	Cambodia/(All)		43.5	2
-Cambodia	(All)	Cambodia/(All)		44	1
-Cambodia	(All)	Cambodia/(All)		44.5	2
+Cambodia	(All)	Cambodia/(All)		44	4
+Cambodia	(All)	Cambodia/(All)		44.5	4
 Cambodia	(All)	Cambodia/(All)		45.5	1
-Cambodia	(All)	Cambodia/(All)		46	2
+Cambodia	(All)	Cambodia/(All)		46	3
 Cambodia	(All)	Cambodia/(All)		47	1
-Cambodia	(All)	Cambodia/(All)		48	3
-Cambodia	(All)	Cambodia/(All)		49	2
-Cambodia	(All)	Cambodia/(All)		52.5	1
-Cambodia	(All)	Cambodia/(All)		53.5	2
+Cambodia	(All)	Cambodia/(All)		48	5
+Cambodia	(All)	Cambodia/(All)		49	3
+Cambodia	(All)	Cambodia/(All)		51	1
+Cambodia	(All)	Cambodia/(All)		52.5	2
+Cambodia	(All)	Cambodia/(All)		53.5	3
 Cambodia	(All)	Cambodia/(All)		54	1
 Cambodia	(All)	Cambodia/(All)		54.5	2
-Cambodia	(All)	Cambodia/(All)		55	2
-Cambodia	(All)	Cambodia/(All)		56.5	1
+Cambodia	(All)	Cambodia/(All)		55	3
+Cambodia	(All)	Cambodia/(All)		56.5	2
 Cambodia	(All)	Cambodia/(All)		57.5	1
 Cambodia	(All)	Cambodia/(All)		59	1
+Cambodia	(All)	Cambodia/(All)		60	1
+Cambodia	(All)	Cambodia/(All)		61.5	1
+Cambodia	(All)	Cambodia/(All)		63	1
+Cambodia	(All)	Cambodia/(All)		65.5	1
 Cambodia	(All)	Cambodia/(All)		67	1
 Cambodia	(All)	Cambodia/(All)		68	1
+Cambodia	(All)	Cambodia/(All)		68.5	1
 Cambodia	(All)	Cambodia/(All)		69.5	4
+Cambodia	(All)	Cambodia/(All)		74.5	1
 Cambodia	(All)	Cambodia/(All)		88	1
+Cambodia	(All)	Cambodia/(All)		91.5	1
 Cambodia	(All)	Cambodia/(All)	LogIn	1	1
-Cambodia	(All)	Cambodia/(All)	LogIn	2	1
+Cambodia	(All)	Cambodia/(All)	LogIn	2	2
 Cambodia	(All)	Cambodia/(All)	LogIn	2.5	2
-Cambodia	(All)	Cambodia/(All)	LogIn	3	1
+Cambodia	(All)	Cambodia/(All)	LogIn	3	2
 Cambodia	(All)	Cambodia/(All)	LogIn	3.5	6
-Cambodia	(All)	Cambodia/(All)	LogIn	4	4
+Cambodia	(All)	Cambodia/(All)	LogIn	4	5
 Cambodia	(All)	Cambodia/(All)	LogIn	4.5	3
 Cambodia	(All)	Cambodia/(All)	LogIn	5	1
 Cambodia	(All)	Cambodia/(All)	LogIn	5.5	1
+Cambodia	(All)	Cambodia/(All)	LogIn	6	1
 Cambodia	(All)	Cambodia/(All)	LogIn	7.5	1
-Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0	5
-Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0.5	16
-Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	0.5	13
-Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	1	8
+Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0	7
+Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0.5	18
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	0.5	15
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	1	9
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	2.5	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0.5	2697
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1	4009
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1.5	338
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2	280
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2.5	109
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3	102
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3.5	43
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4	38
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4.5	23
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	5	11
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	5.5	8
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	6	2
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	6.5	4
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	7	7
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	7.5	3
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	8	4
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	8.5	5
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	9.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	10	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	11	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	11.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	12.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	13	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	13.5	2
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	15	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	16.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	17	2
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	18.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	20.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	21.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	23.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0.5	3025
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1	4735
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1.5	368
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2	359
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2.5	145
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3	125
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3.5	57
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4	51
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4.5	30
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	5	25
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	5.5	16
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	6	9
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	6.5	8
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	7	10
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	7.5	7
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	8	9
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	8.5	15
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	9	6
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	9.5	6
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	10	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	10.5	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	11	9
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	11.5	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	12	4
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	12.5	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	13	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	13.5	4
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	14	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	14.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	15	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	15.5	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	16	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	16.5	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	17	15
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	18	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	18.5	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	19	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	19.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	20	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	20.5	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	21.5	3
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	22	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	23.5	3
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	24.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	31	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	27	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	28	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	28.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	29.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	31	9
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	31.5	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	32.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	32	2
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	32.5	2
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	33.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	34	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	35	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	36	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	36.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	38	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	39	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	39.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	40	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	40.5	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	41.5	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	43.5	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	44.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	52.5	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	53.5	2
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	55	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	56.5	1
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	60	1
 Cambodia	(All)	Cambodia/(All)	ListOpenPositions	69.5	4
 Cambodia	(All)	Cambodia/(All)	GetPriceBars	0.5	149
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	1	397
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	1.5	958
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	2	260
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	2.5	111
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	3	65
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	3.5	33
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	4	39
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	4.5	22
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	5	16
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	5.5	10
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	6	5
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	6.5	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	7	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	7.5	3
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	8	2
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	8.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	9	2
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	9.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	10.5	2
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	11	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	12.5	2
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	13.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	14	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	15	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	15.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	16	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	17	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	17.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	1	404
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	1.5	1100
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	2	299
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	2.5	165
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	3	88
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	3.5	51
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	4	57
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	4.5	32
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	5	38
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	5.5	18
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	6	13
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	6.5	16
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	7	10
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	7.5	6
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	8	11
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	8.5	6
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	9	5
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	9.5	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	10	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	10.5	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	11	6
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	11.5	5
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	12	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	12.5	5
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	13	5
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	13.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	14	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	14.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	15	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	15.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	16	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	17	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	17.5	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	18.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	19	1
 Cambodia	(All)	Cambodia/(All)	GetPriceBars	19.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	20.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	20	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	20.5	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	21.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	22	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	23	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	24	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	25.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	27.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	28.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	30	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	31.5	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	32	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	32.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	33	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	39	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	42	1
 Cambodia	(All)	Cambodia/(All)	GetPriceBars	42.5	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	43	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	43	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	44	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	44.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	46	1
 Cambodia	(All)	Cambodia/(All)	GetPriceBars	47	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	48	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	0.5	452
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1	4263
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1.5	2019
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2	501
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2.5	135
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3	130
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3.5	38
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4	30
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4.5	23
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5	20
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5.5	14
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	6	11
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	6.5	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	7	3
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	7.5	3
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	8	4
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	8.5	3
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	9	8
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	9.5	2
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	10.5	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	12	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	13	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	48	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	55	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	63	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	65.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	68.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	74.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	91.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	0.5	534
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1	5066
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1.5	2163
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2	585
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2.5	193
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3	167
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3.5	64
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4	42
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4.5	39
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5	37
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5.5	25
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	6	23
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	6.5	13
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	7	11
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	7.5	5
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	8	7
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	8.5	8
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	9	12
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	9.5	4
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	10	6
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	10.5	4
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	11	5
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	11.5	7
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	12	6
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	12.5	3
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	13	3
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	13.5	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	14	4
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	16	2
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	14	5
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	14.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	16	4
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	16.5	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	17	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	17	7
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	17.5	2
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	18	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	18	2
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	19	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	19.5	3
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	21	2
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	22	1
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	23	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	22	2
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	22.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	23	3
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	25.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	26	3
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	26.5	2
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	27.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	28	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	29	3
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	29.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	31	5
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	31.5	5
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	32	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	32.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	33	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	33.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	35	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	39.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	41	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	44.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	46	2
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	48	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	49	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	53.5	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	55	1
 Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	59	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	0.5	448
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1	5888
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1.5	598
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2	348
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2.5	237
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3	63
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3.5	26
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4	18
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4.5	10
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	5	8
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	5.5	3
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	6	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	6.5	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	7	2
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	7.5	6
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	8	3
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	8.5	2
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	9	6
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	9.5	2
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	10	4
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	0.5	563
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1	6798
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1.5	642
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2	447
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2.5	299
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3	89
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3.5	41
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4	30
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4.5	21
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	5	18
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	5.5	11
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	6	7
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	6.5	5
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	7	4
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	7.5	15
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	8	7
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	8.5	15
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	9	18
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	9.5	5
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	10	8
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	10.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	11	7
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	11.5	3
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	12	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	12.5	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	12.5	3
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	13	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	17	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	13.5	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	14	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	14.5	3
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	15	3
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	16	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	17	5
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	17.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	18	2
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	18.5	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	21	3
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	19	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	19.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	20	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	20.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	21	4
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	22	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	23	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	24	1
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	27.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	24	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	27.5	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	28	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	29	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	29.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	31	9
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	32.5	3
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	33.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	34	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	34.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	35	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	38	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	38.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	40.5	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	41	2
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	48	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	48	2
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	49	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	52.5	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	54	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	54.5	1
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	56.5	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	67	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	68	1
 Cambodia	(All)	Cambodia/(All)	ListActiveOrders	88	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	0.5	633
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1	3740
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1.5	2422
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2	313
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2.5	233
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3	149
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3.5	72
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4	28
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4.5	27
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5	19
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5.5	13
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	6	7
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	6.5	4
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	7	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	7.5	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	8	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	8.5	6
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	9	6
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	9.5	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	10	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	10.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	11	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	13.5	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	14	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	14.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	17.5	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	19	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	21	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	22	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	0.5	782
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1	4154
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1.5	2728
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2	418
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2.5	287
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3	216
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3.5	133
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4	60
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4.5	51
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5	41
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5.5	27
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	6	19
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	6.5	10
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	7	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	7.5	6
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	8	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	8.5	10
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	9	16
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	9.5	10
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	10	8
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	10.5	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	11	8
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	11.5	5
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	12	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	12.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	13.5	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	14	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	14.5	5
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	15	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	15.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	16	6
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	16.5	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	17	7
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	17.5	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	18	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	18.5	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	19	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	19.5	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	20	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	20.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	21	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	21.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	22	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	23	1
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	23.5	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	24	2
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	24.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	25.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	26	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	24	5
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	24.5	4
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	25	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	25.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	26	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	26.5	2
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	29	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	34.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	42	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	29.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	31	5
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	31.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	32	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	33.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	34	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	34.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	35	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	35.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	36	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	36.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	37	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	39.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	40.5	2
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	41.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	42	2
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	43.5	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	44	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	44	2
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	44.5	1
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	45.5	1
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	49	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	51	1
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	54.5	1
 Cambodia	(All)	Cambodia/(All)	ListTradeHistory	57.5	1
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	61.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	3	2
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	3.5	2
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4.5	3
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5	5
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5.5	3
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5.5	4
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	6	2
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	8	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	8.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	9	1
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	0.5	7
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	11	1
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	11.5	1
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	0.5	9
 Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1	11
 Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1.5	12
 Cambodia	(All)	Cambodia/(All)	GetMarketInfo	2	1
@@ -767,55 +1075,64 @@ Cambodia	(All)	Cambodia/(All)	GetMarketInfo	3	1
 Cambodia	(All)	Cambodia/(All)	GetMarketInfo	3.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	0.5	2
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2.5	2
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2.5	3
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3	4
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3.5	2
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	4	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	4.5	3
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5	3
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5	4
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	6	3
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	7	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	7.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	8.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	10	1
-Cambodia	(All)	Cambodia/(All)	UnsubscribePriceStream	0	17
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	13	1
+Cambodia	(All)	Cambodia/(All)	UnsubscribePriceStream	0	19
 Cambodia	(All)	Cambodia/(All)	UnsubscribePriceStream	0.5	1
-Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0.5	20
+Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0	1
+Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0.5	21
 Cambodia	(All)	Cambodia/(All)	LogOut	0.5	16
-Cambodia	(All)	Cambodia/(All)	LogOut	1	2
+Cambodia	(All)	Cambodia/(All)	LogOut	1	4
 Cambodia	(All)	Cambodia/(All)	LogOut	3	1
 Cambodia	(All)	Cambodia/(All)	LogOut	3.5	1
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	1	233
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	1.5	59
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	2	18
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	2.5	15
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	3	2
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	1	279
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	1.5	80
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	2	22
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	2.5	21
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	3	9
 Cambodia	(All)	Cambodia/(All)	PlaceTrade	3.5	2
 Cambodia	(All)	Cambodia/(All)	PlaceTrade	4	1
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	5	2
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	5.5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	7.5	2
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	8.5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	9	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	16.5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	19.5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	41.5	1
 Cambodia	(All)	Cambodia/(All)	ListCfdMarkets	2	1
 Cambodia	(All)	Cambodia/(All)	ClosePosition	1.5	1
-United States	(All)	United States/(All)		0	36
-United States	(All)	United States/(All)		0.5	64802
-United States	(All)	United States/(All)		1	71364
-United States	(All)	United States/(All)		1.5	51678
-United States	(All)	United States/(All)		2	24854
-United States	(All)	United States/(All)		2.5	12338
-United States	(All)	United States/(All)		3	7736
-United States	(All)	United States/(All)		3.5	3971
-United States	(All)	United States/(All)		4	1598
-United States	(All)	United States/(All)		4.5	844
-United States	(All)	United States/(All)		5	515
-United States	(All)	United States/(All)		5.5	360
-United States	(All)	United States/(All)		6	258
-United States	(All)	United States/(All)		6.5	108
-United States	(All)	United States/(All)		7	42
-United States	(All)	United States/(All)		7.5	37
-United States	(All)	United States/(All)		8	29
-United States	(All)	United States/(All)		8.5	19
-United States	(All)	United States/(All)		9	7
-United States	(All)	United States/(All)		9.5	9
-United States	(All)	United States/(All)		10	8
+United States	(All)	United States/(All)		0	37
+United States	(All)	United States/(All)		0.5	76937
+United States	(All)	United States/(All)		1	85588
+United States	(All)	United States/(All)		1.5	58458
+United States	(All)	United States/(All)		2	28947
+United States	(All)	United States/(All)		2.5	15255
+United States	(All)	United States/(All)		3	10475
+United States	(All)	United States/(All)		3.5	5087
+United States	(All)	United States/(All)		4	1899
+United States	(All)	United States/(All)		4.5	1121
+United States	(All)	United States/(All)		5	790
+United States	(All)	United States/(All)		5.5	521
+United States	(All)	United States/(All)		6	379
+United States	(All)	United States/(All)		6.5	142
+United States	(All)	United States/(All)		7	58
+United States	(All)	United States/(All)		7.5	51
+United States	(All)	United States/(All)		8	38
+United States	(All)	United States/(All)		8.5	26
+United States	(All)	United States/(All)		9	16
+United States	(All)	United States/(All)		9.5	15
+United States	(All)	United States/(All)		10	9
 United States	(All)	United States/(All)		10.5	3
 United States	(All)	United States/(All)		11	1
 United States	(All)	United States/(All)		11.5	3
@@ -839,31 +1156,31 @@ United States	(All)	United States/(All)		62	1
 United States	(All)	United States/(All)	LogIn	0.5	11
 United States	(All)	United States/(All)	LogIn	1	2
 United States	(All)	United States/(All)	LogIn	1.5	5
-United States	(All)	United States/(All)	LogIn	2	2
+United States	(All)	United States/(All)	LogIn	2	3
 United States	(All)	United States/(All)	CreateStreamingClient	0	13
-United States	(All)	United States/(All)	CreateStreamingClient	0.5	7
-United States	(All)	United States/(All)	GetClientAndTradingAccount	0.5	18
+United States	(All)	United States/(All)	CreateStreamingClient	0.5	8
+United States	(All)	United States/(All)	GetClientAndTradingAccount	0.5	19
 United States	(All)	United States/(All)	GetClientAndTradingAccount	1	2
 United States	(All)	United States/(All)	ListOpenPositions	0	1
-United States	(All)	United States/(All)	ListOpenPositions	0.5	26057
-United States	(All)	United States/(All)	ListOpenPositions	1	10385
-United States	(All)	United States/(All)	ListOpenPositions	1.5	9372
-United States	(All)	United States/(All)	ListOpenPositions	2	4302
-United States	(All)	United States/(All)	ListOpenPositions	2.5	2145
-United States	(All)	United States/(All)	ListOpenPositions	3	1413
-United States	(All)	United States/(All)	ListOpenPositions	3.5	795
-United States	(All)	United States/(All)	ListOpenPositions	4	343
-United States	(All)	United States/(All)	ListOpenPositions	4.5	193
-United States	(All)	United States/(All)	ListOpenPositions	5	135
-United States	(All)	United States/(All)	ListOpenPositions	5.5	86
-United States	(All)	United States/(All)	ListOpenPositions	6	53
-United States	(All)	United States/(All)	ListOpenPositions	6.5	17
-United States	(All)	United States/(All)	ListOpenPositions	7	7
-United States	(All)	United States/(All)	ListOpenPositions	7.5	8
-United States	(All)	United States/(All)	ListOpenPositions	8	3
-United States	(All)	United States/(All)	ListOpenPositions	8.5	4
-United States	(All)	United States/(All)	ListOpenPositions	9	1
-United States	(All)	United States/(All)	ListOpenPositions	9.5	2
+United States	(All)	United States/(All)	ListOpenPositions	0.5	30751
+United States	(All)	United States/(All)	ListOpenPositions	1	12484
+United States	(All)	United States/(All)	ListOpenPositions	1.5	10557
+United States	(All)	United States/(All)	ListOpenPositions	2	5050
+United States	(All)	United States/(All)	ListOpenPositions	2.5	2661
+United States	(All)	United States/(All)	ListOpenPositions	3	1881
+United States	(All)	United States/(All)	ListOpenPositions	3.5	1012
+United States	(All)	United States/(All)	ListOpenPositions	4	430
+United States	(All)	United States/(All)	ListOpenPositions	4.5	260
+United States	(All)	United States/(All)	ListOpenPositions	5	190
+United States	(All)	United States/(All)	ListOpenPositions	5.5	116
+United States	(All)	United States/(All)	ListOpenPositions	6	82
+United States	(All)	United States/(All)	ListOpenPositions	6.5	23
+United States	(All)	United States/(All)	ListOpenPositions	7	12
+United States	(All)	United States/(All)	ListOpenPositions	7.5	12
+United States	(All)	United States/(All)	ListOpenPositions	8	4
+United States	(All)	United States/(All)	ListOpenPositions	8.5	7
+United States	(All)	United States/(All)	ListOpenPositions	9	2
+United States	(All)	United States/(All)	ListOpenPositions	9.5	5
 United States	(All)	United States/(All)	ListOpenPositions	10	1
 United States	(All)	United States/(All)	ListOpenPositions	10.5	1
 United States	(All)	United States/(All)	ListOpenPositions	12.5	2
@@ -873,26 +1190,26 @@ United States	(All)	United States/(All)	ListOpenPositions	30.5	3
 United States	(All)	United States/(All)	ListOpenPositions	31	1
 United States	(All)	United States/(All)	ListOpenPositions	60.5	1
 United States	(All)	United States/(All)	ListTradeHistory	0	1
-United States	(All)	United States/(All)	ListTradeHistory	0.5	10010
-United States	(All)	United States/(All)	ListTradeHistory	1	21280
-United States	(All)	United States/(All)	ListTradeHistory	1.5	11563
-United States	(All)	United States/(All)	ListTradeHistory	2	5560
-United States	(All)	United States/(All)	ListTradeHistory	2.5	2889
-United States	(All)	United States/(All)	ListTradeHistory	3	2038
-United States	(All)	United States/(All)	ListTradeHistory	3.5	1043
-United States	(All)	United States/(All)	ListTradeHistory	4	378
-United States	(All)	United States/(All)	ListTradeHistory	4.5	228
-United States	(All)	United States/(All)	ListTradeHistory	5	118
-United States	(All)	United States/(All)	ListTradeHistory	5.5	86
-United States	(All)	United States/(All)	ListTradeHistory	6	63
-United States	(All)	United States/(All)	ListTradeHistory	6.5	29
-United States	(All)	United States/(All)	ListTradeHistory	7	13
-United States	(All)	United States/(All)	ListTradeHistory	7.5	8
-United States	(All)	United States/(All)	ListTradeHistory	8	6
+United States	(All)	United States/(All)	ListTradeHistory	0.5	11805
+United States	(All)	United States/(All)	ListTradeHistory	1	25259
+United States	(All)	United States/(All)	ListTradeHistory	1.5	13088
+United States	(All)	United States/(All)	ListTradeHistory	2	6428
+United States	(All)	United States/(All)	ListTradeHistory	2.5	3622
+United States	(All)	United States/(All)	ListTradeHistory	3	2759
+United States	(All)	United States/(All)	ListTradeHistory	3.5	1325
+United States	(All)	United States/(All)	ListTradeHistory	4	458
+United States	(All)	United States/(All)	ListTradeHistory	4.5	303
+United States	(All)	United States/(All)	ListTradeHistory	5	190
+United States	(All)	United States/(All)	ListTradeHistory	5.5	124
+United States	(All)	United States/(All)	ListTradeHistory	6	91
+United States	(All)	United States/(All)	ListTradeHistory	6.5	37
+United States	(All)	United States/(All)	ListTradeHistory	7	15
+United States	(All)	United States/(All)	ListTradeHistory	7.5	14
+United States	(All)	United States/(All)	ListTradeHistory	8	7
 United States	(All)	United States/(All)	ListTradeHistory	8.5	6
-United States	(All)	United States/(All)	ListTradeHistory	9	1
-United States	(All)	United States/(All)	ListTradeHistory	9.5	3
-United States	(All)	United States/(All)	ListTradeHistory	10	1
+United States	(All)	United States/(All)	ListTradeHistory	9	4
+United States	(All)	United States/(All)	ListTradeHistory	9.5	4
+United States	(All)	United States/(All)	ListTradeHistory	10	2
 United States	(All)	United States/(All)	ListTradeHistory	10.5	1
 United States	(All)	United States/(All)	ListTradeHistory	11.5	1
 United States	(All)	United States/(All)	ListTradeHistory	12.5	1
@@ -901,25 +1218,25 @@ United States	(All)	United States/(All)	ListTradeHistory	16.5	1
 United States	(All)	United States/(All)	ListTradeHistory	25	1
 United States	(All)	United States/(All)	ListTradeHistory	30.5	4
 United States	(All)	United States/(All)	ListTradeHistory	60.5	1
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	0.5	5339
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	1	16441
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	1.5	17052
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	2	8242
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	2.5	3659
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	3	2298
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	3.5	1228
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	4	477
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	4.5	212
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	5	126
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	5.5	92
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	6	73
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	6.5	36
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	7	12
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	7.5	14
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	8	13
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	8.5	2
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	9	2
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	9.5	3
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	0.5	6248
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	1	19945
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	1.5	19222
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	2	9575
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	2.5	4449
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	3	3128
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	3.5	1602
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	4	540
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	4.5	278
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	5	196
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	5.5	138
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	6	109
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	6.5	49
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	7	17
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	7.5	15
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	8	17
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	8.5	3
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	9	3
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	9.5	5
 United States	(All)	United States/(All)	ListStopLimitOrderHistory	10	4
 United States	(All)	United States/(All)	ListStopLimitOrderHistory	11.5	1
 United States	(All)	United States/(All)	ListStopLimitOrderHistory	12.5	1
@@ -930,24 +1247,24 @@ United States	(All)	United States/(All)	ListStopLimitOrderHistory	30.5	2
 United States	(All)	United States/(All)	ListStopLimitOrderHistory	31.5	1
 United States	(All)	United States/(All)	ListStopLimitOrderHistory	62	1
 United States	(All)	United States/(All)	ListActiveOrders	0	1
-United States	(All)	United States/(All)	ListActiveOrders	0.5	14116
-United States	(All)	United States/(All)	ListActiveOrders	1	16430
-United States	(All)	United States/(All)	ListActiveOrders	1.5	12141
-United States	(All)	United States/(All)	ListActiveOrders	2	6072
-United States	(All)	United States/(All)	ListActiveOrders	2.5	3212
-United States	(All)	United States/(All)	ListActiveOrders	3	1725
-United States	(All)	United States/(All)	ListActiveOrders	3.5	786
-United States	(All)	United States/(All)	ListActiveOrders	4	350
-United States	(All)	United States/(All)	ListActiveOrders	4.5	177
-United States	(All)	United States/(All)	ListActiveOrders	5	116
-United States	(All)	United States/(All)	ListActiveOrders	5.5	77
-United States	(All)	United States/(All)	ListActiveOrders	6	63
-United States	(All)	United States/(All)	ListActiveOrders	6.5	24
-United States	(All)	United States/(All)	ListActiveOrders	7	9
-United States	(All)	United States/(All)	ListActiveOrders	7.5	7
-United States	(All)	United States/(All)	ListActiveOrders	8	6
-United States	(All)	United States/(All)	ListActiveOrders	8.5	6
-United States	(All)	United States/(All)	ListActiveOrders	9	3
+United States	(All)	United States/(All)	ListActiveOrders	0.5	16814
+United States	(All)	United States/(All)	ListActiveOrders	1	19490
+United States	(All)	United States/(All)	ListActiveOrders	1.5	13738
+United States	(All)	United States/(All)	ListActiveOrders	2	7066
+United States	(All)	United States/(All)	ListActiveOrders	2.5	3972
+United States	(All)	United States/(All)	ListActiveOrders	3	2350
+United States	(All)	United States/(All)	ListActiveOrders	3.5	1007
+United States	(All)	United States/(All)	ListActiveOrders	4	406
+United States	(All)	United States/(All)	ListActiveOrders	4.5	230
+United States	(All)	United States/(All)	ListActiveOrders	5	184
+United States	(All)	United States/(All)	ListActiveOrders	5.5	118
+United States	(All)	United States/(All)	ListActiveOrders	6	89
+United States	(All)	United States/(All)	ListActiveOrders	6.5	30
+United States	(All)	United States/(All)	ListActiveOrders	7	12
+United States	(All)	United States/(All)	ListActiveOrders	7.5	8
+United States	(All)	United States/(All)	ListActiveOrders	8	9
+United States	(All)	United States/(All)	ListActiveOrders	8.5	8
+United States	(All)	United States/(All)	ListActiveOrders	9	7
 United States	(All)	United States/(All)	ListActiveOrders	9.5	1
 United States	(All)	United States/(All)	ListActiveOrders	10	2
 United States	(All)	United States/(All)	ListActiveOrders	10.5	1
@@ -958,27 +1275,28 @@ United States	(All)	United States/(All)	ListActiveOrders	25	1
 United States	(All)	United States/(All)	ListActiveOrders	28	1
 United States	(All)	United States/(All)	ListActiveOrders	30.5	3
 United States	(All)	United States/(All)	ListActiveOrders	61	1
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	1	8
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	1	9
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	1.5	6
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	2	2
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	2.5	1
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	3	1
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	4.5	1
 United States	(All)	United States/(All)	SubscribeClientAccountMargin	11.5	1
-United States	(All)	United States/(All)	GetPriceBars	0.5	8076
-United States	(All)	United States/(All)	GetPriceBars	1	6474
-United States	(All)	United States/(All)	GetPriceBars	1.5	1364
-United States	(All)	United States/(All)	GetPriceBars	2	622
-United States	(All)	United States/(All)	GetPriceBars	2.5	405
-United States	(All)	United States/(All)	GetPriceBars	3	253
-United States	(All)	United States/(All)	GetPriceBars	3.5	107
-United States	(All)	United States/(All)	GetPriceBars	4	42
-United States	(All)	United States/(All)	GetPriceBars	4.5	29
-United States	(All)	United States/(All)	GetPriceBars	5	18
-United States	(All)	United States/(All)	GetPriceBars	5.5	16
-United States	(All)	United States/(All)	GetPriceBars	6	6
-United States	(All)	United States/(All)	GetPriceBars	6.5	2
-United States	(All)	United States/(All)	GetPriceBars	7	1
+United States	(All)	United States/(All)	GetPriceBars	0.5	9480
+United States	(All)	United States/(All)	GetPriceBars	1	7862
+United States	(All)	United States/(All)	GetPriceBars	1.5	1618
+United States	(All)	United States/(All)	GetPriceBars	2	749
+United States	(All)	United States/(All)	GetPriceBars	2.5	504
+United States	(All)	United States/(All)	GetPriceBars	3	326
+United States	(All)	United States/(All)	GetPriceBars	3.5	126
+United States	(All)	United States/(All)	GetPriceBars	4	55
+United States	(All)	United States/(All)	GetPriceBars	4.5	44
+United States	(All)	United States/(All)	GetPriceBars	5	27
+United States	(All)	United States/(All)	GetPriceBars	5.5	22
+United States	(All)	United States/(All)	GetPriceBars	6	7
+United States	(All)	United States/(All)	GetPriceBars	6.5	3
+United States	(All)	United States/(All)	GetPriceBars	7	2
+United States	(All)	United States/(All)	GetPriceBars	7.5	2
 United States	(All)	United States/(All)	GetPriceBars	8.5	1
 United States	(All)	United States/(All)	GetPriceBars	11	1
 United States	(All)	United States/(All)	GetPriceBars	25.5	2
@@ -991,57 +1309,59 @@ United States	(All)	United States/(All)	SubscribePriceStreams	0.5	3
 United States	(All)	United States/(All)	SubscribePriceStreams	1	6
 United States	(All)	United States/(All)	SubscribePriceStreams	1.5	6
 United States	(All)	United States/(All)	SubscribePriceStreams	2	2
-United States	(All)	United States/(All)	SubscribePriceStreams	2.5	1
+United States	(All)	United States/(All)	SubscribePriceStreams	2.5	2
 United States	(All)	United States/(All)	SubscribePriceStreams	4	1
 United States	(All)	United States/(All)	SubscribePriceStreams	4.5	3
 United States	(All)	United States/(All)	GetMarketInfo	0	1
 United States	(All)	United States/(All)	GetMarketInfo	0.5	8
-United States	(All)	United States/(All)	GetMarketInfo	1	3
+United States	(All)	United States/(All)	GetMarketInfo	1	4
 United States	(All)	United States/(All)	GetMarketInfo	1.5	4
 United States	(All)	United States/(All)	GetMarketInfo	2	1
 United States	(All)	United States/(All)	GetMarketInfo	2.5	1
-United States	(All)	United States/(All)	StreamingClient.Dispose	0.5	14
+United States	(All)	United States/(All)	StreamingClient.Dispose	0.5	15
 United States	(All)	United States/(All)	StreamingClient.Dispose	1	1
 United States	(All)	United States/(All)	StreamingClient.Dispose	1.5	2
 United States	(All)	United States/(All)	StreamingClient.Dispose	2.5	1
 United States	(All)	United States/(All)	StreamingClient.Dispose	3.5	1
-United States	(All)	United States/(All)	LogOut	0.5	16
+United States	(All)	United States/(All)	LogOut	0.5	17
 United States	(All)	United States/(All)	LogOut	1	2
 United States	(All)	United States/(All)	LogOut	2	1
-United States	(All)	United States/(All)	PlaceTrade	0.5	1127
-United States	(All)	United States/(All)	PlaceTrade	1	330
-United States	(All)	United States/(All)	PlaceTrade	1.5	163
-United States	(All)	United States/(All)	PlaceTrade	2	48
-United States	(All)	United States/(All)	PlaceTrade	2.5	24
-United States	(All)	United States/(All)	PlaceTrade	3	8
-United States	(All)	United States/(All)	PlaceTrade	3.5	11
-United States	(All)	United States/(All)	PlaceTrade	4	7
-United States	(All)	United States/(All)	PlaceTrade	4.5	1
-United States	(All)	United States/(All)	PlaceTrade	5	2
+United States	(All)	United States/(All)	PlaceTrade	0.5	1758
+United States	(All)	United States/(All)	PlaceTrade	1	522
+United States	(All)	United States/(All)	PlaceTrade	1.5	212
+United States	(All)	United States/(All)	PlaceTrade	2	70
+United States	(All)	United States/(All)	PlaceTrade	2.5	42
+United States	(All)	United States/(All)	PlaceTrade	3	30
+United States	(All)	United States/(All)	PlaceTrade	3.5	14
+United States	(All)	United States/(All)	PlaceTrade	4	9
+United States	(All)	United States/(All)	PlaceTrade	4.5	2
+United States	(All)	United States/(All)	PlaceTrade	5	3
 United States	(All)	United States/(All)	PlaceTrade	5.5	3
+United States	(All)	United States/(All)	PlaceTrade	6	1
 United States	(All)	United States/(All)	PlaceTrade	8	1
-United States	(All)	United States/(All)	UnsubscribePriceStream	0	19
-United States	Seattle	United States/Seattle		0	36
-United States	Seattle	United States/Seattle		0.5	64802
-United States	Seattle	United States/Seattle		1	71364
-United States	Seattle	United States/Seattle		1.5	51678
-United States	Seattle	United States/Seattle		2	24854
-United States	Seattle	United States/Seattle		2.5	12338
-United States	Seattle	United States/Seattle		3	7736
-United States	Seattle	United States/Seattle		3.5	3971
-United States	Seattle	United States/Seattle		4	1598
-United States	Seattle	United States/Seattle		4.5	844
-United States	Seattle	United States/Seattle		5	515
-United States	Seattle	United States/Seattle		5.5	360
-United States	Seattle	United States/Seattle		6	258
-United States	Seattle	United States/Seattle		6.5	108
-United States	Seattle	United States/Seattle		7	42
-United States	Seattle	United States/Seattle		7.5	37
-United States	Seattle	United States/Seattle		8	29
-United States	Seattle	United States/Seattle		8.5	19
-United States	Seattle	United States/Seattle		9	7
-United States	Seattle	United States/Seattle		9.5	9
-United States	Seattle	United States/Seattle		10	8
+United States	(All)	United States/(All)	PlaceTrade	8.5	1
+United States	(All)	United States/(All)	UnsubscribePriceStream	0	20
+United States	Seattle	United States/Seattle		0	37
+United States	Seattle	United States/Seattle		0.5	76937
+United States	Seattle	United States/Seattle		1	85588
+United States	Seattle	United States/Seattle		1.5	58458
+United States	Seattle	United States/Seattle		2	28947
+United States	Seattle	United States/Seattle		2.5	15255
+United States	Seattle	United States/Seattle		3	10475
+United States	Seattle	United States/Seattle		3.5	5087
+United States	Seattle	United States/Seattle		4	1899
+United States	Seattle	United States/Seattle		4.5	1121
+United States	Seattle	United States/Seattle		5	790
+United States	Seattle	United States/Seattle		5.5	521
+United States	Seattle	United States/Seattle		6	379
+United States	Seattle	United States/Seattle		6.5	142
+United States	Seattle	United States/Seattle		7	58
+United States	Seattle	United States/Seattle		7.5	51
+United States	Seattle	United States/Seattle		8	38
+United States	Seattle	United States/Seattle		8.5	26
+United States	Seattle	United States/Seattle		9	16
+United States	Seattle	United States/Seattle		9.5	15
+United States	Seattle	United States/Seattle		10	9
 United States	Seattle	United States/Seattle		10.5	3
 United States	Seattle	United States/Seattle		11	1
 United States	Seattle	United States/Seattle		11.5	3
@@ -1065,31 +1385,31 @@ United States	Seattle	United States/Seattle		62	1
 United States	Seattle	United States/Seattle	LogIn	0.5	11
 United States	Seattle	United States/Seattle	LogIn	1	2
 United States	Seattle	United States/Seattle	LogIn	1.5	5
-United States	Seattle	United States/Seattle	LogIn	2	2
+United States	Seattle	United States/Seattle	LogIn	2	3
 United States	Seattle	United States/Seattle	CreateStreamingClient	0	13
-United States	Seattle	United States/Seattle	CreateStreamingClient	0.5	7
-United States	Seattle	United States/Seattle	GetClientAndTradingAccount	0.5	18
+United States	Seattle	United States/Seattle	CreateStreamingClient	0.5	8
+United States	Seattle	United States/Seattle	GetClientAndTradingAccount	0.5	19
 United States	Seattle	United States/Seattle	GetClientAndTradingAccount	1	2
 United States	Seattle	United States/Seattle	ListOpenPositions	0	1
-United States	Seattle	United States/Seattle	ListOpenPositions	0.5	26057
-United States	Seattle	United States/Seattle	ListOpenPositions	1	10385
-United States	Seattle	United States/Seattle	ListOpenPositions	1.5	9372
-United States	Seattle	United States/Seattle	ListOpenPositions	2	4302
-United States	Seattle	United States/Seattle	ListOpenPositions	2.5	2145
-United States	Seattle	United States/Seattle	ListOpenPositions	3	1413
-United States	Seattle	United States/Seattle	ListOpenPositions	3.5	795
-United States	Seattle	United States/Seattle	ListOpenPositions	4	343
-United States	Seattle	United States/Seattle	ListOpenPositions	4.5	193
-United States	Seattle	United States/Seattle	ListOpenPositions	5	135
-United States	Seattle	United States/Seattle	ListOpenPositions	5.5	86
-United States	Seattle	United States/Seattle	ListOpenPositions	6	53
-United States	Seattle	United States/Seattle	ListOpenPositions	6.5	17
-United States	Seattle	United States/Seattle	ListOpenPositions	7	7
-United States	Seattle	United States/Seattle	ListOpenPositions	7.5	8
-United States	Seattle	United States/Seattle	ListOpenPositions	8	3
-United States	Seattle	United States/Seattle	ListOpenPositions	8.5	4
-United States	Seattle	United States/Seattle	ListOpenPositions	9	1
-United States	Seattle	United States/Seattle	ListOpenPositions	9.5	2
+United States	Seattle	United States/Seattle	ListOpenPositions	0.5	30751
+United States	Seattle	United States/Seattle	ListOpenPositions	1	12484
+United States	Seattle	United States/Seattle	ListOpenPositions	1.5	10557
+United States	Seattle	United States/Seattle	ListOpenPositions	2	5050
+United States	Seattle	United States/Seattle	ListOpenPositions	2.5	2661
+United States	Seattle	United States/Seattle	ListOpenPositions	3	1881
+United States	Seattle	United States/Seattle	ListOpenPositions	3.5	1012
+United States	Seattle	United States/Seattle	ListOpenPositions	4	430
+United States	Seattle	United States/Seattle	ListOpenPositions	4.5	260
+United States	Seattle	United States/Seattle	ListOpenPositions	5	190
+United States	Seattle	United States/Seattle	ListOpenPositions	5.5	116
+United States	Seattle	United States/Seattle	ListOpenPositions	6	82
+United States	Seattle	United States/Seattle	ListOpenPositions	6.5	23
+United States	Seattle	United States/Seattle	ListOpenPositions	7	12
+United States	Seattle	United States/Seattle	ListOpenPositions	7.5	12
+United States	Seattle	United States/Seattle	ListOpenPositions	8	4
+United States	Seattle	United States/Seattle	ListOpenPositions	8.5	7
+United States	Seattle	United States/Seattle	ListOpenPositions	9	2
+United States	Seattle	United States/Seattle	ListOpenPositions	9.5	5
 United States	Seattle	United States/Seattle	ListOpenPositions	10	1
 United States	Seattle	United States/Seattle	ListOpenPositions	10.5	1
 United States	Seattle	United States/Seattle	ListOpenPositions	12.5	2
@@ -1099,26 +1419,26 @@ United States	Seattle	United States/Seattle	ListOpenPositions	30.5	3
 United States	Seattle	United States/Seattle	ListOpenPositions	31	1
 United States	Seattle	United States/Seattle	ListOpenPositions	60.5	1
 United States	Seattle	United States/Seattle	ListTradeHistory	0	1
-United States	Seattle	United States/Seattle	ListTradeHistory	0.5	10010
-United States	Seattle	United States/Seattle	ListTradeHistory	1	21280
-United States	Seattle	United States/Seattle	ListTradeHistory	1.5	11563
-United States	Seattle	United States/Seattle	ListTradeHistory	2	5560
-United States	Seattle	United States/Seattle	ListTradeHistory	2.5	2889
-United States	Seattle	United States/Seattle	ListTradeHistory	3	2038
-United States	Seattle	United States/Seattle	ListTradeHistory	3.5	1043
-United States	Seattle	United States/Seattle	ListTradeHistory	4	378
-United States	Seattle	United States/Seattle	ListTradeHistory	4.5	228
-United States	Seattle	United States/Seattle	ListTradeHistory	5	118
-United States	Seattle	United States/Seattle	ListTradeHistory	5.5	86
-United States	Seattle	United States/Seattle	ListTradeHistory	6	63
-United States	Seattle	United States/Seattle	ListTradeHistory	6.5	29
-United States	Seattle	United States/Seattle	ListTradeHistory	7	13
-United States	Seattle	United States/Seattle	ListTradeHistory	7.5	8
-United States	Seattle	United States/Seattle	ListTradeHistory	8	6
+United States	Seattle	United States/Seattle	ListTradeHistory	0.5	11805
+United States	Seattle	United States/Seattle	ListTradeHistory	1	25259
+United States	Seattle	United States/Seattle	ListTradeHistory	1.5	13088
+United States	Seattle	United States/Seattle	ListTradeHistory	2	6428
+United States	Seattle	United States/Seattle	ListTradeHistory	2.5	3622
+United States	Seattle	United States/Seattle	ListTradeHistory	3	2759
+United States	Seattle	United States/Seattle	ListTradeHistory	3.5	1325
+United States	Seattle	United States/Seattle	ListTradeHistory	4	458
+United States	Seattle	United States/Seattle	ListTradeHistory	4.5	303
+United States	Seattle	United States/Seattle	ListTradeHistory	5	190
+United States	Seattle	United States/Seattle	ListTradeHistory	5.5	124
+United States	Seattle	United States/Seattle	ListTradeHistory	6	91
+United States	Seattle	United States/Seattle	ListTradeHistory	6.5	37
+United States	Seattle	United States/Seattle	ListTradeHistory	7	15
+United States	Seattle	United States/Seattle	ListTradeHistory	7.5	14
+United States	Seattle	United States/Seattle	ListTradeHistory	8	7
 United States	Seattle	United States/Seattle	ListTradeHistory	8.5	6
-United States	Seattle	United States/Seattle	ListTradeHistory	9	1
-United States	Seattle	United States/Seattle	ListTradeHistory	9.5	3
-United States	Seattle	United States/Seattle	ListTradeHistory	10	1
+United States	Seattle	United States/Seattle	ListTradeHistory	9	4
+United States	Seattle	United States/Seattle	ListTradeHistory	9.5	4
+United States	Seattle	United States/Seattle	ListTradeHistory	10	2
 United States	Seattle	United States/Seattle	ListTradeHistory	10.5	1
 United States	Seattle	United States/Seattle	ListTradeHistory	11.5	1
 United States	Seattle	United States/Seattle	ListTradeHistory	12.5	1
@@ -1127,25 +1447,25 @@ United States	Seattle	United States/Seattle	ListTradeHistory	16.5	1
 United States	Seattle	United States/Seattle	ListTradeHistory	25	1
 United States	Seattle	United States/Seattle	ListTradeHistory	30.5	4
 United States	Seattle	United States/Seattle	ListTradeHistory	60.5	1
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	0.5	5339
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1	16441
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1.5	17052
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2	8242
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2.5	3659
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3	2298
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3.5	1228
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	4	477
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	4.5	212
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	5	126
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	5.5	92
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	6	73
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	6.5	36
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	7	12
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	7.5	14
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	8	13
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	8.5	2
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	9	2
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	9.5	3
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	0.5	6248
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1	19945
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1.5	19222
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2	9575
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2.5	4449
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3	3128
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3.5	1602
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	4	540
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	4.5	278
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	5	196
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	5.5	138
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	6	109
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	6.5	49
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	7	17
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	7.5	15
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	8	17
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	8.5	3
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	9	3
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	9.5	5
 United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	10	4
 United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	11.5	1
 United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	12.5	1
@@ -1156,24 +1476,24 @@ United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	30.5	2
 United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	31.5	1
 United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	62	1
 United States	Seattle	United States/Seattle	ListActiveOrders	0	1
-United States	Seattle	United States/Seattle	ListActiveOrders	0.5	14116
-United States	Seattle	United States/Seattle	ListActiveOrders	1	16430
-United States	Seattle	United States/Seattle	ListActiveOrders	1.5	12141
-United States	Seattle	United States/Seattle	ListActiveOrders	2	6072
-United States	Seattle	United States/Seattle	ListActiveOrders	2.5	3212
-United States	Seattle	United States/Seattle	ListActiveOrders	3	1725
-United States	Seattle	United States/Seattle	ListActiveOrders	3.5	786
-United States	Seattle	United States/Seattle	ListActiveOrders	4	350
-United States	Seattle	United States/Seattle	ListActiveOrders	4.5	177
-United States	Seattle	United States/Seattle	ListActiveOrders	5	116
-United States	Seattle	United States/Seattle	ListActiveOrders	5.5	77
-United States	Seattle	United States/Seattle	ListActiveOrders	6	63
-United States	Seattle	United States/Seattle	ListActiveOrders	6.5	24
-United States	Seattle	United States/Seattle	ListActiveOrders	7	9
-United States	Seattle	United States/Seattle	ListActiveOrders	7.5	7
-United States	Seattle	United States/Seattle	ListActiveOrders	8	6
-United States	Seattle	United States/Seattle	ListActiveOrders	8.5	6
-United States	Seattle	United States/Seattle	ListActiveOrders	9	3
+United States	Seattle	United States/Seattle	ListActiveOrders	0.5	16814
+United States	Seattle	United States/Seattle	ListActiveOrders	1	19490
+United States	Seattle	United States/Seattle	ListActiveOrders	1.5	13738
+United States	Seattle	United States/Seattle	ListActiveOrders	2	7066
+United States	Seattle	United States/Seattle	ListActiveOrders	2.5	3972
+United States	Seattle	United States/Seattle	ListActiveOrders	3	2350
+United States	Seattle	United States/Seattle	ListActiveOrders	3.5	1007
+United States	Seattle	United States/Seattle	ListActiveOrders	4	406
+United States	Seattle	United States/Seattle	ListActiveOrders	4.5	230
+United States	Seattle	United States/Seattle	ListActiveOrders	5	184
+United States	Seattle	United States/Seattle	ListActiveOrders	5.5	118
+United States	Seattle	United States/Seattle	ListActiveOrders	6	89
+United States	Seattle	United States/Seattle	ListActiveOrders	6.5	30
+United States	Seattle	United States/Seattle	ListActiveOrders	7	12
+United States	Seattle	United States/Seattle	ListActiveOrders	7.5	8
+United States	Seattle	United States/Seattle	ListActiveOrders	8	9
+United States	Seattle	United States/Seattle	ListActiveOrders	8.5	8
+United States	Seattle	United States/Seattle	ListActiveOrders	9	7
 United States	Seattle	United States/Seattle	ListActiveOrders	9.5	1
 United States	Seattle	United States/Seattle	ListActiveOrders	10	2
 United States	Seattle	United States/Seattle	ListActiveOrders	10.5	1
@@ -1184,27 +1504,28 @@ United States	Seattle	United States/Seattle	ListActiveOrders	25	1
 United States	Seattle	United States/Seattle	ListActiveOrders	28	1
 United States	Seattle	United States/Seattle	ListActiveOrders	30.5	3
 United States	Seattle	United States/Seattle	ListActiveOrders	61	1
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1	8
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1	9
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1.5	6
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	2	2
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	2.5	1
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	3	1
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	4.5	1
 United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	11.5	1
-United States	Seattle	United States/Seattle	GetPriceBars	0.5	8076
-United States	Seattle	United States/Seattle	GetPriceBars	1	6474
-United States	Seattle	United States/Seattle	GetPriceBars	1.5	1364
-United States	Seattle	United States/Seattle	GetPriceBars	2	622
-United States	Seattle	United States/Seattle	GetPriceBars	2.5	405
-United States	Seattle	United States/Seattle	GetPriceBars	3	253
-United States	Seattle	United States/Seattle	GetPriceBars	3.5	107
-United States	Seattle	United States/Seattle	GetPriceBars	4	42
-United States	Seattle	United States/Seattle	GetPriceBars	4.5	29
-United States	Seattle	United States/Seattle	GetPriceBars	5	18
-United States	Seattle	United States/Seattle	GetPriceBars	5.5	16
-United States	Seattle	United States/Seattle	GetPriceBars	6	6
-United States	Seattle	United States/Seattle	GetPriceBars	6.5	2
-United States	Seattle	United States/Seattle	GetPriceBars	7	1
+United States	Seattle	United States/Seattle	GetPriceBars	0.5	9480
+United States	Seattle	United States/Seattle	GetPriceBars	1	7862
+United States	Seattle	United States/Seattle	GetPriceBars	1.5	1618
+United States	Seattle	United States/Seattle	GetPriceBars	2	749
+United States	Seattle	United States/Seattle	GetPriceBars	2.5	504
+United States	Seattle	United States/Seattle	GetPriceBars	3	326
+United States	Seattle	United States/Seattle	GetPriceBars	3.5	126
+United States	Seattle	United States/Seattle	GetPriceBars	4	55
+United States	Seattle	United States/Seattle	GetPriceBars	4.5	44
+United States	Seattle	United States/Seattle	GetPriceBars	5	27
+United States	Seattle	United States/Seattle	GetPriceBars	5.5	22
+United States	Seattle	United States/Seattle	GetPriceBars	6	7
+United States	Seattle	United States/Seattle	GetPriceBars	6.5	3
+United States	Seattle	United States/Seattle	GetPriceBars	7	2
+United States	Seattle	United States/Seattle	GetPriceBars	7.5	2
 United States	Seattle	United States/Seattle	GetPriceBars	8.5	1
 United States	Seattle	United States/Seattle	GetPriceBars	11	1
 United States	Seattle	United States/Seattle	GetPriceBars	25.5	2
@@ -1217,36 +1538,38 @@ United States	Seattle	United States/Seattle	SubscribePriceStreams	0.5	3
 United States	Seattle	United States/Seattle	SubscribePriceStreams	1	6
 United States	Seattle	United States/Seattle	SubscribePriceStreams	1.5	6
 United States	Seattle	United States/Seattle	SubscribePriceStreams	2	2
-United States	Seattle	United States/Seattle	SubscribePriceStreams	2.5	1
+United States	Seattle	United States/Seattle	SubscribePriceStreams	2.5	2
 United States	Seattle	United States/Seattle	SubscribePriceStreams	4	1
 United States	Seattle	United States/Seattle	SubscribePriceStreams	4.5	3
 United States	Seattle	United States/Seattle	GetMarketInfo	0	1
 United States	Seattle	United States/Seattle	GetMarketInfo	0.5	8
-United States	Seattle	United States/Seattle	GetMarketInfo	1	3
+United States	Seattle	United States/Seattle	GetMarketInfo	1	4
 United States	Seattle	United States/Seattle	GetMarketInfo	1.5	4
 United States	Seattle	United States/Seattle	GetMarketInfo	2	1
 United States	Seattle	United States/Seattle	GetMarketInfo	2.5	1
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	0.5	14
+United States	Seattle	United States/Seattle	StreamingClient.Dispose	0.5	15
 United States	Seattle	United States/Seattle	StreamingClient.Dispose	1	1
 United States	Seattle	United States/Seattle	StreamingClient.Dispose	1.5	2
 United States	Seattle	United States/Seattle	StreamingClient.Dispose	2.5	1
 United States	Seattle	United States/Seattle	StreamingClient.Dispose	3.5	1
-United States	Seattle	United States/Seattle	LogOut	0.5	16
+United States	Seattle	United States/Seattle	LogOut	0.5	17
 United States	Seattle	United States/Seattle	LogOut	1	2
 United States	Seattle	United States/Seattle	LogOut	2	1
-United States	Seattle	United States/Seattle	PlaceTrade	0.5	1127
-United States	Seattle	United States/Seattle	PlaceTrade	1	330
-United States	Seattle	United States/Seattle	PlaceTrade	1.5	163
-United States	Seattle	United States/Seattle	PlaceTrade	2	48
-United States	Seattle	United States/Seattle	PlaceTrade	2.5	24
-United States	Seattle	United States/Seattle	PlaceTrade	3	8
-United States	Seattle	United States/Seattle	PlaceTrade	3.5	11
-United States	Seattle	United States/Seattle	PlaceTrade	4	7
-United States	Seattle	United States/Seattle	PlaceTrade	4.5	1
-United States	Seattle	United States/Seattle	PlaceTrade	5	2
+United States	Seattle	United States/Seattle	PlaceTrade	0.5	1758
+United States	Seattle	United States/Seattle	PlaceTrade	1	522
+United States	Seattle	United States/Seattle	PlaceTrade	1.5	212
+United States	Seattle	United States/Seattle	PlaceTrade	2	70
+United States	Seattle	United States/Seattle	PlaceTrade	2.5	42
+United States	Seattle	United States/Seattle	PlaceTrade	3	30
+United States	Seattle	United States/Seattle	PlaceTrade	3.5	14
+United States	Seattle	United States/Seattle	PlaceTrade	4	9
+United States	Seattle	United States/Seattle	PlaceTrade	4.5	2
+United States	Seattle	United States/Seattle	PlaceTrade	5	3
 United States	Seattle	United States/Seattle	PlaceTrade	5.5	3
+United States	Seattle	United States/Seattle	PlaceTrade	6	1
 United States	Seattle	United States/Seattle	PlaceTrade	8	1
-United States	Seattle	United States/Seattle	UnsubscribePriceStream	0	19
+United States	Seattle	United States/Seattle	PlaceTrade	8.5	1
+United States	Seattle	United States/Seattle	UnsubscribePriceStream	0	20
 United Kingdom	(All)	United Kingdom/(All)		0	13
 United Kingdom	(All)	United Kingdom/(All)		0.5	221525
 United Kingdom	(All)	United Kingdom/(All)		1	18936
@@ -1619,77 +1942,97 @@ South Africa	Durban	South Africa/Durban	SubscribePriceStreams	1	1
 South Africa	Durban	South Africa/Durban	SubscribePriceStreams	3	1
 South Africa	Durban	South Africa/Durban	GetMarketInfo	0.5	1
 South Africa	Durban	South Africa/Durban	GetMarketInfo	1	1
-Ireland	(All)	Ireland/(All)		0	49
-Ireland	(All)	Ireland/(All)		0.5	44020
-Ireland	(All)	Ireland/(All)		1	89751
-Ireland	(All)	Ireland/(All)		1.5	54018
-Ireland	(All)	Ireland/(All)		2	21774
-Ireland	(All)	Ireland/(All)		2.5	10901
-Ireland	(All)	Ireland/(All)		3	5529
-Ireland	(All)	Ireland/(All)		3.5	1349
-Ireland	(All)	Ireland/(All)		4	652
-Ireland	(All)	Ireland/(All)		4.5	630
-Ireland	(All)	Ireland/(All)		5	682
-Ireland	(All)	Ireland/(All)		5.5	420
-Ireland	(All)	Ireland/(All)		6	106
-Ireland	(All)	Ireland/(All)		6.5	10
-Ireland	(All)	Ireland/(All)		7	3
-Ireland	(All)	Ireland/(All)		7.5	3
-Ireland	(All)	Ireland/(All)		8	4
-Ireland	(All)	Ireland/(All)		8.5	3
-Ireland	(All)	Ireland/(All)		9.5	1
+Ireland	(All)	Ireland/(All)		0	52
+Ireland	(All)	Ireland/(All)		0.5	55588
+Ireland	(All)	Ireland/(All)		1	107865
+Ireland	(All)	Ireland/(All)		1.5	62491
+Ireland	(All)	Ireland/(All)		2	25919
+Ireland	(All)	Ireland/(All)		2.5	14339
+Ireland	(All)	Ireland/(All)		3	7376
+Ireland	(All)	Ireland/(All)		3.5	1782
+Ireland	(All)	Ireland/(All)		4	856
+Ireland	(All)	Ireland/(All)		4.5	846
+Ireland	(All)	Ireland/(All)		5	805
+Ireland	(All)	Ireland/(All)		5.5	489
+Ireland	(All)	Ireland/(All)		6	119
+Ireland	(All)	Ireland/(All)		6.5	15
+Ireland	(All)	Ireland/(All)		7	6
+Ireland	(All)	Ireland/(All)		7.5	5
+Ireland	(All)	Ireland/(All)		8	5
+Ireland	(All)	Ireland/(All)		8.5	4
+Ireland	(All)	Ireland/(All)		9.5	4
+Ireland	(All)	Ireland/(All)		10	1
 Ireland	(All)	Ireland/(All)		10.5	1
+Ireland	(All)	Ireland/(All)		11	3
+Ireland	(All)	Ireland/(All)		11.5	2
+Ireland	(All)	Ireland/(All)		12	3
 Ireland	(All)	Ireland/(All)		12.5	3
 Ireland	(All)	Ireland/(All)		13	1
-Ireland	(All)	Ireland/(All)		13.5	1
+Ireland	(All)	Ireland/(All)		13.5	2
 Ireland	(All)	Ireland/(All)		14	1
-Ireland	(All)	Ireland/(All)		14.5	1
-Ireland	(All)	Ireland/(All)		15	2
+Ireland	(All)	Ireland/(All)		14.5	2
+Ireland	(All)	Ireland/(All)		15	5
 Ireland	(All)	Ireland/(All)		15.5	1
-Ireland	(All)	Ireland/(All)		33	1
+Ireland	(All)	Ireland/(All)		18	1
+Ireland	(All)	Ireland/(All)		22.5	2
+Ireland	(All)	Ireland/(All)		26	2
+Ireland	(All)	Ireland/(All)		33	2
+Ireland	(All)	Ireland/(All)		33.5	1
 Ireland	(All)	Ireland/(All)	LogIn	1	13
 Ireland	(All)	Ireland/(All)	LogIn	2	1
-Ireland	(All)	Ireland/(All)	LogIn	3	6
-Ireland	(All)	Ireland/(All)	CreateStreamingClient	0	16
+Ireland	(All)	Ireland/(All)	LogIn	3	7
+Ireland	(All)	Ireland/(All)	CreateStreamingClient	0	17
 Ireland	(All)	Ireland/(All)	CreateStreamingClient	0.5	4
-Ireland	(All)	Ireland/(All)	GetClientAndTradingAccount	0.5	20
+Ireland	(All)	Ireland/(All)	GetClientAndTradingAccount	0.5	21
 Ireland	(All)	Ireland/(All)	ListOpenPositions	0	3
-Ireland	(All)	Ireland/(All)	ListOpenPositions	0.5	24584
-Ireland	(All)	Ireland/(All)	ListOpenPositions	1	13105
-Ireland	(All)	Ireland/(All)	ListOpenPositions	1.5	8667
-Ireland	(All)	Ireland/(All)	ListOpenPositions	2	3335
-Ireland	(All)	Ireland/(All)	ListOpenPositions	2.5	1827
-Ireland	(All)	Ireland/(All)	ListOpenPositions	3	775
-Ireland	(All)	Ireland/(All)	ListOpenPositions	3.5	185
-Ireland	(All)	Ireland/(All)	ListOpenPositions	4	132
-Ireland	(All)	Ireland/(All)	ListOpenPositions	4.5	119
-Ireland	(All)	Ireland/(All)	ListOpenPositions	5	124
-Ireland	(All)	Ireland/(All)	ListOpenPositions	5.5	48
+Ireland	(All)	Ireland/(All)	ListOpenPositions	0.5	30174
+Ireland	(All)	Ireland/(All)	ListOpenPositions	1	15574
+Ireland	(All)	Ireland/(All)	ListOpenPositions	1.5	9919
+Ireland	(All)	Ireland/(All)	ListOpenPositions	2	4088
+Ireland	(All)	Ireland/(All)	ListOpenPositions	2.5	2478
+Ireland	(All)	Ireland/(All)	ListOpenPositions	3	995
+Ireland	(All)	Ireland/(All)	ListOpenPositions	3.5	227
+Ireland	(All)	Ireland/(All)	ListOpenPositions	4	181
+Ireland	(All)	Ireland/(All)	ListOpenPositions	4.5	156
+Ireland	(All)	Ireland/(All)	ListOpenPositions	5	143
+Ireland	(All)	Ireland/(All)	ListOpenPositions	5.5	60
 Ireland	(All)	Ireland/(All)	ListOpenPositions	6	5
+Ireland	(All)	Ireland/(All)	ListOpenPositions	6.5	2
 Ireland	(All)	Ireland/(All)	ListOpenPositions	7	2
+Ireland	(All)	Ireland/(All)	ListOpenPositions	7.5	1
 Ireland	(All)	Ireland/(All)	ListOpenPositions	8.5	1
+Ireland	(All)	Ireland/(All)	ListOpenPositions	9.5	1
+Ireland	(All)	Ireland/(All)	ListOpenPositions	10	1
+Ireland	(All)	Ireland/(All)	ListOpenPositions	11	1
 Ireland	(All)	Ireland/(All)	ListOpenPositions	12.5	1
 Ireland	(All)	Ireland/(All)	ListOpenPositions	15.5	1
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0	4
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0.5	5380
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1	17324
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1.5	16274
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2	7715
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2.5	3345
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	3	1766
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	3.5	427
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	4	161
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	4.5	156
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	5	191
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	5.5	130
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	6	32
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	6.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0.5	6652
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1	21742
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1.5	18608
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2	9038
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2.5	4307
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	3	2296
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	3.5	521
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	4	211
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	4.5	209
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	5	222
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	5.5	149
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	6	37
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	6.5	2
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	7	1
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	7.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	7.5	2
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	8	1
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	8.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	9.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	11	1
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	13	1
 Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	14.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	15	2
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	18	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	22.5	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	26	1
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	33	1
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	1	2
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	2	3
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	2.5	3
@@ -1698,80 +2041,101 @@ Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	3.5	3
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	4	3
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	4.5	1
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	5	1
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	5.5	1
-Ireland	(All)	Ireland/(All)	ListTradeHistory	0.5	4494
-Ireland	(All)	Ireland/(All)	ListTradeHistory	1	21697
-Ireland	(All)	Ireland/(All)	ListTradeHistory	1.5	15434
-Ireland	(All)	Ireland/(All)	ListTradeHistory	2	5389
-Ireland	(All)	Ireland/(All)	ListTradeHistory	2.5	2969
-Ireland	(All)	Ireland/(All)	ListTradeHistory	3	1663
-Ireland	(All)	Ireland/(All)	ListTradeHistory	3.5	501
-Ireland	(All)	Ireland/(All)	ListTradeHistory	4	179
-Ireland	(All)	Ireland/(All)	ListTradeHistory	4.5	181
-Ireland	(All)	Ireland/(All)	ListTradeHistory	5	203
-Ireland	(All)	Ireland/(All)	ListTradeHistory	5.5	143
-Ireland	(All)	Ireland/(All)	ListTradeHistory	6	47
+Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	5.5	2
+Ireland	(All)	Ireland/(All)	ListTradeHistory	0	1
+Ireland	(All)	Ireland/(All)	ListTradeHistory	0.5	5902
+Ireland	(All)	Ireland/(All)	ListTradeHistory	1	25820
+Ireland	(All)	Ireland/(All)	ListTradeHistory	1.5	18020
+Ireland	(All)	Ireland/(All)	ListTradeHistory	2	6410
+Ireland	(All)	Ireland/(All)	ListTradeHistory	2.5	3884
+Ireland	(All)	Ireland/(All)	ListTradeHistory	3	2325
+Ireland	(All)	Ireland/(All)	ListTradeHistory	3.5	695
+Ireland	(All)	Ireland/(All)	ListTradeHistory	4	235
+Ireland	(All)	Ireland/(All)	ListTradeHistory	4.5	246
+Ireland	(All)	Ireland/(All)	ListTradeHistory	5	243
+Ireland	(All)	Ireland/(All)	ListTradeHistory	5.5	162
+Ireland	(All)	Ireland/(All)	ListTradeHistory	6	52
 Ireland	(All)	Ireland/(All)	ListTradeHistory	6.5	7
+Ireland	(All)	Ireland/(All)	ListTradeHistory	7	1
 Ireland	(All)	Ireland/(All)	ListTradeHistory	7.5	1
 Ireland	(All)	Ireland/(All)	ListTradeHistory	8	2
+Ireland	(All)	Ireland/(All)	ListTradeHistory	9.5	1
+Ireland	(All)	Ireland/(All)	ListTradeHistory	12	1
 Ireland	(All)	Ireland/(All)	ListTradeHistory	12.5	1
 Ireland	(All)	Ireland/(All)	ListTradeHistory	13.5	1
+Ireland	(All)	Ireland/(All)	ListTradeHistory	15	1
+Ireland	(All)	Ireland/(All)	ListTradeHistory	22.5	1
+Ireland	(All)	Ireland/(All)	ListTradeHistory	26	1
 Ireland	(All)	Ireland/(All)	ListActiveOrders	0	3
-Ireland	(All)	Ireland/(All)	ListActiveOrders	0.5	9480
-Ireland	(All)	Ireland/(All)	ListActiveOrders	1	24280
-Ireland	(All)	Ireland/(All)	ListActiveOrders	1.5	10863
-Ireland	(All)	Ireland/(All)	ListActiveOrders	2	4335
-Ireland	(All)	Ireland/(All)	ListActiveOrders	2.5	2276
-Ireland	(All)	Ireland/(All)	ListActiveOrders	3	1033
-Ireland	(All)	Ireland/(All)	ListActiveOrders	3.5	138
-Ireland	(All)	Ireland/(All)	ListActiveOrders	4	139
-Ireland	(All)	Ireland/(All)	ListActiveOrders	4.5	135
-Ireland	(All)	Ireland/(All)	ListActiveOrders	5	135
-Ireland	(All)	Ireland/(All)	ListActiveOrders	5.5	78
-Ireland	(All)	Ireland/(All)	ListActiveOrders	6	14
+Ireland	(All)	Ireland/(All)	ListActiveOrders	0.5	12774
+Ireland	(All)	Ireland/(All)	ListActiveOrders	1	28292
+Ireland	(All)	Ireland/(All)	ListActiveOrders	1.5	12525
+Ireland	(All)	Ireland/(All)	ListActiveOrders	2	5185
+Ireland	(All)	Ireland/(All)	ListActiveOrders	2.5	3058
+Ireland	(All)	Ireland/(All)	ListActiveOrders	3	1342
+Ireland	(All)	Ireland/(All)	ListActiveOrders	3.5	198
+Ireland	(All)	Ireland/(All)	ListActiveOrders	4	177
+Ireland	(All)	Ireland/(All)	ListActiveOrders	4.5	184
+Ireland	(All)	Ireland/(All)	ListActiveOrders	5	156
+Ireland	(All)	Ireland/(All)	ListActiveOrders	5.5	89
+Ireland	(All)	Ireland/(All)	ListActiveOrders	6	17
+Ireland	(All)	Ireland/(All)	ListActiveOrders	6.5	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	7	2
 Ireland	(All)	Ireland/(All)	ListActiveOrders	7.5	1
 Ireland	(All)	Ireland/(All)	ListActiveOrders	8.5	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	11	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	11.5	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	12	1
 Ireland	(All)	Ireland/(All)	ListActiveOrders	12.5	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	13.5	1
 Ireland	(All)	Ireland/(All)	ListActiveOrders	14	1
 Ireland	(All)	Ireland/(All)	ListActiveOrders	33	1
+Ireland	(All)	Ireland/(All)	ListActiveOrders	33.5	1
 Ireland	(All)	Ireland/(All)	ListCfdMarkets	0.5	1
 Ireland	(All)	Ireland/(All)	GetPriceBars	0.5	24
-Ireland	(All)	Ireland/(All)	GetPriceBars	1	12450
-Ireland	(All)	Ireland/(All)	GetPriceBars	1.5	2571
-Ireland	(All)	Ireland/(All)	GetPriceBars	2	920
-Ireland	(All)	Ireland/(All)	GetPriceBars	2.5	443
-Ireland	(All)	Ireland/(All)	GetPriceBars	3	269
-Ireland	(All)	Ireland/(All)	GetPriceBars	3.5	88
-Ireland	(All)	Ireland/(All)	GetPriceBars	4	31
-Ireland	(All)	Ireland/(All)	GetPriceBars	4.5	38
-Ireland	(All)	Ireland/(All)	GetPriceBars	5	28
-Ireland	(All)	Ireland/(All)	GetPriceBars	5.5	18
+Ireland	(All)	Ireland/(All)	GetPriceBars	1	14824
+Ireland	(All)	Ireland/(All)	GetPriceBars	1.5	3155
+Ireland	(All)	Ireland/(All)	GetPriceBars	2	1089
+Ireland	(All)	Ireland/(All)	GetPriceBars	2.5	542
+Ireland	(All)	Ireland/(All)	GetPriceBars	3	374
+Ireland	(All)	Ireland/(All)	GetPriceBars	3.5	127
+Ireland	(All)	Ireland/(All)	GetPriceBars	4	41
+Ireland	(All)	Ireland/(All)	GetPriceBars	4.5	47
+Ireland	(All)	Ireland/(All)	GetPriceBars	5	39
+Ireland	(All)	Ireland/(All)	GetPriceBars	5.5	24
 Ireland	(All)	Ireland/(All)	GetPriceBars	6	8
-Ireland	(All)	Ireland/(All)	GetPriceBars	6.5	2
-Ireland	(All)	Ireland/(All)	GetPriceBars	8	1
+Ireland	(All)	Ireland/(All)	GetPriceBars	6.5	3
+Ireland	(All)	Ireland/(All)	GetPriceBars	8	2
+Ireland	(All)	Ireland/(All)	GetPriceBars	8.5	1
 Ireland	(All)	Ireland/(All)	GetPriceBars	9.5	1
 Ireland	(All)	Ireland/(All)	GetPriceBars	10.5	1
+Ireland	(All)	Ireland/(All)	GetPriceBars	11.5	1
+Ireland	(All)	Ireland/(All)	GetPriceBars	12	1
+Ireland	(All)	Ireland/(All)	GetPriceBars	14.5	1
 Ireland	(All)	Ireland/(All)	GetPriceBars	15	2
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	1	1
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2	4
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2.5	6
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2.5	7
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	3	1
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	3.5	1
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	4	5
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	5.5	2
-Ireland	(All)	Ireland/(All)	GetMarketInfo	0.5	5
-Ireland	(All)	Ireland/(All)	GetMarketInfo	1	6
+Ireland	(All)	Ireland/(All)	GetMarketInfo	0.5	6
+Ireland	(All)	Ireland/(All)	GetMarketInfo	1	7
 Ireland	(All)	Ireland/(All)	GetMarketInfo	1.5	1
-Ireland	(All)	Ireland/(All)	UnsubscribePriceStream	0	18
+Ireland	(All)	Ireland/(All)	UnsubscribePriceStream	0	19
 Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0	5
-Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0.5	12
+Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0.5	13
 Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	1	1
-Ireland	(All)	Ireland/(All)	LogOut	0.5	16
+Ireland	(All)	Ireland/(All)	LogOut	0.5	17
 Ireland	(All)	Ireland/(All)	LogOut	1	2
-Ireland	(All)	Ireland/(All)	PlaceTrade	1	870
-Ireland	(All)	Ireland/(All)	PlaceTrade	1.5	208
-Ireland	(All)	Ireland/(All)	PlaceTrade	2	72
-Ireland	(All)	Ireland/(All)	PlaceTrade	2.5	32
-Ireland	(All)	Ireland/(All)	PlaceTrade	3	13
-Ireland	(All)	Ireland/(All)	PlaceTrade	3.5	6
-Ireland	(All)	Ireland/(All)	PlaceTrade	4	2
+Ireland	(All)	Ireland/(All)	PlaceTrade	1	1587
+Ireland	(All)	Ireland/(All)	PlaceTrade	1.5	263
+Ireland	(All)	Ireland/(All)	PlaceTrade	2	101
+Ireland	(All)	Ireland/(All)	PlaceTrade	2.5	60
+Ireland	(All)	Ireland/(All)	PlaceTrade	3	33
+Ireland	(All)	Ireland/(All)	PlaceTrade	3.5	10
+Ireland	(All)	Ireland/(All)	PlaceTrade	4	3
+Ireland	(All)	Ireland/(All)	PlaceTrade	4.5	3
+Ireland	(All)	Ireland/(All)	PlaceTrade	5	1
+Ireland	(All)	Ireland/(All)	PlaceTrade	5.5	1
