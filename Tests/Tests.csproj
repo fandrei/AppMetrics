@@ -57,7 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLoggingTests.cs" />
+    <Compile Include="DataLogging\WhenLoggingLatencyData.cs" />
+    <Compile Include="DataLogging\WhenReadingLatencyData.cs" />
     <Compile Include="IntegrationTestsBase.cs" />
     <Compile Include="TestSettings.cs" />
     <Compile Include="Service References\AppMetricsDataService\Reference.cs">

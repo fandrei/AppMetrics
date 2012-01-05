@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using CassiniDev;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace Tests
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            StartWebServer(@"AppMetrics");
+            StartWebServer();
         }
 
         [TestFixtureTearDown]
@@ -22,13 +23,13 @@ namespace Tests
             StopWebServer();
         }
 
-        protected void StartWebServer(string websiteFolder)
+        protected void StartWebServer()
         {
             try
             {
                 if (IsRunByReSharperUnitTestRunner())
                 {
-                    _server.StartServer(@"..\..\..\..\..\..\" + websiteFolder, "/AppMetrics");
+                    _server.StartServer(FindAppMetricsPath(), "/AppMetrics");
                     return;
                 }
             }
@@ -43,7 +44,18 @@ namespace Tests
             throw new Exception("Unrecognised unit test runner - currently only support running via Resharper runner");
         }
 
-        private bool IsRunByReSharperUnitTestRunner()
+        private static string FindAppMetricsPath()
+        {
+            var p = Path.GetFullPath(@"..\..\AppMetrics");
+            if (!Directory.Exists(p))
+            {
+                throw new ApplicationException(
+                    string.Format("Cannot find {0}.  Make sure that your unit test runner is not copying the tests to a shadow folder", p));
+            }
+            return p;
+        }
+
+        private static bool IsRunByReSharperUnitTestRunner()
         {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .Any(a => a.FullName.StartsWith("JetBrains.ReSharper.TaskRunnerFramework"));
