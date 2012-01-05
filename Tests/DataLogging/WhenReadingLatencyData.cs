@@ -5,14 +5,13 @@ using AppMetrics.Client;
 using NUnit.Framework;
 using Tests.AppMetricsDataService;
 
-namespace Tests
+namespace Tests.DataLogging
 {
     [TestFixture]
     public class WhenReadingLatencyData : IntegrationTestsBase
     {
         private string _appKey;
         private List<Session> _sessions;
-        private List<Record> _records;
 
         [TestFixtureSetUp]
         public void LogThenReadSomeLatencyData()
@@ -32,7 +31,6 @@ namespace Tests
                 dataSource.Sessions
                     .AddQueryOption("appKey", _appKey)
                     .AddQueryOption("period", TimeSpan.FromSeconds(30)));
-           // _records = new List<Record>(dataSource.Records);
         }
         [Test]
         public void Then_a_new_session_should_have_been_created()
@@ -43,7 +41,7 @@ namespace Tests
         [Test]
         public void Then_a_new_record_should_have_been_created()
         {
-          //  Assert.That(_records.Count, Is.GreaterThan(1));
+            //TODO check that a new record has been created
         }
     }
 }

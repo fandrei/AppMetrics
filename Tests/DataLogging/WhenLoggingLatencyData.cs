@@ -1,7 +1,7 @@
-﻿using System;
+﻿using AppMetrics.Client;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.DataLogging
 {
     [TestFixture]
     public class WhenLoggingLatencyData : IntegrationTestsBase
@@ -9,20 +9,23 @@ namespace Tests
         [TestFixtureSetUp]
         public void LogSomeLatencyData()
         {
-            Console.WriteLine("LogSomeLatencyData");
-           
+            var appKey = GetType().FullName;
+
+            var tracker = new Tracker(NormalizeUrl("LogEvent.ashx"), appKey);
+            tracker.Log("TestMessage", "TestValue");
+            Tracker.Terminate(true);
                 
         }
         [Test]
-        public void ShouldDoIt()
+        public void Then_a_new_session_txt_file_should_be_created()
         {
-            Console.WriteLine("ShouldDoIt");
+            //TODO check that the session text file is in App_data/AppKey/
         }
 
         [Test]
-        public void ShouldDoIt2()
+        public void The_the_session_txt_file_should_contain_client_info()
         {
-            Console.WriteLine("ShouldDoIt");
+            //TODO read the session text file and confirm that the client info logged looks good
         }
     }
 }
