@@ -46,7 +46,14 @@ namespace Tests
 
         private static string FindAppMetricsPath()
         {
-            var p = Path.GetFullPath(@"..\..\AppMetrics");
+            var serviceRootFolder = TestSettings.Instance.ServiceRootFolder;
+            if (String.IsNullOrEmpty(serviceRootFolder))
+            {
+                throw new ApplicationException(
+                    "Unable to find the TestSettings.Instance.ServiceRootFolder. "
+                   +@"Make sure that you have configured the AppMetricsTest_ServiceRootFolder environment variable to point to the folder location of the AppMetrics website - eg C:\Dev\fandrei\AppMetrics\AppMetrics");
+            }
+            var p = Path.GetFullPath(serviceRootFolder);
             if (!Directory.Exists(p))
             {
                 throw new ApplicationException(

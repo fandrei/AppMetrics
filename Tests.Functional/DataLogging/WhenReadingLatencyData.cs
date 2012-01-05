@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using AppMetrics.Client;
 using NUnit.Framework;
-using Tests.AppMetricsDataService;
+using Tests.Functional.AppMetricsDataSource;
 
 namespace Tests.DataLogging
 {
