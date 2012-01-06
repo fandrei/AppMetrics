@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{321076B2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConvertor", "DataConvertor\DataConvertor.csproj", "{10FDF76A-C14A-4D04-B01D-669923868616}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Functional", "Tests.Functional\Tests.Functional.csproj", "{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
@@ -69,6 +71,10 @@ Global
 		{10FDF76A-C14A-4D04-B01D-669923868616}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10FDF76A-C14A-4D04-B01D-669923868616}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10FDF76A-C14A-4D04-B01D-669923868616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

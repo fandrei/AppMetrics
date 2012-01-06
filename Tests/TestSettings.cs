@@ -10,6 +10,7 @@ namespace Tests
 {
 	public class TestSettings
 	{
+		public string ServiceRootFolder { get; set; }
 		public string ServiceRootUrl { get; set; }
 		public string UserName { get; set; }
 		public string Password { get; set; }
@@ -32,6 +33,9 @@ namespace Tests
 
 		private void SetDefaultsIfEmpty()
 		{
+            if (string.IsNullOrEmpty(ServiceRootFolder))
+                ServiceRootFolder = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootFolder");
+
 			if (string.IsNullOrEmpty(ServiceRootUrl))
 				ServiceRootUrl = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootUrl");
 

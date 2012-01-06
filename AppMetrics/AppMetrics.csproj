@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataService.svc" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -113,6 +114,9 @@
     <Compile Include="DataModel\Session.cs" />
     <Compile Include="DataService.svc.cs">
       <DependentUpon>DataService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogEvent.ashx.cs">
       <DependentUpon>LogEvent.ashx</DependentUpon>
