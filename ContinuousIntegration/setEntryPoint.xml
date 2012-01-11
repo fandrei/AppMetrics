@@ -16,7 +16,7 @@
     <FileUpdate
         Files="$(SolutionRoot)\ContinuousIntegration\EntryPointPackage\EntryPoint.SetParameters.xml"
         Regex="(name=&quot;RedirectionTarget&quot; *?value=)&quot;[^&quot;]*&quot;"
-        ReplacementText="$1&quot;http://localhost/AppMetrics_$(BuildNumber)/{R:1}&quot;" />
+        ReplacementText="$1&quot;http://localhost/AppMetrics_$(MyBuildNumber)/{R:1}&quot;" />
 
     <Exec Command='"$(SolutionRoot)\ContinuousIntegration\EntryPointPackage\EntryPoint.deploy.cmd" /Y'
         ContinueOnError='false' />
