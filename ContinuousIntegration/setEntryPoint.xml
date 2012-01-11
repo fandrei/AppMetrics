@@ -3,12 +3,21 @@
 
   <PropertyGroup>
     <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
   <Import Project="$(SolutionRoot)\properties.xml" />
 
   <Target Name="SetEntryPoint" >
     <Message Text="Setting website entry point" />
+    
+    <!-- Set redirection target parameter -->
+    <FileUpdate
+        Files="$(SolutionRoot)\ContinuousIntegration\EntryPointPackage\EntryPoint.SetParameters.xml"
+        Regex="(name=&quot;RedirectionTarget&quot; *?value=)&quot;[^&quot;]*&quot;"
+        ReplacementText="$1&quot;$(DeploymentTarget)&quot;" />
+
     <Exec Command='"$(SolutionRoot)\ContinuousIntegration\EntryPointPackage\EntryPoint.deploy.cmd" /Y'
         ContinueOnError='false' />
   </Target>
