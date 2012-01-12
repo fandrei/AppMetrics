@@ -15,12 +15,16 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
 
-    <!-- append _ prefix if variable is not empty -->
-    <MyBuildNumber Condition="$(MyBuildNumber) != ''">_$(MyBuildNumber)</MyBuildNumber>
+    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) != ''">
+      $(AppMetricsTest_ServiceRootUrl_Versioned)_$(MyBuildNumber)
+    </AppMetricsTest_ServiceRootUrl>
+    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) == ''">
+      $(AppMetricsTest_ServiceRootUrl)
+    </AppMetricsTest_ServiceRootUrl>
   </PropertyGroup>
 
   <Target Name="Test" >
-    <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)$(MyBuildNumber)"/>
+    <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)"/>
     <SetEnvVariable Name="AppMetricsTest_UserName" Value="$(AppMetricsTest_UserName)"/>
     <SetEnvVariable Name="AppMetricsTest_Password" Value="$(AppMetricsTest_Password)"/>
     
