@@ -2,25 +2,26 @@
 <Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
   <Import Project="properties.xml" />
-  
+
   <PropertyGroup>
-    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
   <PropertyGroup>
-    <NuGetEXE>$(MSBuildProjectDirectory)\tools\nuget\nuget.exe</NuGetEXE>
+    <NuGetEXE>$(SolutionRoot)\tools\nuget\nuget.exe</NuGetEXE>
   </PropertyGroup>
 
   <Target Name="Package" >
     <Message Text="Packaging with NuGet" />
-    <Exec Command='"$(NuGetEXE)" pack $(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.nuspec' ContinueOnError='false' 
-          WorkingDirectory='$(MSBuildProjectDirectory)\_nuget\'/>
+    <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Client.nuspec' ContinueOnError='false' 
+          WorkingDirectory='$(SolutionRoot)\_nuget\'/>
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package" >
     <Message Text="Publishing to NuGet.org" />
-    <Exec Command='"$(NuGetEXE)" push $(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
+    <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
           ContinueOnError='false' />
   </Target>
 
