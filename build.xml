@@ -55,10 +55,6 @@
         Files="$(MSBuildProjectDirectory)\properties.xml"
         Regex="(FullVersion)&gt;.*?&lt;(/FullVersion)"
         ReplacementText="$1&gt;$(FullVersion)&lt;$2" />
-    <FileUpdate
-        Files="$(MSBuildProjectDirectory)\properties.xml"
-        Regex="(DeploymentTarget)&gt;.*?&lt;(/DeploymentTarget)"
-        ReplacementText="$1&gt;$(DeploymentTarget)&lt;$2" />
 
     <!-- set version for NuGet package spec -->
     <FileUpdate
