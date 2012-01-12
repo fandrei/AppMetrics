@@ -29,15 +29,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{321076B2-913F-4956-9BBE-3E22B5CFD3E7}"
 	ProjectSection(SolutionItems) = preProject
 		build.xml = build.xml
-		properties.xml = properties.xml
-		publishToNuGet.xml = publishToNuGet.xml
-		ContinuousIntegration\setEntryPoint.xml = ContinuousIntegration\setEntryPoint.xml
-		test.xml = test.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConvertor", "DataConvertor\DataConvertor.csproj", "{10FDF76A-C14A-4D04-B01D-669923868616}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Functional", "Tests.Functional\Tests.Functional.csproj", "{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "ContinuousIntegration", "{03255D26-5B9E-4A54-9499-BB9FB3822722}"
+	ProjectSection(SolutionItems) = preProject
+		ContinuousIntegration\properties.xml = ContinuousIntegration\properties.xml
+		ContinuousIntegration\publishToNuGet.xml = ContinuousIntegration\publishToNuGet.xml
+		ContinuousIntegration\setEntryPoint.xml = ContinuousIntegration\setEntryPoint.xml
+		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
