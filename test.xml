@@ -15,12 +15,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <NUnitPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnitPath>
 
-    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) != ''">
-      $(AppMetricsTest_ServiceRootUrl_Versioned)_$(MyBuildNumber)
-    </AppMetricsTest_ServiceRootUrl>
-    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) == ''">
-      $(AppMetricsTest_ServiceRootUrl)
-    </AppMetricsTest_ServiceRootUrl>
+    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) != ''"
+                                   >$(AppMetricsTest_ServiceRootUrl_Versioned)_$(MyBuildNumber)</AppMetricsTest_ServiceRootUrl>
+    <AppMetricsTest_ServiceRootUrl Condition="$(AppMetricsTest_ServiceRootUrl_Versioned) == ''"
+                                   >$(AppMetricsTest_ServiceRootUrl)</AppMetricsTest_ServiceRootUrl>
   </PropertyGroup>
 
   <Target Name="Test" >
