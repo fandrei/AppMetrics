@@ -48,11 +48,11 @@
 
     <!-- store parameters in the file to be used in other build jobs -->
     <FileUpdate
-        Files="$(MSBuildProjectDirectory)\properties.xml"
+        Files="$(MSBuildProjectDirectory)\ContinuousIntegration\properties.xml"
         Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
         ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
     <FileUpdate
-        Files="$(MSBuildProjectDirectory)\properties.xml"
+        Files="$(MSBuildProjectDirectory)\ContinuousIntegration\properties.xml"
         Regex="(FullVersion)&gt;.*?&lt;(/FullVersion)"
         ReplacementText="$1&gt;$(FullVersion)&lt;$2" />
 
