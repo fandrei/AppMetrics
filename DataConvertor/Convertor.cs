@@ -118,9 +118,12 @@ namespace AppMetrics.DataConvertor
 		{
 			var res = new CalcResult();
 			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
-			res.StatSummary = Stats.CalculateSummaries(latencies);
-			res.Distribution = CalculateDistribution(latencies);
-			return res;
+            if (latencies.Length > 0)
+            {
+                res.StatSummary = Stats.CalculateSummaries(latencies);
+                res.Distribution = CalculateDistribution(latencies);
+            }
+		    return res;
 		}
 
 		private static Distribution CalculateDistribution(decimal[] latencies)
@@ -246,6 +249,8 @@ namespace AppMetrics.DataConvertor
 				foreach (var result in results)
 				{
 					var summary = result.StatSummary;
+                    if (summary == null)
+                        continue;
 					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}",
 						result.Country, result.City, result.Location, result.FunctionName,
 						summary.Count, summary.Average,
@@ -264,6 +269,8 @@ namespace AppMetrics.DataConvertor
 
 				foreach (var result in results)
 				{
+                    if (result.Distribution == null)
+                        continue;
 					foreach (var pair in result.Distribution.Vals)
 					{
 						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
