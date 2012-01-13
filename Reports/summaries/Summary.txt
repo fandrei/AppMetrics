@@ -1,5 +1,5 @@
 ﻿Name	Value
 MinDate	2011-12-23 17:26:55
-MaxDate	2012-01-13 13:27:19
-SessionsCount	111
-RecordsCount	2426593
+MaxDate	2012-01-13 18:05:23
+SessionsCount	127
+RecordsCount	2562656

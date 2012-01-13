@@ -3,25 +3,25 @@
 (World)		(World)		0.5	2616
 (World)		(World)		1	2857
 (World)		(World)		1.5	3032
-(World)		(World)		2	42314
-(World)		(World)		2.5	406893
-(World)		(World)		3	129217
-(World)		(World)		3.5	15122
-(World)		(World)		4	6628
-(World)		(World)		4.5	3992
-(World)		(World)		5	2687
-(World)		(World)		5.5	1858
-(World)		(World)		6	1369
-(World)		(World)		6.5	1315
-(World)		(World)		7	1136
-(World)		(World)		7.5	672
-(World)		(World)		8	309
-(World)		(World)		8.5	195
-(World)		(World)		9	228
-(World)		(World)		9.5	406
-(World)		(World)		10	445
-(World)		(World)		10.5	420
-(World)		(World)		11	372
+(World)		(World)		2	49192
+(World)		(World)		2.5	440572
+(World)		(World)		3	137271
+(World)		(World)		3.5	16237
+(World)		(World)		4	7054
+(World)		(World)		4.5	4164
+(World)		(World)		5	2784
+(World)		(World)		5.5	1924
+(World)		(World)		6	1427
+(World)		(World)		6.5	1352
+(World)		(World)		7	1154
+(World)		(World)		7.5	678
+(World)		(World)		8	315
+(World)		(World)		8.5	197
+(World)		(World)		9	230
+(World)		(World)		9.5	408
+(World)		(World)		10	446
+(World)		(World)		10.5	421
+(World)		(World)		11	373
 (World)		(World)		11.5	429
 (World)		(World)		12	457
 (World)		(World)		12.5	364
@@ -56,25 +56,25 @@
 (World)		(World)	PriceStream	0.5	2616
 (World)		(World)	PriceStream	1	2857
 (World)		(World)	PriceStream	1.5	3032
-(World)		(World)	PriceStream	2	42314
-(World)		(World)	PriceStream	2.5	406893
-(World)		(World)	PriceStream	3	129217
-(World)		(World)	PriceStream	3.5	15122
-(World)		(World)	PriceStream	4	6628
-(World)		(World)	PriceStream	4.5	3992
-(World)		(World)	PriceStream	5	2687
-(World)		(World)	PriceStream	5.5	1858
-(World)		(World)	PriceStream	6	1369
-(World)		(World)	PriceStream	6.5	1315
-(World)		(World)	PriceStream	7	1136
-(World)		(World)	PriceStream	7.5	672
-(World)		(World)	PriceStream	8	309
-(World)		(World)	PriceStream	8.5	195
-(World)		(World)	PriceStream	9	228
-(World)		(World)	PriceStream	9.5	406
-(World)		(World)	PriceStream	10	445
-(World)		(World)	PriceStream	10.5	420
-(World)		(World)	PriceStream	11	372
+(World)		(World)	PriceStream	2	49192
+(World)		(World)	PriceStream	2.5	440572
+(World)		(World)	PriceStream	3	137271
+(World)		(World)	PriceStream	3.5	16237
+(World)		(World)	PriceStream	4	7054
+(World)		(World)	PriceStream	4.5	4164
+(World)		(World)	PriceStream	5	2784
+(World)		(World)	PriceStream	5.5	1924
+(World)		(World)	PriceStream	6	1427
+(World)		(World)	PriceStream	6.5	1352
+(World)		(World)	PriceStream	7	1154
+(World)		(World)	PriceStream	7.5	678
+(World)		(World)	PriceStream	8	315
+(World)		(World)	PriceStream	8.5	197
+(World)		(World)	PriceStream	9	230
+(World)		(World)	PriceStream	9.5	408
+(World)		(World)	PriceStream	10	446
+(World)		(World)	PriceStream	10.5	421
+(World)		(World)	PriceStream	11	373
 (World)		(World)	PriceStream	11.5	429
 (World)		(World)	PriceStream	12	457
 (World)		(World)	PriceStream	12.5	364
@@ -106,130 +106,130 @@
 (World)		(World)	PriceStream	25.5	3
 (World)		(World)	PriceStream	21624	1
 Cambodia	(All)	Cambodia/(All)		0	1
-Cambodia	(All)	Cambodia/(All)		0.5	116
-Cambodia	(All)	Cambodia/(All)		1	295
-Cambodia	(All)	Cambodia/(All)		1.5	401
-Cambodia	(All)	Cambodia/(All)		2	450
-Cambodia	(All)	Cambodia/(All)		2.5	467
-Cambodia	(All)	Cambodia/(All)		3	328
-Cambodia	(All)	Cambodia/(All)		3.5	62
-Cambodia	(All)	Cambodia/(All)		4	115
-Cambodia	(All)	Cambodia/(All)		4.5	206
-Cambodia	(All)	Cambodia/(All)		5	197
-Cambodia	(All)	Cambodia/(All)		5.5	239
-Cambodia	(All)	Cambodia/(All)		6	187
-Cambodia	(All)	Cambodia/(All)		6.5	208
-Cambodia	(All)	Cambodia/(All)		7	232
-Cambodia	(All)	Cambodia/(All)		7.5	443
-Cambodia	(All)	Cambodia/(All)		8	421
+Cambodia	(All)	Cambodia/(All)		0.5	5815
+Cambodia	(All)	Cambodia/(All)		1	742
+Cambodia	(All)	Cambodia/(All)		1.5	823
+Cambodia	(All)	Cambodia/(All)		2	686
+Cambodia	(All)	Cambodia/(All)		2.5	518
+Cambodia	(All)	Cambodia/(All)		3	456
+Cambodia	(All)	Cambodia/(All)		3.5	140
+Cambodia	(All)	Cambodia/(All)		4	102
+Cambodia	(All)	Cambodia/(All)		4.5	212
+Cambodia	(All)	Cambodia/(All)		5	217
+Cambodia	(All)	Cambodia/(All)		5.5	211
+Cambodia	(All)	Cambodia/(All)		6	227
+Cambodia	(All)	Cambodia/(All)		6.5	179
+Cambodia	(All)	Cambodia/(All)		7	224
+Cambodia	(All)	Cambodia/(All)		7.5	393
+Cambodia	(All)	Cambodia/(All)		8	446
 Cambodia	(All)	Cambodia/(All)		8.5	423
-Cambodia	(All)	Cambodia/(All)		9	360
-Cambodia	(All)	Cambodia/(All)		9.5	444
-Cambodia	(All)	Cambodia/(All)		10	444
-Cambodia	(All)	Cambodia/(All)		10.5	370
-Cambodia	(All)	Cambodia/(All)		11	277
-Cambodia	(All)	Cambodia/(All)		11.5	215
-Cambodia	(All)	Cambodia/(All)		12	215
-Cambodia	(All)	Cambodia/(All)		12.5	217
-Cambodia	(All)	Cambodia/(All)		13	190
-Cambodia	(All)	Cambodia/(All)		13.5	212
+Cambodia	(All)	Cambodia/(All)		9	382
+Cambodia	(All)	Cambodia/(All)		9.5	417
+Cambodia	(All)	Cambodia/(All)		10	439
+Cambodia	(All)	Cambodia/(All)		10.5	382
+Cambodia	(All)	Cambodia/(All)		11	324
+Cambodia	(All)	Cambodia/(All)		11.5	221
+Cambodia	(All)	Cambodia/(All)		12	204
+Cambodia	(All)	Cambodia/(All)		12.5	219
+Cambodia	(All)	Cambodia/(All)		13	193
+Cambodia	(All)	Cambodia/(All)		13.5	218
 Cambodia	(All)	Cambodia/(All)		14	226
-Cambodia	(All)	Cambodia/(All)		14.5	205
-Cambodia	(All)	Cambodia/(All)		15	228
-Cambodia	(All)	Cambodia/(All)		15.5	201
-Cambodia	(All)	Cambodia/(All)		16	234
-Cambodia	(All)	Cambodia/(All)		16.5	218
-Cambodia	(All)	Cambodia/(All)		17	220
-Cambodia	(All)	Cambodia/(All)		17.5	169
-Cambodia	(All)	Cambodia/(All)		18	181
-Cambodia	(All)	Cambodia/(All)		18.5	175
-Cambodia	(All)	Cambodia/(All)		19	182
-Cambodia	(All)	Cambodia/(All)		19.5	206
-Cambodia	(All)	Cambodia/(All)		20	183
-Cambodia	(All)	Cambodia/(All)		20.5	145
-Cambodia	(All)	Cambodia/(All)		21	141
-Cambodia	(All)	Cambodia/(All)		21.5	72
-Cambodia	(All)	Cambodia/(All)		22	38
-Cambodia	(All)	Cambodia/(All)		22.5	6
-Cambodia	(All)	Cambodia/(All)		23	3
-Cambodia	(All)	Cambodia/(All)		23.5	2
+Cambodia	(All)	Cambodia/(All)		14.5	198
+Cambodia	(All)	Cambodia/(All)		15	243
+Cambodia	(All)	Cambodia/(All)		15.5	196
+Cambodia	(All)	Cambodia/(All)		16	226
+Cambodia	(All)	Cambodia/(All)		16.5	215
+Cambodia	(All)	Cambodia/(All)		17	229
+Cambodia	(All)	Cambodia/(All)		17.5	178
+Cambodia	(All)	Cambodia/(All)		18	190
+Cambodia	(All)	Cambodia/(All)		18.5	163
+Cambodia	(All)	Cambodia/(All)		19	172
+Cambodia	(All)	Cambodia/(All)		19.5	193
+Cambodia	(All)	Cambodia/(All)		20	220
+Cambodia	(All)	Cambodia/(All)		20.5	137
+Cambodia	(All)	Cambodia/(All)		21	164
+Cambodia	(All)	Cambodia/(All)		21.5	80
+Cambodia	(All)	Cambodia/(All)		22	52
+Cambodia	(All)	Cambodia/(All)		22.5	8
+Cambodia	(All)	Cambodia/(All)		23	4
+Cambodia	(All)	Cambodia/(All)		23.5	3
 Cambodia	(All)	Cambodia/(All)	PriceStream	0	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.5	116
-Cambodia	(All)	Cambodia/(All)	PriceStream	1	295
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.5	401
-Cambodia	(All)	Cambodia/(All)	PriceStream	2	450
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.5	467
-Cambodia	(All)	Cambodia/(All)	PriceStream	3	328
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.5	62
-Cambodia	(All)	Cambodia/(All)	PriceStream	4	115
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.5	206
-Cambodia	(All)	Cambodia/(All)	PriceStream	5	197
-Cambodia	(All)	Cambodia/(All)	PriceStream	5.5	239
-Cambodia	(All)	Cambodia/(All)	PriceStream	6	187
-Cambodia	(All)	Cambodia/(All)	PriceStream	6.5	208
-Cambodia	(All)	Cambodia/(All)	PriceStream	7	232
-Cambodia	(All)	Cambodia/(All)	PriceStream	7.5	443
-Cambodia	(All)	Cambodia/(All)	PriceStream	8	421
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.5	5815
+Cambodia	(All)	Cambodia/(All)	PriceStream	1	742
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.5	823
+Cambodia	(All)	Cambodia/(All)	PriceStream	2	686
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.5	518
+Cambodia	(All)	Cambodia/(All)	PriceStream	3	456
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.5	140
+Cambodia	(All)	Cambodia/(All)	PriceStream	4	102
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.5	212
+Cambodia	(All)	Cambodia/(All)	PriceStream	5	217
+Cambodia	(All)	Cambodia/(All)	PriceStream	5.5	211
+Cambodia	(All)	Cambodia/(All)	PriceStream	6	227
+Cambodia	(All)	Cambodia/(All)	PriceStream	6.5	179
+Cambodia	(All)	Cambodia/(All)	PriceStream	7	224
+Cambodia	(All)	Cambodia/(All)	PriceStream	7.5	393
+Cambodia	(All)	Cambodia/(All)	PriceStream	8	446
 Cambodia	(All)	Cambodia/(All)	PriceStream	8.5	423
-Cambodia	(All)	Cambodia/(All)	PriceStream	9	360
-Cambodia	(All)	Cambodia/(All)	PriceStream	9.5	444
-Cambodia	(All)	Cambodia/(All)	PriceStream	10	444
-Cambodia	(All)	Cambodia/(All)	PriceStream	10.5	370
-Cambodia	(All)	Cambodia/(All)	PriceStream	11	277
-Cambodia	(All)	Cambodia/(All)	PriceStream	11.5	215
-Cambodia	(All)	Cambodia/(All)	PriceStream	12	215
-Cambodia	(All)	Cambodia/(All)	PriceStream	12.5	217
-Cambodia	(All)	Cambodia/(All)	PriceStream	13	190
-Cambodia	(All)	Cambodia/(All)	PriceStream	13.5	212
+Cambodia	(All)	Cambodia/(All)	PriceStream	9	382
+Cambodia	(All)	Cambodia/(All)	PriceStream	9.5	417
+Cambodia	(All)	Cambodia/(All)	PriceStream	10	439
+Cambodia	(All)	Cambodia/(All)	PriceStream	10.5	382
+Cambodia	(All)	Cambodia/(All)	PriceStream	11	324
+Cambodia	(All)	Cambodia/(All)	PriceStream	11.5	221
+Cambodia	(All)	Cambodia/(All)	PriceStream	12	204
+Cambodia	(All)	Cambodia/(All)	PriceStream	12.5	219
+Cambodia	(All)	Cambodia/(All)	PriceStream	13	193
+Cambodia	(All)	Cambodia/(All)	PriceStream	13.5	218
 Cambodia	(All)	Cambodia/(All)	PriceStream	14	226
-Cambodia	(All)	Cambodia/(All)	PriceStream	14.5	205
-Cambodia	(All)	Cambodia/(All)	PriceStream	15	228
-Cambodia	(All)	Cambodia/(All)	PriceStream	15.5	201
-Cambodia	(All)	Cambodia/(All)	PriceStream	16	234
-Cambodia	(All)	Cambodia/(All)	PriceStream	16.5	218
-Cambodia	(All)	Cambodia/(All)	PriceStream	17	220
-Cambodia	(All)	Cambodia/(All)	PriceStream	17.5	169
-Cambodia	(All)	Cambodia/(All)	PriceStream	18	181
-Cambodia	(All)	Cambodia/(All)	PriceStream	18.5	175
-Cambodia	(All)	Cambodia/(All)	PriceStream	19	182
-Cambodia	(All)	Cambodia/(All)	PriceStream	19.5	206
-Cambodia	(All)	Cambodia/(All)	PriceStream	20	183
-Cambodia	(All)	Cambodia/(All)	PriceStream	20.5	145
-Cambodia	(All)	Cambodia/(All)	PriceStream	21	141
-Cambodia	(All)	Cambodia/(All)	PriceStream	21.5	72
-Cambodia	(All)	Cambodia/(All)	PriceStream	22	38
-Cambodia	(All)	Cambodia/(All)	PriceStream	22.5	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	23	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	23.5	2
+Cambodia	(All)	Cambodia/(All)	PriceStream	14.5	198
+Cambodia	(All)	Cambodia/(All)	PriceStream	15	243
+Cambodia	(All)	Cambodia/(All)	PriceStream	15.5	196
+Cambodia	(All)	Cambodia/(All)	PriceStream	16	226
+Cambodia	(All)	Cambodia/(All)	PriceStream	16.5	215
+Cambodia	(All)	Cambodia/(All)	PriceStream	17	229
+Cambodia	(All)	Cambodia/(All)	PriceStream	17.5	178
+Cambodia	(All)	Cambodia/(All)	PriceStream	18	190
+Cambodia	(All)	Cambodia/(All)	PriceStream	18.5	163
+Cambodia	(All)	Cambodia/(All)	PriceStream	19	172
+Cambodia	(All)	Cambodia/(All)	PriceStream	19.5	193
+Cambodia	(All)	Cambodia/(All)	PriceStream	20	220
+Cambodia	(All)	Cambodia/(All)	PriceStream	20.5	137
+Cambodia	(All)	Cambodia/(All)	PriceStream	21	164
+Cambodia	(All)	Cambodia/(All)	PriceStream	21.5	80
+Cambodia	(All)	Cambodia/(All)	PriceStream	22	52
+Cambodia	(All)	Cambodia/(All)	PriceStream	22.5	8
+Cambodia	(All)	Cambodia/(All)	PriceStream	23	4
+Cambodia	(All)	Cambodia/(All)	PriceStream	23.5	3
 Ireland	(All)	Ireland/(All)		0	1
-Ireland	(All)	Ireland/(All)		0.5	251086
-Ireland	(All)	Ireland/(All)		1	27779
-Ireland	(All)	Ireland/(All)		1.5	5273
-Ireland	(All)	Ireland/(All)		2	2627
-Ireland	(All)	Ireland/(All)		2.5	1545
-Ireland	(All)	Ireland/(All)		3	964
-Ireland	(All)	Ireland/(All)		3.5	800
-Ireland	(All)	Ireland/(All)		4	561
-Ireland	(All)	Ireland/(All)		4.5	476
-Ireland	(All)	Ireland/(All)		5	446
-Ireland	(All)	Ireland/(All)		5.5	198
+Ireland	(All)	Ireland/(All)		0.5	258877
+Ireland	(All)	Ireland/(All)		1	35248
+Ireland	(All)	Ireland/(All)		1.5	5637
+Ireland	(All)	Ireland/(All)		2	2728
+Ireland	(All)	Ireland/(All)		2.5	1579
+Ireland	(All)	Ireland/(All)		3	983
+Ireland	(All)	Ireland/(All)		3.5	810
+Ireland	(All)	Ireland/(All)		4	568
+Ireland	(All)	Ireland/(All)		4.5	479
+Ireland	(All)	Ireland/(All)		5	450
+Ireland	(All)	Ireland/(All)		5.5	199
 Ireland	(All)	Ireland/(All)		6	9
 Ireland	(All)	Ireland/(All)		6.5	6
 Ireland	(All)	Ireland/(All)		7	1
 Ireland	(All)	Ireland/(All)		8	1
 Ireland	(All)	Ireland/(All)		8.5	2
 Ireland	(All)	Ireland/(All)	PriceStream	0	1
-Ireland	(All)	Ireland/(All)	PriceStream	0.5	251086
-Ireland	(All)	Ireland/(All)	PriceStream	1	27779
-Ireland	(All)	Ireland/(All)	PriceStream	1.5	5273
-Ireland	(All)	Ireland/(All)	PriceStream	2	2627
-Ireland	(All)	Ireland/(All)	PriceStream	2.5	1545
-Ireland	(All)	Ireland/(All)	PriceStream	3	964
-Ireland	(All)	Ireland/(All)	PriceStream	3.5	800
-Ireland	(All)	Ireland/(All)	PriceStream	4	561
-Ireland	(All)	Ireland/(All)	PriceStream	4.5	476
-Ireland	(All)	Ireland/(All)	PriceStream	5	446
-Ireland	(All)	Ireland/(All)	PriceStream	5.5	198
+Ireland	(All)	Ireland/(All)	PriceStream	0.5	258877
+Ireland	(All)	Ireland/(All)	PriceStream	1	35248
+Ireland	(All)	Ireland/(All)	PriceStream	1.5	5637
+Ireland	(All)	Ireland/(All)	PriceStream	2	2728
+Ireland	(All)	Ireland/(All)	PriceStream	2.5	1579
+Ireland	(All)	Ireland/(All)	PriceStream	3	983
+Ireland	(All)	Ireland/(All)	PriceStream	3.5	810
+Ireland	(All)	Ireland/(All)	PriceStream	4	568
+Ireland	(All)	Ireland/(All)	PriceStream	4.5	479
+Ireland	(All)	Ireland/(All)	PriceStream	5	450
+Ireland	(All)	Ireland/(All)	PriceStream	5.5	199
 Ireland	(All)	Ireland/(All)	PriceStream	6	9
 Ireland	(All)	Ireland/(All)	PriceStream	6.5	6
 Ireland	(All)	Ireland/(All)	PriceStream	7	1
@@ -239,86 +239,86 @@ United Kingdom	(All)	United Kingdom/(All)		0	1
 United Kingdom	(All)	United Kingdom/(All)		0.5	2616
 United Kingdom	(All)	United Kingdom/(All)		1	2857
 United Kingdom	(All)	United Kingdom/(All)		1.5	3032
-United Kingdom	(All)	United Kingdom/(All)		2	6821
-United Kingdom	(All)	United Kingdom/(All)		2.5	12248
-United Kingdom	(All)	United Kingdom/(All)		3	7082
-United Kingdom	(All)	United Kingdom/(All)		3.5	1046
-United Kingdom	(All)	United Kingdom/(All)		4	416
-United Kingdom	(All)	United Kingdom/(All)		4.5	269
-United Kingdom	(All)	United Kingdom/(All)		5	202
-United Kingdom	(All)	United Kingdom/(All)		5.5	164
-United Kingdom	(All)	United Kingdom/(All)		6	128
-United Kingdom	(All)	United Kingdom/(All)		6.5	105
-United Kingdom	(All)	United Kingdom/(All)		7	75
-United Kingdom	(All)	United Kingdom/(All)		7.5	38
-United Kingdom	(All)	United Kingdom/(All)		8	12
+United Kingdom	(All)	United Kingdom/(All)		2	7020
+United Kingdom	(All)	United Kingdom/(All)		2.5	19439
+United Kingdom	(All)	United Kingdom/(All)		3	10947
+United Kingdom	(All)	United Kingdom/(All)		3.5	1329
+United Kingdom	(All)	United Kingdom/(All)		4	514
+United Kingdom	(All)	United Kingdom/(All)		4.5	310
+United Kingdom	(All)	United Kingdom/(All)		5	234
+United Kingdom	(All)	United Kingdom/(All)		5.5	181
+United Kingdom	(All)	United Kingdom/(All)		6	152
+United Kingdom	(All)	United Kingdom/(All)		6.5	120
+United Kingdom	(All)	United Kingdom/(All)		7	82
+United Kingdom	(All)	United Kingdom/(All)		7.5	40
+United Kingdom	(All)	United Kingdom/(All)		8	13
 United Kingdom	(All)	United Kingdom/(All)		8.5	3
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	0	1
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.5	2616
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	1	2857
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.5	3032
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	2	6821
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	2.5	12248
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	3	7082
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	3.5	1046
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	4	416
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	4.5	269
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	5	202
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	5.5	164
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	6	128
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	6.5	105
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	7	75
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	7.5	38
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	8	12
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	2	7020
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	2.5	19439
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	3	10947
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	3.5	1329
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	4	514
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	4.5	310
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	5	234
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	5.5	181
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	6	152
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	6.5	120
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	7	82
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	7.5	40
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	8	13
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	8.5	3
 United Kingdom	London	United Kingdom/London		0	1
 United Kingdom	London	United Kingdom/London		0.5	2616
 United Kingdom	London	United Kingdom/London		1	2857
 United Kingdom	London	United Kingdom/London		1.5	3032
-United Kingdom	London	United Kingdom/London		2	6821
-United Kingdom	London	United Kingdom/London		2.5	12248
-United Kingdom	London	United Kingdom/London		3	7082
-United Kingdom	London	United Kingdom/London		3.5	1046
-United Kingdom	London	United Kingdom/London		4	416
-United Kingdom	London	United Kingdom/London		4.5	269
-United Kingdom	London	United Kingdom/London		5	202
-United Kingdom	London	United Kingdom/London		5.5	164
-United Kingdom	London	United Kingdom/London		6	128
-United Kingdom	London	United Kingdom/London		6.5	105
-United Kingdom	London	United Kingdom/London		7	75
-United Kingdom	London	United Kingdom/London		7.5	38
-United Kingdom	London	United Kingdom/London		8	12
+United Kingdom	London	United Kingdom/London		2	7020
+United Kingdom	London	United Kingdom/London		2.5	19439
+United Kingdom	London	United Kingdom/London		3	10947
+United Kingdom	London	United Kingdom/London		3.5	1329
+United Kingdom	London	United Kingdom/London		4	514
+United Kingdom	London	United Kingdom/London		4.5	310
+United Kingdom	London	United Kingdom/London		5	234
+United Kingdom	London	United Kingdom/London		5.5	181
+United Kingdom	London	United Kingdom/London		6	152
+United Kingdom	London	United Kingdom/London		6.5	120
+United Kingdom	London	United Kingdom/London		7	82
+United Kingdom	London	United Kingdom/London		7.5	40
+United Kingdom	London	United Kingdom/London		8	13
 United Kingdom	London	United Kingdom/London		8.5	3
 United Kingdom	London	United Kingdom/London	PriceStream	0	1
 United Kingdom	London	United Kingdom/London	PriceStream	0.5	2616
 United Kingdom	London	United Kingdom/London	PriceStream	1	2857
 United Kingdom	London	United Kingdom/London	PriceStream	1.5	3032
-United Kingdom	London	United Kingdom/London	PriceStream	2	6821
-United Kingdom	London	United Kingdom/London	PriceStream	2.5	12248
-United Kingdom	London	United Kingdom/London	PriceStream	3	7082
-United Kingdom	London	United Kingdom/London	PriceStream	3.5	1046
-United Kingdom	London	United Kingdom/London	PriceStream	4	416
-United Kingdom	London	United Kingdom/London	PriceStream	4.5	269
-United Kingdom	London	United Kingdom/London	PriceStream	5	202
-United Kingdom	London	United Kingdom/London	PriceStream	5.5	164
-United Kingdom	London	United Kingdom/London	PriceStream	6	128
-United Kingdom	London	United Kingdom/London	PriceStream	6.5	105
-United Kingdom	London	United Kingdom/London	PriceStream	7	75
-United Kingdom	London	United Kingdom/London	PriceStream	7.5	38
-United Kingdom	London	United Kingdom/London	PriceStream	8	12
+United Kingdom	London	United Kingdom/London	PriceStream	2	7020
+United Kingdom	London	United Kingdom/London	PriceStream	2.5	19439
+United Kingdom	London	United Kingdom/London	PriceStream	3	10947
+United Kingdom	London	United Kingdom/London	PriceStream	3.5	1329
+United Kingdom	London	United Kingdom/London	PriceStream	4	514
+United Kingdom	London	United Kingdom/London	PriceStream	4.5	310
+United Kingdom	London	United Kingdom/London	PriceStream	5	234
+United Kingdom	London	United Kingdom/London	PriceStream	5.5	181
+United Kingdom	London	United Kingdom/London	PriceStream	6	152
+United Kingdom	London	United Kingdom/London	PriceStream	6.5	120
+United Kingdom	London	United Kingdom/London	PriceStream	7	82
+United Kingdom	London	United Kingdom/London	PriceStream	7.5	40
+United Kingdom	London	United Kingdom/London	PriceStream	8	13
 United Kingdom	London	United Kingdom/London	PriceStream	8.5	3
 United States	(All)	United States/(All)		0	1
-United States	(All)	United States/(All)		0.5	63150
-United States	(All)	United States/(All)		1	173922
-United States	(All)	United States/(All)		1.5	40187
-United States	(All)	United States/(All)		2	5303
-United States	(All)	United States/(All)		2.5	2628
-United States	(All)	United States/(All)		3	1472
-United States	(All)	United States/(All)		3.5	1043
-United States	(All)	United States/(All)		4	746
-United States	(All)	United States/(All)		4.5	548
-United States	(All)	United States/(All)		5	489
-United States	(All)	United States/(All)		5.5	412
+United States	(All)	United States/(All)		0.5	77178
+United States	(All)	United States/(All)		1	175383
+United States	(All)	United States/(All)		1.5	40456
+United States	(All)	United States/(All)		2	5371
+United States	(All)	United States/(All)		2.5	2662
+United States	(All)	United States/(All)		3	1492
+United States	(All)	United States/(All)		3.5	1052
+United States	(All)	United States/(All)		4	752
+United States	(All)	United States/(All)		4.5	550
+United States	(All)	United States/(All)		5	493
+United States	(All)	United States/(All)		5.5	413
 United States	(All)	United States/(All)		6	181
 United States	(All)	United States/(All)		6.5	21
 United States	(All)	United States/(All)		7	2
@@ -327,17 +327,17 @@ United States	(All)	United States/(All)		8	2
 United States	(All)	United States/(All)		9	1
 United States	(All)	United States/(All)		21622.5	1
 United States	(All)	United States/(All)	PriceStream	0	1
-United States	(All)	United States/(All)	PriceStream	0.5	63150
-United States	(All)	United States/(All)	PriceStream	1	173922
-United States	(All)	United States/(All)	PriceStream	1.5	40187
-United States	(All)	United States/(All)	PriceStream	2	5303
-United States	(All)	United States/(All)	PriceStream	2.5	2628
-United States	(All)	United States/(All)	PriceStream	3	1472
-United States	(All)	United States/(All)	PriceStream	3.5	1043
-United States	(All)	United States/(All)	PriceStream	4	746
-United States	(All)	United States/(All)	PriceStream	4.5	548
-United States	(All)	United States/(All)	PriceStream	5	489
-United States	(All)	United States/(All)	PriceStream	5.5	412
+United States	(All)	United States/(All)	PriceStream	0.5	77178
+United States	(All)	United States/(All)	PriceStream	1	175383
+United States	(All)	United States/(All)	PriceStream	1.5	40456
+United States	(All)	United States/(All)	PriceStream	2	5371
+United States	(All)	United States/(All)	PriceStream	2.5	2662
+United States	(All)	United States/(All)	PriceStream	3	1492
+United States	(All)	United States/(All)	PriceStream	3.5	1052
+United States	(All)	United States/(All)	PriceStream	4	752
+United States	(All)	United States/(All)	PriceStream	4.5	550
+United States	(All)	United States/(All)	PriceStream	5	493
+United States	(All)	United States/(All)	PriceStream	5.5	413
 United States	(All)	United States/(All)	PriceStream	6	181
 United States	(All)	United States/(All)	PriceStream	6.5	21
 United States	(All)	United States/(All)	PriceStream	7	2
@@ -346,17 +346,17 @@ United States	(All)	United States/(All)	PriceStream	8	2
 United States	(All)	United States/(All)	PriceStream	9	1
 United States	(All)	United States/(All)	PriceStream	21622.5	1
 United States	Seattle	United States/Seattle		0	1
-United States	Seattle	United States/Seattle		0.5	63150
-United States	Seattle	United States/Seattle		1	173922
-United States	Seattle	United States/Seattle		1.5	40187
-United States	Seattle	United States/Seattle		2	5303
-United States	Seattle	United States/Seattle		2.5	2628
-United States	Seattle	United States/Seattle		3	1472
-United States	Seattle	United States/Seattle		3.5	1043
-United States	Seattle	United States/Seattle		4	746
-United States	Seattle	United States/Seattle		4.5	548
-United States	Seattle	United States/Seattle		5	489
-United States	Seattle	United States/Seattle		5.5	412
+United States	Seattle	United States/Seattle		0.5	77178
+United States	Seattle	United States/Seattle		1	175383
+United States	Seattle	United States/Seattle		1.5	40456
+United States	Seattle	United States/Seattle		2	5371
+United States	Seattle	United States/Seattle		2.5	2662
+United States	Seattle	United States/Seattle		3	1492
+United States	Seattle	United States/Seattle		3.5	1052
+United States	Seattle	United States/Seattle		4	752
+United States	Seattle	United States/Seattle		4.5	550
+United States	Seattle	United States/Seattle		5	493
+United States	Seattle	United States/Seattle		5.5	413
 United States	Seattle	United States/Seattle		6	181
 United States	Seattle	United States/Seattle		6.5	21
 United States	Seattle	United States/Seattle		7	2
@@ -365,17 +365,17 @@ United States	Seattle	United States/Seattle		8	2
 United States	Seattle	United States/Seattle		9	1
 United States	Seattle	United States/Seattle		21622.5	1
 United States	Seattle	United States/Seattle	PriceStream	0	1
-United States	Seattle	United States/Seattle	PriceStream	0.5	63150
-United States	Seattle	United States/Seattle	PriceStream	1	173922
-United States	Seattle	United States/Seattle	PriceStream	1.5	40187
-United States	Seattle	United States/Seattle	PriceStream	2	5303
-United States	Seattle	United States/Seattle	PriceStream	2.5	2628
-United States	Seattle	United States/Seattle	PriceStream	3	1472
-United States	Seattle	United States/Seattle	PriceStream	3.5	1043
-United States	Seattle	United States/Seattle	PriceStream	4	746
-United States	Seattle	United States/Seattle	PriceStream	4.5	548
-United States	Seattle	United States/Seattle	PriceStream	5	489
-United States	Seattle	United States/Seattle	PriceStream	5.5	412
+United States	Seattle	United States/Seattle	PriceStream	0.5	77178
+United States	Seattle	United States/Seattle	PriceStream	1	175383
+United States	Seattle	United States/Seattle	PriceStream	1.5	40456
+United States	Seattle	United States/Seattle	PriceStream	2	5371
+United States	Seattle	United States/Seattle	PriceStream	2.5	2662
+United States	Seattle	United States/Seattle	PriceStream	3	1492
+United States	Seattle	United States/Seattle	PriceStream	3.5	1052
+United States	Seattle	United States/Seattle	PriceStream	4	752
+United States	Seattle	United States/Seattle	PriceStream	4.5	550
+United States	Seattle	United States/Seattle	PriceStream	5	493
+United States	Seattle	United States/Seattle	PriceStream	5.5	413
 United States	Seattle	United States/Seattle	PriceStream	6	181
 United States	Seattle	United States/Seattle	PriceStream	6.5	21
 United States	Seattle	United States/Seattle	PriceStream	7	2
