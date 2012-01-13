@@ -21,6 +21,7 @@ namespace AppMetrics.DataConvertor
 			var res = CalculateByCountries();
 			WriteStatSummariesReport(res, resFolder);
 			WriteDistributionReport(res, resFolder);
+			WriteJitterReport(res, resFolder);
 		}
 
 		private List<CalcResult> CalculateByCountries()
@@ -117,12 +118,20 @@ namespace AppMetrics.DataConvertor
 		private static CalcResult Calculate(ICollection<RecordEx> records)
 		{
 			var res = new CalcResult();
+
 			var latencies = records.Where(IsLatency).Select(record => record.ValueAsNumber).ToArray();
 			if (latencies.Length > 0)
 			{
 				res.StatSummary = Stats.CalculateSummaries(latencies);
 				res.Distribution = CalculateDistribution(latencies);
 			}
+
+			var jitterVals = records.Where(IsJitter).Select(record => record.ValueAsNumber).ToArray();
+			if (jitterVals.Length > 0)
+			{
+				res.Jitter = CalculateJitterSummary(jitterVals);
+			}
+
 			return res;
 		}
 
@@ -143,6 +152,28 @@ namespace AppMetrics.DataConvertor
 			foreach (var latency in latencies)
 			{
 				var rounded = Math.Ceiling(latency * 2) / 2; // find nearest ceiling with period of 0.5
+				if (res.Vals.ContainsKey(rounded))
+					res.Vals[rounded]++;
+				else
+					res.Vals[rounded] = 1;
+			}
+
+			return res;
+		}
+
+		private static JitterSummary CalculateJitterSummary(decimal[] jitterVals)
+		{
+			var res = new JitterSummary { Count = jitterVals.Length };
+
+			var min = jitterVals.Min();
+			for (int i = 0; i < jitterVals.Length; i++)
+			{
+				jitterVals[i] -= min;
+			}
+
+			foreach (var jitter in jitterVals)
+			{
+				var rounded = Math.Ceiling(jitter * 2) / 2; // find nearest ceiling with period of 0.5
 				if (res.Vals.ContainsKey(rounded))
 					res.Vals[rounded]++;
 				else
@@ -285,6 +316,28 @@ namespace AppMetrics.DataConvertor
 					if (result.Distribution == null)
 						continue;
 					foreach (var pair in result.Distribution.Vals)
+					{
+						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
+						result.Country, result.City, result.Location, result.FunctionName,
+						pair.Key, pair.Value);
+					}
+				}
+			}
+		}
+
+		private static void WriteJitterReport(IEnumerable<CalcResult> results, string resPath)
+		{
+			resPath = Path.GetFullPath(resPath + "\\JitterDistribution.txt");
+
+			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
+			{
+				file.WriteLine("Country\tCity\tLocation\tFunctionName\tDifference\tCount");
+
+				foreach (var result in results)
+				{
+					if (result.Jitter == null)
+						continue;
+					foreach (var pair in result.Jitter.Vals)
 					{
 						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
 						result.Country, result.City, result.Location, result.FunctionName,

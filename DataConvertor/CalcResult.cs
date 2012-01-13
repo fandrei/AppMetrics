@@ -9,6 +9,7 @@ namespace AppMetrics.DataConvertor
 	{
 		public StatSummary StatSummary;
 		public Distribution Distribution;
+		public JitterSummary Jitter;
 
 		public string FunctionName;
 		public string City;
