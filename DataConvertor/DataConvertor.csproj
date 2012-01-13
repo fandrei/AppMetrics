@@ -70,6 +70,7 @@
     <Compile Include="Distribution.cs" />
     <Compile Include="Stats.cs" />
     <Compile Include="StatSummary.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">

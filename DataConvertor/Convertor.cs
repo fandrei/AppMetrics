@@ -151,7 +151,7 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var latency in latencies)
 			{
-				var rounded = Math.Ceiling(latency * 2) / 2; // find nearest ceiling with period of 0.5
+				var rounded = Util.Ceiling(latency, 0.5);
 				if (res.Vals.ContainsKey(rounded))
 					res.Vals[rounded]++;
 				else
@@ -173,7 +173,7 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var jitter in jitterVals)
 			{
-				var rounded = Math.Ceiling(jitter * 2) / 2; // find nearest ceiling with period of 0.5
+				var rounded = Util.Ceiling(jitter, 0.5);
 				if (res.Vals.ContainsKey(rounded))
 					res.Vals[rounded]++;
 				else
