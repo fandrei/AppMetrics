@@ -171,14 +171,10 @@ namespace AppMetrics.DataConvertor
 
 				foreach (var record in session.Records)
 				{
-					try
-					{
-						record.ValueAsNumber = decimal.Parse(record.Value);
-					}
-					catch (FormatException)
-					{
-						record.ValueAsNumber = (decimal)(double.Parse(record.Value));
-					}
+					decimal cur;
+					if (!decimal.TryParse(record.Value, out cur))
+						cur = (decimal)(double.Parse(record.Value));
+					record.ValueAsNumber = cur;
 				}
 			}
 
