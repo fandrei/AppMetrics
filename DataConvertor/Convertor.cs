@@ -117,13 +117,23 @@ namespace AppMetrics.DataConvertor
 		private static CalcResult Calculate(ICollection<RecordEx> records)
 		{
 			var res = new CalcResult();
-			var latencies = records.Select(record => record.ValueAsNumber).ToArray();
-            if (latencies.Length > 0)
-            {
-                res.StatSummary = Stats.CalculateSummaries(latencies);
-                res.Distribution = CalculateDistribution(latencies);
-            }
-		    return res;
+			var latencies = records.Where(IsLatency).Select(record => record.ValueAsNumber).ToArray();
+			if (latencies.Length > 0)
+			{
+				res.StatSummary = Stats.CalculateSummaries(latencies);
+				res.Distribution = CalculateDistribution(latencies);
+			}
+			return res;
+		}
+
+		private static bool IsLatency(RecordEx record)
+		{
+			return record.Name.StartsWith("Latency");
+		}
+
+		private static bool IsJitter(RecordEx record)
+		{
+			return record.Name.StartsWith("Jitter");
 		}
 
 		private static Distribution CalculateDistribution(decimal[] latencies)
@@ -157,11 +167,18 @@ namespace AppMetrics.DataConvertor
 				session.Location = geoLookup.getLocation(session.Ip);
 
 				// leave only latency info
-				session.Records.RemoveAll(record => !record.Name.StartsWith("Latency"));
+				session.Records.RemoveAll(record => !IsLatency(record) && !IsJitter(record));
 
 				foreach (var record in session.Records)
 				{
-					record.ValueAsNumber = decimal.Parse(record.Value);
+					try
+					{
+						record.ValueAsNumber = decimal.Parse(record.Value);
+					}
+					catch (FormatException)
+					{
+						record.ValueAsNumber = (decimal)(double.Parse(record.Value));
+					}
 				}
 			}
 
@@ -249,8 +266,8 @@ namespace AppMetrics.DataConvertor
 				foreach (var result in results)
 				{
 					var summary = result.StatSummary;
-                    if (summary == null)
-                        continue;
+					if (summary == null)
+						continue;
 					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}",
 						result.Country, result.City, result.Location, result.FunctionName,
 						summary.Count, summary.Average,
@@ -269,8 +286,8 @@ namespace AppMetrics.DataConvertor
 
 				foreach (var result in results)
 				{
-                    if (result.Distribution == null)
-                        continue;
+					if (result.Distribution == null)
+						continue;
 					foreach (var pair in result.Distribution.Vals)
 					{
 						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
