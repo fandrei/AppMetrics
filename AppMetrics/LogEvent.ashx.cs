@@ -72,7 +72,7 @@ namespace AppMetrics
 			}
 			catch (Exception exc)
 			{
-				Report(exc);
+				ReportLog(exc);
 #if DEBUG
 				context.Response.Write(exc);
 #endif
@@ -127,17 +127,17 @@ namespace AppMetrics
 			{
 				var count = Interlocked.Exchange(ref _requestCounter, 0);
 				if (count != 0)
-					Report(string.Format("Requests per second: {0}", count), Priority.Low);
+					ReportLog(string.Format("Requests per second: {0}", count), Priority.Low);
 			}
 			catch (Exception exc)
 			{
-				Report(exc);
+				ReportLog(exc);
 			}
 		}
 
 		enum Priority { Low, High }
 
-		static void Report(object val, Priority priority = Priority.High)
+		static void ReportLog(object val, Priority priority = Priority.High)
 		{
 			try
 			{
@@ -148,7 +148,7 @@ namespace AppMetrics
 
 				if (_logFile != null)
 				{
-					var time = DateTime.Now;
+					var time = DateTime.UtcNow;
 					bool multiLineData = text.Contains('\n');
 					if (multiLineData)
 					{
