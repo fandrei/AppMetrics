@@ -186,6 +186,7 @@ namespace AppMetrics.DataConvertor
 		private void ReadData(string dataPath)
 		{
 			ParseData(dataPath);
+			GC.Collect();
 
 			var watch = Stopwatch.StartNew();
 
@@ -194,7 +195,14 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var session in _sessions)
 			{
-				session.Ip = session.Records.Find(record => record.Name == "ClientIP").Value;
+				var ipRecord = session.Records.Find(record => record.Name == "ClientIP");
+				if (ipRecord == null)
+				{
+					session.Records.Clear();
+					continue;
+				}
+
+				session.Ip = ipRecord.Value;
 				session.Location = geoLookup.getLocation(session.Ip);
 
 				// leave only latency info
@@ -208,6 +216,8 @@ namespace AppMetrics.DataConvertor
 					record.ValueAsNumber = cur;
 				}
 			}
+
+			_sessions.RemoveAll(session => session.Records.Count == 0);
 
 			Console.WriteLine("Preparing data: {0} secs", watch.Elapsed.TotalSeconds);
 		}
@@ -275,10 +285,13 @@ namespace AppMetrics.DataConvertor
 				var maxDate = sessions.Max(session => session.LastUpdateTime);
 				file.WriteLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
 
-				file.WriteLine("SessionsCount\t{0}", sessions.Count);
+				file.WriteLine("SessionsCount\t {0}", sessions.Count);
 
-				var recordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Count);
-				file.WriteLine("RecordsCount\t{0}", recordsCount);
+				var latencyRecordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Where(IsLatency).Count());
+				file.WriteLine("LatencyRecordsCount\t {0}", latencyRecordsCount);
+
+				var jitterRecordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Where(IsJitter).Count());
+				file.WriteLine("JitterRecordsCount\t {0}", jitterRecordsCount);
 			}
 		}
 
