@@ -166,7 +166,7 @@ namespace AppMetrics.DataConvertor
 
 			foreach (var jitter in jitterVals)
 			{
-				var rounded = Util.Ceiling(jitter, 0.5);
+				var rounded = Util.Ceiling(jitter, 0.2);
 				if (res.Vals.ContainsKey(rounded))
 					res.Vals[rounded]++;
 				else
