@@ -164,12 +164,6 @@ namespace AppMetrics.DataConvertor
 		{
 			var res = new JitterSummary { Count = jitterVals.Length };
 
-			var min = jitterVals.Min();
-			for (int i = 0; i < jitterVals.Length; i++)
-			{
-				jitterVals[i] -= min;
-			}
-
 			foreach (var jitter in jitterVals)
 			{
 				var rounded = Util.Ceiling(jitter, 0.5);
@@ -210,7 +204,6 @@ namespace AppMetrics.DataConvertor
 				session.Ip = ipRecord.Value;
 				session.Location = geoLookup.getLocation(session.Ip);
 
-				// leave only latency info
 				session.Records.RemoveAll(record => !IsLatency(record) && !IsJitter(record));
 
 				foreach (var record in session.Records)
@@ -220,11 +213,26 @@ namespace AppMetrics.DataConvertor
 						cur = (decimal)(double.Parse(record.Value));
 					record.ValueAsNumber = cur;
 				}
+
+				AdjustJitter(session);
 			}
 
 			_sessions.RemoveAll(session => session.Records.Count == 0);
 
 			Console.WriteLine("Preparing data: {0} secs", watch.Elapsed.TotalSeconds);
+		}
+
+		static void AdjustJitter(SessionEx session)
+		{
+			var jitterRecords = session.Records.Where(IsJitter).ToArray();
+			if (jitterRecords.Length == 0)
+				return;
+			var min = jitterRecords.Min(record => record.ValueAsNumber);
+
+			for (int i = 0; i < jitterRecords.Length; i++)
+			{
+				jitterRecords[i].ValueAsNumber -= min;
+			}
 		}
 
 		private void ParseData(string dataPath)
