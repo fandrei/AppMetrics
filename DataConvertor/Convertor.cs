@@ -14,7 +14,6 @@ namespace AppMetrics.DataConvertor
 		public void Process(string dataPath, string resFolder)
 		{
 			ReadData(dataPath);
-			GC.Collect();
 
 			WriteSummaryReport(_sessions, resFolder);
 
@@ -188,6 +187,12 @@ namespace AppMetrics.DataConvertor
 			ParseData(dataPath);
 			GC.Collect();
 
+			PrepareData();
+			GC.Collect();
+		}
+
+		private void PrepareData()
+		{
 			var watch = Stopwatch.StartNew();
 
 			var geoDataPath = Path.GetFullPath(@"..\..\tools\GeoIP\GeoLiteCity.dat");
