@@ -285,6 +285,8 @@ namespace AppMetrics.DataConvertor
 				var maxDate = sessions.Max(session => session.LastUpdateTime);
 				file.WriteLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
 
+				// append leading space as a workaround for the PowerPivot quirk 
+				// http://social.msdn.microsoft.com/Forums/en-US/sqlkjpowerpivotforexcel/thread/456699ec-b5a2-4ae9-bc9f-b7ed2d637959
 				file.WriteLine("SessionsCount\t {0}", sessions.Count);
 
 				var latencyRecordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Where(IsLatency).Count());
