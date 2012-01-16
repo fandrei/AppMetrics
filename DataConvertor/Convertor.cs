@@ -11,9 +11,9 @@ namespace AppMetrics.DataConvertor
 {
 	class Convertor
 	{
-		public void Process(string dataPath, string resFolder)
+		public void Process(string dataPath, string resFolder, TimeSpan period)
 		{
-			ReadData(dataPath);
+			ReadData(dataPath, period);
 
 			WriteSummaryReport(_sessions, resFolder);
 
@@ -176,9 +176,9 @@ namespace AppMetrics.DataConvertor
 			return res;
 		}
 
-		private void ReadData(string dataPath)
+		private void ReadData(string dataPath, TimeSpan period)
 		{
-			ParseData(dataPath);
+			ParseData(dataPath, period);
 			GC.Collect();
 
 			PrepareData();
@@ -235,13 +235,13 @@ namespace AppMetrics.DataConvertor
 			}
 		}
 
-		private void ParseData(string dataPath)
+		private void ParseData(string dataPath, TimeSpan period)
 		{
 			var watch = Stopwatch.StartNew();
 
 			_sessions = new List<SessionEx>();
 
-			var sessions = DataSource.GetSessionsFromPath(dataPath, DateTime.Now - DateTime.MinValue);
+			var sessions = DataSource.GetSessionsFromPath(dataPath, period);
 			foreach (var session in sessions)
 			{
 				var records = DataSource.GetRecordsFromSession(session);

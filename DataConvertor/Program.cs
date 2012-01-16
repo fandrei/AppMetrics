@@ -12,14 +12,15 @@ namespace AppMetrics.DataConvertor
 		{
 			try
 			{
-				if (args.Length == 0 || args.Length > 2)
+				if (args.Length == 0 || args.Length > 3)
 					throw new ApplicationException("Invalid command line args");
 
 				var dataPath = args[0];
 				var resPath = (args.Length >= 2) ? args[1] : ".";
+				var periodDays = (args.Length >= 3) ? TimeSpan.Parse(args[2]) : TimeSpan.MaxValue;
 
 				var convertor = new Convertor();
-				convertor.Process(dataPath, resPath);
+				convertor.Process(dataPath, resPath, periodDays);
 			}
 			catch (Exception exc)
 			{
