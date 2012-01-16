@@ -229,9 +229,9 @@ namespace AppMetrics.DataConvertor
 				return;
 			var min = jitterRecords.Min(record => record.ValueAsNumber);
 
-			for (int i = 0; i < jitterRecords.Length; i++)
+			foreach (var t in jitterRecords)
 			{
-				jitterRecords[i].ValueAsNumber -= min;
+				t.ValueAsNumber -= min;
 			}
 		}
 
