@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -57,7 +58,7 @@ namespace AppMetrics.DataModel
 		{
 			var res = new List<Session>();
 
-			var beginningTime = DateTime.Now - period;
+			var curTime = DateTime.Now;
 
 			if (Directory.Exists(dataPath))
 			{
@@ -70,8 +71,9 @@ namespace AppMetrics.DataModel
 					var nameParts = fileName.Split('.');
 					var sessionId = nameParts.Last();
 
-					var creationTime = File.GetCreationTime(filePath);
-					if (creationTime < beginningTime)
+					var timeText = nameParts.First().Replace('_', ':');
+					var sessionCreationTime = DateTime.ParseExact(timeText, "u", CultureInfo.InvariantCulture);
+					if (curTime - sessionCreationTime > period)
 						continue;
 
 					var lastUpdateTime = File.GetLastWriteTime(filePath);
@@ -80,7 +82,7 @@ namespace AppMetrics.DataModel
 									{
 										FileName = filePath,
 										Id = sessionId,
-										CreationTime = creationTime,
+										CreationTime = sessionCreationTime,
 										LastUpdateTime = lastUpdateTime,
 									};
 					res.Add(session);
