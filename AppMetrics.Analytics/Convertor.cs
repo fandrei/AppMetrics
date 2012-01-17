@@ -34,7 +34,7 @@ namespace AppMetrics.Analytics
 				res.AddRange(overallSummariesByFunction);
 			}
 
-			var sessionsByCountries = GroupBy(_sessions, session => session.Location.countryName);
+			var sessionsByCountries = Util.GroupBy(_sessions, session => session.Location.countryName);
 			foreach (var pair in sessionsByCountries)
 			{
 				var countryName = pair.Key;
@@ -69,7 +69,7 @@ namespace AppMetrics.Analytics
 				}
 			}
 
-			var recordsByCities = GroupBy(records, record => (record.Session.Location.city) ?? "");
+			var recordsByCities = Util.GroupBy(records, record => (record.Session.Location.city) ?? "");
 			recordsByCities.Remove("");
 			foreach (var pair in recordsByCities)
 			{
@@ -95,7 +95,7 @@ namespace AppMetrics.Analytics
 			var tmp = Calculate(records);
 			res.Add(tmp);
 
-			var recordsByFunction = GroupBy(records, record => record.Name.Split(' ')[1]);
+			var recordsByFunction = Util.GroupBy(records, record => record.Name.Split(' ')[1]);
 			foreach (var pair in recordsByFunction)
 			{
 				var functionName = pair.Key;
@@ -211,13 +211,6 @@ namespace AppMetrics.Analytics
 			{
 				t.ValueAsNumber = min;
 			}
-		}
-
-		static SortedDictionary<TKey, List<TSource>> GroupBy<TSource, TKey>(IEnumerable<TSource> source,
-			Func<TSource, TKey> keySelector)
-		{
-			var res = source.GroupBy(keySelector).ToDictionary(pair => pair.Key, pair => pair.ToList());
-			return new SortedDictionary<TKey, List<TSource>>(res);
 		}
 
 		private static List<RecordEx> GetRecords(IEnumerable<SessionEx> sessions)

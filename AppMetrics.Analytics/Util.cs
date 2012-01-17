@@ -33,5 +33,12 @@ namespace AppMetrics.Analytics
 		{
 			return record.Name.StartsWith("Jitter");
 		}
+
+		public static SortedDictionary<TKey, List<TSource>> GroupBy<TSource, TKey>(IEnumerable<TSource> source,
+			Func<TSource, TKey> keySelector)
+		{
+			var res = source.GroupBy(keySelector).ToDictionary(pair => pair.Key, pair => pair.ToList());
+			return new SortedDictionary<TKey, List<TSource>>(res);
+		}
 	}
 }
