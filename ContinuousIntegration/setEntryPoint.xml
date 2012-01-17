@@ -16,7 +16,7 @@
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\EntryPointPackage\EntryPoint.SetParameters.xml"
         Regex="(name=&quot;RedirectionTarget&quot; *?value=)&quot;[^&quot;]*&quot;"
-        ReplacementText="$1&quot;http://localhost/AppMetrics_$(MyBuildNumber)/{R:1}&quot;" />
+        ReplacementText="$1&quot;http://localhost/AppMetrics_$(MyBuildNumber)/{R:0}&quot;" />
 
     <Exec Command='"$(MSBuildProjectDirectory)\EntryPointPackage\EntryPoint.deploy.cmd" /Y'
         ContinueOnError='false' />
