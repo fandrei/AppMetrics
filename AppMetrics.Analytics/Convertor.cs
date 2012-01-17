@@ -209,7 +209,7 @@ namespace AppMetrics.Analytics
 
 			foreach (var t in jitterRecords)
 			{
-				t.ValueAsNumber = min;
+				t.ValueAsNumber -= min;
 			}
 		}
 
