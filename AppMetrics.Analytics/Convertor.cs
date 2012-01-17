@@ -5,22 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using AppMetrics.DataModel;
-
 namespace AppMetrics.Analytics
 {
 	public class Convertor
 	{
-		public void Process(string dataPath, string resFolder, TimeSpan period)
+		public List<CalcResult> Process(List<SessionEx> sessions)
 		{
-			ReadData(dataPath, period);
-
-			WriteSummaryReport(_sessions, resFolder);
+			_sessions = sessions;
+			PrepareData();
+			GC.Collect();
 
 			var res = CalculateByCountries();
-			WriteStatSummariesReport(res, resFolder);
-			WriteDistributionReport(res, resFolder);
-			WriteJitterReport(res, resFolder);
+			return res;
 		}
 
 		private List<CalcResult> CalculateByCountries()
@@ -118,30 +114,20 @@ namespace AppMetrics.Analytics
 		{
 			var res = new CalcResult();
 
-			var latencies = records.Where(IsLatency).Select(record => record.ValueAsNumber).ToArray();
+			var latencies = records.Where(Util.IsLatency).Select(record => record.ValueAsNumber).ToArray();
 			if (latencies.Length > 0)
 			{
 				res.StatSummary = Stats.CalculateSummaries(latencies);
 				res.Distribution = CalculateDistribution(latencies);
 			}
 
-			var jitterVals = records.Where(IsJitter).Select(record => record.ValueAsNumber).ToArray();
+			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToArray();
 			if (jitterVals.Length > 0)
 			{
 				res.Jitter = CalculateJitterSummary(jitterVals);
 			}
 
 			return res;
-		}
-
-		private static bool IsLatency(RecordEx record)
-		{
-			return record.Name.StartsWith("Latency");
-		}
-
-		private static bool IsJitter(RecordEx record)
-		{
-			return record.Name.StartsWith("Jitter");
 		}
 
 		private static Distribution CalculateDistribution(decimal[] latencies)
@@ -176,15 +162,6 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
-		private void ReadData(string dataPath, TimeSpan period)
-		{
-			_sessions = LogReader.Parse(dataPath, period);
-			GC.Collect();
-
-			PrepareData();
-			GC.Collect();
-		}
-
 		private void PrepareData()
 		{
 			var watch = Stopwatch.StartNew();
@@ -204,7 +181,7 @@ namespace AppMetrics.Analytics
 				session.Ip = ipRecord.Value;
 				session.Location = geoLookup.getLocation(session.Ip);
 
-				session.Records.RemoveAll(record => !IsLatency(record) && !IsJitter(record));
+				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record));
 
 				foreach (var record in session.Records)
 				{
@@ -224,7 +201,7 @@ namespace AppMetrics.Analytics
 
 		static void AdjustJitter(SessionEx session)
 		{
-			var jitterRecords = session.Records.Where(IsJitter).ToArray();
+			var jitterRecords = session.Records.Where(Util.IsJitter).ToArray();
 			if (jitterRecords.Length == 0)
 				return;
 
@@ -251,97 +228,6 @@ namespace AppMetrics.Analytics
 				records.AddRange(session.Records);
 			}
 			return records;
-		}
-
-		private static void WriteSummaryReport(ICollection<SessionEx> sessions, string resPath)
-		{
-			resPath = Path.GetFullPath(resPath + "\\Summary.txt");
-
-			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
-			{
-				file.WriteLine("Name\tValue");
-
-				var minDate = sessions.Min(session => session.LastUpdateTime);
-				file.WriteLine("MinDate\t{0}", minDate.ToString("yyyy-MM-dd HH:mm:ss"));
-
-				var maxDate = sessions.Max(session => session.LastUpdateTime);
-				file.WriteLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
-
-				// append leading space as a workaround for the PowerPivot quirk 
-				// http://social.msdn.microsoft.com/Forums/en-US/sqlkjpowerpivotforexcel/thread/456699ec-b5a2-4ae9-bc9f-b7ed2d637959
-				file.WriteLine("SessionsCount\t {0}", sessions.Count);
-
-				var latencyRecordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Where(IsLatency).Count());
-				file.WriteLine("LatencyRecordsCount\t {0}", latencyRecordsCount);
-
-				var jitterRecordsCount = sessions.Aggregate(0, (val, session) => val + session.Records.Where(IsJitter).Count());
-				file.WriteLine("JitterRecordsCount\t {0}", jitterRecordsCount);
-			}
-		}
-
-		private static void WriteStatSummariesReport(IEnumerable<CalcResult> results, string resPath)
-		{
-			resPath = Path.GetFullPath(resPath + "\\LatencyStatSummaries.txt");
-
-			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
-			{
-				file.WriteLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
-
-				foreach (var result in results)
-				{
-					var summary = result.StatSummary;
-					if (summary == null)
-						continue;
-					file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}",
-						result.Country, result.City, result.Location, result.FunctionName,
-						summary.Count, summary.Average,
-						summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
-				}
-			}
-		}
-
-		private static void WriteDistributionReport(IEnumerable<CalcResult> results, string resPath)
-		{
-			resPath = Path.GetFullPath(resPath + "\\LatencyDistribution.txt");
-
-			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
-			{
-				file.WriteLine("Country\tCity\tLocation\tFunctionName\tLatency\tCount");
-
-				foreach (var result in results)
-				{
-					if (result.Distribution == null)
-						continue;
-					foreach (var pair in result.Distribution.Vals)
-					{
-						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
-						result.Country, result.City, result.Location, result.FunctionName,
-						pair.Key, pair.Value);
-					}
-				}
-			}
-		}
-
-		private static void WriteJitterReport(IEnumerable<CalcResult> results, string resPath)
-		{
-			resPath = Path.GetFullPath(resPath + "\\JitterDistribution.txt");
-
-			using (var file = new StreamWriter(resPath, false, Encoding.UTF8))
-			{
-				file.WriteLine("Country\tCity\tLocation\tFunctionName\tDifference\tCount");
-
-				foreach (var result in results)
-				{
-					if (result.Jitter == null)
-						continue;
-					foreach (var pair in result.Jitter.Vals)
-					{
-						file.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
-						result.Country, result.City, result.Location, result.FunctionName,
-						pair.Key, pair.Value);
-					}
-				}
-			}
 		}
 
 		private List<SessionEx> _sessions;

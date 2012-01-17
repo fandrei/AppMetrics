@@ -15,29 +15,32 @@ namespace AppMetrics.Analytics
 
 			var res = new List<SessionEx>();
 
-			var sessions = DataSource.GetSessionsFromPath(dataPath, period);
-			foreach (var session in sessions)
 			{
-				var records = DataSource.GetRecordsFromSession(session);
-
-				var sessionEx = new SessionEx
+				var sessions = DataSource.GetSessionsFromPath(dataPath, period);
+				foreach (var session in sessions)
 				{
-					Id = session.Id,
-					CreationTime = session.CreationTime,
-					LastUpdateTime = session.LastUpdateTime
-				};
-				res.Add(sessionEx);
+					var records = DataSource.GetRecordsFromSession(session);
 
-				sessionEx.Records = records.ConvertAll(
-					val => new RecordEx(sessionEx)
-					{
-						SessionId = val.SessionId,
-						Name = val.Name,
-						Time = val.Time,
-						Value = val.Value
-					});
+					var sessionEx = new SessionEx
+										{
+											Id = session.Id,
+											CreationTime = session.CreationTime,
+											LastUpdateTime = session.LastUpdateTime
+										};
+					res.Add(sessionEx);
+
+					sessionEx.Records = records.ConvertAll(
+						val => new RecordEx(sessionEx)
+								{
+									SessionId = val.SessionId,
+									Name = val.Name,
+									Time = val.Time,
+									Value = val.Value
+								});
+				}
 			}
 
+			GC.Collect();
 			Trace.WriteLine(string.Format("Parsing data: {0} secs", watch.Elapsed.TotalSeconds));
 			return res;
 		}

@@ -23,5 +23,15 @@ namespace AppMetrics.Analytics
 		{
 			return Ceiling(val, (decimal)period);
 		}
+
+		public static bool IsLatency(RecordEx record)
+		{
+			return record.Name.StartsWith("Latency");
+		}
+
+		public static bool IsJitter(RecordEx record)
+		{
+			return record.Name.StartsWith("Jitter");
+		}
 	}
 }
