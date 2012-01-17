@@ -5,7 +5,7 @@ using System.Text;
 
 using AppMetrics.DataModel;
 
-namespace AppMetrics.DataConvertor
+namespace AppMetrics.Analytics
 {
 	class SessionEx : Session
 	{

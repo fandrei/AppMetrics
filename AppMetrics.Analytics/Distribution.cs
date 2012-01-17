@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AppMetrics.DataConvertor
+namespace AppMetrics.Analytics
 {
 	class Distribution
 	{

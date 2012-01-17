@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
+using AppMetrics.Analytics;
+
 namespace AppMetrics.DataConvertor
 {
 	class Program

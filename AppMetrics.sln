@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "Co
 		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.Analytics", "AppMetrics.Analytics\AppMetrics.Analytics.csproj", "{AE6B8B1D-F338-473D-A41C-4B58768274B1}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
@@ -80,6 +82,10 @@ Global
 		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77E38FB2-DB0B-47EE-8CEB-0D100B47090D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE6B8B1D-F338-473D-A41C-4B58768274B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6B8B1D-F338-473D-A41C-4B58768274B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6B8B1D-F338-473D-A41C-4B58768274B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6B8B1D-F338-473D-A41C-4B58768274B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

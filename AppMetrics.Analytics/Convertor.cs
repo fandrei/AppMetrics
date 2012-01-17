@@ -7,9 +7,9 @@ using System.Text;
 
 using AppMetrics.DataModel;
 
-namespace AppMetrics.DataConvertor
+namespace AppMetrics.Analytics
 {
-	class Convertor
+	public class Convertor
 	{
 		public void Process(string dataPath, string resFolder, TimeSpan period)
 		{
@@ -227,11 +227,12 @@ namespace AppMetrics.DataConvertor
 			var jitterRecords = session.Records.Where(IsJitter).ToArray();
 			if (jitterRecords.Length == 0)
 				return;
+
 			var min = jitterRecords.Min(record => record.ValueAsNumber);
 
 			foreach (var t in jitterRecords)
 			{
-				t.ValueAsNumber -= min;
+				t.ValueAsNumber = min;
 			}
 		}
 

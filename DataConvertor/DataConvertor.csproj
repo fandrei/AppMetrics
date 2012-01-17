@@ -48,9 +48,6 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApiGeoIP">
-      <HintPath>..\tools\GeoIP\ApiGeoIP\bin\Debug\ApiGeoIP.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,19 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalcResult.cs" />
-    <Compile Include="Convertor.cs" />
-    <Compile Include="JitterSummary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordEx.cs" />
-    <Compile Include="SessionEx.cs" />
-    <Compile Include="Distribution.cs" />
-    <Compile Include="Stats.cs" />
-    <Compile Include="StatSummary.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppMetrics.Analytics\AppMetrics.Analytics.csproj">
+      <Project>{AE6B8B1D-F338-473D-A41C-4B58768274B1}</Project>
+      <Name>AppMetrics.Analytics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
       <Project>{136B2C53-0675-4BB0-9EB5-2406A0027794}</Project>
       <Name>AppMetrics</Name>
