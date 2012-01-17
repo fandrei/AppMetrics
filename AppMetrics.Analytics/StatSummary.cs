@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	class StatSummary
+	public class StatSummary
 	{
 		public decimal Average;
 

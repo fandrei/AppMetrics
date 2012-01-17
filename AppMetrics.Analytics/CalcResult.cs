@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	class CalcResult
+	public class CalcResult
 	{
 		public StatSummary StatSummary;
 		public Distribution Distribution;

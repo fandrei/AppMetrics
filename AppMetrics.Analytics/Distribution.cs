@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	class Distribution
+	public class Distribution
 	{
 		public SortedDictionary<decimal, decimal> Vals = new SortedDictionary<decimal, decimal>();
 		public int Count;
