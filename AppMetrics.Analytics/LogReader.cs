@@ -17,6 +17,7 @@ namespace AppMetrics.Analytics
 
 			{
 				var sessions = DataSource.GetSessionsFromPath(dataPath, period);
+
 				foreach (var session in sessions)
 				{
 					var records = DataSource.GetRecordsFromSession(session);

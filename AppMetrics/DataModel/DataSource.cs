@@ -88,7 +88,7 @@ namespace AppMetrics.DataModel
 					res.Add(session);
 				}
 
-				res.Sort((x, y) => x.LastUpdateTime.CompareTo(y.LastUpdateTime));
+				res.Sort((x, y) => x.CreationTime.CompareTo(y.CreationTime));
 			}
 
 			return res;
