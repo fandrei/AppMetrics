@@ -92,9 +92,6 @@ namespace AppMetrics.Analytics
 		{
 			var res = new List<CalcResult>();
 
-			var tmp = Calculate(records);
-			res.Add(tmp);
-
 			var recordsByFunction = Util.GroupBy(records, record => record.Name.Split(' ')[1]);
 			foreach (var pair in recordsByFunction)
 			{
