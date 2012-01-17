@@ -20,6 +20,15 @@ namespace AppMetrics
 			}
 		}
 
+		public static string AppDataPath
+		{
+			get
+			{
+				var res = HttpContext.Current.Server.MapPath("~/App_Data");
+				return res;
+			}
+		}
+
 		private static Configuration _config;
 
 		static Configuration Config
