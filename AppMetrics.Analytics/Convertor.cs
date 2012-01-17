@@ -178,7 +178,7 @@ namespace AppMetrics.Analytics
 
 		private void ReadData(string dataPath, TimeSpan period)
 		{
-			ParseData(dataPath, period);
+			_sessions = LogReader.Parse(dataPath, period);
 			GC.Collect();
 
 			PrepareData();
@@ -234,38 +234,6 @@ namespace AppMetrics.Analytics
 			{
 				t.ValueAsNumber = min;
 			}
-		}
-
-		private void ParseData(string dataPath, TimeSpan period)
-		{
-			var watch = Stopwatch.StartNew();
-
-			_sessions = new List<SessionEx>();
-
-			var sessions = DataSource.GetSessionsFromPath(dataPath, period);
-			foreach (var session in sessions)
-			{
-				var records = DataSource.GetRecordsFromSession(session);
-
-				var sessionEx = new SessionEx
-				{
-					Id = session.Id,
-					CreationTime = session.CreationTime,
-					LastUpdateTime = session.LastUpdateTime
-				};
-				_sessions.Add(sessionEx);
-
-				sessionEx.Records = records.ConvertAll(
-					val => new RecordEx(sessionEx)
-					{
-						SessionId = val.SessionId,
-						Name = val.Name,
-						Time = val.Time,
-						Value = val.Value
-					});
-			}
-
-			Console.WriteLine("Parsing data: {0} secs", watch.Elapsed.TotalSeconds);
 		}
 
 		static SortedDictionary<TKey, List<TSource>> GroupBy<TSource, TKey>(IEnumerable<TSource> source,

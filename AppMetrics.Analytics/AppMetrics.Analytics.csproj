@@ -71,6 +71,7 @@
     <Compile Include="Convertor.cs" />
     <Compile Include="Distribution.cs" />
     <Compile Include="JitterSummary.cs" />
+    <Compile Include="LogReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordEx.cs" />
     <Compile Include="SessionEx.cs" />

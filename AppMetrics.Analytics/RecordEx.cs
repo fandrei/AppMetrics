@@ -7,7 +7,7 @@ using AppMetrics.DataModel;
 
 namespace AppMetrics.Analytics
 {
-	class RecordEx : Record
+	public class RecordEx : Record
 	{
 		public RecordEx(SessionEx session)
 		{

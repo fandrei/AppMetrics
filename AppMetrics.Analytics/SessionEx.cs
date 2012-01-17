@@ -7,7 +7,7 @@ using AppMetrics.DataModel;
 
 namespace AppMetrics.Analytics
 {
-	class SessionEx : Session
+	public class SessionEx : Session
 	{
 		public string Ip;
 		public Location Location { get; set; }
