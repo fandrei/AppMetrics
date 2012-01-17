@@ -19,17 +19,10 @@ namespace AppMetrics
 		{
 			lock (Sync)
 			{
-				if (_timer == null)
+				if (_logFile == null)
 				{
-					_timer = new Timer { Interval = 1000, AutoReset = true };
-					_timer.Elapsed += OnTimer;
-					_timer.Start();
-
-					if (_logFile == null)
-					{
-						var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
-						_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
-					}
+					var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
+					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
 				}
 			}
 		}
@@ -67,8 +60,6 @@ namespace AppMetrics
 					data = Util.Escape(data);
 					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
-
-				CountNewRequest();
 			}
 			catch (Exception exc)
 			{
@@ -116,25 +107,6 @@ namespace AppMetrics
 			}
 		}
 
-		static void CountNewRequest()
-		{
-			Interlocked.Increment(ref _requestCounter);
-		}
-
-		static void OnTimer(object sender, System.Timers.ElapsedEventArgs e)
-		{
-			try
-			{
-				var count = Interlocked.Exchange(ref _requestCounter, 0);
-				if (count != 0)
-					ReportLog(string.Format("Requests per second: {0}", count), Priority.Low);
-			}
-			catch (Exception exc)
-			{
-				ReportLog(exc);
-			}
-		}
-
 		enum Priority { Low, High }
 
 		static void ReportLog(object val, Priority priority = Priority.High)
@@ -171,9 +143,6 @@ namespace AppMetrics
 		}
 
 		private static StreamWriter _logFile;
-
-		private static long _requestCounter;
-		private static Timer _timer;
 		static readonly object Sync = new object();
 	}
 }
