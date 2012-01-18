@@ -13,7 +13,7 @@ namespace AppMetrics.Analytics
 
 			res.Count = vals.Count;
 			res.Average = vals.Average();
-			
+
 			var sorted = new List<decimal>(vals);
 			sorted.Sort();
 
@@ -29,6 +29,7 @@ namespace AppMetrics.Analytics
 			res.Min = sorted.First();
 			res.Max = sorted.Last();
 
+			Validate(sorted, res);
 			return res;
 		}
 
@@ -44,6 +45,30 @@ namespace AppMetrics.Analytics
 				return vals[rounded];
 			else
 				return (vals[rounded] + vals[rounded + 1]) / 2;
+		}
+
+		static void Validate(ICollection<decimal> vals, StatSummary summary)
+		{
+			ValidateSplitterValue(vals, summary.Median, 0.5M);
+			ValidateSplitterValue(vals, summary.LowerQuartile, 0.25M);
+			ValidateSplitterValue(vals, summary.UpperQuartile, 0.75M);
+		}
+
+		private static void ValidateSplitterValue(ICollection<decimal> vals, decimal splitterValue, decimal splittingCoefficient)
+		{
+			int smallerCount = 0, biggerCount = 0;
+			foreach (var val in vals)
+			{
+				if (val < splitterValue)
+					smallerCount++;
+				if (val > splitterValue)
+					biggerCount++;
+			}
+
+			if (smallerCount > Math.Round(vals.Count * splittingCoefficient))
+				throw new ValidationException();
+			if (biggerCount > Math.Round(vals.Count * (1 - splittingCoefficient)))
+				throw new ValidationException();
 		}
 	}
 }
