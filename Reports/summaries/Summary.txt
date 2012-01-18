@@ -1,6 +1,6 @@
 ﻿Name	Value
 MinDate	2011-12-23 19:26:31
-MaxDate	2012-01-17 18:50:24
-SessionsCount	 73
-LatencyRecordsCount	 3088273
-JitterRecordsCount	 3271147
+MaxDate	2012-01-18 16:48:51
+SessionsCount	 79
+LatencyRecordsCount	 3278249
+JitterRecordsCount	 4730851
