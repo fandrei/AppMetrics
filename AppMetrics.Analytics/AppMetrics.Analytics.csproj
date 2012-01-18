@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalcResult.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="StatsBuilder.cs" />
     <Compile Include="Distribution.cs" />
     <Compile Include="GetReport.ashx.cs">

@@ -194,6 +194,7 @@ namespace AppMetrics.Analytics
 				}
 
 				AdjustJitter(session);
+				Validate(session);
 			}
 
 			_sessions.RemoveAll(session => session.Records.Count == 0);
@@ -220,6 +221,12 @@ namespace AppMetrics.Analytics
 					t.ValueAsNumber -= min;
 				}
 			}
+		}
+
+		static void Validate(SessionEx session)
+		{
+			if (session.Records.Any(record => record.ValueAsNumber < 0))
+				throw new ValidationException();
 		}
 
 		private static List<RecordEx> GetRecords(IEnumerable<SessionEx> sessions)
