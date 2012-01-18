@@ -208,8 +208,9 @@ namespace AppMetrics.Analytics
 			if (jitterRecords.Length == 0)
 				return;
 
+			// slice records with period of 30 secs
 			var jitterRecordsSlicedByTime = Util.GroupBy(jitterRecords,
-				record => Math.Floor((record.Time - DateTime.MinValue).TotalMinutes * 2)); // slice with period 30 secs
+				record => Math.Floor((record.Time - DateTime.MinValue).TotalMinutes * 2));
 
 			foreach (var pair in jitterRecordsSlicedByTime)
 			{
