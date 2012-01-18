@@ -39,11 +39,11 @@ namespace AppMetrics.Analytics
 
 		static decimal FindValue(IList<decimal> vals, decimal i)
 		{
-			var rounded = Math.Floor(i);
+			var rounded = (int)Math.Floor(i);
 			if (i == rounded)
-				return vals[(int)rounded];
+				return vals[rounded];
 			else
-				return (vals[(int)rounded] + vals[(int)rounded + 1]) / 2;
+				return (vals[rounded] + vals[rounded + 1]) / 2;
 		}
 	}
 }
