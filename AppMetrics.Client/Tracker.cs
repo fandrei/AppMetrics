@@ -202,6 +202,12 @@ namespace AppMetrics.Client
 			Log("System_CalendarType", computerInfo.InstalledUICulture.Calendar.GetType().Name);
 
 			Log("System_NumberDecimalSeparator", computerInfo.InstalledUICulture.NumberFormat.NumberDecimalSeparator);
+
+			var timeZone = TimeZone.CurrentTimeZone;
+			Log("System_TimeZone", timeZone.StandardName);
+
+			var offset = timeZone.GetUtcOffset(DateTime.Now);
+			Log("System_TimeZoneOffset", offset.TotalHours);
 		}
 
 		public string SessionId { get; private set; }
