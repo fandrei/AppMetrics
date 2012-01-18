@@ -118,10 +118,15 @@ namespace AppMetrics.Analytics
 				res.Distribution = CalculateDistribution(latencies);
 			}
 
-			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToArray();
-			if (jitterVals.Length > 0)
+			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
+			if (jitterVals.Count > 0)
 			{
-				res.Jitter = CalculateJitterSummary(jitterVals);
+				// remove highest 2% values
+				jitterVals.Sort();
+				var countToRemove = (int)(jitterVals.Count * 0.02);
+				jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
+
+				res.Jitter = CalculateJitterSummary(jitterVals.ToArray());
 			}
 
 			return res;
