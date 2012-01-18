@@ -38,7 +38,7 @@ namespace AppMetrics.DataConvertor
 		{
 			var sessions = LogReader.Parse(dataPath, period);
 
-			var convertor = new Convertor();
+			var convertor = new StatsBuilder();
 			var res = convertor.Process(sessions);
 
 			var summaryReport = Report.GetSummaryReport(sessions);

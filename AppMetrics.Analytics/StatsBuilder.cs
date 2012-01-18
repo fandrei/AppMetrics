@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	public class Convertor
+	public class StatsBuilder
 	{
 		public List<CalcResult> Process(List<SessionEx> sessions)
 		{

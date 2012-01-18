@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalcResult.cs" />
-    <Compile Include="Convertor.cs" />
+    <Compile Include="StatsBuilder.cs" />
     <Compile Include="Distribution.cs" />
     <Compile Include="GetReport.ashx.cs">
       <DependentUpon>GetReport.ashx</DependentUpon>
