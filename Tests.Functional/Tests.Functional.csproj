@@ -68,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
+    <Compile Include="SystemTimerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
