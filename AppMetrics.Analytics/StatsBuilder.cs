@@ -111,11 +111,16 @@ namespace AppMetrics.Analytics
 		{
 			var res = new CalcResult();
 
-			var latencies = records.Where(Util.IsLatency).Select(record => record.ValueAsNumber).ToArray();
-			if (latencies.Length > 0)
+			var latencies = records.Where(Util.IsLatency).Select(record => record.ValueAsNumber).ToList();
+			if (latencies.Count > 0)
 			{
+				// remove highest 2% values
+				latencies.Sort();
+				var countToRemove = (int)(latencies.Count * 0.02);
+				latencies.RemoveRange(latencies.Count - countToRemove, countToRemove);
+
 				res.StatSummary = Stats.CalculateSummaries(latencies);
-				res.Distribution = CalculateDistribution(latencies);
+				res.Distribution = CalculateDistribution(latencies.ToArray());
 			}
 
 			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
