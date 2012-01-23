@@ -160,15 +160,16 @@ namespace AppMetrics.DataModel
 
 			foreach (var session in sessions)
 			{
-				var tmp = GetRecordsFromSession(session);
+				var tmp = GetRecordsFromSession(session, period);
 				res.AddRange(tmp);
 			}
 
 			return res;
 		}
 
-		public static List<Record> GetRecordsFromSession(Session session)
+		public static List<Record> GetRecordsFromSession(Session session, TimeSpan period)
 		{
+			var curTime = DateTime.UtcNow;
 			var res = new List<Record>();
 
 			string text;
@@ -185,10 +186,14 @@ namespace AppMetrics.DataModel
 			{
 				var fields = line.Split('\t');
 
+				var lineTime = GetLineTime(line);
+				if (curTime - lineTime > period)
+					continue;
+
 				var record = new Record
 								{
 									SessionId = session.Id,
-									Time = DateTime.Parse(fields[0]),
+									Time = lineTime,
 									Name = fields[1],
 									Value = fields[2],
 								};

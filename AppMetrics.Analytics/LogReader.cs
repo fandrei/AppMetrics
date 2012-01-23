@@ -20,7 +20,7 @@ namespace AppMetrics.Analytics
 
 				foreach (var session in sessions)
 				{
-					var records = DataSource.GetRecordsFromSession(session);
+					var records = DataSource.GetRecordsFromSession(session, period);
 
 					var sessionEx = new SessionEx
 										{
