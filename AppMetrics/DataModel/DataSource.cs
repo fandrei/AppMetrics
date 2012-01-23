@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace AppMetrics.DataModel
@@ -73,10 +74,11 @@ namespace AppMetrics.DataModel
 
 					var timeText = nameParts.First().Replace('_', ':');
 					var sessionCreationTime = DateTime.ParseExact(timeText, "u", CultureInfo.InvariantCulture);
-					if (curTime - sessionCreationTime > period)
-						continue;
 
-					var lastUpdateTime = File.GetLastWriteTime(filePath);
+					int timeZoneOffset;
+					var lastUpdateTime = GetSessionLastWriteTime(filePath, sessionCreationTime, out timeZoneOffset);
+					if (curTime - lastUpdateTime > period)
+						continue;
 
 					var session = new Session
 									{
@@ -84,6 +86,7 @@ namespace AppMetrics.DataModel
 										Id = sessionId,
 										CreationTime = sessionCreationTime,
 										LastUpdateTime = lastUpdateTime,
+										TimeZoneOffset = timeZoneOffset,
 									};
 					res.Add(session);
 				}
@@ -92,6 +95,55 @@ namespace AppMetrics.DataModel
 			}
 
 			return res;
+		}
+
+		static DateTime GetSessionLastWriteTime(string filePath, DateTime creationUtcTime, out int timeZoneOffset)
+		{
+			// try to detect client's time zone from logged client time 
+			// (can work incorrectly, if the first message was sent after delay > 1 hour)
+			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+			{
+				using (var reader = new StreamReader(stream, Encoding.UTF8))
+				{
+					var firstLine = reader.ReadLine();
+					var timeOffset = GetLineTime(firstLine) - creationUtcTime;
+					timeZoneOffset = (int) Math.Round(timeOffset.TotalHours);
+
+					var lastLine = ReadLastLine(reader);
+
+					var res = GetLineTime(lastLine) - TimeSpan.FromHours(timeZoneOffset);
+					return res;
+				}
+			}
+		}
+
+		private static DateTime GetLineTime(string line)
+		{
+			var tmp = line.Split('\t')[0];
+			var res =DateTime.Parse(tmp);
+			return res;
+		}
+
+		private static string ReadLastLine(StreamReader reader)
+		{
+			var stream = reader.BaseStream;
+			var buf = new byte[1024 * 128];
+			var seekPos =  Math.Min(buf.Length, stream.Length);
+			stream.Seek(-seekPos, SeekOrigin.End);
+			var lastBlockLength = stream.Read(buf, 0, buf.Length);
+
+			int i = lastBlockLength - 2;
+			for (; i >= 0; i--)
+			{
+				if (buf[i] == '\n')
+				{
+					i++;
+					break;
+				}
+			}
+
+			var lastLine = Encoding.UTF8.GetString(buf, i, lastBlockLength - i);
+			return lastLine;
 		}
 
 		public static List<Record> GetRecords(string appKey, TimeSpan period)

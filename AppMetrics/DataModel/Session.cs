@@ -13,7 +13,14 @@ namespace AppMetrics.DataModel
 
 		public DateTime CreationTime { get; set; }
 		public DateTime LastUpdateTime { get; set; }
+		public int TimeZoneOffset { get; set; }
 
 		internal string FileName { get; set; }
+
+		public override string ToString()
+		{
+			var res = string.Format("{0}|{1}|{2}", CreationTime, LastUpdateTime, TimeZoneOffset);
+			return res;
+		}
 	}
 }
