@@ -27,9 +27,14 @@
     <SetEnvVariable Name="AppMetricsTest_Password" Value="$(AppMetricsTest_Password)"/>
     
     <CreateItem Include="$(SolutionRoot)\_bin\$(Configuration)\Tests.dll">
-      <Output TaskParameter="Include" ItemName="TestAssembly" />
+      <Output TaskParameter="Include" ItemName="TestAssembly1" />
     </CreateItem>
-    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" />
+    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly1)" />
+    
+    <CreateItem Include="$(SolutionRoot)\_bin\$(Configuration)\Tests.Analytics.dll">
+      <Output TaskParameter="Include" ItemName="TestAssembly2" />
+    </CreateItem>
+    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly2)" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Test" >
