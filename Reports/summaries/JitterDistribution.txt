@@ -1,78 +1,81 @@
 ﻿Country	City	Location	FunctionName	Difference	Count
-(World)		(World)	PriceStream	0	55010
-(World)		(World)	PriceStream	0.2	2767207
-(World)		(World)	PriceStream	0.4	1168615
-(World)		(World)	PriceStream	0.6	334824
-(World)		(World)	PriceStream	0.8	162894
-(World)		(World)	PriceStream	1	69415
-(World)		(World)	PriceStream	1.2	40450
-(World)		(World)	PriceStream	1.4	20336
-(World)		(World)	PriceStream	1.6	14047
-(World)		(World)	PriceStream	1.8	3436
-Cambodia	(All)	Cambodia/(All)	PriceStream	0	1462
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.2	45654
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.4	18818
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.6	10446
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.8	6399
-Cambodia	(All)	Cambodia/(All)	PriceStream	1	3487
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.2	2545
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.4	1780
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.6	1086
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.8	803
-Cambodia	(All)	Cambodia/(All)	PriceStream	2	569
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.2	385
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.4	340
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.6	237
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.8	219
-Cambodia	(All)	Cambodia/(All)	PriceStream	3	154
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.2	133
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.4	115
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.6	106
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.8	85
-Cambodia	(All)	Cambodia/(All)	PriceStream	4	107
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.2	23
-Ireland	(All)	Ireland/(All)	PriceStream	0	17308
-Ireland	(All)	Ireland/(All)	PriceStream	0.2	511101
-Ireland	(All)	Ireland/(All)	PriceStream	0.4	202382
-Ireland	(All)	Ireland/(All)	PriceStream	0.6	34141
-Ireland	(All)	Ireland/(All)	PriceStream	0.8	12832
-Ireland	(All)	Ireland/(All)	PriceStream	1	7442
-Ireland	(All)	Ireland/(All)	PriceStream	1.2	4759
-Ireland	(All)	Ireland/(All)	PriceStream	1.4	3494
-Ireland	(All)	Ireland/(All)	PriceStream	1.6	2832
-Ireland	(All)	Ireland/(All)	PriceStream	1.8	2399
-Ireland	(All)	Ireland/(All)	PriceStream	2	901
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0	3250
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.2	58117
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.4	8185
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.6	1780
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.8	948
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	1	609
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.2	420
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.4	347
+(World)		(World)	PriceStream	0	66454
+(World)		(World)	PriceStream	0.2	4135630
+(World)		(World)	PriceStream	0.4	1724246
+(World)		(World)	PriceStream	0.6	670639
+(World)		(World)	PriceStream	0.8	354504
+(World)		(World)	PriceStream	1	133869
+(World)		(World)	PriceStream	1.2	82953
+(World)		(World)	PriceStream	1.4	33001
+(World)		(World)	PriceStream	1.6	19284
+Cambodia	(All)	Cambodia/(All)	PriceStream	0	1630
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.2	54588
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.4	24131
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.6	14376
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.8	9177
+Cambodia	(All)	Cambodia/(All)	PriceStream	1	5163
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.2	3751
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.4	2470
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.6	1547
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.8	1141
+Cambodia	(All)	Cambodia/(All)	PriceStream	2	817
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.2	557
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.4	501
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.6	382
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.8	382
+Cambodia	(All)	Cambodia/(All)	PriceStream	3	252
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.2	239
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.4	185
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.6	157
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.8	141
+Cambodia	(All)	Cambodia/(All)	PriceStream	4	144
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.2	111
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.4	88
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.6	81
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.8	87
+Cambodia	(All)	Cambodia/(All)	PriceStream	5	98
+Cambodia	(All)	Cambodia/(All)	PriceStream	5.2	13
+Ireland	(All)	Ireland/(All)	PriceStream	0	19559
+Ireland	(All)	Ireland/(All)	PriceStream	0.2	718629
+Ireland	(All)	Ireland/(All)	PriceStream	0.4	322434
+Ireland	(All)	Ireland/(All)	PriceStream	0.6	67228
+Ireland	(All)	Ireland/(All)	PriceStream	0.8	26778
+Ireland	(All)	Ireland/(All)	PriceStream	1	14358
+Ireland	(All)	Ireland/(All)	PriceStream	1.2	8657
+Ireland	(All)	Ireland/(All)	PriceStream	1.4	5680
+Ireland	(All)	Ireland/(All)	PriceStream	1.6	4369
+Ireland	(All)	Ireland/(All)	PriceStream	1.8	3676
+Ireland	(All)	Ireland/(All)	PriceStream	2	3075
+Ireland	(All)	Ireland/(All)	PriceStream	2.2	296
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	0	3308
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.2	59448
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.4	8845
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.6	1802
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.8	961
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	1	628
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.2	429
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.4	350
 United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.6	256
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.8	194
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	2	23
-United Kingdom	London	United Kingdom/London	PriceStream	0	3250
-United Kingdom	London	United Kingdom/London	PriceStream	0.2	58117
-United Kingdom	London	United Kingdom/London	PriceStream	0.4	8185
-United Kingdom	London	United Kingdom/London	PriceStream	0.6	1780
-United Kingdom	London	United Kingdom/London	PriceStream	0.8	948
-United Kingdom	London	United Kingdom/London	PriceStream	1	609
-United Kingdom	London	United Kingdom/London	PriceStream	1.2	420
-United Kingdom	London	United Kingdom/London	PriceStream	1.4	347
+United Kingdom	(All)	United Kingdom/(All)	PriceStream	1.8	184
+United Kingdom	London	United Kingdom/London	PriceStream	0	3308
+United Kingdom	London	United Kingdom/London	PriceStream	0.2	59448
+United Kingdom	London	United Kingdom/London	PriceStream	0.4	8845
+United Kingdom	London	United Kingdom/London	PriceStream	0.6	1802
+United Kingdom	London	United Kingdom/London	PriceStream	0.8	961
+United Kingdom	London	United Kingdom/London	PriceStream	1	628
+United Kingdom	London	United Kingdom/London	PriceStream	1.2	429
+United Kingdom	London	United Kingdom/London	PriceStream	1.4	350
 United Kingdom	London	United Kingdom/London	PriceStream	1.6	256
-United Kingdom	London	United Kingdom/London	PriceStream	1.8	194
-United Kingdom	London	United Kingdom/London	PriceStream	2	23
-United States	(All)	United States/(All)	PriceStream	0	32990
-United States	(All)	United States/(All)	PriceStream	0.2	2152335
-United States	(All)	United States/(All)	PriceStream	0.4	939230
-United States	(All)	United States/(All)	PriceStream	0.6	288457
-United States	(All)	United States/(All)	PriceStream	0.8	142715
-United States	(All)	United States/(All)	PriceStream	1	57877
-United States	(All)	United States/(All)	PriceStream	1.2	32726
-United States	(All)	United States/(All)	PriceStream	1.4	14715
-United States	(All)	United States/(All)	PriceStream	1.6	6518
+United Kingdom	London	United Kingdom/London	PriceStream	1.8	184
+United States	(All)	United States/(All)	PriceStream	0	41957
+United States	(All)	United States/(All)	PriceStream	0.2	3302965
+United States	(All)	United States/(All)	PriceStream	0.4	1368836
+United States	(All)	United States/(All)	PriceStream	0.6	587233
+United States	(All)	United States/(All)	PriceStream	0.8	317588
+United States	(All)	United States/(All)	PriceStream	1	113720
+United States	(All)	United States/(All)	PriceStream	1.2	70116
+United States	(All)	United States/(All)	PriceStream	1.4	24501
+United States	(All)	United States/(All)	PriceStream	1.6	506
 United States	Saddle River	United States/Saddle River	PriceStream	0	7223
 United States	Saddle River	United States/Saddle River	PriceStream	0.2	1173813
 United States	Saddle River	United States/Saddle River	PriceStream	0.4	615778
@@ -84,11 +87,11 @@ United States	Saddle River	United States/Saddle River	PriceStream	1.4	7410
 United States	Saddle River	United States/Saddle River	PriceStream	1.6	6047
 United States	Saddle River	United States/Saddle River	PriceStream	1.8	5048
 United States	Saddle River	United States/Saddle River	PriceStream	2	60
-United States	Seattle	United States/Seattle	PriceStream	0	25767
-United States	Seattle	United States/Seattle	PriceStream	0.2	978522
-United States	Seattle	United States/Seattle	PriceStream	0.4	323452
-United States	Seattle	United States/Seattle	PriceStream	0.6	197271
-United States	Seattle	United States/Seattle	PriceStream	0.8	114512
-United States	Seattle	United States/Seattle	PriceStream	1	41385
-United States	Seattle	United States/Seattle	PriceStream	1.2	22456
-United States	Seattle	United States/Seattle	PriceStream	1.4	2668
+United States	Seattle	United States/Seattle	PriceStream	0	34734
+United States	Seattle	United States/Seattle	PriceStream	0.2	2129152
+United States	Seattle	United States/Seattle	PriceStream	0.4	753058
+United States	Seattle	United States/Seattle	PriceStream	0.6	496047
+United States	Seattle	United States/Seattle	PriceStream	0.8	289385
+United States	Seattle	United States/Seattle	PriceStream	1	97228
+United States	Seattle	United States/Seattle	PriceStream	1.2	59846
+United States	Seattle	United States/Seattle	PriceStream	1.4	6442
