@@ -40,13 +40,12 @@ namespace AppMetrics
 					throw new ApplicationException("No session ID");
 
 				var filePath = GetDataFilePath(applicationKey, sessionId);
-				var fileExisted = File.Exists(filePath);
 
 				using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 				{
-					using (var writer = new StreamWriter(stream, Encoding.UTF8))
+					using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
 					{
-						WriteData(writer, context, fileExisted);
+						WriteData(writer, context);
 					}
 				}
 			}
@@ -59,14 +58,19 @@ namespace AppMetrics
 			}
 		}
 
-		private static void WriteData(StreamWriter writer, HttpContext context, bool fileExisted)
+		private static void WriteData(StreamWriter writer, HttpContext context)
 		{
+			var fileExisted = writer.BaseStream.Length > 0;
+			writer.BaseStream.Seek(0, SeekOrigin.End);
+
 			var name = context.Request.Params["MessageName"];
 			var data = context.Request.Params["MessageData"];
 			var clientTime = context.Request.Params["MessageTime"];
 
 			if (!fileExisted)
 			{
+				writer.BaseStream.Write(new byte[] { 0xEF, 0xBB, 0xBF }, 0, 3); // UTF8 BOM
+
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
