@@ -42,21 +42,12 @@ namespace AppMetrics
 				var filePath = GetDataFilePath(applicationKey, sessionId);
 				var fileExisted = File.Exists(filePath);
 
-				using (var writer = new StreamWriter(filePath, true, Encoding.UTF8))
+				using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 				{
-					var name = context.Request.Params["MessageName"];
-					var data = context.Request.Params["MessageData"];
-					var clientTime = context.Request.Params["MessageTime"];
-
-					if (!fileExisted)
+					using (var writer = new StreamWriter(stream, Encoding.UTF8))
 					{
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
+						WriteData(writer, context, fileExisted);
 					}
-
-					data = Util.Escape(data);
-					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 			}
 			catch (Exception exc)
@@ -66,6 +57,23 @@ namespace AppMetrics
 				context.Response.Write(exc);
 #endif
 			}
+		}
+
+		private static void WriteData(StreamWriter writer, HttpContext context, bool fileExisted)
+		{
+			var name = context.Request.Params["MessageName"];
+			var data = context.Request.Params["MessageData"];
+			var clientTime = context.Request.Params["MessageTime"];
+
+			if (!fileExisted)
+			{
+				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
+				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
+				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
+			}
+
+			data = Util.Escape(data);
+			writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 		}
 
 		private static string GetDataFilePath(string applicationKey, string sessionId)
