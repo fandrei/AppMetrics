@@ -119,7 +119,14 @@ namespace AppMetrics.DataModel
 		{
 			var res = new List<Record>();
 
-			var text = File.ReadAllText(session.FileName);
+			string text;
+			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+			{
+				using (var reader = new StreamReader(stream, Encoding.UTF8))
+				{
+					text = reader.ReadToEnd();
+				}
+			}
 			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
 			foreach (var line in lines)
