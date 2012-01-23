@@ -56,6 +56,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppMetrics.Analytics\AppMetrics.Analytics.csproj">
+      <Project>{AE6B8B1D-F338-473D-A41C-4B58768274B1}</Project>
+      <Name>AppMetrics.Analytics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
+      <Project>{136B2C53-0675-4BB0-9EB5-2406A0027794}</Project>
+      <Name>AppMetrics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
