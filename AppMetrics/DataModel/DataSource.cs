@@ -58,7 +58,7 @@ namespace AppMetrics.DataModel
 		{
 			var res = new List<Session>();
 
-			var curTime = DateTime.Now;
+			var curTime = DateTime.UtcNow;
 
 			if (Directory.Exists(dataPath))
 			{
