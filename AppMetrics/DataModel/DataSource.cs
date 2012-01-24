@@ -73,7 +73,7 @@ namespace AppMetrics.DataModel
 					var sessionId = nameParts.Last();
 
 					var timeText = nameParts.First().Replace('_', ':');
-					var sessionCreationTime = DateTime.ParseExact(timeText, "u", CultureInfo.InvariantCulture);
+					var sessionCreationTime = ParseDateTime(timeText);
 
 					int timeZoneOffset;
 					var lastUpdateTime = GetSessionLastWriteTime(filePath, sessionCreationTime, out timeZoneOffset);
@@ -119,9 +119,33 @@ namespace AppMetrics.DataModel
 
 		private static DateTime GetLineTime(string line)
 		{
-			var tmp = line.Split('\t')[0];
-			var res = DateTime.Parse(tmp);
-			return res;
+			var text = line.Split('\t')[0];
+			return ParseDateTime(text);
+		}
+
+		private static DateTime ParseDateTime(string text)
+		{
+			var res = TryParse(text, "yyyy-MM-dd HH:mm:ss.fffffff");
+			if (res != null)
+				return res.Value;
+
+			res = TryParse(text, "yyyy-MM-dd HH:mm:ss");
+			if (res != null)
+				return res.Value;
+
+			res = TryParse(text, "u");
+			if (res != null)
+				return res.Value;
+
+			throw new ArgumentException();
+		}
+
+		static DateTime? TryParse(string val, string format)
+		{
+			DateTime res;
+			if (DateTime.TryParseExact(val, format, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out res))
+				return res;
+			return null;
 		}
 
 		private static string ReadLastLine(StreamReader reader)
