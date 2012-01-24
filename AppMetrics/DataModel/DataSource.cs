@@ -167,7 +167,7 @@ namespace AppMetrics.DataModel
 			return res;
 		}
 
-		public static List<Record> GetRecordsFromSession(Session session, TimeSpan period)
+		public static List<Record> GetRecordsFromSession(Session session, TimeSpan period, bool filterRecords = true)
 		{
 			var curTime = DateTime.UtcNow;
 			var res = new List<Record>();
@@ -186,15 +186,17 @@ namespace AppMetrics.DataModel
 			{
 				var fields = line.Split('\t');
 
+				var name = fields[1];
 				var lineTime = GetLineTime(line);
-				if (curTime - lineTime > period)
+
+				if (filterRecords && curTime - lineTime > period && !name.StartsWith("Client") && !name.StartsWith("System"))
 					continue;
 
 				var record = new Record
 								{
 									SessionId = session.Id,
 									Time = lineTime,
-									Name = fields[1],
+									Name = name,
 									Value = fields[2],
 								};
 				res.Add(record);
