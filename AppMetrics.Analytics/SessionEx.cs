@@ -16,8 +16,8 @@ namespace AppMetrics.Analytics
 
 		public override string ToString()
 		{
-			var res = string.Format("{0} '{1}' '{2}' '{3}' {4}", Ip, Location.countryName, Location.regionName, 
-				Location.city, Records.Count);
+			var res = string.Format("{0} '{1}' '{2}' {3}|{4}", Ip, Location.countryName, 
+				Location.city, Records.Count, LastUpdateTime);
 			return res;
 		}
 	}
