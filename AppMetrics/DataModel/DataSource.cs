@@ -107,7 +107,7 @@ namespace AppMetrics.DataModel
 				{
 					var firstLine = reader.ReadLine();
 					var timeOffset = GetLineTime(firstLine) - creationUtcTime;
-					timeZoneOffset = (int) Math.Round(timeOffset.TotalHours);
+					timeZoneOffset = (int)Math.Round(timeOffset.TotalHours);
 
 					var lastLine = ReadLastLine(reader);
 
@@ -120,7 +120,7 @@ namespace AppMetrics.DataModel
 		private static DateTime GetLineTime(string line)
 		{
 			var tmp = line.Split('\t')[0];
-			var res =DateTime.Parse(tmp);
+			var res = DateTime.Parse(tmp);
 			return res;
 		}
 
@@ -128,7 +128,7 @@ namespace AppMetrics.DataModel
 		{
 			var stream = reader.BaseStream;
 			var buf = new byte[1024 * 128];
-			var seekPos =  Math.Min(buf.Length, stream.Length);
+			var seekPos = Math.Min(buf.Length, stream.Length);
 			stream.Seek(-seekPos, SeekOrigin.End);
 			var lastBlockLength = stream.Read(buf, 0, buf.Length);
 
