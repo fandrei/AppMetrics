@@ -133,7 +133,7 @@ namespace AppMetrics.DataModel
 			var lastBlockLength = stream.Read(buf, 0, buf.Length);
 
 			int i = lastBlockLength - 2;
-			for (; i >= 0; i--)
+			for (; i > 0; i--)
 			{
 				if (buf[i] == '\n')
 				{
