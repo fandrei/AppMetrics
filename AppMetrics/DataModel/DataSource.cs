@@ -103,7 +103,7 @@ namespace AppMetrics.DataModel
 			// (can work incorrectly, if the first message was sent after delay > 1 hour)
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
-				using (var reader = new StreamReader(stream, Encoding.UTF8))
+				using (var reader = new StreamReader(stream, Encoding.UTF8, true))
 				{
 					var firstLine = reader.ReadLine();
 					var timeOffset = GetLineTime(firstLine) - creationUtcTime;
@@ -175,7 +175,7 @@ namespace AppMetrics.DataModel
 			string text;
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
-				using (var reader = new StreamReader(stream, Encoding.UTF8))
+				using (var reader = new StreamReader(stream, Encoding.UTF8, true))
 				{
 					text = reader.ReadToEnd();
 				}
