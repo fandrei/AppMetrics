@@ -230,34 +230,34 @@ namespace AppMetrics.DataModel
 			var curTime = DateTime.UtcNow;
 			var res = new List<Record>();
 
-			string text;
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				using (var reader = new StreamReader(stream, Encoding.UTF8, true))
 				{
-					text = reader.ReadToEnd();
+					while (true)
+					{
+						var line = reader.ReadLine();
+						if (line == null)
+							break;
+
+						var fields = line.Split('\t');
+
+						var name = fields[1];
+						var lineTime = GetLineTime(line);
+
+						if (filterRecords && curTime - lineTime > period && !name.StartsWith("Client") && !name.StartsWith("System"))
+							continue;
+
+						var record = new Record
+						{
+							SessionId = session.Id,
+							Time = lineTime,
+							Name = name,
+							Value = fields[2],
+						};
+						res.Add(record);
+					}
 				}
-			}
-			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-			foreach (var line in lines)
-			{
-				var fields = line.Split('\t');
-
-				var name = fields[1];
-				var lineTime = GetLineTime(line);
-
-				if (filterRecords && curTime - lineTime > period && !name.StartsWith("Client") && !name.StartsWith("System"))
-					continue;
-
-				var record = new Record
-								{
-									SessionId = session.Id,
-									Time = lineTime,
-									Name = name,
-									Value = fields[2],
-								};
-				res.Add(record);
 			}
 
 			return res;
