@@ -103,18 +103,50 @@ namespace AppMetrics.DataModel
 			// (can work incorrectly, if the first message was sent after delay > 1 hour)
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
-				using (var reader = new StreamReader(stream, Encoding.UTF8, true))
+				var encoding = DetectEncoding(stream);
+
+				var firstLine = ReadLine(stream, encoding);
+				var timeOffset = GetLineTime(firstLine) - creationUtcTime;
+				timeZoneOffset = (int)Math.Round(timeOffset.TotalHours);
+
+				var lastLine = ReadLastLine(stream, encoding);
+				if (lastLine == null)
+					lastLine = firstLine;
+
+				var res = GetLineTime(lastLine) - TimeSpan.FromHours(timeZoneOffset);
+				return res;
+			}
+		}
+
+		static Encoding DetectEncoding(Stream stream)
+		{
+			foreach (var cur in Const.Utf8Bom)
+			{
+				if (stream.ReadByte() != cur)
 				{
-					var firstLine = reader.ReadLine();
-					var timeOffset = GetLineTime(firstLine) - creationUtcTime;
-					timeZoneOffset = (int)Math.Round(timeOffset.TotalHours);
-
-					var lastLine = ReadLastLine(reader);
-
-					var res = GetLineTime(lastLine) - TimeSpan.FromHours(timeZoneOffset);
-					return res;
+					stream.Position = 0;
+					break;
 				}
 			}
+			return Encoding.UTF8;
+		}
+
+		static string ReadLine(Stream stream, Encoding encoding)
+		{
+			var bytes = new List<byte>(1024 * 1024);
+			while (true)
+			{
+				var cur = stream.ReadByte();
+				if (cur < 0)
+					break;
+
+				bytes.Add((byte)cur);
+
+				if (cur == '\n')
+					break;
+			}
+			var res = encoding.GetString(bytes.ToArray());
+			return res;
 		}
 
 		private static DateTime GetLineTime(string line)
@@ -148,15 +180,17 @@ namespace AppMetrics.DataModel
 			return null;
 		}
 
-		private static string ReadLastLine(StreamReader reader)
+		private static string ReadLastLine(Stream stream, Encoding encoding)
 		{
-			var stream = reader.BaseStream;
 			var buf = new byte[1024 * 128];
-			var seekPos = Math.Min(buf.Length, stream.Length);
+			var seekPos = Math.Min(buf.Length, stream.Length - stream.Position);
 			stream.Seek(-seekPos, SeekOrigin.End);
 			var lastBlockLength = stream.Read(buf, 0, buf.Length);
 
 			int i = lastBlockLength - 2;
+			if (i < 0)
+				return null;
+
 			for (; i > 0; i--)
 			{
 				if (buf[i] == '\n')
@@ -166,7 +200,7 @@ namespace AppMetrics.DataModel
 				}
 			}
 
-			var lastLine = Encoding.UTF8.GetString(buf, i, lastBlockLength - i);
+			var lastLine = encoding.GetString(buf, i, lastBlockLength - i);
 			return lastLine;
 		}
 
