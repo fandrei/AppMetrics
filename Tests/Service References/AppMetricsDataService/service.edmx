@@ -8,11 +8,13 @@
         <Property Name="Id" Type="Edm.String" Nullable="false" />
         <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
         <Property Name="LastUpdateTime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="TimeZoneOffset" Type="Edm.Int32" Nullable="false" />
       </EntityType>
       <EntityType Name="Record">
         <Key>
           <PropertyRef Name="Time" />
         </Key>
+        <Property Name="SessionId" Type="Edm.String" Nullable="true" />
         <Property Name="Time" Type="Edm.DateTime" Nullable="false" />
         <Property Name="Name" Type="Edm.String" Nullable="true" />
         <Property Name="Value" Type="Edm.String" Nullable="true" />
@@ -20,6 +22,10 @@
       <EntityContainer Name="DataSource" m:IsDefaultEntityContainer="true">
         <EntitySet Name="Sessions" EntityType="AppMetrics.DataModel.Session" />
         <EntitySet Name="Records" EntityType="AppMetrics.DataModel.Record" />
+        <FunctionImport Name="GetSessions" EntitySet="Sessions" ReturnType="Collection(AppMetrics.DataModel.Session)" m:HttpMethod="GET">
+          <Parameter Name="appKey" Type="Edm.String" Mode="In" />
+          <Parameter Name="period" Type="Edm.String" Mode="In" />
+        </FunctionImport>
       </EntityContainer>
     </Schema>
   </edmx:DataServices>

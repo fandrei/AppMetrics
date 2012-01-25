@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 12/13/2011 7:44:55 PM
+// Generation date: 1/25/2012 5:30:32 PM
 namespace Tests.AppMetricsDataService
 {
     
@@ -125,13 +125,15 @@ namespace Tests.AppMetricsDataService
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="creationTime">Initial value of CreationTime.</param>
         /// <param name="lastUpdateTime">Initial value of LastUpdateTime.</param>
+        /// <param name="timeZoneOffset">Initial value of TimeZoneOffset.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Session CreateSession(string ID, global::System.DateTime creationTime, global::System.DateTime lastUpdateTime)
+        public static Session CreateSession(string ID, global::System.DateTime creationTime, global::System.DateTime lastUpdateTime, int timeZoneOffset)
         {
             Session session = new Session();
             session.Id = ID;
             session.CreationTime = creationTime;
             session.LastUpdateTime = lastUpdateTime;
+            session.TimeZoneOffset = timeZoneOffset;
             return session;
         }
         /// <summary>
@@ -200,6 +202,28 @@ namespace Tests.AppMetricsDataService
         private global::System.DateTime _LastUpdateTime;
         partial void OnLastUpdateTimeChanging(global::System.DateTime value);
         partial void OnLastUpdateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property TimeZoneOffset in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int TimeZoneOffset
+        {
+            get
+            {
+                return this._TimeZoneOffset;
+            }
+            set
+            {
+                this.OnTimeZoneOffsetChanging(value);
+                this._TimeZoneOffset = value;
+                this.OnTimeZoneOffsetChanged();
+                this.OnPropertyChanged("TimeZoneOffset");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _TimeZoneOffset;
+        partial void OnTimeZoneOffsetChanging(int value);
+        partial void OnTimeZoneOffsetChanged();
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -232,6 +256,28 @@ namespace Tests.AppMetricsDataService
             record.Time = time;
             return record;
         }
+        /// <summary>
+        /// There are no comments for Property SessionId in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string SessionId
+        {
+            get
+            {
+                return this._SessionId;
+            }
+            set
+            {
+                this.OnSessionIdChanging(value);
+                this._SessionId = value;
+                this.OnSessionIdChanged();
+                this.OnPropertyChanged("SessionId");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _SessionId;
+        partial void OnSessionIdChanging(string value);
+        partial void OnSessionIdChanged();
         /// <summary>
         /// There are no comments for Property Time in the schema.
         /// </summary>
