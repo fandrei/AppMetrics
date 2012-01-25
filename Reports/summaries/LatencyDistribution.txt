@@ -1,681 +1,459 @@
 ﻿Country	City	Location	FunctionName	Latency	Count
-(World)		(World)	CreateStreamingClient	0	44
-(World)		(World)	CreateStreamingClient	0.5	86
-(World)		(World)	GetClientAndTradingAccount	0.5	110
-(World)		(World)	GetClientAndTradingAccount	1	19
+(World)		(World)	CreateStreamingClient	0.5	39
+(World)		(World)	CreateStreamingClient	1	1
+(World)		(World)	GetClientAndTradingAccount	0.5	35
+(World)		(World)	GetClientAndTradingAccount	1	3
+(World)		(World)	GetClientAndTradingAccount	2	1
 (World)		(World)	GetClientAndTradingAccount	2.5	1
-(World)		(World)	GetMarketInfo	0	1
-(World)		(World)	GetMarketInfo	0.5	55
-(World)		(World)	GetMarketInfo	1	59
-(World)		(World)	GetMarketInfo	1.5	28
-(World)		(World)	GetMarketInfo	2	8
-(World)		(World)	GetMarketInfo	2.5	4
-(World)		(World)	GetMarketInfo	3	3
-(World)		(World)	GetMarketInfo	3.5	1
-(World)		(World)	GetMarketInfo	4	2
+(World)		(World)	GetMarketInfo	0.5	10
+(World)		(World)	GetMarketInfo	1	10
+(World)		(World)	GetMarketInfo	1.5	4
+(World)		(World)	GetMarketInfo	2	1
+(World)		(World)	GetMarketInfo	2.5	1
+(World)		(World)	GetMarketInfo	3	1
+(World)		(World)	GetMarketInfo	4	1
 (World)		(World)	GetMarketInfo	4.5	1
-(World)		(World)	GetMarketInfo	5	1
 (World)		(World)	GetMarketInfo	5.5	1
-(World)		(World)	GetMarketInfo	6	1
-(World)		(World)	GetMarketInfo	7	1
-(World)		(World)	GetMarketInfo	8	2
-(World)		(World)	GetMarketInfo	9.5	1
-(World)		(World)	GetMarketInfo	10	1
-(World)		(World)	GetMarketInfo	11	1
-(World)		(World)	GetPriceBars	0.5	34098
-(World)		(World)	GetPriceBars	1	51716
-(World)		(World)	GetPriceBars	1.5	15016
-(World)		(World)	GetPriceBars	2	4606
-(World)		(World)	GetPriceBars	2.5	2074
-(World)		(World)	GetPriceBars	3	241
-(World)		(World)	ListActiveOrders	0	11
-(World)		(World)	ListActiveOrders	0.5	363801
-(World)		(World)	ListActiveOrders	1	332941
-(World)		(World)	ListActiveOrders	1.5	122413
-(World)		(World)	ListActiveOrders	2	46603
-(World)		(World)	ListActiveOrders	2.5	15065
-(World)		(World)	ListCfdMarkets	0.5	7
-(World)		(World)	ListCfdMarkets	2	1
-(World)		(World)	ListOpenPositions	0	26
-(World)		(World)	ListOpenPositions	0.5	564213
-(World)		(World)	ListOpenPositions	1	163598
-(World)		(World)	ListOpenPositions	1.5	109174
-(World)		(World)	ListOpenPositions	2	33115
-(World)		(World)	ListOpenPositions	2.5	10734
-(World)		(World)	ListStopLimitOrderHistory	0	8
-(World)		(World)	ListStopLimitOrderHistory	0.5	345755
-(World)		(World)	ListStopLimitOrderHistory	1	232544
-(World)		(World)	ListStopLimitOrderHistory	1.5	217263
-(World)		(World)	ListStopLimitOrderHistory	2	64340
-(World)		(World)	ListStopLimitOrderHistory	2.5	17496
-(World)		(World)	ListStopLimitOrderHistory	3	3396
-(World)		(World)	ListTradeHistory	0	8
-(World)		(World)	ListTradeHistory	0.5	369045
-(World)		(World)	ListTradeHistory	1	255371
-(World)		(World)	ListTradeHistory	1.5	185184
-(World)		(World)	ListTradeHistory	2	48755
-(World)		(World)	ListTradeHistory	2.5	17154
-(World)		(World)	ListTradeHistory	3	5226
-(World)		(World)	LogIn	0.5	15
-(World)		(World)	LogIn	1	20
-(World)		(World)	LogIn	1.5	15
-(World)		(World)	LogIn	2	10
-(World)		(World)	LogIn	2.5	7
-(World)		(World)	LogIn	3	17
-(World)		(World)	LogIn	3.5	17
-(World)		(World)	LogIn	4	10
-(World)		(World)	LogIn	4.5	8
-(World)		(World)	LogIn	5	2
-(World)		(World)	LogIn	5.5	2
-(World)		(World)	LogIn	6	2
-(World)		(World)	LogIn	7	1
-(World)		(World)	LogIn	7.5	1
-(World)		(World)	LogIn	8	2
+(World)		(World)	GetMarketInfo	11	2
+(World)		(World)	GetMarketInfo	13	1
+(World)		(World)	GetMarketInfo	18.5	1
+(World)		(World)	GetPriceBars	0.5	14362
+(World)		(World)	GetPriceBars	1	15040
+(World)		(World)	GetPriceBars	1.5	5371
+(World)		(World)	GetPriceBars	2	1825
+(World)		(World)	GetPriceBars	2.5	420
+(World)		(World)	ListActiveOrders	0.5	69707
+(World)		(World)	ListActiveOrders	1	169448
+(World)		(World)	ListActiveOrders	1.5	49862
+(World)		(World)	ListActiveOrders	2	18900
+(World)		(World)	ListActiveOrders	2.5	6090
+(World)		(World)	ListCfdMarkets	0.5	2
+(World)		(World)	ListOpenPositions	0	6
+(World)		(World)	ListOpenPositions	0.5	147362
+(World)		(World)	ListOpenPositions	1	98475
+(World)		(World)	ListOpenPositions	1.5	50152
+(World)		(World)	ListOpenPositions	2	13636
+(World)		(World)	ListOpenPositions	2.5	4111
+(World)		(World)	ListOpenPositions	3	341
+(World)		(World)	ListStopLimitOrderHistory	0.5	65165
+(World)		(World)	ListStopLimitOrderHistory	1	120545
+(World)		(World)	ListStopLimitOrderHistory	1.5	99088
+(World)		(World)	ListStopLimitOrderHistory	2	24592
+(World)		(World)	ListStopLimitOrderHistory	2.5	4681
+(World)		(World)	ListTradeHistory	0.5	109777
+(World)		(World)	ListTradeHistory	1	100043
+(World)		(World)	ListTradeHistory	1.5	81834
+(World)		(World)	ListTradeHistory	2	16825
+(World)		(World)	ListTradeHistory	2.5	4641
+(World)		(World)	ListTradeHistory	3	949
+(World)		(World)	LogIn	0.5	7
+(World)		(World)	LogIn	1	12
+(World)		(World)	LogIn	1.5	2
+(World)		(World)	LogIn	2	1
+(World)		(World)	LogIn	2.5	2
+(World)		(World)	LogIn	3	6
+(World)		(World)	LogIn	3.5	4
+(World)		(World)	LogIn	4	1
+(World)		(World)	LogIn	4.5	1
+(World)		(World)	LogIn	8	1
 (World)		(World)	LogIn	10	1
-(World)		(World)	LogOut	0.5	78
-(World)		(World)	LogOut	1	9
-(World)		(World)	LogOut	1.5	1
+(World)		(World)	LogIn	12.5	1
+(World)		(World)	LogIn	46.5	1
+(World)		(World)	LogOut	0.5	21
+(World)		(World)	LogOut	1	1
+(World)		(World)	LogOut	1.5	2
 (World)		(World)	LogOut	2	1
-(World)		(World)	LogOut	3	1
-(World)		(World)	PlaceTrade	0.5	3773
-(World)		(World)	PlaceTrade	1	4232
-(World)		(World)	PlaceTrade	1.5	769
-(World)		(World)	PlaceTrade	2	257
-(World)		(World)	PlaceTrade	2.5	178
-(World)		(World)	PlaceTrade	3	58
-(World)		(World)	StreamingClient.Dispose	0	7
-(World)		(World)	StreamingClient.Dispose	0.5	77
-(World)		(World)	StreamingClient.Dispose	1	3
-(World)		(World)	StreamingClient.Dispose	1.5	3
-(World)		(World)	StreamingClient.Dispose	2.5	1
-(World)		(World)	SubscribeClientAccountMargin	0.5	5
-(World)		(World)	SubscribeClientAccountMargin	1	16
-(World)		(World)	SubscribeClientAccountMargin	1.5	10
-(World)		(World)	SubscribeClientAccountMargin	2	16
-(World)		(World)	SubscribeClientAccountMargin	2.5	8
-(World)		(World)	SubscribeClientAccountMargin	3	10
-(World)		(World)	SubscribeClientAccountMargin	3.5	14
-(World)		(World)	SubscribeClientAccountMargin	4	10
-(World)		(World)	SubscribeClientAccountMargin	4.5	11
-(World)		(World)	SubscribeClientAccountMargin	5	8
-(World)		(World)	SubscribeClientAccountMargin	5.5	8
-(World)		(World)	SubscribeClientAccountMargin	6	2
-(World)		(World)	SubscribeClientAccountMargin	7	1
+(World)		(World)	LogOut	2.5	1
+(World)		(World)	PlaceTrade	0.5	1
+(World)		(World)	PlaceTrade	1	2
+(World)		(World)	PlaceTrade	2	2
+(World)		(World)	PlaceTrade	3.5	2
+(World)		(World)	StreamingClient.Dispose	0.5	25
+(World)		(World)	StreamingClient.Dispose	2	2
+(World)		(World)	SubscribeClientAccountMargin	0.5	2
+(World)		(World)	SubscribeClientAccountMargin	1	6
+(World)		(World)	SubscribeClientAccountMargin	1.5	1
+(World)		(World)	SubscribeClientAccountMargin	2	1
+(World)		(World)	SubscribeClientAccountMargin	2.5	4
+(World)		(World)	SubscribeClientAccountMargin	3	3
+(World)		(World)	SubscribeClientAccountMargin	3.5	1
+(World)		(World)	SubscribeClientAccountMargin	4	4
+(World)		(World)	SubscribeClientAccountMargin	4.5	4
+(World)		(World)	SubscribeClientAccountMargin	5	4
+(World)		(World)	SubscribeClientAccountMargin	5.5	1
+(World)		(World)	SubscribeClientAccountMargin	6	1
+(World)		(World)	SubscribeClientAccountMargin	6.5	1
 (World)		(World)	SubscribeClientAccountMargin	7.5	2
-(World)		(World)	SubscribeClientAccountMargin	8	1
-(World)		(World)	SubscribeClientAccountMargin	8.5	2
-(World)		(World)	SubscribeClientAccountMargin	9	1
-(World)		(World)	SubscribeClientAccountMargin	11	1
-(World)		(World)	SubscribeClientAccountMargin	11.5	2
-(World)		(World)	SubscribePriceStreams	0	59
-(World)		(World)	SubscribePriceStreams	0.5	37
-(World)		(World)	SubscribePriceStreams	1	18
-(World)		(World)	SubscribePriceStreams	1.5	16
-(World)		(World)	SubscribePriceStreams	2	18
-(World)		(World)	SubscribePriceStreams	2.5	21
-(World)		(World)	SubscribePriceStreams	3	10
-(World)		(World)	SubscribePriceStreams	3.5	9
-(World)		(World)	SubscribePriceStreams	4	8
-(World)		(World)	SubscribePriceStreams	4.5	9
-(World)		(World)	SubscribePriceStreams	5	6
-(World)		(World)	SubscribePriceStreams	5.5	4
-(World)		(World)	SubscribePriceStreams	6	6
-(World)		(World)	SubscribePriceStreams	6.5	1
+(World)		(World)	SubscribeClientAccountMargin	8	2
+(World)		(World)	SubscribeClientAccountMargin	8.5	1
+(World)		(World)	SubscribeClientAccountMargin	12.5	1
+(World)		(World)	SubscribeClientAccountMargin	40	1
+(World)		(World)	SubscribePriceStreams	0	42
+(World)		(World)	SubscribePriceStreams	0.5	17
+(World)		(World)	SubscribePriceStreams	1	2
+(World)		(World)	SubscribePriceStreams	1.5	5
+(World)		(World)	SubscribePriceStreams	2	13
+(World)		(World)	SubscribePriceStreams	2.5	9
+(World)		(World)	SubscribePriceStreams	3	7
+(World)		(World)	SubscribePriceStreams	3.5	3
+(World)		(World)	SubscribePriceStreams	4.5	4
+(World)		(World)	SubscribePriceStreams	5	3
+(World)		(World)	SubscribePriceStreams	5.5	2
+(World)		(World)	SubscribePriceStreams	6	1
 (World)		(World)	SubscribePriceStreams	7	2
-(World)		(World)	SubscribePriceStreams	7.5	1
-(World)		(World)	SubscribePriceStreams	8	2
-(World)		(World)	SubscribePriceStreams	8.5	2
-(World)		(World)	SubscribePriceStreams	10	3
-(World)		(World)	SubscribePriceStreams	11	1
-(World)		(World)	UnsubscribePriceStream	0	62
-Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0	9
-Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0.5	39
-Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	1	1
-Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	0.5	29
-Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	1	17
-Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	2.5	3
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	0.5	14
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1	27
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1.5	20
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	2	3
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	2.5	1
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	3	1
-Cambodia	(All)	Cambodia/(All)	GetMarketInfo	3.5	1
+(World)		(World)	SubscribePriceStreams	8	1
+(World)		(World)	SubscribePriceStreams	10	2
+(World)		(World)	SubscribePriceStreams	12.5	1
+Cambodia	(All)	Cambodia/(All)	CreateStreamingClient	0.5	21
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	0.5	16
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	1	3
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	2	1
+Cambodia	(All)	Cambodia/(All)	GetClientAndTradingAccount	2.5	1
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	0.5	3
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1	8
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	1.5	3
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	2	1
 Cambodia	(All)	Cambodia/(All)	GetMarketInfo	13	1
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	0.5	149
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	1	563
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	1.5	1873
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	2	496
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	2.5	254
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	3	153
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	3.5	92
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	4	89
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	4.5	51
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	5	47
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	5.5	29
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	6	22
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	6.5	20
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	7	14
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	7.5	8
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	8	12
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	8.5	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	9	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	9.5	5
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	10	5
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	10.5	4
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	11	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	11.5	6
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	12	3
-Cambodia	(All)	Cambodia/(All)	GetPriceBars	12.5	5
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	0.5	916
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1	10606
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1.5	1014
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2	719
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2.5	473
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3	113
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3.5	49
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4	47
-Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4.5	23
-Cambodia	(All)	Cambodia/(All)	ListCfdMarkets	2	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0	1
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0.5	4882
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1	7281
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1.5	547
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2	573
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2.5	244
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3	208
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3.5	85
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4	95
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4.5	46
-Cambodia	(All)	Cambodia/(All)	ListOpenPositions	5	10
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	0.5	931
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1	7911
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1.5	3317
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2	934
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2.5	312
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3	264
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3.5	87
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4	71
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4.5	53
-Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5	45
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	0	1
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	0.5	1301
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1	6850
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1.5	3876
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2	645
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2.5	488
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3	338
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3.5	196
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4	74
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4.5	72
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5	51
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5.5	34
-Cambodia	(All)	Cambodia/(All)	ListTradeHistory	6	17
-Cambodia	(All)	Cambodia/(All)	LogIn	1	2
-Cambodia	(All)	Cambodia/(All)	LogIn	2	2
-Cambodia	(All)	Cambodia/(All)	LogIn	2.5	2
+Cambodia	(All)	Cambodia/(All)	GetMarketInfo	18.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	0.5	24
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	1	36
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	1.5	77
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	2	21
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	2.5	19
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	3	14
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	3.5	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	4	6
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	4.5	4
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	5.5	2
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	6	3
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	6.5	1
+Cambodia	(All)	Cambodia/(All)	GetPriceBars	7	2
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	0.5	848
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1	2170
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	1.5	311
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2	133
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	2.5	78
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3	31
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	3.5	7
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4	11
+Cambodia	(All)	Cambodia/(All)	ListActiveOrders	4.5	4
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	0.5	1849
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1	1415
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	1.5	151
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2	131
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	2.5	50
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3	25
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	3.5	6
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4	10
+Cambodia	(All)	Cambodia/(All)	ListOpenPositions	4.5	1
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	0.5	834
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1	1634
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	1.5	666
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2	255
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	2.5	80
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3	88
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	3.5	24
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4	25
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	4.5	8
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5	6
+Cambodia	(All)	Cambodia/(All)	ListStopLimitOrderHistory	5.5	3
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	0.5	749
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1	1280
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	1.5	1174
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2	116
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	2.5	135
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3	73
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	3.5	24
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4	14
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	4.5	15
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5	6
+Cambodia	(All)	Cambodia/(All)	ListTradeHistory	5.5	10
+Cambodia	(All)	Cambodia/(All)	LogIn	1	6
+Cambodia	(All)	Cambodia/(All)	LogIn	1.5	2
+Cambodia	(All)	Cambodia/(All)	LogIn	2.5	1
 Cambodia	(All)	Cambodia/(All)	LogIn	3	4
-Cambodia	(All)	Cambodia/(All)	LogIn	3.5	11
-Cambodia	(All)	Cambodia/(All)	LogIn	4	9
-Cambodia	(All)	Cambodia/(All)	LogIn	4.5	7
-Cambodia	(All)	Cambodia/(All)	LogIn	5	2
-Cambodia	(All)	Cambodia/(All)	LogIn	5.5	2
-Cambodia	(All)	Cambodia/(All)	LogIn	6	2
-Cambodia	(All)	Cambodia/(All)	LogIn	7	1
-Cambodia	(All)	Cambodia/(All)	LogIn	7.5	1
-Cambodia	(All)	Cambodia/(All)	LogIn	8	2
+Cambodia	(All)	Cambodia/(All)	LogIn	3.5	3
+Cambodia	(All)	Cambodia/(All)	LogIn	4	1
+Cambodia	(All)	Cambodia/(All)	LogIn	4.5	1
+Cambodia	(All)	Cambodia/(All)	LogIn	8	1
 Cambodia	(All)	Cambodia/(All)	LogIn	10	1
 Cambodia	(All)	Cambodia/(All)	LogIn	46.5	1
-Cambodia	(All)	Cambodia/(All)	LogOut	0.5	20
-Cambodia	(All)	Cambodia/(All)	LogOut	1	4
-Cambodia	(All)	Cambodia/(All)	LogOut	3	1
-Cambodia	(All)	Cambodia/(All)	LogOut	3.5	1
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	1	340
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	1.5	94
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	2	26
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	2.5	29
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	3	11
+Cambodia	(All)	Cambodia/(All)	LogOut	0.5	6
+Cambodia	(All)	Cambodia/(All)	LogOut	1	1
+Cambodia	(All)	Cambodia/(All)	LogOut	1.5	2
+Cambodia	(All)	Cambodia/(All)	LogOut	2	1
+Cambodia	(All)	Cambodia/(All)	LogOut	2.5	1
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	1	2
+Cambodia	(All)	Cambodia/(All)	PlaceTrade	2	2
 Cambodia	(All)	Cambodia/(All)	PlaceTrade	3.5	2
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	4	3
-Cambodia	(All)	Cambodia/(All)	PlaceTrade	4.5	1
-Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0	1
-Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0.5	25
+Cambodia	(All)	Cambodia/(All)	StreamingClient.Dispose	0.5	11
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	1	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	2.5	3
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	3	6
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	3.5	3
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4	4
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4.5	6
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5	7
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5.5	6
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	6	2
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	7	1
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	7.5	2
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	3	3
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4	2
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	4.5	3
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5	3
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	5.5	1
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	6	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	8	1
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	8.5	2
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	9	1
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	11	1
-Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	11.5	2
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	8.5	1
+Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	12.5	1
 Cambodia	(All)	Cambodia/(All)	SubscribeClientAccountMargin	40	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	0	5
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	0.5	17
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	1.5	2
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2	5
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	0.5	5
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	1	1
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	1.5	1
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2	8
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	2.5	3
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3	7
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3.5	3
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	4	2
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	4.5	6
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5	6
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5.5	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	6	6
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	6.5	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	7	2
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	7.5	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	8	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	8.5	2
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	10	3
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	11	1
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3	5
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	3.5	2
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	4.5	3
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5	2
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	5.5	2
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	7	1
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	10	2
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	12.5	1
-Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	13	1
 Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	14	1
-Cambodia	(All)	Cambodia/(All)	UnsubscribePriceStream	0	19
-Cambodia	(All)	Cambodia/(All)	UnsubscribePriceStream	0.5	1
-Ireland	(All)	Ireland/(All)	CreateStreamingClient	0	19
-Ireland	(All)	Ireland/(All)	CreateStreamingClient	0.5	17
-Ireland	(All)	Ireland/(All)	GetClientAndTradingAccount	0.5	36
-Ireland	(All)	Ireland/(All)	GetMarketInfo	0.5	12
-Ireland	(All)	Ireland/(All)	GetMarketInfo	1	18
-Ireland	(All)	Ireland/(All)	GetMarketInfo	1.5	1
-Ireland	(All)	Ireland/(All)	GetPriceBars	0.5	1913
-Ireland	(All)	Ireland/(All)	GetPriceBars	1	26837
-Ireland	(All)	Ireland/(All)	GetPriceBars	1.5	9565
-Ireland	(All)	Ireland/(All)	GetPriceBars	2	2439
-Ireland	(All)	Ireland/(All)	GetPriceBars	2.5	1095
-Ireland	(All)	Ireland/(All)	ListActiveOrders	0	3
-Ireland	(All)	Ireland/(All)	ListActiveOrders	0.5	23525
-Ireland	(All)	Ireland/(All)	ListActiveOrders	1	127647
-Ireland	(All)	Ireland/(All)	ListActiveOrders	1.5	49752
-Ireland	(All)	Ireland/(All)	ListActiveOrders	2	12724
-Ireland	(All)	Ireland/(All)	ListActiveOrders	2.5	4297
-Ireland	(All)	Ireland/(All)	ListCfdMarkets	0.5	1
-Ireland	(All)	Ireland/(All)	ListOpenPositions	0	3
-Ireland	(All)	Ireland/(All)	ListOpenPositions	0.5	104478
-Ireland	(All)	Ireland/(All)	ListOpenPositions	1	57898
-Ireland	(All)	Ireland/(All)	ListOpenPositions	1.5	41944
-Ireland	(All)	Ireland/(All)	ListOpenPositions	2	9817
-Ireland	(All)	Ireland/(All)	ListOpenPositions	2.5	3812
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0	4
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0.5	12546
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1	79731
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1.5	94385
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2	22149
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2.5	7599
-Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	3	1541
-Ireland	(All)	Ireland/(All)	ListTradeHistory	0	1
-Ireland	(All)	Ireland/(All)	ListTradeHistory	0.5	10284
-Ireland	(All)	Ireland/(All)	ListTradeHistory	1	75028
-Ireland	(All)	Ireland/(All)	ListTradeHistory	1.5	104756
-Ireland	(All)	Ireland/(All)	ListTradeHistory	2	17555
-Ireland	(All)	Ireland/(All)	ListTradeHistory	2.5	8326
-Ireland	(All)	Ireland/(All)	ListTradeHistory	3	1978
-Ireland	(All)	Ireland/(All)	LogIn	1	13
-Ireland	(All)	Ireland/(All)	LogIn	2	1
-Ireland	(All)	Ireland/(All)	LogIn	2.5	4
-Ireland	(All)	Ireland/(All)	LogIn	3	13
-Ireland	(All)	Ireland/(All)	LogIn	3.5	5
-Ireland	(All)	Ireland/(All)	LogOut	0.5	24
-Ireland	(All)	Ireland/(All)	LogOut	1	3
-Ireland	(All)	Ireland/(All)	LogOut	1.5	1
-Ireland	(All)	Ireland/(All)	PlaceTrade	1	2250
-Ireland	(All)	Ireland/(All)	PlaceTrade	1.5	305
-Ireland	(All)	Ireland/(All)	PlaceTrade	2	128
-Ireland	(All)	Ireland/(All)	PlaceTrade	2.5	87
-Ireland	(All)	Ireland/(All)	PlaceTrade	3	39
-Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0	6
-Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0.5	21
-Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	1	1
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	1	2
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	2	7
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	2.5	3
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	3	3
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	3.5	9
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	4	6
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	4.5	3
+Cambodia	(All)	Cambodia/(All)	SubscribePriceStreams	29	1
+Ireland	(All)	Ireland/(All)	CreateStreamingClient	0.5	6
+Ireland	(All)	Ireland/(All)	GetClientAndTradingAccount	0.5	6
+Ireland	(All)	Ireland/(All)	GetMarketInfo	0.5	1
+Ireland	(All)	Ireland/(All)	GetMarketInfo	1	2
+Ireland	(All)	Ireland/(All)	GetPriceBars	0.5	1244
+Ireland	(All)	Ireland/(All)	GetPriceBars	1	4241
+Ireland	(All)	Ireland/(All)	GetPriceBars	1.5	3526
+Ireland	(All)	Ireland/(All)	GetPriceBars	2	1136
+Ireland	(All)	Ireland/(All)	GetPriceBars	2.5	364
+Ireland	(All)	Ireland/(All)	ListActiveOrders	0.5	968
+Ireland	(All)	Ireland/(All)	ListActiveOrders	1	49813
+Ireland	(All)	Ireland/(All)	ListActiveOrders	1.5	19032
+Ireland	(All)	Ireland/(All)	ListActiveOrders	2	1598
+Ireland	(All)	Ireland/(All)	ListOpenPositions	0.5	31271
+Ireland	(All)	Ireland/(All)	ListOpenPositions	1	18038
+Ireland	(All)	Ireland/(All)	ListOpenPositions	1.5	20967
+Ireland	(All)	Ireland/(All)	ListOpenPositions	2	1163
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	0.5	890
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1	21192
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	1.5	45020
+Ireland	(All)	Ireland/(All)	ListStopLimitOrderHistory	2	4347
+Ireland	(All)	Ireland/(All)	ListTradeHistory	0.5	789
+Ireland	(All)	Ireland/(All)	ListTradeHistory	1	20461
+Ireland	(All)	Ireland/(All)	ListTradeHistory	1.5	46580
+Ireland	(All)	Ireland/(All)	ListTradeHistory	2	3627
+Ireland	(All)	Ireland/(All)	LogIn	1	3
+Ireland	(All)	Ireland/(All)	LogIn	2.5	1
+Ireland	(All)	Ireland/(All)	LogIn	3	1
+Ireland	(All)	Ireland/(All)	LogIn	3.5	1
+Ireland	(All)	Ireland/(All)	LogOut	0.5	4
+Ireland	(All)	Ireland/(All)	StreamingClient.Dispose	0.5	4
+Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	2	1
+Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	3.5	1
+Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	4	2
 Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	5	1
-Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	5.5	2
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	0.5	1
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	1	1
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	1.5	4
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2	6
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2.5	14
+Ireland	(All)	Ireland/(All)	SubscribeClientAccountMargin	8	1
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	1.5	2
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2	2
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	2.5	2
 Ireland	(All)	Ireland/(All)	SubscribePriceStreams	3	2
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	3.5	5
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	4	5
-Ireland	(All)	Ireland/(All)	SubscribePriceStreams	5.5	3
-Ireland	(All)	Ireland/(All)	UnsubscribePriceStream	0	21
-South Africa	(All)	South Africa/(All)	CreateStreamingClient	0.5	2
-South Africa	(All)	South Africa/(All)	GetClientAndTradingAccount	0.5	2
-South Africa	(All)	South Africa/(All)	GetMarketInfo	0.5	1
-South Africa	(All)	South Africa/(All)	GetMarketInfo	1	1
-South Africa	(All)	South Africa/(All)	GetPriceBars	0.5	104
-South Africa	(All)	South Africa/(All)	GetPriceBars	1	53
-South Africa	(All)	South Africa/(All)	ListActiveOrders	0.5	3040
-South Africa	(All)	South Africa/(All)	ListActiveOrders	1	7464
-South Africa	(All)	South Africa/(All)	ListCfdMarkets	0.5	1
-South Africa	(All)	South Africa/(All)	ListOpenPositions	0.5	6567
-South Africa	(All)	South Africa/(All)	ListOpenPositions	1	3938
-South Africa	(All)	South Africa/(All)	ListStopLimitOrderHistory	0.5	5343
-South Africa	(All)	South Africa/(All)	ListStopLimitOrderHistory	1	5163
-South Africa	(All)	South Africa/(All)	ListTradeHistory	0.5	2442
-South Africa	(All)	South Africa/(All)	ListTradeHistory	1	7979
-South Africa	(All)	South Africa/(All)	ListTradeHistory	1.5	85
-South Africa	(All)	South Africa/(All)	LogIn	3.5	1
-South Africa	(All)	South Africa/(All)	LogIn	4.5	1
-South Africa	(All)	South Africa/(All)	SubscribeClientAccountMargin	2	2
-South Africa	(All)	South Africa/(All)	SubscribePriceStreams	1	1
-South Africa	(All)	South Africa/(All)	SubscribePriceStreams	3	1
-South Africa	Durban	South Africa/Durban	CreateStreamingClient	0.5	2
-South Africa	Durban	South Africa/Durban	GetClientAndTradingAccount	0.5	2
-South Africa	Durban	South Africa/Durban	GetMarketInfo	0.5	1
-South Africa	Durban	South Africa/Durban	GetMarketInfo	1	1
-South Africa	Durban	South Africa/Durban	GetPriceBars	0.5	104
-South Africa	Durban	South Africa/Durban	GetPriceBars	1	53
-South Africa	Durban	South Africa/Durban	ListActiveOrders	0.5	3040
-South Africa	Durban	South Africa/Durban	ListActiveOrders	1	7464
-South Africa	Durban	South Africa/Durban	ListCfdMarkets	0.5	1
-South Africa	Durban	South Africa/Durban	ListOpenPositions	0.5	6567
-South Africa	Durban	South Africa/Durban	ListOpenPositions	1	3938
-South Africa	Durban	South Africa/Durban	ListStopLimitOrderHistory	0.5	5343
-South Africa	Durban	South Africa/Durban	ListStopLimitOrderHistory	1	5163
-South Africa	Durban	South Africa/Durban	ListTradeHistory	0.5	2442
-South Africa	Durban	South Africa/Durban	ListTradeHistory	1	7979
-South Africa	Durban	South Africa/Durban	ListTradeHistory	1.5	85
-South Africa	Durban	South Africa/Durban	LogIn	3.5	1
-South Africa	Durban	South Africa/Durban	LogIn	4.5	1
-South Africa	Durban	South Africa/Durban	SubscribeClientAccountMargin	2	2
-South Africa	Durban	South Africa/Durban	SubscribePriceStreams	1	1
-South Africa	Durban	South Africa/Durban	SubscribePriceStreams	3	1
-United Kingdom	(All)	United Kingdom/(All)	CreateStreamingClient	0	1
-United Kingdom	(All)	United Kingdom/(All)	CreateStreamingClient	0.5	5
-United Kingdom	(All)	United Kingdom/(All)	GetClientAndTradingAccount	0.5	6
-United Kingdom	(All)	United Kingdom/(All)	GetMarketInfo	0.5	5
-United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	0.5	1891
-United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	1	16
-United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	1.5	32
-United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	2	208
-United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	0.5	161087
-United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	1	20194
-United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	1.5	6372
-United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	2	2861
-United Kingdom	(All)	United Kingdom/(All)	ListCfdMarkets	0.5	5
-United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	0.5	181693
-United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	1	3449
-United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	1.5	4055
-United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	2	1312
-United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	0.5	174228
-United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	1	7818
-United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	1.5	5658
-United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	2	2812
-United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	0	1
-United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	0.5	151270
-United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	1	27934
-United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	1.5	6257
-United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	2	5018
-United Kingdom	(All)	United Kingdom/(All)	LogIn	0.5	3
-United Kingdom	(All)	United Kingdom/(All)	LogIn	1	2
-United Kingdom	(All)	United Kingdom/(All)	LogIn	4	1
-United Kingdom	(All)	United Kingdom/(All)	LogOut	0.5	3
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	3.5	1
+Ireland	(All)	Ireland/(All)	SubscribePriceStreams	4.5	1
+United Kingdom	(All)	United Kingdom/(All)	CreateStreamingClient	0.5	2
+United Kingdom	(All)	United Kingdom/(All)	GetClientAndTradingAccount	0.5	2
+United Kingdom	(All)	United Kingdom/(All)	GetMarketInfo	0.5	2
+United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	1	1
+United Kingdom	(All)	United Kingdom/(All)	GetPriceBars	1.5	3
+United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	0.5	18
+United Kingdom	(All)	United Kingdom/(All)	ListActiveOrders	1	1
+United Kingdom	(All)	United Kingdom/(All)	ListCfdMarkets	0.5	2
+United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	0.5	17
+United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	1	1
+United Kingdom	(All)	United Kingdom/(All)	ListOpenPositions	1.5	1
+United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	0.5	17
+United Kingdom	(All)	United Kingdom/(All)	ListStopLimitOrderHistory	1.5	1
+United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	0.5	17
+United Kingdom	(All)	United Kingdom/(All)	ListTradeHistory	1	2
+United Kingdom	(All)	United Kingdom/(All)	LogIn	0.5	1
+United Kingdom	(All)	United Kingdom/(All)	LogIn	1	1
+United Kingdom	(All)	United Kingdom/(All)	LogOut	0.5	1
 United Kingdom	(All)	United Kingdom/(All)	PlaceTrade	0.5	1
-United Kingdom	(All)	United Kingdom/(All)	StreamingClient.Dispose	0.5	4
-United Kingdom	(All)	United Kingdom/(All)	SubscribeClientAccountMargin	0.5	5
-United Kingdom	(All)	United Kingdom/(All)	SubscribePriceStreams	0	54
-United Kingdom	(All)	United Kingdom/(All)	SubscribePriceStreams	0.5	14
-United Kingdom	London	United Kingdom/London	CreateStreamingClient	0	1
-United Kingdom	London	United Kingdom/London	CreateStreamingClient	0.5	5
-United Kingdom	London	United Kingdom/London	GetClientAndTradingAccount	0.5	6
-United Kingdom	London	United Kingdom/London	GetMarketInfo	0.5	5
-United Kingdom	London	United Kingdom/London	GetPriceBars	0.5	1891
-United Kingdom	London	United Kingdom/London	GetPriceBars	1	16
-United Kingdom	London	United Kingdom/London	GetPriceBars	1.5	32
-United Kingdom	London	United Kingdom/London	GetPriceBars	2	208
-United Kingdom	London	United Kingdom/London	ListActiveOrders	0.5	161087
-United Kingdom	London	United Kingdom/London	ListActiveOrders	1	20194
-United Kingdom	London	United Kingdom/London	ListActiveOrders	1.5	6372
-United Kingdom	London	United Kingdom/London	ListActiveOrders	2	2861
-United Kingdom	London	United Kingdom/London	ListCfdMarkets	0.5	5
-United Kingdom	London	United Kingdom/London	ListOpenPositions	0.5	181693
-United Kingdom	London	United Kingdom/London	ListOpenPositions	1	3449
-United Kingdom	London	United Kingdom/London	ListOpenPositions	1.5	4055
-United Kingdom	London	United Kingdom/London	ListOpenPositions	2	1312
-United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	0.5	174228
-United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	1	7818
-United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	1.5	5658
-United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	2	2812
-United Kingdom	London	United Kingdom/London	ListTradeHistory	0	1
-United Kingdom	London	United Kingdom/London	ListTradeHistory	0.5	151270
-United Kingdom	London	United Kingdom/London	ListTradeHistory	1	27934
-United Kingdom	London	United Kingdom/London	ListTradeHistory	1.5	6257
-United Kingdom	London	United Kingdom/London	ListTradeHistory	2	5018
-United Kingdom	London	United Kingdom/London	LogIn	0.5	3
-United Kingdom	London	United Kingdom/London	LogIn	1	2
-United Kingdom	London	United Kingdom/London	LogIn	4	1
-United Kingdom	London	United Kingdom/London	LogOut	0.5	3
+United Kingdom	(All)	United Kingdom/(All)	StreamingClient.Dispose	0.5	1
+United Kingdom	(All)	United Kingdom/(All)	SubscribeClientAccountMargin	0.5	2
+United Kingdom	(All)	United Kingdom/(All)	SubscribePriceStreams	0	42
+United Kingdom	(All)	United Kingdom/(All)	SubscribePriceStreams	0.5	4
+United Kingdom	London	United Kingdom/London	CreateStreamingClient	0.5	2
+United Kingdom	London	United Kingdom/London	GetClientAndTradingAccount	0.5	2
+United Kingdom	London	United Kingdom/London	GetMarketInfo	0.5	2
+United Kingdom	London	United Kingdom/London	GetPriceBars	1	1
+United Kingdom	London	United Kingdom/London	GetPriceBars	1.5	3
+United Kingdom	London	United Kingdom/London	ListActiveOrders	0.5	18
+United Kingdom	London	United Kingdom/London	ListActiveOrders	1	1
+United Kingdom	London	United Kingdom/London	ListCfdMarkets	0.5	2
+United Kingdom	London	United Kingdom/London	ListOpenPositions	0.5	17
+United Kingdom	London	United Kingdom/London	ListOpenPositions	1	1
+United Kingdom	London	United Kingdom/London	ListOpenPositions	1.5	1
+United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	0.5	17
+United Kingdom	London	United Kingdom/London	ListStopLimitOrderHistory	1.5	1
+United Kingdom	London	United Kingdom/London	ListTradeHistory	0.5	17
+United Kingdom	London	United Kingdom/London	ListTradeHistory	1	2
+United Kingdom	London	United Kingdom/London	LogIn	0.5	1
+United Kingdom	London	United Kingdom/London	LogIn	1	1
+United Kingdom	London	United Kingdom/London	LogOut	0.5	1
 United Kingdom	London	United Kingdom/London	PlaceTrade	0.5	1
-United Kingdom	London	United Kingdom/London	StreamingClient.Dispose	0.5	4
-United Kingdom	London	United Kingdom/London	SubscribeClientAccountMargin	0.5	5
-United Kingdom	London	United Kingdom/London	SubscribePriceStreams	0	54
-United Kingdom	London	United Kingdom/London	SubscribePriceStreams	0.5	14
-United States	(All)	United States/(All)	CreateStreamingClient	0	15
-United States	(All)	United States/(All)	CreateStreamingClient	0.5	23
+United Kingdom	London	United Kingdom/London	StreamingClient.Dispose	0.5	1
+United Kingdom	London	United Kingdom/London	SubscribeClientAccountMargin	0.5	2
+United Kingdom	London	United Kingdom/London	SubscribePriceStreams	0	42
+United Kingdom	London	United Kingdom/London	SubscribePriceStreams	0.5	4
+United States	(All)	United States/(All)	CreateStreamingClient	0.5	10
 United States	(All)	United States/(All)	CreateStreamingClient	1	1
-United States	(All)	United States/(All)	GetClientAndTradingAccount	0.5	37
-United States	(All)	United States/(All)	GetClientAndTradingAccount	1	2
-United States	(All)	United States/(All)	GetMarketInfo	0	1
-United States	(All)	United States/(All)	GetMarketInfo	0.5	23
-United States	(All)	United States/(All)	GetMarketInfo	1	13
-United States	(All)	United States/(All)	GetMarketInfo	1.5	7
-United States	(All)	United States/(All)	GetMarketInfo	2	5
-United States	(All)	United States/(All)	GetMarketInfo	2.5	3
-United States	(All)	United States/(All)	GetMarketInfo	3	2
-United States	(All)	United States/(All)	GetMarketInfo	4	2
+United States	(All)	United States/(All)	GetClientAndTradingAccount	0.5	11
+United States	(All)	United States/(All)	GetMarketInfo	0.5	4
+United States	(All)	United States/(All)	GetMarketInfo	1.5	1
+United States	(All)	United States/(All)	GetMarketInfo	2.5	1
+United States	(All)	United States/(All)	GetMarketInfo	3	1
+United States	(All)	United States/(All)	GetMarketInfo	4	1
 United States	(All)	United States/(All)	GetMarketInfo	4.5	1
-United States	(All)	United States/(All)	GetMarketInfo	5	1
 United States	(All)	United States/(All)	GetMarketInfo	5.5	1
-United States	(All)	United States/(All)	GetMarketInfo	6	1
-United States	(All)	United States/(All)	GetMarketInfo	7	1
-United States	(All)	United States/(All)	GetMarketInfo	8	2
-United States	(All)	United States/(All)	GetMarketInfo	9.5	1
-United States	(All)	United States/(All)	GetMarketInfo	10	1
-United States	(All)	United States/(All)	GetMarketInfo	11	1
-United States	(All)	United States/(All)	GetPriceBars	0.5	30041
-United States	(All)	United States/(All)	GetPriceBars	1	24246
-United States	(All)	United States/(All)	GetPriceBars	1.5	3544
-United States	(All)	United States/(All)	GetPriceBars	2	1435
-United States	(All)	United States/(All)	GetPriceBars	2.5	416
-United States	(All)	United States/(All)	ListActiveOrders	0	8
-United States	(All)	United States/(All)	ListActiveOrders	0.5	175233
-United States	(All)	United States/(All)	ListActiveOrders	1	166910
-United States	(All)	United States/(All)	ListActiveOrders	1.5	65230
-United States	(All)	United States/(All)	ListActiveOrders	2	28567
-United States	(All)	United States/(All)	ListActiveOrders	2.5	10660
-United States	(All)	United States/(All)	ListActiveOrders	3	1302
-United States	(All)	United States/(All)	ListOpenPositions	0	22
-United States	(All)	United States/(All)	ListOpenPositions	0.5	266593
-United States	(All)	United States/(All)	ListOpenPositions	1	90902
-United States	(All)	United States/(All)	ListOpenPositions	1.5	62571
-United States	(All)	United States/(All)	ListOpenPositions	2	19345
-United States	(All)	United States/(All)	ListOpenPositions	2.5	6826
-United States	(All)	United States/(All)	ListOpenPositions	3	1665
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	0	4
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	0.5	152707
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	1	131818
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	1.5	113843
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	2	36632
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	2.5	9574
-United States	(All)	United States/(All)	ListStopLimitOrderHistory	3	3323
-United States	(All)	United States/(All)	ListTradeHistory	0	5
-United States	(All)	United States/(All)	ListTradeHistory	0.5	203748
-United States	(All)	United States/(All)	ListTradeHistory	1	137580
-United States	(All)	United States/(All)	ListTradeHistory	1.5	70092
-United States	(All)	United States/(All)	ListTradeHistory	2	24416
-United States	(All)	United States/(All)	ListTradeHistory	2.5	8260
-United States	(All)	United States/(All)	ListTradeHistory	3	3787
-United States	(All)	United States/(All)	LogIn	0.5	12
-United States	(All)	United States/(All)	LogIn	1	3
-United States	(All)	United States/(All)	LogIn	1.5	15
-United States	(All)	United States/(All)	LogIn	2	7
-United States	(All)	United States/(All)	LogIn	2.5	1
+United States	(All)	United States/(All)	GetMarketInfo	11	2
+United States	(All)	United States/(All)	GetPriceBars	0.5	13094
+United States	(All)	United States/(All)	GetPriceBars	1	10762
+United States	(All)	United States/(All)	GetPriceBars	1.5	1765
+United States	(All)	United States/(All)	GetPriceBars	2	668
+United States	(All)	United States/(All)	GetPriceBars	2.5	1
+United States	(All)	United States/(All)	ListActiveOrders	0.5	67873
+United States	(All)	United States/(All)	ListActiveOrders	1	117464
+United States	(All)	United States/(All)	ListActiveOrders	1.5	30519
+United States	(All)	United States/(All)	ListActiveOrders	2	16402
+United States	(All)	United States/(All)	ListActiveOrders	2.5	5834
+United States	(All)	United States/(All)	ListActiveOrders	3	893
+United States	(All)	United States/(All)	ListOpenPositions	0	6
+United States	(All)	United States/(All)	ListOpenPositions	0.5	114225
+United States	(All)	United States/(All)	ListOpenPositions	1	79021
+United States	(All)	United States/(All)	ListOpenPositions	1.5	29033
+United States	(All)	United States/(All)	ListOpenPositions	2	11764
+United States	(All)	United States/(All)	ListOpenPositions	2.5	3535
+United States	(All)	United States/(All)	ListOpenPositions	3	1404
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	0.5	63424
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	1	97719
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	1.5	53401
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	2	19621
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	2.5	4124
+United States	(All)	United States/(All)	ListStopLimitOrderHistory	3	693
+United States	(All)	United States/(All)	ListTradeHistory	0.5	108222
+United States	(All)	United States/(All)	ListTradeHistory	1	78300
+United States	(All)	United States/(All)	ListTradeHistory	1.5	34080
+United States	(All)	United States/(All)	ListTradeHistory	2	12899
+United States	(All)	United States/(All)	ListTradeHistory	2.5	3567
+United States	(All)	United States/(All)	ListTradeHistory	3	1930
+United States	(All)	United States/(All)	LogIn	0.5	6
+United States	(All)	United States/(All)	LogIn	1	2
+United States	(All)	United States/(All)	LogIn	2	1
+United States	(All)	United States/(All)	LogIn	3	1
 United States	(All)	United States/(All)	LogIn	12.5	1
-United States	(All)	United States/(All)	LogOut	0.5	31
-United States	(All)	United States/(All)	LogOut	1	2
-United States	(All)	United States/(All)	LogOut	2	1
-United States	(All)	United States/(All)	PlaceTrade	0.5	3772
-United States	(All)	United States/(All)	PlaceTrade	1	1642
-United States	(All)	United States/(All)	PlaceTrade	1.5	370
-United States	(All)	United States/(All)	PlaceTrade	2	103
-United States	(All)	United States/(All)	PlaceTrade	2.5	62
-United States	(All)	United States/(All)	PlaceTrade	3	3
-United States	(All)	United States/(All)	StreamingClient.Dispose	0.5	27
-United States	(All)	United States/(All)	StreamingClient.Dispose	1	2
-United States	(All)	United States/(All)	StreamingClient.Dispose	1.5	3
-United States	(All)	United States/(All)	StreamingClient.Dispose	2.5	1
-United States	(All)	United States/(All)	StreamingClient.Dispose	3.5	1
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	1	14
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	1.5	10
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	2	7
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	2.5	2
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	3	1
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	3.5	2
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	4.5	2
-United States	(All)	United States/(All)	SubscribeClientAccountMargin	11.5	1
-United States	(All)	United States/(All)	SubscribePriceStreams	0.5	5
-United States	(All)	United States/(All)	SubscribePriceStreams	1	15
-United States	(All)	United States/(All)	SubscribePriceStreams	1.5	10
-United States	(All)	United States/(All)	SubscribePriceStreams	2	7
+United States	(All)	United States/(All)	LogOut	0.5	10
+United States	(All)	United States/(All)	StreamingClient.Dispose	0.5	9
+United States	(All)	United States/(All)	StreamingClient.Dispose	2	2
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	1	5
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	1.5	1
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	2.5	1
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	4.5	1
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	6.5	1
+United States	(All)	United States/(All)	SubscribeClientAccountMargin	7.5	2
+United States	(All)	United States/(All)	SubscribePriceStreams	0.5	8
+United States	(All)	United States/(All)	SubscribePriceStreams	1	1
+United States	(All)	United States/(All)	SubscribePriceStreams	1.5	2
+United States	(All)	United States/(All)	SubscribePriceStreams	2	3
 United States	(All)	United States/(All)	SubscribePriceStreams	2.5	4
-United States	(All)	United States/(All)	SubscribePriceStreams	3.5	1
-United States	(All)	United States/(All)	SubscribePriceStreams	4	1
-United States	(All)	United States/(All)	SubscribePriceStreams	4.5	3
+United States	(All)	United States/(All)	SubscribePriceStreams	5	1
+United States	(All)	United States/(All)	SubscribePriceStreams	6	1
+United States	(All)	United States/(All)	SubscribePriceStreams	7	1
 United States	(All)	United States/(All)	SubscribePriceStreams	8	1
-United States	(All)	United States/(All)	UnsubscribePriceStream	0	22
-United States	Saddle River	United States/Saddle River	CreateStreamingClient	0.5	1
-United States	Saddle River	United States/Saddle River	GetClientAndTradingAccount	0.5	1
-United States	Saddle River	United States/Saddle River	GetMarketInfo	0.5	2
-United States	Saddle River	United States/Saddle River	GetMarketInfo	1	1
-United States	Saddle River	United States/Saddle River	GetPriceBars	0.5	6007
-United States	Saddle River	United States/Saddle River	GetPriceBars	1	256
-United States	Saddle River	United States/Saddle River	ListActiveOrders	0	7
-United States	Saddle River	United States/Saddle River	ListActiveOrders	0.5	145772
-United States	Saddle River	United States/Saddle River	ListActiveOrders	1	83602
-United States	Saddle River	United States/Saddle River	ListActiveOrders	1.5	3621
-United States	Saddle River	United States/Saddle River	ListActiveOrders	2	354
-United States	Saddle River	United States/Saddle River	ListOpenPositions	0	20
-United States	Saddle River	United States/Saddle River	ListOpenPositions	0.5	162165
-United States	Saddle River	United States/Saddle River	ListOpenPositions	1	67975
-United States	Saddle River	United States/Saddle River	ListOpenPositions	1.5	3195
-United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	0	4
-United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	0.5	140501
-United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	1	88263
-United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	1.5	4593
-United States	Saddle River	United States/Saddle River	ListTradeHistory	0	4
-United States	Saddle River	United States/Saddle River	ListTradeHistory	0.5	180329
-United States	Saddle River	United States/Saddle River	ListTradeHistory	1	49960
-United States	Saddle River	United States/Saddle River	ListTradeHistory	1.5	3068
-United States	Saddle River	United States/Saddle River	LogIn	2.5	1
-United States	Saddle River	United States/Saddle River	SubscribeClientAccountMargin	2	1
-United States	Saddle River	United States/Saddle River	SubscribePriceStreams	2.5	1
-United States	Seattle	United States/Seattle	CreateStreamingClient	0	15
-United States	Seattle	United States/Seattle	CreateStreamingClient	0.5	22
+United States	Saddle River	United States/Saddle River	GetMarketInfo	0.5	1
+United States	Saddle River	United States/Saddle River	GetPriceBars	0.5	7479
+United States	Saddle River	United States/Saddle River	GetPriceBars	1	361
+United States	Saddle River	United States/Saddle River	ListActiveOrders	0.5	65163
+United States	Saddle River	United States/Saddle River	ListActiveOrders	1	85519
+United States	Saddle River	United States/Saddle River	ListActiveOrders	1.5	2769
+United States	Saddle River	United States/Saddle River	ListActiveOrders	2	1199
+United States	Saddle River	United States/Saddle River	ListOpenPositions	0	6
+United States	Saddle River	United States/Saddle River	ListOpenPositions	0.5	77543
+United States	Saddle River	United States/Saddle River	ListOpenPositions	1	73599
+United States	Saddle River	United States/Saddle River	ListOpenPositions	1.5	2455
+United States	Saddle River	United States/Saddle River	ListOpenPositions	2	1047
+United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	0.5	61986
+United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	1	87979
+United States	Saddle River	United States/Saddle River	ListStopLimitOrderHistory	1.5	4690
+United States	Saddle River	United States/Saddle River	ListTradeHistory	0.5	104870
+United States	Saddle River	United States/Saddle River	ListTradeHistory	1	46059
+United States	Saddle River	United States/Saddle River	ListTradeHistory	1.5	2788
+United States	Saddle River	United States/Saddle River	ListTradeHistory	2	931
+United States	Seattle	United States/Seattle	CreateStreamingClient	0.5	10
 United States	Seattle	United States/Seattle	CreateStreamingClient	1	1
-United States	Seattle	United States/Seattle	GetClientAndTradingAccount	0.5	36
-United States	Seattle	United States/Seattle	GetClientAndTradingAccount	1	2
-United States	Seattle	United States/Seattle	GetMarketInfo	0	1
-United States	Seattle	United States/Seattle	GetMarketInfo	0.5	21
-United States	Seattle	United States/Seattle	GetMarketInfo	1	12
-United States	Seattle	United States/Seattle	GetMarketInfo	1.5	7
-United States	Seattle	United States/Seattle	GetMarketInfo	2	5
-United States	Seattle	United States/Seattle	GetMarketInfo	2.5	3
-United States	Seattle	United States/Seattle	GetMarketInfo	3	2
-United States	Seattle	United States/Seattle	GetMarketInfo	4	2
+United States	Seattle	United States/Seattle	GetClientAndTradingAccount	0.5	11
+United States	Seattle	United States/Seattle	GetMarketInfo	0.5	3
+United States	Seattle	United States/Seattle	GetMarketInfo	1.5	1
+United States	Seattle	United States/Seattle	GetMarketInfo	2.5	1
+United States	Seattle	United States/Seattle	GetMarketInfo	3	1
+United States	Seattle	United States/Seattle	GetMarketInfo	4	1
 United States	Seattle	United States/Seattle	GetMarketInfo	4.5	1
-United States	Seattle	United States/Seattle	GetMarketInfo	5	1
 United States	Seattle	United States/Seattle	GetMarketInfo	5.5	1
-United States	Seattle	United States/Seattle	GetMarketInfo	6	1
-United States	Seattle	United States/Seattle	GetMarketInfo	7	1
-United States	Seattle	United States/Seattle	GetMarketInfo	8	2
-United States	Seattle	United States/Seattle	GetMarketInfo	9.5	1
-United States	Seattle	United States/Seattle	GetMarketInfo	10	1
-United States	Seattle	United States/Seattle	GetMarketInfo	11	1
-United States	Seattle	United States/Seattle	GetPriceBars	0.5	24034
-United States	Seattle	United States/Seattle	GetPriceBars	1	23965
-United States	Seattle	United States/Seattle	GetPriceBars	1.5	3479
-United States	Seattle	United States/Seattle	GetPriceBars	2	1422
-United States	Seattle	United States/Seattle	GetPriceBars	2.5	520
-United States	Seattle	United States/Seattle	ListActiveOrders	0	1
-United States	Seattle	United States/Seattle	ListActiveOrders	0.5	29461
-United States	Seattle	United States/Seattle	ListActiveOrders	1	83308
-United States	Seattle	United States/Seattle	ListActiveOrders	1.5	61609
-United States	Seattle	United States/Seattle	ListActiveOrders	2	26674
-United States	Seattle	United States/Seattle	ListActiveOrders	2.5	8784
-United States	Seattle	United States/Seattle	ListActiveOrders	3	4581
-United States	Seattle	United States/Seattle	ListActiveOrders	3.5	137
-United States	Seattle	United States/Seattle	ListOpenPositions	0	2
-United States	Seattle	United States/Seattle	ListOpenPositions	0.5	104428
-United States	Seattle	United States/Seattle	ListOpenPositions	1	22927
-United States	Seattle	United States/Seattle	ListOpenPositions	1.5	59305
-United States	Seattle	United States/Seattle	ListOpenPositions	2	17545
-United States	Seattle	United States/Seattle	ListOpenPositions	2.5	5783
-United States	Seattle	United States/Seattle	ListOpenPositions	3	3704
-United States	Seattle	United States/Seattle	ListOpenPositions	3.5	876
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	0.5	12206
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1	43555
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1.5	107118
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2	35418
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2.5	9330
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3	5461
-United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3.5	1452
-United States	Seattle	United States/Seattle	ListTradeHistory	0	1
-United States	Seattle	United States/Seattle	ListTradeHistory	0.5	23419
-United States	Seattle	United States/Seattle	ListTradeHistory	1	87620
-United States	Seattle	United States/Seattle	ListTradeHistory	1.5	66786
-United States	Seattle	United States/Seattle	ListTradeHistory	2	22741
-United States	Seattle	United States/Seattle	ListTradeHistory	2.5	7343
-United States	Seattle	United States/Seattle	ListTradeHistory	3	5136
-United States	Seattle	United States/Seattle	ListTradeHistory	3.5	1481
-United States	Seattle	United States/Seattle	LogIn	0.5	12
-United States	Seattle	United States/Seattle	LogIn	1	3
-United States	Seattle	United States/Seattle	LogIn	1.5	15
-United States	Seattle	United States/Seattle	LogIn	2	7
+United States	Seattle	United States/Seattle	GetMarketInfo	11	2
+United States	Seattle	United States/Seattle	GetPriceBars	0.5	5615
+United States	Seattle	United States/Seattle	GetPriceBars	1	10352
+United States	Seattle	United States/Seattle	GetPriceBars	1.5	1726
+United States	Seattle	United States/Seattle	GetPriceBars	2	655
+United States	Seattle	United States/Seattle	GetPriceBars	2.5	102
+United States	Seattle	United States/Seattle	ListActiveOrders	0.5	2710
+United States	Seattle	United States/Seattle	ListActiveOrders	1	31945
+United States	Seattle	United States/Seattle	ListActiveOrders	1.5	27750
+United States	Seattle	United States/Seattle	ListActiveOrders	2	14976
+United States	Seattle	United States/Seattle	ListActiveOrders	2.5	3962
+United States	Seattle	United States/Seattle	ListActiveOrders	3	1635
+United States	Seattle	United States/Seattle	ListActiveOrders	3.5	907
+United States	Seattle	United States/Seattle	ListActiveOrders	4	450
+United States	Seattle	United States/Seattle	ListOpenPositions	0.5	36682
+United States	Seattle	United States/Seattle	ListOpenPositions	1	5422
+United States	Seattle	United States/Seattle	ListOpenPositions	1.5	26578
+United States	Seattle	United States/Seattle	ListOpenPositions	2	10107
+United States	Seattle	United States/Seattle	ListOpenPositions	2.5	2636
+United States	Seattle	United States/Seattle	ListOpenPositions	3	1352
+United States	Seattle	United States/Seattle	ListOpenPositions	3.5	1051
+United States	Seattle	United States/Seattle	ListOpenPositions	4	510
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	0.5	1438
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1	9740
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	1.5	47495
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2	18699
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	2.5	4041
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3	1439
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	3.5	922
+United States	Seattle	United States/Seattle	ListStopLimitOrderHistory	4	554
+United States	Seattle	United States/Seattle	ListTradeHistory	0.5	3352
+United States	Seattle	United States/Seattle	ListTradeHistory	1	32241
+United States	Seattle	United States/Seattle	ListTradeHistory	1.5	31292
+United States	Seattle	United States/Seattle	ListTradeHistory	2	11378
+United States	Seattle	United States/Seattle	ListTradeHistory	2.5	2686
+United States	Seattle	United States/Seattle	ListTradeHistory	3	1625
+United States	Seattle	United States/Seattle	ListTradeHistory	3.5	1210
+United States	Seattle	United States/Seattle	ListTradeHistory	4	566
+United States	Seattle	United States/Seattle	LogIn	0.5	6
+United States	Seattle	United States/Seattle	LogIn	1	2
+United States	Seattle	United States/Seattle	LogIn	2	1
+United States	Seattle	United States/Seattle	LogIn	3	1
 United States	Seattle	United States/Seattle	LogIn	12.5	1
-United States	Seattle	United States/Seattle	LogOut	0.5	31
-United States	Seattle	United States/Seattle	LogOut	1	2
-United States	Seattle	United States/Seattle	LogOut	2	1
-United States	Seattle	United States/Seattle	PlaceTrade	0.5	3772
-United States	Seattle	United States/Seattle	PlaceTrade	1	1642
-United States	Seattle	United States/Seattle	PlaceTrade	1.5	370
-United States	Seattle	United States/Seattle	PlaceTrade	2	103
-United States	Seattle	United States/Seattle	PlaceTrade	2.5	62
-United States	Seattle	United States/Seattle	PlaceTrade	3	3
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	0.5	27
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	1	2
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	1.5	3
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	2.5	1
-United States	Seattle	United States/Seattle	StreamingClient.Dispose	3.5	1
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1	14
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1.5	10
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	2	6
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	2.5	2
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	3	1
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	3.5	2
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	4.5	2
-United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	11.5	1
-United States	Seattle	United States/Seattle	SubscribePriceStreams	0.5	5
-United States	Seattle	United States/Seattle	SubscribePriceStreams	1	15
-United States	Seattle	United States/Seattle	SubscribePriceStreams	1.5	10
-United States	Seattle	United States/Seattle	SubscribePriceStreams	2	7
-United States	Seattle	United States/Seattle	SubscribePriceStreams	2.5	3
-United States	Seattle	United States/Seattle	SubscribePriceStreams	3.5	1
-United States	Seattle	United States/Seattle	SubscribePriceStreams	4	1
-United States	Seattle	United States/Seattle	SubscribePriceStreams	4.5	3
+United States	Seattle	United States/Seattle	LogOut	0.5	10
+United States	Seattle	United States/Seattle	StreamingClient.Dispose	0.5	9
+United States	Seattle	United States/Seattle	StreamingClient.Dispose	2	2
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1	5
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	1.5	1
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	2.5	1
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	4.5	1
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	6.5	1
+United States	Seattle	United States/Seattle	SubscribeClientAccountMargin	7.5	2
+United States	Seattle	United States/Seattle	SubscribePriceStreams	0.5	8
+United States	Seattle	United States/Seattle	SubscribePriceStreams	1	1
+United States	Seattle	United States/Seattle	SubscribePriceStreams	1.5	2
+United States	Seattle	United States/Seattle	SubscribePriceStreams	2	3
+United States	Seattle	United States/Seattle	SubscribePriceStreams	2.5	4
+United States	Seattle	United States/Seattle	SubscribePriceStreams	5	1
+United States	Seattle	United States/Seattle	SubscribePriceStreams	6	1
+United States	Seattle	United States/Seattle	SubscribePriceStreams	7	1
 United States	Seattle	United States/Seattle	SubscribePriceStreams	8	1
-United States	Seattle	United States/Seattle	UnsubscribePriceStream	0	22
