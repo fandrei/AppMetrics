@@ -173,8 +173,7 @@ namespace AppMetrics.Analytics
 		{
 			var watch = Stopwatch.StartNew();
 
-			var geoDataPath = Path.GetFullPath(@"..\..\tools\GeoIP\GeoLiteCity.dat");
-			var geoLookup = new LookupService(geoDataPath, LookupService.GEOIP_MEMORY_CACHE);
+			var geoLookup = new LookupService(LookupService.GEOIP_MEMORY_CACHE);
 
 			foreach (var session in _sessions)
 			{
