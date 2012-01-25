@@ -22,10 +22,11 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 public class LookupService{
-    private FileStream file = null;
+    private Stream file = null;
     private DatabaseInfo databaseInfo = null;
     byte databaseType = Convert.ToByte(DatabaseInfo.COUNTRY_EDITION);
     int[] databaseSegments;
@@ -133,6 +134,14 @@ public class LookupService{
             "Satellite Provider","Other",
 	    "Aland Islands","Guernsey","Isle of Man","Jersey","Saint Barthelemy",
 	    "Saint Martin"};
+
+    public LookupService(int options)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        this.file = assembly.GetManifestResourceStream("ApiGeoIP.GeoLiteCity.dat");
+        dboptions = options;
+        init();
+    }
 
     public LookupService(String databaseFile, int options){
         try {
