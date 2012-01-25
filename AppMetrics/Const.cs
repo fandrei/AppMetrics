@@ -11,5 +11,7 @@ namespace AppMetrics
 		public const string LogFileName = "AppMetrics.Log.txt";
 		public const string EventLogSourceName = "AppMetricsEventSource";
 		public static readonly string Delimiter = new string('-', 80);
+
+		public static readonly byte[] Utf8Bom = new byte[] { 0xEF, 0xBB, 0xBF };
 	}
 }

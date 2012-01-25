@@ -69,7 +69,7 @@ namespace AppMetrics
 
 			if (!fileExisted)
 			{
-				writer.BaseStream.Write(new byte[] { 0xEF, 0xBB, 0xBF }, 0, 3); // UTF8 BOM
+				writer.BaseStream.Write(Const.Utf8Bom, 0, Const.Utf8Bom.Length);
 
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
