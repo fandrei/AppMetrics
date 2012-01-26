@@ -233,6 +233,12 @@ namespace AppMetrics.Client
 
 			var offset = timeZone.GetUtcOffset(DateTime.Now);
 			Log("System_TimeZoneOffset", offset.TotalHours);
+
+			var processFile = Process.GetCurrentProcess().MainModule.FileName;
+			Log("Client_ProcessName", processFile);
+
+			var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
+			Log("Client_ProcessVersion", processVersion);
 		}
 
 		public string SessionId { get; private set; }
