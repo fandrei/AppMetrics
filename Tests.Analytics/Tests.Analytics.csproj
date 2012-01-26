@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMetrics.Analytics\AppMetrics.Analytics.csproj">
-      <Project>{AE6B8B1D-F338-473D-A41C-4B58768274B1}</Project>
+      <Project></Project>
       <Name>AppMetrics.Analytics</Name>
     </ProjectReference>
     <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
