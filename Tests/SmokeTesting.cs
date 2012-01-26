@@ -15,7 +15,7 @@ namespace Tests
 	[TestFixture]
 	public class SmokeTesting
 	{
-		private const string AppKey = "SmokeTest";
+		private const string AppKey = "Tracking.SmokeTest";
 		private const string RequestPeriod = "0:5:0";
 
 		[Test]

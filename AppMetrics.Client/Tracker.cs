@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace AppMetrics.Client
 {
-	public class Tracker
+	public class Tracker : IDisposable
 	{
 		public Tracker(string url, string applicationKey)
 		{
@@ -21,6 +21,20 @@ namespace AppMetrics.Client
 			_applicationKey = applicationKey;
 
 			SessionId = Guid.NewGuid().ToString();
+
+			lock (Sync)
+			{
+				Sessions.Add(this);
+			}
+		}
+
+		public void Dispose()
+		{
+			Log("SessionFinished", null, MessageSeverity.High);
+			lock (Sync)
+			{
+				Sessions.Remove(this);
+			}
 		}
 
 		static Tracker()
@@ -30,6 +44,14 @@ namespace AppMetrics.Client
 
 		public static void Terminate(bool waitAll = false)
 		{
+			lock (Sync)
+			{
+				var sessionsTmp = new HashSet<Tracker>(Sessions);
+				foreach (var session in sessionsTmp)
+				{
+					session.Dispose();
+				}
+			}
 			_terminated = true;
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
@@ -69,6 +91,9 @@ namespace AppMetrics.Client
 		{
 			if (_terminated)
 				return;
+
+			if (val == null)
+				val = "";
 
 			lock (Sync)
 			{
@@ -217,6 +242,7 @@ namespace AppMetrics.Client
 		private static readonly object Sync = new object();
 		private static readonly Queue<MessageInfo> Messages = new Queue<MessageInfo>(MaxMessagesCount);
 		private const int MaxMessagesCount = 4096;
+		private static readonly HashSet<Tracker> Sessions = new HashSet<Tracker>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
 		private static long _requestsSent;
