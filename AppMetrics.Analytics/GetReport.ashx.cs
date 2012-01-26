@@ -15,11 +15,14 @@ namespace AppMetrics.Analytics
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			InitProcessing();
-
 			context.Response.ContentType = "text/plain";
 			lock (Sync)
 			{
+				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdate > UpdatePeriod)
+				{
+					CreateReport();
+					_lastUpdate = DateTime.UtcNow;
+				}
 				context.Response.Write(_reportText);
 			}
 		}
@@ -32,45 +35,30 @@ namespace AppMetrics.Analytics
 			}
 		}
 
-		static void InitProcessing()
-		{
-			lock (Sync)
-			{
-				if (_workerThread == null)
-				{
-					_workerThread = new Thread(ThreadStart);
-					_workerThread.Start();
-				}
-			}
-		}
-
-		static void ThreadStart()
-		{
-			while (true)
-			{
-				try
-				{
-					CreateReport();
-					Thread.Sleep(100);
-				}
-				catch (ThreadAbortException)
-				{
-					break;
-				}
-				catch (Exception exc)
-				{
-					Trace.WriteLine(exc);
-				}
-			}
-		}
-
 		static void CreateReport()
 		{
-			
+			var watch = Stopwatch.StartNew();
+
+			var dataPath = AppSettings.DataStoragePath + @"\CIAPI.CS.Excel";
+			var period = TimeSpan.FromHours(1);
+			var sessions = LogReader.Parse(dataPath, period);
+
+			var convertor = new StatsBuilder();
+			var res = convertor.Process(sessions);
+
+			var latencyReport = Report.GetLatencyStatSummariesReport(res);
+			lock (Sync)
+			{
+				_reportText = latencyReport;
+			}
+
+			watch.Stop();
+			Trace.WriteLine(watch.Elapsed.TotalSeconds);
 		}
 
-		private static Thread _workerThread;
 		private static readonly object Sync = new object();
 		private static string _reportText = "";
+		private static DateTime _lastUpdate;
+		private static readonly TimeSpan UpdatePeriod = TimeSpan.FromSeconds(10);
 	}
 }
