@@ -213,10 +213,10 @@ namespace AppMetrics.Client
 
 			Log("System_ClrVersion", Environment.Version.ToString());
 
-			Log("System_PhysicalMemory", computerInfo.TotalPhysicalMemory / (1024 * 1024));
+			Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
+			Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
 			Log("System_AvailablePhysicalMemory", computerInfo.AvailablePhysicalMemory / (1024 * 1024));
 
-			Log("System_VirtualMemory", computerInfo.TotalVirtualMemory / (1024 * 1024));
 			Log("System_AvailableVirtualMemory", computerInfo.AvailableVirtualMemory / (1024 * 1024));
 
 			Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
@@ -239,6 +239,11 @@ namespace AppMetrics.Client
 
 			var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
 			Log("Client_ProcessVersion", processVersion);
+		}
+
+		static ulong ToMegabytes(ulong val)
+		{
+			return val / (1024 * 1024);
 		}
 
 		public string SessionId { get; private set; }
