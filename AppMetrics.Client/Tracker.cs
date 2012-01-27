@@ -271,8 +271,10 @@ namespace AppMetrics.Client
 		private void ReportPeriodicInfo()
 		{
 			var workingSet = ToMegabytes((ulong)Process.GetCurrentProcess().WorkingSet64);
+			Log("Client_WorkingSet", workingSet);
 
-			Log("Client_CurrentWorkingSet", workingSet);
+			var privateMemorySize = ToMegabytes((ulong)Process.GetCurrentProcess().PrivateMemorySize64);
+			Log("Client_PrivateMemorySize", privateMemorySize);
 
 			var computerInfo = new ComputerInfo();
 
