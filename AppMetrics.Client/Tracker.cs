@@ -27,6 +27,7 @@ namespace AppMetrics.Client
 			{
 				Sessions.Add(this);
 			}
+			ReportPeriodicInfo();
 		}
 
 		public void Dispose()
