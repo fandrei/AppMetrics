@@ -27,6 +27,7 @@ namespace AppMetrics.Client
 			{
 				Sessions.Add(this);
 			}
+			ReportPeriodicInfo();
 		}
 
 		public void Dispose()
@@ -40,6 +41,10 @@ namespace AppMetrics.Client
 
 		static Tracker()
 		{
+			lock (Sync)
+			{
+				_lastSentPeriodic = DateTime.UtcNow;
+			}
 			LoggingThread.Start();
 		}
 
