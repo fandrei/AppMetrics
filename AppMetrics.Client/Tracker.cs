@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text;
 using System.Threading;
+using Microsoft.VisualBasic.Devices;
 
 namespace AppMetrics.Client
 {
@@ -62,7 +63,14 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
-				ReportSystemInfo();
+				try
+				{
+					ReportSystemInfo();
+				}
+				catch (Exception exc)
+				{
+					Log("Exception", exc);
+				}
 
 				if (Messages.Count >= MaxMessagesCount)
 				{
@@ -135,6 +143,8 @@ namespace AppMetrics.Client
 		{
 			try
 			{
+				ReportPeriodicInfoAllSessions();
+
 				using (var client = new WebClient())
 				{
 					while (true)
@@ -203,7 +213,7 @@ namespace AppMetrics.Client
 				_systemInfoIsReported = true;
 			}
 
-			var computerInfo = new Microsoft.VisualBasic.Devices.ComputerInfo();
+			var computerInfo = new ComputerInfo();
 
 			Log("System_OsName", computerInfo.OSFullName);
 			Log("System_OsVersion", Environment.OSVersion.VersionString);
@@ -215,9 +225,6 @@ namespace AppMetrics.Client
 
 			Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
 			Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
-			Log("System_AvailablePhysicalMemory", computerInfo.AvailablePhysicalMemory / (1024 * 1024));
-
-			Log("System_AvailableVirtualMemory", computerInfo.AvailableVirtualMemory / (1024 * 1024));
 
 			Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
 			Log("System_CurrentUiCulture", Thread.CurrentThread.CurrentUICulture.Name);
@@ -241,6 +248,33 @@ namespace AppMetrics.Client
 			Log("Client_ProcessVersion", processVersion);
 		}
 
+		static void ReportPeriodicInfoAllSessions()
+		{
+			lock (Sync)
+			{
+				if (DateTime.UtcNow - _lastSentPeriodic < PeriodicTime)
+					return;
+
+				foreach (var session in Sessions)
+				{
+					session.ReportPeriodicInfo();
+				}
+				_lastSentPeriodic = DateTime.UtcNow;
+			}
+		}
+
+		private void ReportPeriodicInfo()
+		{
+			var workingSet = ToMegabytes((ulong)Process.GetCurrentProcess().WorkingSet64);
+
+			Log("Client_CurrentWorkingSet", workingSet);
+
+			var computerInfo = new ComputerInfo();
+
+			Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
+			Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
+		}
+
 		static ulong ToMegabytes(ulong val)
 		{
 			return val / (1024 * 1024);
@@ -255,6 +289,8 @@ namespace AppMetrics.Client
 		private const int MaxMessagesCount = 4096;
 		private static readonly HashSet<Tracker> Sessions = new HashSet<Tracker>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
+		private static DateTime _lastSentPeriodic;
+		private static readonly TimeSpan PeriodicTime = TimeSpan.FromMinutes(10);
 
 		private static long _requestsSent;
 		private static volatile bool _terminated;
