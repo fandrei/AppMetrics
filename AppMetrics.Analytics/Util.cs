@@ -14,16 +14,6 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
-		public static decimal Ceiling(decimal val, double period)
-		{
-			return Ceiling(val, (decimal)period);
-		}
-
-		public static decimal Ceiling(decimal val, int period)
-		{
-			return Ceiling(val, (decimal)period);
-		}
-
 		public static bool IsLatency(RecordEx record)
 		{
 			return record.Name.StartsWith("Latency");
