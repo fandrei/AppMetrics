@@ -30,11 +30,6 @@
       <Output TaskParameter="Include" ItemName="TestAssembly1" />
     </CreateItem>
     <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly1)" />
-    
-    <CreateItem Include="$(SolutionRoot)\_bin\$(Configuration)\Tests.Analytics.dll">
-      <Output TaskParameter="Include" ItemName="TestAssembly2" />
-    </CreateItem>
-    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly2)" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Test" >

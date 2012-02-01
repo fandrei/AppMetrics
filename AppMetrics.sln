@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "Co
 		ContinuousIntegration\publishToNuGet.xml = ContinuousIntegration\publishToNuGet.xml
 		ContinuousIntegration\setEntryPoint.xml = ContinuousIntegration\setEntryPoint.xml
 		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
+		ContinuousIntegration\testAnalytics.xml = ContinuousIntegration\testAnalytics.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.AnalyticsSite", "AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj", "{AE6B8B1D-F338-473D-A41C-4B58768274B1}"
