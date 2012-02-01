@@ -44,25 +44,25 @@ namespace Tests.Analytics
 			{
 				var summaryReport = Report.GetSummaryReport(sessions);
 				var summarySample = File.ReadAllText(resultsPath + "TestData.Summary.txt");
-				Assert.IsTrue(summaryReport == summarySample);
+				Assert.AreEqual(summaryReport, summarySample);
 			}
 
 			{
 				var latencySummariesReport = Report.GetLatencyStatSummariesReport(res);
 				var latencySummariesSample = File.ReadAllText(resultsPath + "TestData.LatencyStatSummaries.txt");
-				Assert.IsTrue(latencySummariesReport == latencySummariesSample);
+				Assert.AreEqual(latencySummariesReport, latencySummariesSample);
 			}
 
 			{
 				var latencyDistributionReport = Report.GetLatencyDistributionReport(res);
 				var latencyDistributionSample = File.ReadAllText(resultsPath + "TestData.LatencyDistribution.txt");
-				Assert.IsTrue(latencyDistributionReport == latencyDistributionSample);
+				Assert.AreEqual(latencyDistributionReport, latencyDistributionSample);
 			}
 
 			{
 				var jitterDistributionReport = Report.GetJitterDistributionReport(res);
 				var jitterDistributionSample = File.ReadAllText(resultsPath + "TestData.JitterDistribution.txt");
-				Assert.IsTrue(jitterDistributionReport == jitterDistributionSample);
+				Assert.AreEqual(jitterDistributionReport, jitterDistributionSample);
 			}
 		}
 	}
