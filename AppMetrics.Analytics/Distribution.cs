@@ -7,7 +7,7 @@ namespace AppMetrics.Analytics
 {
 	public class Distribution
 	{
-		public SortedDictionary<decimal, decimal> Vals = new SortedDictionary<decimal, decimal>();
+		public SortedDictionary<decimal, int> Vals = new SortedDictionary<decimal, int>();
 		public int Count;
 	}
 }
