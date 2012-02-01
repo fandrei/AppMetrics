@@ -1,0 +1,27 @@
+﻿Country	City	Location	FunctionName	Difference	Count
+(World)		(World)	PriceStream	0	55
+(World)		(World)	PriceStream	0.2	633
+(World)		(World)	PriceStream	0.4	103
+(World)		(World)	PriceStream	0.6	15
+(World)		(World)	PriceStream	0.8	12
+(World)		(World)	PriceStream	1	12
+(World)		(World)	PriceStream	1.2	9
+(World)		(World)	PriceStream	1.4	7
+(World)		(World)	PriceStream	1.6	11
+(World)		(World)	PriceStream	1.8	8
+(World)		(World)	PriceStream	2	4
+(World)		(World)	PriceStream	2.2	5
+(World)		(World)	PriceStream	2.4	2
+Ireland	(All)	Ireland/(All)	PriceStream	0	55
+Ireland	(All)	Ireland/(All)	PriceStream	0.2	633
+Ireland	(All)	Ireland/(All)	PriceStream	0.4	103
+Ireland	(All)	Ireland/(All)	PriceStream	0.6	15
+Ireland	(All)	Ireland/(All)	PriceStream	0.8	12
+Ireland	(All)	Ireland/(All)	PriceStream	1	12
+Ireland	(All)	Ireland/(All)	PriceStream	1.2	9
+Ireland	(All)	Ireland/(All)	PriceStream	1.4	7
+Ireland	(All)	Ireland/(All)	PriceStream	1.6	11
+Ireland	(All)	Ireland/(All)	PriceStream	1.8	8
+Ireland	(All)	Ireland/(All)	PriceStream	2	4
+Ireland	(All)	Ireland/(All)	PriceStream	2.2	5
+Ireland	(All)	Ireland/(All)	PriceStream	2.4	2
