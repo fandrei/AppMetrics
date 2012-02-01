@@ -33,6 +33,35 @@ namespace Tests.Analytics
 				Assert.IsTrue(res.UpperQuartile == 40M);
 			}
 		}
+
+		[Test]
+		public void TestDistributionCalculation()
+		{
+			{
+				var data = new[] { 0M, 0.1M, 0.6M, 0.8M, 1.1M, 2.2M, 2.4M, };
+				var distribution = Stats.CalculateDistribution(data, 0.5M);
+				var sample = new SortedDictionary<decimal, decimal>
+				    {
+						{ 0, 1 },
+				        { 0.5M, 1 },
+						{ 1, 2 },
+						{ 1.5M, 1 },
+						{ 2.5M, 2 }
+				    };
+				Assert.IsTrue(distribution.Vals.SequenceEqual(sample));
+			}
+
+			{
+				var data = new[] { 0M, 0.1M, 0.2M, 0.21M, 0.25M };
+				var distribution = Stats.CalculateDistribution(data, 0.2M);
+				var sample = new SortedDictionary<decimal, decimal>
+				    {
+				        { 0, 1 },
+						{ 0.2M, 2 },
+						{ 0.4M, 2 },
+				    };
+				Assert.IsTrue(distribution.Vals.SequenceEqual(sample));
+			}
 		}
 	}
 }
