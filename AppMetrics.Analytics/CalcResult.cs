@@ -9,7 +9,7 @@ namespace AppMetrics.Analytics
 	{
 		public StatSummary StatSummary;
 		public Distribution Distribution;
-		public JitterSummary Jitter;
+		public Distribution Jitter;
 
 		public string FunctionName;
 		public string City;

@@ -70,5 +70,21 @@ namespace AppMetrics.Analytics
 			if (biggerCount > Math.Round(vals.Count * (1 - splittingCoefficient)))
 				throw new ValidationException();
 		}
+
+		public static Distribution CalculateDistribution(decimal[] values, decimal period)
+		{
+			var res = new Distribution { Count = values.Length };
+
+			foreach (var latency in values)
+			{
+				var rounded = Util.Ceiling(latency, period);
+				if (res.Vals.ContainsKey(rounded))
+					res.Vals[rounded]++;
+				else
+					res.Vals[rounded] = 1;
+			}
+
+			return res;
+		}
 	}
 }

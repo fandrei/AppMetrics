@@ -119,7 +119,7 @@ namespace AppMetrics.Analytics
 				latencies.RemoveRange(latencies.Count - countToRemove, countToRemove);
 
 				res.StatSummary = Stats.CalculateSummaries(latencies);
-				res.Distribution = CalculateDistribution(latencies.ToArray());
+				res.Distribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
 
 			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
@@ -130,39 +130,7 @@ namespace AppMetrics.Analytics
 				var countToRemove = (int)(jitterVals.Count * 0.02);
 				jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
 
-				res.Jitter = CalculateJitterSummary(jitterVals.ToArray());
-			}
-
-			return res;
-		}
-
-		private static Distribution CalculateDistribution(decimal[] latencies)
-		{
-			var res = new Distribution { Count = latencies.Length };
-
-			foreach (var latency in latencies)
-			{
-				var rounded = Util.Ceiling(latency, 0.5);
-				if (res.Vals.ContainsKey(rounded))
-					res.Vals[rounded]++;
-				else
-					res.Vals[rounded] = 1;
-			}
-
-			return res;
-		}
-
-		private static JitterSummary CalculateJitterSummary(decimal[] jitterVals)
-		{
-			var res = new JitterSummary { Count = jitterVals.Length };
-
-			foreach (var jitter in jitterVals)
-			{
-				var rounded = Util.Ceiling(jitter, 0.2);
-				if (res.Vals.ContainsKey(rounded))
-					res.Vals[rounded]++;
-				else
-					res.Vals[rounded] = 1;
+				res.Jitter = Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
 			}
 
 			return res;
