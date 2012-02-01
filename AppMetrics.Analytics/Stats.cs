@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	static class Stats
+	public static class Stats
 	{
 		public static StatSummary CalculateSummaries(ICollection<decimal> vals)
 		{
