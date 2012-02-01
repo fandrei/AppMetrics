@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppMetrics.Analytics</RootNamespace>
-    <AssemblyName>AppMetrics.Analytics</AssemblyName>
+    <RootNamespace>AppMetrics.AnalyticsSite</RootNamespace>
+    <AssemblyName>AppMetrics.AnalyticsSite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
@@ -70,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GetReport.ashx" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\AppMetrics.Analytics\AppMetrics.Analytics.csproj">
       <Project>{25355CDE-A7B2-4C34-890C-812CAE1986BC}</Project>
       <Name>AppMetrics.Analytics</Name>
@@ -79,10 +82,6 @@
       <Name>AppMetrics</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="GetReport.ashx" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data\web.config" />
   </ItemGroup>
