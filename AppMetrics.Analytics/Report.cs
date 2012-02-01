@@ -56,36 +56,27 @@ namespace AppMetrics.Analytics
 
 		public static string GetLatencyDistributionReport(IEnumerable<CalcResult> results)
 		{
-			var res = new StringBuilder();
-
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tLatency\tCount");
-
-			foreach (var result in results)
-			{
-				if (result.Distribution == null)
-					continue;
-				foreach (var pair in result.Distribution.Vals)
-				{
-					res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
-					result.Country, result.City, result.Location, result.FunctionName,
-					pair.Key, pair.Value);
-				}
-			}
-
-			return res.ToString();
+			return GetDistributionReport(results, "Latency", calc => calc.Distribution);
 		}
 
 		public static string GetJitterDistributionReport(IEnumerable<CalcResult> results)
 		{
+			return GetDistributionReport(results, "Difference", calc => calc.Jitter);
+		}
+
+		public static string GetDistributionReport(IEnumerable<CalcResult> results, string paramName, 
+			Func<CalcResult, Distribution> selector)
+		{
 			var res = new StringBuilder();
 
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tDifference\tCount");
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\t{0}\tCount", paramName);
 
 			foreach (var result in results)
 			{
-				if (result.Jitter == null)
+				var cur = selector(result);
+				if (cur == null)
 					continue;
-				foreach (var pair in result.Jitter.Vals)
+				foreach (var pair in cur.Vals)
 				{
 					res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}",
 					result.Country, result.City, result.Location, result.FunctionName,
