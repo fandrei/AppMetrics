@@ -13,7 +13,7 @@ namespace Tests.Analytics
 	public class SmokeTesting
 	{
 		[Test]
-		public void SmokeTest()
+		public void TestInternalValidationIsPassed()
 		{
 			var dataPath = Util.GetAppLocation() + @"\Data\";
 			var sessions = LogReader.Parse(dataPath, TimeSpan.MaxValue);
