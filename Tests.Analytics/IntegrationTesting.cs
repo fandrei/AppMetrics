@@ -10,7 +10,7 @@ using AppMetrics.Analytics;
 namespace Tests.Analytics
 {
 	[TestFixture]
-	public class SmokeTesting
+	public class IntegrationTesting
 	{
 		[Test]
 		public void TestInternalValidationIsPassed()
