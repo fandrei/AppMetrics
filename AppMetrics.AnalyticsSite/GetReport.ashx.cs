@@ -20,7 +20,7 @@ namespace AppMetrics.Analytics
 			{
 				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdate > UpdatePeriod)
 				{
-					CreateReport();
+					_reportText = CreateReport();
 					_lastUpdate = DateTime.UtcNow;
 				}
 				context.Response.Write(_reportText);
@@ -35,7 +35,7 @@ namespace AppMetrics.Analytics
 			}
 		}
 
-		static void CreateReport()
+		static string CreateReport()
 		{
 			var watch = Stopwatch.StartNew();
 
@@ -48,13 +48,11 @@ namespace AppMetrics.Analytics
 			var res = convertor.Process(sessions, options);
 
 			var latencyReport = Report.GetLatencyStatSummariesReport(res);
-			lock (Sync)
-			{
-				_reportText = latencyReport;
-			}
 
 			watch.Stop();
 			Trace.WriteLine(watch.Elapsed.TotalSeconds);
+
+			return latencyReport;
 		}
 
 		private static readonly object Sync = new object();
