@@ -23,7 +23,7 @@ namespace AppMetrics.Analytics
 					_reportText = CreateReport();
 					_lastUpdate = DateTime.UtcNow;
 				}
-				string status = string.Format("Generated: {0}\tPeriod: {1}\r\n", _lastUpdate, UpdatePeriod);
+				string status = string.Format("Generated at: {0}\tPeriod: {1}\r\n", _lastUpdate, UpdatePeriod);
 				context.Response.Write(status);
 				context.Response.Write(_reportText);
 			}
