@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Web;
 
-namespace AppMetrics.Analytics
+using AppMetrics.Analytics;
+
+namespace AppMetrics.AnalyticsSite
 {
 	/// <summary>
 	/// Creates reports and delivers to the user
