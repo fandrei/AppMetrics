@@ -18,12 +18,16 @@ namespace AppMetrics.Analytics
 			context.Response.ContentType = "text/plain";
 			lock (Sync)
 			{
-				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdate > CacheDuration)
+				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdateTime > CacheDuration)
 				{
+					var watch = Stopwatch.StartNew();
 					_reportText = CreateReport();
-					_lastUpdate = DateTime.UtcNow;
+					watch.Stop();
+					_generationElapsed = watch.Elapsed;
+					_lastUpdateTime = DateTime.UtcNow;
 				}
-				string status = string.Format("Generated at: {0}\tPeriod: {1}\r\n", _lastUpdate, ReportPeriod);
+				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration elapsed time: {2}\r\n",
+					ReportPeriod, _lastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), _generationElapsed);
 				context.Response.Write(status);
 				context.Response.Write(_reportText);
 			}
@@ -39,8 +43,6 @@ namespace AppMetrics.Analytics
 
 		static string CreateReport()
 		{
-			var watch = Stopwatch.StartNew();
-
 			var dataPath = AppSettings.DataStoragePath + @"\CIAPI.CS.Excel";
 			var sessions = LogReader.Parse(dataPath, ReportPeriod);
 
@@ -50,15 +52,13 @@ namespace AppMetrics.Analytics
 
 			var latencyReport = Report.GetLatencyStatSummariesReport(res);
 
-			watch.Stop();
-			Trace.WriteLine(watch.Elapsed.TotalSeconds);
-
 			return latencyReport;
 		}
 
 		private static readonly object Sync = new object();
 		private static string _reportText = "";
-		private static DateTime _lastUpdate;
+		private static DateTime _lastUpdateTime;
+		private static TimeSpan _generationElapsed;
 		private static readonly TimeSpan CacheDuration = TimeSpan.FromSeconds(10);
 		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
 	}
