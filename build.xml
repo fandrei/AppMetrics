@@ -37,6 +37,7 @@
       Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
       ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
 
+    <!-- package data collector website -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
 
@@ -61,6 +62,10 @@
       Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.nuspec"
       Regex="version&gt;(.*?)&lt;/version"
       ReplacementText="version&gt;$(FullVersion)&lt;/version" />
+
+    <!-- package analytics website -->
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
+      Properties="Configuration=$(Configuration)" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
