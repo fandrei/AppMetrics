@@ -65,7 +65,7 @@
 
     <!-- package analytics website -->
     <FileUpdate
-      Files="$(MSBuildProjectDirectory)\AppMetrics.Analytics\App_Data\web.config"
+      Files="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\App_Data\web.config"
       Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
       ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
