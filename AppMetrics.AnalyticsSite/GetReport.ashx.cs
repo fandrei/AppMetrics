@@ -40,7 +40,7 @@ namespace AppMetrics.Analytics
 			var watch = Stopwatch.StartNew();
 
 			var dataPath = AppSettings.DataStoragePath + @"\CIAPI.CS.Excel";
-			var period = TimeSpan.FromHours(1);
+			var period = TimeSpan.FromMinutes(1);
 			var sessions = LogReader.Parse(dataPath, period);
 
 			var convertor = new StatsBuilder();
