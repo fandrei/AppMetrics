@@ -18,12 +18,12 @@ namespace AppMetrics.Analytics
 			context.Response.ContentType = "text/plain";
 			lock (Sync)
 			{
-				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdate > UpdatePeriod)
+				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdate > CacheDuration)
 				{
 					_reportText = CreateReport();
 					_lastUpdate = DateTime.UtcNow;
 				}
-				string status = string.Format("Generated at: {0}\tPeriod: {1}\r\n", _lastUpdate, UpdatePeriod);
+				string status = string.Format("Generated at: {0}\tPeriod: {1}\r\n", _lastUpdate, ReportPeriod);
 				context.Response.Write(status);
 				context.Response.Write(_reportText);
 			}
@@ -42,8 +42,7 @@ namespace AppMetrics.Analytics
 			var watch = Stopwatch.StartNew();
 
 			var dataPath = AppSettings.DataStoragePath + @"\CIAPI.CS.Excel";
-			var period = TimeSpan.FromMinutes(1);
-			var sessions = LogReader.Parse(dataPath, period);
+			var sessions = LogReader.Parse(dataPath, ReportPeriod);
 
 			var convertor = new StatsBuilder();
 			var options = new AnalysisOptions { SliceByLocation = false, SliceByFunction = false };
@@ -60,6 +59,7 @@ namespace AppMetrics.Analytics
 		private static readonly object Sync = new object();
 		private static string _reportText = "";
 		private static DateTime _lastUpdate;
-		private static readonly TimeSpan UpdatePeriod = TimeSpan.FromSeconds(10);
+		private static readonly TimeSpan CacheDuration = TimeSpan.FromSeconds(10);
+		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
 	}
 }
