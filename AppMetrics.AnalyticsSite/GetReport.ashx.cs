@@ -44,7 +44,8 @@ namespace AppMetrics.Analytics
 			var sessions = LogReader.Parse(dataPath, period);
 
 			var convertor = new StatsBuilder();
-			var res = convertor.Process(sessions);
+			var options = new AnalysisOptions { SliceByLocation = false, SliceByFunction = false };
+			var res = convertor.Process(sessions, options);
 
 			var latencyReport = Report.GetLatencyStatSummariesReport(res);
 			lock (Sync)

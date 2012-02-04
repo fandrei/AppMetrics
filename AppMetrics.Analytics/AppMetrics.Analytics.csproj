@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalysisOptions.cs" />
     <Compile Include="CalcResult.cs" />
     <Compile Include="Distribution.cs" />
     <Compile Include="Exceptions.cs" />

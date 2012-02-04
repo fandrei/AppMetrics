@@ -8,13 +8,33 @@ namespace AppMetrics.Analytics
 {
 	public class StatsBuilder
 	{
-		public List<CalcResult> Process(List<SessionEx> sessions)
+		public List<CalcResult> Process(List<SessionEx> sessions, AnalysisOptions options = null)
 		{
+			if (options == null)
+				options = new AnalysisOptions();
+			_options = options;
 			_sessions = sessions;
+
 			PrepareData();
 			GC.Collect();
 
-			var res = CalculateByCountries();
+			List<CalcResult> res;
+			if (options.SliceByLocation)
+			{
+				res = CalculateByCountries();
+			}
+			else
+			{
+				var records = GetRecords(_sessions);
+				if (options.SliceByFunction)
+					res = CalculateByFunction(records);
+				else
+				{
+					res = new List<CalcResult>();
+					var summary = Calculate(records);
+					res.Add(summary);
+				}
+			}
 			return res;
 		}
 
@@ -212,5 +232,6 @@ namespace AppMetrics.Analytics
 		}
 
 		private List<SessionEx> _sessions;
+		private AnalysisOptions _options;
 	}
 }
