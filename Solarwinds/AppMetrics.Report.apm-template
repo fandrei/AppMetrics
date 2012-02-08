@@ -62,7 +62,7 @@
                         <d5p1:Value>
                             <Required>false</Required>
                             <SettingLevel>Template</SettingLevel>
-                            <Value>http://184.73.228.71/AppMetrics.Analytics/GetReport.ashx</Value>
+                            <Value>http://analytics.metrics.labs.cityindex.com/GetReport.ashx</Value>
                             <ValueType>String</ValueType>
                             <Key>ScriptArguments</Key>
                         </d5p1:Value>
@@ -288,7 +288,7 @@ catch [Exception] {
         <Description></Description>
         <Tags />
         <Created>2012-02-07T12:17:31.61Z</Created>
-        <LastModified>2012-02-08T08:00:11.483Z</LastModified>
+        <LastModified>2012-02-08T11:03:06.48Z</LastModified>
         <Version>1.0</Version>
         <ViewID>23</ViewID>
         <ViewXml>
