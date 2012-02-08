@@ -4,7 +4,7 @@
         <Settings xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
         <ComponentTemplates>
             <ComponentTemplate>
-                <Id>1020</Id>
+                <Id>1018</Id>
                 <Name>Latency statistic</Name>
                 <Settings xmlns:d5p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
                     <d5p1:KeyValueOfstringSettingValueyR_SGpLPx>
@@ -72,52 +72,57 @@
                         <d5p1:Value>
                             <Required>true</Required>
                             <SettingLevel>Template</SettingLevel>
-                            <Value>$url = $args.get(0);
-$page = (New-Object System.Net.WebClient).DownloadString($url)
-
-$lines = $page.Split("`r`n", [StringSplitOptions]::RemoveEmptyEntries)
-
-if (($lines.length -lt 2) -or ($lines.length -gt 3))
+                            <Value>try
 {
-  Write-Host "Invalid lines count"
-  exit 1
+	$url = $args.get(0);
+	$page = (New-Object System.Net.WebClient).DownloadString($url)
+
+	$lines = $page.Split("`r`n", [StringSplitOptions]::RemoveEmptyEntries)
+
+	if (($lines.length -lt 2) -or ($lines.length -gt 3))
+	{
+	  Write-Host "Invalid lines count"
+	  exit 1
+	}
+
+	$status, $lines = $lines
+
+	if ($lines.length -eq 1)
+	{
+	  Write-Host "No data"
+	  exit 0
+	}
+
+	$columnNames = $lines[0].Split("`t")
+	$columns = $lines[1].Split("`t")
+
+	if ($columnNames.length -ne $columns.length)
+	{
+	  Write-Host "Lines length doesn't match"
+	  exit 1
+	}
+
+	if ($columnNames[$columnNames.length - 3] -ne "Median")
+	{
+	  Write-Host "Median not found"
+	  exit 1
+	}
+
+	if ($columnNames[$columnNames.length - 2] -ne "UpperQuartile")
+	{
+	  Write-Host "UpperQuartile not found"
+	  exit 1
+	}
+
+	write-host "Statistic.Median: " $columns[$columns.length - 3]
+	write-host "Message.Median: Median"
+
+	write-host "Statistic.UpperQuartile: " $columns[$columns.length - 2]
+	write-host "Message.UpperQuartile: Upper quartile"
 }
-
-$status, $lines = $lines
-
-if ($lines.length -eq 1)
-{
-  Write-Host "No data"
-  exit 0
-}
-
-$columnNames = $lines[0].Split("`t")
-$columns = $lines[1].Split("`t")
-
-if ($columnNames.length -ne $columns.length)
-{
-  Write-Host "Lines length doesn't match"
-  exit 1
-}
-
-if ($columnNames[$columnNames.length - 3] -ne "Median")
-{
-  Write-Host "Median not found"
-  exit 1
-}
-
-if ($columnNames[$columnNames.length - 2] -ne "UpperQuartile")
-{
-  Write-Host "UpperQuartile not found"
-  exit 1
-}
-
-write-host "Statistic.Median: " $columns[$columns.length - 3]
-write-host "Message.Median: Median"
-
-write-host "Statistic.UpperQuartile: " $columns[$columns.length - 2]
-write-host "Message.UpperQuartile: Upper quartile"
-</Value>
+catch [Exception] {
+    Write-Host $_.Exception.ToString()
+}</Value>
                             <ValueType>External</ValueType>
                             <Key>ScriptBody</Key>
                         </d5p1:Value>
@@ -170,7 +175,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                     <DynamicEvidenceColumnSchema>
                         <Cells />
                         <ComponentID>-1</ComponentID>
-                        <ComponentTemplateID>1020</ComponentTemplateID>
+                        <ComponentTemplateID>1018</ComponentTemplateID>
                         <DataTransform>
                             <CheckedRadioButton>0</CheckedRadioButton>
                             <CommonFormulaIndex>0</CommonFormulaIndex>
@@ -184,7 +189,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                         </DataTransform>
                         <DataTransformOverridden>false</DataTransformOverridden>
                         <Disabled>false</Disabled>
-                        <ID>287</ID>
+                        <ID>212</ID>
                         <Label>Median</Label>
                         <LabelOverridden>false</LabelOverridden>
                         <Name>Median</Name>
@@ -196,7 +201,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                     <DynamicEvidenceColumnSchema>
                         <Cells />
                         <ComponentID>-1</ComponentID>
-                        <ComponentTemplateID>1020</ComponentTemplateID>
+                        <ComponentTemplateID>1018</ComponentTemplateID>
                         <DataTransform>
                             <CheckedRadioButton>0</CheckedRadioButton>
                             <CommonFormulaIndex>0</CommonFormulaIndex>
@@ -210,7 +215,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                         </DataTransform>
                         <DataTransformOverridden>false</DataTransformOverridden>
                         <Disabled>false</Disabled>
-                        <ID>289</ID>
+                        <ID>213</ID>
                         <Label>Median</Label>
                         <LabelOverridden>false</LabelOverridden>
                         <Name>Median</Name>
@@ -222,7 +227,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                     <DynamicEvidenceColumnSchema>
                         <Cells />
                         <ComponentID>-1</ComponentID>
-                        <ComponentTemplateID>1020</ComponentTemplateID>
+                        <ComponentTemplateID>1018</ComponentTemplateID>
                         <DataTransform>
                             <CheckedRadioButton>0</CheckedRadioButton>
                             <CommonFormulaIndex>0</CommonFormulaIndex>
@@ -236,7 +241,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                         </DataTransform>
                         <DataTransformOverridden>false</DataTransformOverridden>
                         <Disabled>false</Disabled>
-                        <ID>291</ID>
+                        <ID>214</ID>
                         <Label>UpperQuartile</Label>
                         <LabelOverridden>false</LabelOverridden>
                         <Name>UpperQuartile</Name>
@@ -248,7 +253,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                     <DynamicEvidenceColumnSchema>
                         <Cells />
                         <ComponentID>-1</ComponentID>
-                        <ComponentTemplateID>1020</ComponentTemplateID>
+                        <ComponentTemplateID>1018</ComponentTemplateID>
                         <DataTransform>
                             <CheckedRadioButton>0</CheckedRadioButton>
                             <CommonFormulaIndex>0</CommonFormulaIndex>
@@ -262,7 +267,7 @@ write-host "Message.UpperQuartile: Upper quartile"
                         </DataTransform>
                         <DataTransformOverridden>false</DataTransformOverridden>
                         <Disabled>false</Disabled>
-                        <ID>293</ID>
+                        <ID>215</ID>
                         <Label>UpperQuartile</Label>
                         <LabelOverridden>false</LabelOverridden>
                         <Name>UpperQuartile</Name>
@@ -272,20 +277,20 @@ write-host "Message.UpperQuartile: Upper quartile"
                         <Type>Numeric</Type>
                     </DynamicEvidenceColumnSchema>
                 </DynamicColumnSettings>
-                <ApplicationTemplateId>105</ApplicationTemplateId>
+                <ApplicationTemplateId>99</ApplicationTemplateId>
                 <UniqueId>cab1ebd4-aa8c-40ab-982c-09518c2b749c</UniqueId>
             </ComponentTemplate>
         </ComponentTemplates>
         <DeletedComponentTemplates />
-        <Id>105</Id>
+        <Id>99</Id>
         <Name>AppMetrics.Report</Name>
         <IsMockTemplate>false</IsMockTemplate>
         <Description></Description>
         <Tags />
-        <Created>2012-02-03T05:51:00.45Z</Created>
-        <LastModified>2012-02-04T10:44:01.57Z</LastModified>
+        <Created>2012-02-07T12:17:31.61Z</Created>
+        <LastModified>2012-02-08T08:00:11.483Z</LastModified>
         <Version>1.0</Version>
-        <ViewID>24</ViewID>
+        <ViewID>23</ViewID>
         <ViewXml>
             <View Title="AppMetrics.Report Details View" Type="APM Application Details" Columns="2" ColumnWidth1="500" ColumnWidth2="600" ColumnWidth3="0" System="false" Customizable="true" xmlns="http://solarwinds.com/orion/web/view/1">
                 <Resources xmlns="">
