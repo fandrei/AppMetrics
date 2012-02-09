@@ -9,7 +9,7 @@ namespace AppMetrics.Analytics
 	{
 		public static string GetSummaryReport(ICollection<SessionEx> sessions)
 		{
-			var res = new StringBuilder();
+			var res = new StringBuilder(DefaultBufferSize);
 
 			res.AppendLine("Name\tValue");
 
@@ -39,7 +39,7 @@ namespace AppMetrics.Analytics
 
 		public static string GetLatencyStatSummariesReport(IEnumerable<CalcResult> results)
 		{
-			var res = new StringBuilder();
+			var res = new StringBuilder(DefaultBufferSize);
 
 			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
 
@@ -67,10 +67,10 @@ namespace AppMetrics.Analytics
 			return GetDistributionReport(results, "Difference", calc => calc.Jitter);
 		}
 
-		public static string GetDistributionReport(IEnumerable<CalcResult> results, string paramName, 
+		public static string GetDistributionReport(IEnumerable<CalcResult> results, string paramName,
 			Func<CalcResult, Distribution> selector)
 		{
-			var res = new StringBuilder();
+			var res = new StringBuilder(DefaultBufferSize);
 
 			res.AppendLine("Country\tCity\tLocation\tFunctionName\t{0}\tCount", paramName);
 
@@ -95,5 +95,7 @@ namespace AppMetrics.Analytics
 			var tmp = string.Format(format, args);
 			res.AppendLine(tmp);
 		}
+
+		private const int DefaultBufferSize = 1024 * 1024; // use the same buffer size to prevent LOH fragmentation
 	}
 }
