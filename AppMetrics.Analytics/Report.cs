@@ -13,11 +13,14 @@ namespace AppMetrics.Analytics
 
 			res.AppendLine("Name\tValue");
 
-			var minDate = sessions.Min(session => session.LastUpdateTime);
-			res.AppendLine("MinDate\t{0}", minDate.ToString("yyyy-MM-dd HH:mm:ss"));
+			if (sessions.Count > 0)
+			{
+				var minDate = sessions.Min(session => session.LastUpdateTime);
+				res.AppendLine("MinDate\t{0}", minDate.ToString("yyyy-MM-dd HH:mm:ss"));
 
-			var maxDate = sessions.Max(session => session.LastUpdateTime);
-			res.AppendLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
+				var maxDate = sessions.Max(session => session.LastUpdateTime);
+				res.AppendLine("MaxDate\t{0}", maxDate.ToString("yyyy-MM-dd HH:mm:ss"));
+			}
 
 			// append leading space as a workaround for the PowerPivot quirk 
 			// http://social.msdn.microsoft.com/Forums/en-US/sqlkjpowerpivotforexcel/thread/456699ec-b5a2-4ae9-bc9f-b7ed2d637959
