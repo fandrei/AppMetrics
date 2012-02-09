@@ -60,7 +60,7 @@ namespace AppMetrics.AnalyticsSite
 		private static string _reportText = "";
 		private static DateTime _lastUpdateTime;
 		private static TimeSpan _generationElapsed;
-		private static readonly TimeSpan CacheDuration = TimeSpan.FromSeconds(10);
+		private static readonly TimeSpan CacheDuration = TimeSpan.FromSeconds(50);
 		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
 	}
 }
