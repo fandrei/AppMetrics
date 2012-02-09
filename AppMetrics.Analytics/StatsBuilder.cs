@@ -8,10 +8,12 @@ namespace AppMetrics.Analytics
 {
 	public class StatsBuilder
 	{
-		public List<CalcResult> Process(List<SessionEx> sessions, AnalysisOptions options = null)
+		public List<CalcResult> Process(List<SessionEx> sessions, AnalysisOptions options)
 		{
 			if (options == null)
 				options = new AnalysisOptions();
+			options.Validate();
+
 			_options = options;
 			_sessions = sessions;
 
@@ -19,7 +21,7 @@ namespace AppMetrics.Analytics
 			GC.Collect();
 
 			List<CalcResult> res;
-			if (options.SliceByLocation)
+			if (_options.SliceByLocation)
 			{
 				res = CalculateByCountries();
 			}
@@ -57,6 +59,8 @@ namespace AppMetrics.Analytics
 			foreach (var pair in sessionsByCountries)
 			{
 				var countryName = pair.Key;
+				if (_options.FilterByCountries && !_options.CountryFilter.Contains(countryName))
+					continue;
 
 				var records = GetRecords(pair.Value);
 

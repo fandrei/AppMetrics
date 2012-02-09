@@ -17,21 +17,45 @@ namespace AppMetrics.AnalyticsSite
 		public void ProcessRequest(HttpContext context)
 		{
 			context.Response.ContentType = "text/plain";
+
+			var requestParams = context.Request.QueryString;
+			var application = requestParams.Get("Application");
+			if (application == null)
+			{
+				context.Response.Write("Application key is not defined");
+				return;
+			}
+			var countries = requestParams.Get("Locations") ?? "";
+			var countryList = countries.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+
+			var options = new AnalysisOptions
+			{
+				ApplicationKey = application,
+				SliceByLocation = countryList.Length > 0,
+				SliceByFunction = false,
+				CountryFilter = new HashSet<string>(countryList)
+			};
+
+			ReportInfo report;
 			lock (Sync)
 			{
-				if (string.IsNullOrEmpty(_reportText) || DateTime.UtcNow - _lastUpdateTime > CacheDuration)
+				if (!CachedReports.TryGetValue(options, out report) || 
+					DateTime.UtcNow - report.LastUpdateTime >= options.Period)
 				{
 					var watch = Stopwatch.StartNew();
-					_reportText = CreateReport();
+					report = new ReportInfo { ReportText = CreateReport(options) };
 					watch.Stop();
-					_generationElapsed = watch.Elapsed;
-					_lastUpdateTime = DateTime.UtcNow;
+					report.GenerationElapsed = watch.Elapsed;
+					report.LastUpdateTime = DateTime.UtcNow;
+
+					CachedReports.Add(options, report);
 				}
-				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration elapsed time: {2}\r\n",
-					ReportPeriod, _lastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), _generationElapsed);
-				context.Response.Write(status);
-				context.Response.Write(_reportText);
 			}
+
+			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration elapsed time: {2}\r\n",
+				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
+			context.Response.Write(status);
+			context.Response.Write(report.ReportText);
 		}
 
 		public bool IsReusable
@@ -42,13 +66,11 @@ namespace AppMetrics.AnalyticsSite
 			}
 		}
 
-		static string CreateReport()
+		static string CreateReport(AnalysisOptions options)
 		{
-			var dataPath = AppSettings.DataStoragePath + @"\CIAPI.CS.Excel";
-			var sessions = LogReader.Parse(dataPath, ReportPeriod);
+			var sessions = LogReader.Parse(options);
 
 			var convertor = new StatsBuilder();
-			var options = new AnalysisOptions { SliceByLocation = false, SliceByFunction = false };
 			var res = convertor.Process(sessions, options);
 
 			var latencyReport = Report.GetLatencyStatSummariesReport(res);
@@ -57,10 +79,7 @@ namespace AppMetrics.AnalyticsSite
 		}
 
 		private static readonly object Sync = new object();
-		private static string _reportText = "";
-		private static DateTime _lastUpdateTime;
-		private static TimeSpan _generationElapsed;
-		private static readonly TimeSpan CacheDuration = TimeSpan.FromSeconds(50);
-		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
-	}
+		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
+			new Dictionary<AnalysisOptions, ReportInfo>();
+		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);	}
 }

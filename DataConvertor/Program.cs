@@ -38,8 +38,9 @@ namespace AppMetrics.DataConvertor
 		{
 			var sessions = LogReader.Parse(dataPath, period);
 
+			var options = new AnalysisOptions { ApplicationKey = "CIAPI.CS.Excel" };
 			var convertor = new StatsBuilder();
-			var res = convertor.Process(sessions);
+			var res = convertor.Process(sessions, options);
 
 			var summaryReport = Report.GetSummaryReport(sessions);
 			File.WriteAllText(resPath + "\\Summary.txt", summaryReport, Encoding.UTF8);

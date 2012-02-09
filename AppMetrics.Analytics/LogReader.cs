@@ -9,6 +9,12 @@ namespace AppMetrics.Analytics
 {
 	public static class LogReader
 	{
+		public static List<SessionEx> Parse(AnalysisOptions options)
+		{
+			var dataPath = AppSettings.DataStoragePath + "\\" + options.ApplicationKey;
+			return Parse(dataPath, options.Period);
+		}
+
 		public static List<SessionEx> Parse(string dataPath, TimeSpan period)
 		{
 			var watch = Stopwatch.StartNew();
