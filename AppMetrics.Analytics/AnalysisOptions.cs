@@ -35,7 +35,7 @@ namespace AppMetrics.Analytics
 
 		public override int GetHashCode()
 		{
-			return ApplicationKey.GetHashCode() ^ CountryFilter.GetHashCode() ^ 
+			return ApplicationKey.GetHashCode() ^ CountryFilter.Count ^ 
 				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
 		}
 
