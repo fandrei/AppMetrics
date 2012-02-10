@@ -55,7 +55,7 @@ namespace AppMetrics.AnalyticsSite
 				}
 			}
 
-			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration elapsed time: {2}\r\n",
+			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
 				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
 			context.Response.Write(status);
 			context.Response.Write(report.ReportText);
@@ -71,7 +71,7 @@ namespace AppMetrics.AnalyticsSite
 					{
 						var options = pair.Key;
 						var report = pair.Value;
-						var res = now - report.LastUpdateTime >= options.Period - TimeSpan.FromSeconds(1);
+						var res = now - report.LastUpdateTime >= CacheInvalidationPeriod;
 						return res;
 					}).ToArray();
 
@@ -106,5 +106,6 @@ namespace AppMetrics.AnalyticsSite
 		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
 			new Dictionary<AnalysisOptions, ReportInfo>();
 		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
+		private static readonly TimeSpan CacheInvalidationPeriod = TimeSpan.FromSeconds(60);
 	}
 }
