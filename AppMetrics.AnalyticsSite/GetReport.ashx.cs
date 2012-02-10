@@ -27,12 +27,15 @@ namespace AppMetrics.AnalyticsSite
 			}
 			var countries = requestParams.Get("Locations") ?? "";
 			var countryList = countries.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+			var includeWorldOverall = (countryList.Length == 0);
+			if (countryList.Contains("(World)"))
+				includeWorldOverall = true;
 
 			var options = new AnalysisOptions
 			{
 				ApplicationKey = application,
-				LocationIncludeOverall = false,
-				SliceByLocation = (countryList.Length > 0) ? LocationSliceType.Countries : LocationSliceType.None,
+				LocationIncludeOverall = includeWorldOverall,
+				SliceByLocation = LocationSliceType.Countries,
 				SliceByFunction = false,
 				CountryFilter = new HashSet<string>(countryList),
 				Period = ReportPeriod,
