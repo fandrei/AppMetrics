@@ -41,8 +41,9 @@ namespace AppMetrics.AnalyticsSite
 			ReportInfo report;
 			lock (Sync)
 			{
-				if (!CachedReports.TryGetValue(options, out report) || 
-					DateTime.UtcNow - report.LastUpdateTime >= options.Period)
+				RemoveOutdatedReports();
+
+				if (!CachedReports.TryGetValue(options, out report))
 				{
 					var watch = Stopwatch.StartNew();
 					report = new ReportInfo { ReportText = CreateReport(options) };
@@ -58,6 +59,27 @@ namespace AppMetrics.AnalyticsSite
 				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
 			context.Response.Write(status);
 			context.Response.Write(report.ReportText);
+		}
+
+		private static void RemoveOutdatedReports()
+		{
+			lock (Sync)
+			{
+				var now = DateTime.UtcNow;
+				var forRemoval = CachedReports.Where(
+					pair =>
+					{
+						var options = pair.Key;
+						var report = pair.Value;
+						var res = now - report.LastUpdateTime >= options.Period - TimeSpan.FromSeconds(1);
+						return res;
+					}).ToArray();
+
+				foreach (var pair in forRemoval)
+				{
+					CachedReports.Remove(pair.Key);
+				}
+			}
 		}
 
 		public bool IsReusable
@@ -83,5 +105,6 @@ namespace AppMetrics.AnalyticsSite
 		private static readonly object Sync = new object();
 		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
 			new Dictionary<AnalysisOptions, ReportInfo>();
-		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);	}
+		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
+	}
 }
