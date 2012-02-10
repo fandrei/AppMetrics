@@ -1,661 +1,106 @@
 ﻿Country	City	Location	FunctionName	Difference	Count
-(World)		(World)	PriceStream	0	28717
-(World)		(World)	PriceStream	0.2	3697294
-(World)		(World)	PriceStream	0.4	1666583
-(World)		(World)	PriceStream	0.6	637864
-(World)		(World)	PriceStream	0.8	336988
-(World)		(World)	PriceStream	1	140052
-(World)		(World)	PriceStream	1.2	88842
-(World)		(World)	PriceStream	1.4	39326
-(World)		(World)	PriceStream	1.6	23911
-(World)		(World)	PriceStream	1.8	18217
-(World)		(World)	PriceStream	2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	0	339
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.2	14237
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.4	7494
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.6	5550
-Cambodia	(All)	Cambodia/(All)	PriceStream	0.8	3656
-Cambodia	(All)	Cambodia/(All)	PriceStream	1	2167
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.2	1621
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.4	888
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.6	569
-Cambodia	(All)	Cambodia/(All)	PriceStream	1.8	397
-Cambodia	(All)	Cambodia/(All)	PriceStream	2	306
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.2	214
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.4	188
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.6	177
-Cambodia	(All)	Cambodia/(All)	PriceStream	2.8	179
-Cambodia	(All)	Cambodia/(All)	PriceStream	3	112
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.2	122
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.4	73
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.6	59
-Cambodia	(All)	Cambodia/(All)	PriceStream	3.8	70
-Cambodia	(All)	Cambodia/(All)	PriceStream	4	46
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.2	32
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.4	20
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.6	31
-Cambodia	(All)	Cambodia/(All)	PriceStream	4.8	37
-Cambodia	(All)	Cambodia/(All)	PriceStream	5	40
-Cambodia	(All)	Cambodia/(All)	PriceStream	5.2	20
-Cambodia	(All)	Cambodia/(All)	PriceStream	5.4	21
-Cambodia	(All)	Cambodia/(All)	PriceStream	5.6	27
-Cambodia	(All)	Cambodia/(All)	PriceStream	5.8	34
-Cambodia	(All)	Cambodia/(All)	PriceStream	6	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	6.2	9
-Cambodia	(All)	Cambodia/(All)	PriceStream	6.4	7
-Cambodia	(All)	Cambodia/(All)	PriceStream	6.6	11
-Cambodia	(All)	Cambodia/(All)	PriceStream	6.8	8
-Cambodia	(All)	Cambodia/(All)	PriceStream	7	9
-Cambodia	(All)	Cambodia/(All)	PriceStream	7.2	11
-Cambodia	(All)	Cambodia/(All)	PriceStream	7.4	10
-Cambodia	(All)	Cambodia/(All)	PriceStream	7.6	9
-Cambodia	(All)	Cambodia/(All)	PriceStream	7.8	14
-Cambodia	(All)	Cambodia/(All)	PriceStream	8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	8.2	7
-Cambodia	(All)	Cambodia/(All)	PriceStream	8.4	10
-Cambodia	(All)	Cambodia/(All)	PriceStream	8.6	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	8.8	9
-Cambodia	(All)	Cambodia/(All)	PriceStream	9	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	9.2	11
-Cambodia	(All)	Cambodia/(All)	PriceStream	9.4	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	9.6	8
-Cambodia	(All)	Cambodia/(All)	PriceStream	9.8	8
-Cambodia	(All)	Cambodia/(All)	PriceStream	10	7
-Cambodia	(All)	Cambodia/(All)	PriceStream	10.2	12
-Cambodia	(All)	Cambodia/(All)	PriceStream	10.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	10.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	10.8	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	11	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	11.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	11.4	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	11.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	11.8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	12	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	12.2	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	12.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	12.6	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	12.8	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	13	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	13.2	8
-Cambodia	(All)	Cambodia/(All)	PriceStream	13.4	7
-Cambodia	(All)	Cambodia/(All)	PriceStream	13.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	13.8	9
-Cambodia	(All)	Cambodia/(All)	PriceStream	14	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	14.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	14.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	14.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	14.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	15	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	15.2	12
-Cambodia	(All)	Cambodia/(All)	PriceStream	15.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	15.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	15.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	16	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	16.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	16.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	16.6	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	17	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	17.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	17.4	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	17.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	17.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	18	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	18.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	18.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	18.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	19	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	19.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	19.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	19.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	20.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	20.4	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	20.6	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	21	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	21.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	21.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	22	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	22.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	22.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	23.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	23.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	23.8	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	24	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	24.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	24.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	24.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	24.8	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	25	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	25.2	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	25.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	25.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	26.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	26.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	26.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	26.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	27	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	27.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	27.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	28	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	28.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	29.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	29.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	29.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	29.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	30	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	30.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	30.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	30.8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	31.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	31.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32.2	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	32.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33.2	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	33.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	34	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	35.4	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	35.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	36.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	36.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	36.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	37	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	37.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	37.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	37.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	38	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	38.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	38.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	38.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	39	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	40.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	41.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	42	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	42.2	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	42.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	42.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	44	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	44.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	44.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	45	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	45.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	45.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	49	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	49.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	49.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	50	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	50.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	51	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	51.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	52.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	52.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	53	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	53.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	54	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	54.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	55.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	56	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	57	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	57.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	57.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	58	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	58.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	59	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	60.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	60.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	63	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	67.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	68.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	71	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	72	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	72.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	72.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	73	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	73.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	73.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	75	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	76.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	77.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	78.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	80.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	81.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	83.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	83.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	85.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	87.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	88	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	89.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	89.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	91	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	91.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	92	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	93.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	94	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	94.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	95.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	96	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	96.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	96.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	102.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	102.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	103	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	105.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	108.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	109.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	109.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	112.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	112.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	113.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	114	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	114.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	120	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	122.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	124.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	127.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	128	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	128.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	135.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	138.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	141	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	141.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	143.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	145.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	147.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	150.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	156.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	161.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	163	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	169.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	171.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	173.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	190	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	196.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	197.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	202.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	208.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	233.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	236.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	241.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	255.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	257.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	259	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	266.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	376	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	463.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	500.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	528.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	587.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	641	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	702.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	1100.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	2180.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21566.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21597.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21617.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21652.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21703.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	21735.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	22747.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	23890.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	25180.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	30818.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32365.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32366.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32366.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32366.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32366.8	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	32367.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32368.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32371	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32371.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32372.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32373.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32375	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32388.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32389.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32396.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32396.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32396.8	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	32397	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32397.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32397.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32398.8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32401.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32402.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32403.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32403.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32406.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32409.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32416.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32417.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32417.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32417.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32417.8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32418	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32418.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32418.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32419.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32420.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32422.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32422.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32424	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32424.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32426	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32431.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32439.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32439.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32441.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32452.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32452.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	32452.8	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32453	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32453.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32453.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32454	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32455.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32456.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32457.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32458.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32460	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32460.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32461.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32461.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32467	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32474.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32475.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32482.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32496	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32497	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32503	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32503.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32503.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32503.6	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32503.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32504	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32504.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32504.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32505	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32506.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32507.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32508.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32509.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32511	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32512.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32517.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32518	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32525.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32526.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32535.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32535.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32535.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32535.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32536	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	32536.2	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	32537	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32538.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32540	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32540.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32541.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32543	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32544.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32547	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32553.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32557.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	32559	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32568.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32579.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32587.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32600.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32604.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32608.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32636.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32644	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32659.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32694.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	32727	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33201.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	33201.4	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	33201.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33201.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33202.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	33202.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33202.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33202.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33203.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33205.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33206.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33223.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33230.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33366.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33547.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33548	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	33548.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	33548.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	33548.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33549.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	33550.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33552.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33553.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33554	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33555.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33556.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33569.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33571.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33591.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33612.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33648.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	33739.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34689.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34690.2	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	34690.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	34690.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	34690.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34691.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34691.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34692.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34695	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34695.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34696.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34697.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34699	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34712	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34714	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34733.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34755	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34791	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	34881.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35283	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	35283.2	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	35283.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35284	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	35284.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35284.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	35285.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	35287	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35287.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35288.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35305.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35312	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35448.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35976.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	35977.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	35977.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	35977.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	35978.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35978.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35979.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35981.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35982.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35983	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35984.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35986	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	35999	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36000.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36020.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36042	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36078	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36168.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	36175.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	37622.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	39918.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40328	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40328.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	40332.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41618.4	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	41618.6	5
-Cambodia	(All)	Cambodia/(All)	PriceStream	41619	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41619.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	41619.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41619.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	41620	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	41620.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	41622.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	41623.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41640.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41647.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	41783.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43459.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43460	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43460.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	43460.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	43460.8	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	43461.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	43462.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43464.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43465.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43466.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43467.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43469	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43482.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43483.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43503.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43525.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43561	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	43651.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	44450.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46005.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46006.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46006.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46006.8	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	46007	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	46007.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46007.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46007.8	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	46008.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	46008.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	46008.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46009	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46009.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46010.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46010.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46029.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46035.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46172	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46975	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	46975.2	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	46975.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46975.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46976	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46976.2	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	46976.6	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	46977.2	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	46979	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46979.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46980.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	46997.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47004.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47140.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47966.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	47997	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48017.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48053.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48103.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48136.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48422.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48423	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48423.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48423.4	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	48423.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	48423.8	4
-Cambodia	(All)	Cambodia/(All)	PriceStream	48424.6	2
-Cambodia	(All)	Cambodia/(All)	PriceStream	48425.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48427.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48428.4	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48429.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48430.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48432	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48445.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48446.6	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48466.8	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48488.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48524.2	1
-Cambodia	(All)	Cambodia/(All)	PriceStream	48566.2	6
-Cambodia	(All)	Cambodia/(All)	PriceStream	48566.4	3
-Cambodia	(All)	Cambodia/(All)	PriceStream	48566.6	1
-Ireland	(All)	Ireland/(All)	PriceStream	0	3655
-Ireland	(All)	Ireland/(All)	PriceStream	0.2	286323
-Ireland	(All)	Ireland/(All)	PriceStream	0.4	176095
-Ireland	(All)	Ireland/(All)	PriceStream	0.6	59169
-Ireland	(All)	Ireland/(All)	PriceStream	0.8	27613
-Ireland	(All)	Ireland/(All)	PriceStream	1	13462
-Ireland	(All)	Ireland/(All)	PriceStream	1.2	7589
-Ireland	(All)	Ireland/(All)	PriceStream	1.4	4183
-Ireland	(All)	Ireland/(All)	PriceStream	1.6	2659
-Ireland	(All)	Ireland/(All)	PriceStream	1.8	2131
-Ireland	(All)	Ireland/(All)	PriceStream	2	1746
-Ireland	(All)	Ireland/(All)	PriceStream	2.2	1582
-Ireland	(All)	Ireland/(All)	PriceStream	2.4	1328
-Ireland	(All)	Ireland/(All)	PriceStream	2.6	246
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0	58
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.2	1331
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.4	660
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.6	22
-United Kingdom	(All)	United Kingdom/(All)	PriceStream	0.8	12
-United Kingdom	London	United Kingdom/London	PriceStream	0	58
-United Kingdom	London	United Kingdom/London	PriceStream	0.2	1331
-United Kingdom	London	United Kingdom/London	PriceStream	0.4	660
-United Kingdom	London	United Kingdom/London	PriceStream	0.6	22
-United Kingdom	London	United Kingdom/London	PriceStream	0.8	12
-United States	(All)	United States/(All)	PriceStream	0	24665
-United States	(All)	United States/(All)	PriceStream	0.2	3395403
-United States	(All)	United States/(All)	PriceStream	0.4	1482334
-United States	(All)	United States/(All)	PriceStream	0.6	573123
-United States	(All)	United States/(All)	PriceStream	0.8	305706
-United States	(All)	United States/(All)	PriceStream	1	124404
-United States	(All)	United States/(All)	PriceStream	1.2	79623
-United States	(All)	United States/(All)	PriceStream	1.4	34252
-United States	(All)	United States/(All)	PriceStream	1.6	20683
-United States	(All)	United States/(All)	PriceStream	1.8	7936
-United States	Saddle River	United States/Saddle River	PriceStream	0	10544
-United States	Saddle River	United States/Saddle River	PriceStream	0.2	1782445
-United States	Saddle River	United States/Saddle River	PriceStream	0.4	852512
-United States	Saddle River	United States/Saddle River	PriceStream	0.6	132305
-United States	Saddle River	United States/Saddle River	PriceStream	0.8	39644
-United States	Saddle River	United States/Saddle River	PriceStream	1	27216
-United States	Saddle River	United States/Saddle River	PriceStream	1.2	19453
-United States	Saddle River	United States/Saddle River	PriceStream	1.4	14861
-United States	Saddle River	United States/Saddle River	PriceStream	1.6	11769
-United States	Saddle River	United States/Saddle River	PriceStream	1.8	9713
-United States	Saddle River	United States/Saddle River	PriceStream	2	5953
-United States	Seattle	United States/Seattle	PriceStream	0	14121
-United States	Seattle	United States/Seattle	PriceStream	0.2	1612958
-United States	Seattle	United States/Seattle	PriceStream	0.4	629822
-United States	Seattle	United States/Seattle	PriceStream	0.6	440818
-United States	Seattle	United States/Seattle	PriceStream	0.8	266062
-United States	Seattle	United States/Seattle	PriceStream	1	97188
-United States	Seattle	United States/Seattle	PriceStream	1.2	60170
-United States	Seattle	United States/Seattle	PriceStream	1.4	19391
-United States	Seattle	United States/Seattle	PriceStream	1.6	1185
+(World)		(World)	PriceStream	0	16395
+(World)		(World)	PriceStream	0.2	1863998
+(World)		(World)	PriceStream	0.4	751230
+(World)		(World)	PriceStream	0.6	446885
+(World)		(World)	PriceStream	0.8	267571
+(World)		(World)	PriceStream	1	87375
+(World)		(World)	PriceStream	1.2	52802
+(World)		(World)	PriceStream	1.4	5318
+Cambodia	(All)	Cambodia/(All)	PriceStream	0	69
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.2	2526
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.4	925
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.6	337
+Cambodia	(All)	Cambodia/(All)	PriceStream	0.8	163
+Cambodia	(All)	Cambodia/(All)	PriceStream	1	59
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.2	39
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.4	18
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.6	10
+Cambodia	(All)	Cambodia/(All)	PriceStream	1.8	8
+Cambodia	(All)	Cambodia/(All)	PriceStream	2	5
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.2	6
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.4	3
+Cambodia	(All)	Cambodia/(All)	PriceStream	2.6	4
+Cambodia	(All)	Cambodia/(All)	PriceStream	3	6
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.2	6
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.4	2
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	3.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	4	3
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.2	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.4	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.6	2
+Cambodia	(All)	Cambodia/(All)	PriceStream	4.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	5.4	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	5.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	6.2	7
+Cambodia	(All)	Cambodia/(All)	PriceStream	6.4	12
+Cambodia	(All)	Cambodia/(All)	PriceStream	6.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	7	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	7.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	8.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	10.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	12.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	13.2	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	16.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	18.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	19.2	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	19.4	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	20	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	24.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	31	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	45.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	76	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	81	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	82.8	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	113	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	115.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	38809.2	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	38809.8	3
+Cambodia	(All)	Cambodia/(All)	PriceStream	38810.6	1
+Cambodia	(All)	Cambodia/(All)	PriceStream	38811	2
+Ireland	(All)	Ireland/(All)	PriceStream	0	384
+Ireland	(All)	Ireland/(All)	PriceStream	0.2	21901
+Ireland	(All)	Ireland/(All)	PriceStream	0.4	22334
+Ireland	(All)	Ireland/(All)	PriceStream	0.6	9064
+Ireland	(All)	Ireland/(All)	PriceStream	0.8	3340
+Ireland	(All)	Ireland/(All)	PriceStream	1	1103
+Ireland	(All)	Ireland/(All)	PriceStream	1.2	546
+Ireland	(All)	Ireland/(All)	PriceStream	1.4	280
+Ireland	(All)	Ireland/(All)	PriceStream	1.6	160
+Netherlands	(All)	Netherlands/(All)	PriceStream	0	1474
+Netherlands	(All)	Netherlands/(All)	PriceStream	0.2	63324
+Netherlands	(All)	Netherlands/(All)	PriceStream	0.4	23102
+Netherlands	(All)	Netherlands/(All)	PriceStream	0.6	10883
+Netherlands	(All)	Netherlands/(All)	PriceStream	0.8	6538
+Netherlands	(All)	Netherlands/(All)	PriceStream	1	3069
+Netherlands	(All)	Netherlands/(All)	PriceStream	1.2	1680
+Netherlands	(All)	Netherlands/(All)	PriceStream	1.4	351
+Netherlands	(All)	Netherlands/(All)	PriceStream	1.6	191
+Netherlands	(All)	Netherlands/(All)	PriceStream	1.8	179
+Netherlands	(All)	Netherlands/(All)	PriceStream	2	174
+Netherlands	(All)	Netherlands/(All)	PriceStream	2.2	173
+Netherlands	(All)	Netherlands/(All)	PriceStream	2.4	140
+Netherlands	(All)	Netherlands/(All)	PriceStream	2.6	143
+Netherlands	(All)	Netherlands/(All)	PriceStream	2.8	121
+Netherlands	(All)	Netherlands/(All)	PriceStream	3	155
+Netherlands	(All)	Netherlands/(All)	PriceStream	3.2	114
+Netherlands	(All)	Netherlands/(All)	PriceStream	3.4	106
+Netherlands	(All)	Netherlands/(All)	PriceStream	3.6	68
+United States	(All)	United States/(All)	PriceStream	0	14468
+United States	(All)	United States/(All)	PriceStream	0.2	1776247
+United States	(All)	United States/(All)	PriceStream	0.4	704869
+United States	(All)	United States/(All)	PriceStream	0.6	426601
+United States	(All)	United States/(All)	PriceStream	0.8	257530
+United States	(All)	United States/(All)	PriceStream	1	83144
+United States	(All)	United States/(All)	PriceStream	1.2	50537
+United States	(All)	United States/(All)	PriceStream	1.4	2837
+United States	Seattle	United States/Seattle	PriceStream	0	14468
+United States	Seattle	United States/Seattle	PriceStream	0.2	1776247
+United States	Seattle	United States/Seattle	PriceStream	0.4	704869
+United States	Seattle	United States/Seattle	PriceStream	0.6	426601
+United States	Seattle	United States/Seattle	PriceStream	0.8	257530
+United States	Seattle	United States/Seattle	PriceStream	1	83144
+United States	Seattle	United States/Seattle	PriceStream	1.2	50537
+United States	Seattle	United States/Seattle	PriceStream	1.4	2837
