@@ -5,14 +5,18 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
+	public enum LocationSliceType { None, Countries, CountriesAndCities }
+
 	public class AnalysisOptions
 	{
 		public string ApplicationKey = "";
 
 		public TimeSpan Period = TimeSpan.FromDays(1);
 
-		public bool SliceByLocation = true;
 		public bool SliceByFunction = true;
+
+		public LocationSliceType SliceByLocation = LocationSliceType.CountriesAndCities;
+		public bool LocationIncludeOverall = true;
 
 		public HashSet<string> CountryFilter = new HashSet<string>();
 		public bool FilterByCountries { get { return CountryFilter.Count > 0; } }
@@ -23,21 +27,23 @@ namespace AppMetrics.Analytics
 			if (that == null)
 				return false;
 
-			var res = (ApplicationKey == that.ApplicationKey) && SliceByLocation == that.SliceByLocation &&
+			var res = (ApplicationKey == that.ApplicationKey) && 
+				SliceByLocation == that.SliceByLocation && LocationIncludeOverall == that.LocationIncludeOverall &&
 				SliceByFunction == that.SliceByFunction && CountryFilter.SequenceEqual(that.CountryFilter);
 			return res;
 		}
 
 		public override int GetHashCode()
 		{
-			return ApplicationKey.GetHashCode() ^ CountryFilter.GetHashCode() ^ (SliceByLocation ^ SliceByFunction).GetHashCode();
+			return ApplicationKey.GetHashCode() ^ CountryFilter.GetHashCode() ^ 
+				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
 		}
 
 		public void Validate()
 		{
 			if (string.IsNullOrEmpty(ApplicationKey))
 				throw new ArgumentException();
-			if (!SliceByLocation && CountryFilter.Count > 0)
+			if (SliceByLocation == LocationSliceType.None && CountryFilter.Count > 0)
 				throw new ArgumentException();
 		}
 	}

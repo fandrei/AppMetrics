@@ -31,9 +31,11 @@ namespace AppMetrics.AnalyticsSite
 			var options = new AnalysisOptions
 			{
 				ApplicationKey = application,
-				SliceByLocation = countryList.Length > 0,
+				LocationIncludeOverall = false,
+				SliceByLocation = (countryList.Length > 0) ? LocationSliceType.Countries : LocationSliceType.None,
 				SliceByFunction = false,
-				CountryFilter = new HashSet<string>(countryList)
+				CountryFilter = new HashSet<string>(countryList),
+				Period = ReportPeriod,
 			};
 
 			ReportInfo report;

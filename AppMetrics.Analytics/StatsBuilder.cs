@@ -20,23 +20,7 @@ namespace AppMetrics.Analytics
 			PrepareData();
 			GC.Collect();
 
-			List<CalcResult> res;
-			if (_options.SliceByLocation)
-			{
-				res = CalculateByCountries();
-			}
-			else
-			{
-				var records = GetRecords(_sessions);
-				if (options.SliceByFunction)
-					res = CalculateByFunction(records);
-				else
-				{
-					res = new List<CalcResult>();
-					var summary = Calculate(records);
-					res.Add(summary);
-				}
-			}
+			var res = CalculateByCountries();
 			return res;
 		}
 
@@ -45,6 +29,7 @@ namespace AppMetrics.Analytics
 			var watch = Stopwatch.StartNew();
 			var res = new List<CalcResult>();
 
+			if (_options.LocationIncludeOverall || _options.SliceByLocation == LocationSliceType.None)
 			{
 				var allRecords = GetRecords(_sessions);
 				var overallSummariesByFunction = CalculateByFunction(allRecords);
@@ -55,22 +40,25 @@ namespace AppMetrics.Analytics
 				res.AddRange(overallSummariesByFunction);
 			}
 
-			var sessionsByCountries = Util.GroupBy(_sessions, session => session.Location.countryName);
-			foreach (var pair in sessionsByCountries)
+			if (_options.SliceByLocation != LocationSliceType.None)
 			{
-				var countryName = pair.Key;
-				if (_options.FilterByCountries && !_options.CountryFilter.Contains(countryName))
-					continue;
-
-				var records = GetRecords(pair.Value);
-
-				var curSummaries = CalculateByCities(records);
-				foreach (var summary in curSummaries)
+				var sessionsByCountries = Util.GroupBy(_sessions, session => session.Location.countryName);
+				foreach (var pair in sessionsByCountries)
 				{
-					summary.Country = countryName;
-				}
+					var countryName = pair.Key;
+					if (_options.FilterByCountries && !_options.CountryFilter.Contains(countryName))
+						continue;
 
-				res.AddRange(curSummaries);
+					var records = GetRecords(pair.Value);
+
+					var curSummaries = CalculateByCities(records);
+					foreach (var summary in curSummaries)
+					{
+						summary.Country = countryName;
+					}
+
+					res.AddRange(curSummaries);
+				}
 			}
 
 			Console.WriteLine("Finding statistic summaries: {0} secs", watch.Elapsed.TotalSeconds);
@@ -79,10 +67,11 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
-		private static List<CalcResult> CalculateByCities(ICollection<RecordEx> records)
+		private List<CalcResult> CalculateByCities(ICollection<RecordEx> records)
 		{
 			var res = new List<CalcResult>();
 
+			if (_options.LocationIncludeOverall || _options.SliceByLocation == LocationSliceType.Countries)
 			{
 				var tmp = CalculateByFunction(records);
 				res.AddRange(tmp);
@@ -92,39 +81,50 @@ namespace AppMetrics.Analytics
 				}
 			}
 
-			var recordsByCities = Util.GroupBy(records, record => (record.Session.Location.city) ?? "");
-			recordsByCities.Remove("");
-			foreach (var pair in recordsByCities)
+			if (_options.SliceByLocation == LocationSliceType.CountriesAndCities)
 			{
-				var cityName = pair.Key;
-				if (string.IsNullOrEmpty(cityName))
-					continue;
-
-				var curSummaries = CalculateByFunction(pair.Value);
-				foreach (var summary in curSummaries)
+				var recordsByCities = Util.GroupBy(records, record => (record.Session.Location.city) ?? "");
+				recordsByCities.Remove("");
+				foreach (var pair in recordsByCities)
 				{
-					summary.City = cityName;
+					var cityName = pair.Key;
+					if (string.IsNullOrEmpty(cityName))
+						continue;
+
+					var curSummaries = CalculateByFunction(pair.Value);
+					foreach (var summary in curSummaries)
+					{
+						summary.City = cityName;
+					}
+					res.AddRange(curSummaries);
 				}
-				res.AddRange(curSummaries);
 			}
 
 			return res;
 		}
 
-		private static List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
+		private List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
 		{
 			var res = new List<CalcResult>();
 
-			var recordsByFunction = Util.GroupBy(records, record => record.Name.Split(' ')[1]);
-			foreach (var pair in recordsByFunction)
+			if (!_options.SliceByFunction)
 			{
-				var functionName = pair.Key;
-				if (string.IsNullOrEmpty(functionName))
-					throw new ApplicationException();
-
-				var curSummary = Calculate(pair.Value);
-				curSummary.FunctionName = functionName;
+				var curSummary = Calculate(records);
 				res.Add(curSummary);
+			}
+			else
+			{
+				var recordsByFunction = Util.GroupBy(records, record => record.Name.Split(' ')[1]);
+				foreach (var pair in recordsByFunction)
+				{
+					var functionName = pair.Key;
+					if (string.IsNullOrEmpty(functionName))
+						throw new ApplicationException();
+
+					var curSummary = Calculate(pair.Value);
+					curSummary.FunctionName = functionName;
+					res.Add(curSummary);
+				}
 			}
 
 			return res;
