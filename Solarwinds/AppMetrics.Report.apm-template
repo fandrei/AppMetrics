@@ -62,7 +62,7 @@
                         <d5p1:Value>
                             <Required>false</Required>
                             <SettingLevel>Template</SettingLevel>
-                            <Value>http://analytics.metrics.labs.cityindex.com/GetReport.ashx</Value>
+                            <Value>http://analytics.metrics.labs.cityindex.com/GetReport.ashx?Application=CIAPI.CS.Excel</Value>
                             <ValueType>String</ValueType>
                             <Key>ScriptArguments</Key>
                         </d5p1:Value>
