@@ -27,7 +27,7 @@ namespace AppMetrics.Analytics
 			if (that == null)
 				return false;
 
-			var res = (ApplicationKey == that.ApplicationKey) && 
+			var res = (ApplicationKey == that.ApplicationKey) && Period == that.Period &&
 				SliceByLocation == that.SliceByLocation && LocationIncludeOverall == that.LocationIncludeOverall &&
 				SliceByFunction == that.SliceByFunction && CountryFilter.SequenceEqual(that.CountryFilter);
 			return res;
@@ -35,7 +35,7 @@ namespace AppMetrics.Analytics
 
 		public override int GetHashCode()
 		{
-			return ApplicationKey.GetHashCode() ^ CountryFilter.Count ^ 
+			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ CountryFilter.Count ^ 
 				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
 		}
 

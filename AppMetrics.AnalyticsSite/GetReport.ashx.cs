@@ -31,6 +31,9 @@ namespace AppMetrics.AnalyticsSite
 			if (countryList.Contains("(World)"))
 				includeWorldOverall = true;
 
+			var periodString = requestParams.Get("Period") ?? "";
+			var period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
+
 			var options = new AnalysisOptions
 			{
 				ApplicationKey = application,
@@ -38,7 +41,7 @@ namespace AppMetrics.AnalyticsSite
 				SliceByLocation = LocationSliceType.Countries,
 				SliceByFunction = false,
 				CountryFilter = new HashSet<string>(countryList),
-				Period = ReportPeriod,
+				Period = period,
 			};
 
 			var report = GetOrCreateReport(options);
@@ -114,7 +117,7 @@ namespace AppMetrics.AnalyticsSite
 		private static readonly object Sync = new object();
 		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
 			new Dictionary<AnalysisOptions, ReportInfo>();
-		private static readonly TimeSpan ReportPeriod = TimeSpan.FromMinutes(1);
+		private static readonly TimeSpan DefaultReportPeriod = TimeSpan.FromMinutes(1);
 		private static readonly TimeSpan CacheInvalidationPeriod = TimeSpan.FromSeconds(60);
 	}
 }
