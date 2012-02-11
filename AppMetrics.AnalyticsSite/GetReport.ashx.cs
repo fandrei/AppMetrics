@@ -41,6 +41,16 @@ namespace AppMetrics.AnalyticsSite
 				Period = ReportPeriod,
 			};
 
+			var report = GetOrCreateReport(options);
+
+			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
+				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
+			context.Response.Write(status);
+			context.Response.Write(report.ReportText);
+		}
+
+		private static ReportInfo GetOrCreateReport(AnalysisOptions options)
+		{
 			ReportInfo report;
 			lock (Sync)
 			{
@@ -57,11 +67,7 @@ namespace AppMetrics.AnalyticsSite
 					CachedReports.Add(options, report);
 				}
 			}
-
-			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
-				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
-			context.Response.Write(status);
-			context.Response.Write(report.ReportText);
+			return report;
 		}
 
 		private static void RemoveOutdatedReports()
