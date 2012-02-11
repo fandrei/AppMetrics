@@ -81,7 +81,6 @@ namespace AppMetrics.AnalyticsSite
 				var forRemoval = CachedReports.Where(
 					pair =>
 					{
-						var options = pair.Key;
 						var report = pair.Value;
 						var res = now - report.LastUpdateTime >= CacheInvalidationPeriod;
 						return res;
