@@ -11,14 +11,14 @@ namespace AppMetrics.Client
 		public string Value;
 		public string SessionId;
 		public DateTime Time;
-		public MessageSeverity Severity;
+		public MessagePriority Priority;
 
 		public override string ToString()
 		{
-			var res = string.Format("[{0} {1}] {2}: {3}", Time, Severity, Name, Value);
+			var res = string.Format("[{0} {1}] {2}: {3}", Time, Priority, Name, Value);
 			return res;
 		}
 	}
 
-	public enum MessageSeverity { Low = 0, High }
+	public enum MessagePriority { Low = 0, High }
 }

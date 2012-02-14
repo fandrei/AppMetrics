@@ -36,7 +36,7 @@ namespace AppMetrics.Client
 
 		public void Dispose()
 		{
-			Log("SessionFinished", null, MessageSeverity.High);
+			Log("SessionFinished", null, MessagePriority.High);
 			lock (Sync)
 			{
 				Sessions.Remove(this);
@@ -68,7 +68,7 @@ namespace AppMetrics.Client
 			LoggingThread.Abort();
 		}
 
-		public void Log(string name, object val, MessageSeverity severity = MessageSeverity.Low)
+		public void Log(string name, object val, MessagePriority priority = MessagePriority.Low)
 		{
 			lock (Sync)
 			{
@@ -83,24 +83,24 @@ namespace AppMetrics.Client
 
 				if (Messages.Count >= MaxMessagesCount)
 				{
-					Messages.RemoveAll(message => message.Severity == MessageSeverity.Low);
+					Messages.RemoveAll(message => message.Priority == MessagePriority.Low);
 
-					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessageSeverity.High);
+					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessagePriority.High);
 					if (Messages.Count >= MaxMessagesCount) // too much high-priority messages
 					{
 						Messages.Clear();
-						AddMessage(ErrorName, "Critical message queue overflow. All messages are removed.", MessageSeverity.High);
+						AddMessage(ErrorName, "Critical message queue overflow. All messages are removed.", MessagePriority.High);
 					}
 				}
 
-				AddMessage(name, val, severity);
+				AddMessage(name, val, priority);
 			}
 		}
 
 		private const string WarningName = "AppMetrics.Warning";
 		private const string ErrorName = "AppMetrics.Error";
 
-		private void AddMessage(string name, object val, MessageSeverity severity)
+		private void AddMessage(string name, object val, MessagePriority priority)
 		{
 			if (_terminated)
 				return;
@@ -117,7 +117,7 @@ namespace AppMetrics.Client
 							Value = Util.Escape(val.ToString()),
 							SessionId = SessionId,
 							Time = DateTime.Now,
-							Severity = severity
+							Priority = priority
 						});
 			}
 		}
