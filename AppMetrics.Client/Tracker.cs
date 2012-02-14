@@ -15,10 +15,14 @@ namespace AppMetrics.Client
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
+			if (!string.IsNullOrEmpty(_url) && url != _url)
+				throw new InvalidOperationException();
 			_url = url;
 
 			if (string.IsNullOrEmpty(applicationKey))
 				throw new ArgumentNullException();
+			if (!string.IsNullOrEmpty(_applicationKey) && _applicationKey != applicationKey)
+				throw new InvalidOperationException();
 			_applicationKey = applicationKey;
 
 			SessionId = Guid.NewGuid().ToString();
@@ -79,11 +83,7 @@ namespace AppMetrics.Client
 
 				if (Messages.Count >= MaxMessagesCount)
 				{
-					var tmp = new List<MessageInfo>(Messages);
-					Messages.Clear();
-					tmp.RemoveAll(message => message.Severity == MessageSeverity.Low);
-					foreach (var cur in tmp)
-						Messages.Enqueue(cur);
+					Messages.RemoveAll(message => message.Severity == MessageSeverity.Low);
 
 					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessageSeverity.High);
 					if (Messages.Count >= MaxMessagesCount) // too much high-priority messages
@@ -110,14 +110,12 @@ namespace AppMetrics.Client
 
 			lock (Sync)
 			{
-				Messages.Enqueue(
+				Messages.Add(
 					new MessageInfo
 						{
-							ApplicationKey = _applicationKey,
 							Name = name,
-							Value = val.ToString(),
+							Value = Util.Escape(val.ToString()),
 							SessionId = SessionId,
-							Url = _url,
 							Time = DateTime.Now,
 							Severity = severity
 						});
@@ -154,19 +152,31 @@ namespace AppMetrics.Client
 				{
 					while (true)
 					{
-						MessageInfo message;
+						var packet = new StringBuilder(MaxPacketSize);
+						int messagesSent;
 						lock (Sync)
 						{
 							if (Messages.Count == 0)
 								return;
-							message = Messages.Peek();
+
+							int i = 0;
+							for (; i < Messages.Count; i++)
+							{
+								var message = Messages[i];
+								var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
+									message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
+								if (packet.Length + cur.Length > packet.Capacity)
+									break;
+								packet.Append(cur);
+							}
+							messagesSent = i;
 						}
 
-						SendMessage(client, message);
+						SendPacket(client, packet.ToString());
 
 						lock (Sync)
 						{
-							Messages.Dequeue();
+							Messages.RemoveRange(0, messagesSent);
 						}
 					}
 				}
@@ -179,18 +189,15 @@ namespace AppMetrics.Client
 			}
 		}
 
-		static void SendMessage(WebClient client, MessageInfo message)
+		static void SendPacket(WebClient client, string packet)
 		{
 			var vals = new NameValueCollection
 				{
-					{ "MessageAppKey", message.ApplicationKey }, 
-					{ "MessageSession", message.SessionId }, 
-					{ "MessageName", message.Name },
-					{ "MessageData", message.Value },
-					{ "MessageTime", message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff") },
+					{ "MessageAppKey", _applicationKey },
+					{ "MessagesList", packet }, 
 				};
 
-			var response = client.UploadValues(message.Url, "POST", vals);
+			var response = client.UploadValues(_url, "POST", vals);
 			CountNewRequest();
 			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
@@ -287,15 +294,19 @@ namespace AppMetrics.Client
 			return val / (1024 * 1024);
 		}
 
+		private static string _url;
+
 		public string SessionId { get; private set; }
-		private readonly string _url;
-		private readonly string _applicationKey;
+		private static string _applicationKey;
 
 		private static readonly object Sync = new object();
-		private static readonly Queue<MessageInfo> Messages = new Queue<MessageInfo>(MaxMessagesCount);
-		private const int MaxMessagesCount = 4096;
+		private static readonly List<MessageInfo> Messages = new List<MessageInfo>(MaxMessagesCount);
 		private static readonly HashSet<Tracker> Sessions = new HashSet<Tracker>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
+
+		private const int MaxMessagesCount = 4096;
+		private const int MaxPacketSize = 1024 * 16;
+
 		private static DateTime _lastSentPeriodic;
 		private static readonly TimeSpan PeriodicTime = TimeSpan.FromMinutes(10);
 

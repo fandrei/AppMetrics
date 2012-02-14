@@ -7,11 +7,9 @@ namespace AppMetrics.Client
 {
 	class MessageInfo
 	{
-		public string ApplicationKey;
 		public string Name;
 		public string Value;
 		public string SessionId;
-		public string Url;
 		public DateTime Time;
 		public MessageSeverity Severity;
 
