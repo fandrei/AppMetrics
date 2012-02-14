@@ -17,6 +17,7 @@ namespace HeavyLoadTest
 				var tracker = new Tracker(url, "HeavyLoadTest");
 				for (int i = 0; i < LoopsCount; i++)
 				{
+					tracker.Log("Counter", i);
 					tracker.Log("RandomValue", Guid.NewGuid().ToString());
 					tracker.Log("RandomValue2", DateTime.Now.Millisecond);
 					Thread.Sleep(1);
@@ -31,6 +32,6 @@ namespace HeavyLoadTest
 			return res;
 		}
 
-		private const int LoopsCount = 1000;
+		private const int LoopsCount = 100000;
 	}
 }
