@@ -152,32 +152,32 @@ namespace AppMetrics.Client
 				{
 					while (true)
 					{
-						var packet = new StringBuilder(MaxPacketSize);
-						int messagesSent;
-						lock (Sync)
+						if (_packet.Length == 0)
 						{
-							if (Messages.Count == 0)
-								return;
-
-							int i = 0;
-							for (; i < Messages.Count; i++)
+							lock (Sync)
 							{
-								var message = Messages[i];
-								var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
-									message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
-								if (packet.Length + cur.Length > packet.Capacity)
-									break;
-								packet.Append(cur);
+								if (Messages.Count == 0)
+									return;
+
+								int i = 0;
+								for (; i < Messages.Count; i++)
+								{
+									var message = Messages[i];
+									var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
+										message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
+
+									if (_packet.Length + cur.Length > _packet.Capacity)
+										break;
+									_packet.Append(cur);
+								}
+
+								var messagesSent = i;
+								Messages.RemoveRange(0, messagesSent);
 							}
-							messagesSent = i;
 						}
 
-						SendPacket(client, packet.ToString());
-
-						lock (Sync)
-						{
-							Messages.RemoveRange(0, messagesSent);
-						}
+						SendPacket(client, _packet.ToString());
+						_packet.Clear(); // clear packet if succeeded
 					}
 				}
 			}
@@ -301,6 +301,7 @@ namespace AppMetrics.Client
 
 		private static readonly object Sync = new object();
 		private static readonly List<MessageInfo> Messages = new List<MessageInfo>(MaxMessagesCount);
+		private static StringBuilder _packet = new StringBuilder(MaxPacketSize);
 		private static readonly HashSet<Tracker> Sessions = new HashSet<Tracker>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
