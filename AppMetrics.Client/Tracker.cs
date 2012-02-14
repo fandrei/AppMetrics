@@ -129,7 +129,7 @@ namespace AppMetrics.Client
 				while (!_terminated)
 				{
 					SendMessages();
-					Thread.Sleep(TimeSpan.FromMilliseconds(100));
+					Thread.Sleep(SendingPeriod);
 				}
 
 				SendMessages();
@@ -306,6 +306,7 @@ namespace AppMetrics.Client
 
 		private const int MaxMessagesCount = 4096;
 		private const int MaxPacketSize = 1024 * 16;
+		private static readonly TimeSpan SendingPeriod = TimeSpan.FromSeconds(0.5);
 
 		private static DateTime _lastSentPeriodic;
 		private static readonly TimeSpan PeriodicTime = TimeSpan.FromMinutes(10);
