@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AppMetrics.Client
+namespace AppMetrics
 {
 	public static class Util
 	{
