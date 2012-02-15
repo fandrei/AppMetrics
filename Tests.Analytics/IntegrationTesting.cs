@@ -52,19 +52,19 @@ namespace Tests.Analytics
 			{
 				var latencySummariesReport = Report.GetLatencyStatSummariesReport(res);
 				var latencySummariesSample = File.ReadAllText(resultsPath + "TestData.LatencyStatSummaries.txt");
-				Assert.AreEqual(latencySummariesReport, latencySummariesSample);
+				Assert.AreEqual(latencySummariesSample, latencySummariesReport);
 			}
 
 			{
 				var latencyDistributionReport = Report.GetLatencyDistributionReport(res);
 				var latencyDistributionSample = File.ReadAllText(resultsPath + "TestData.LatencyDistribution.txt");
-				Assert.AreEqual(latencyDistributionReport, latencyDistributionSample);
+				Assert.AreEqual(latencyDistributionSample, latencyDistributionReport);
 			}
 
 			{
 				var jitterDistributionReport = Report.GetJitterDistributionReport(res);
 				var jitterDistributionSample = File.ReadAllText(resultsPath + "TestData.JitterDistribution.txt");
-				Assert.AreEqual(jitterDistributionReport, jitterDistributionSample);
+				Assert.AreEqual(jitterDistributionSample, jitterDistributionReport);
 			}
 		}
 	}
