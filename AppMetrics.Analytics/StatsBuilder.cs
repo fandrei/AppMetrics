@@ -85,18 +85,22 @@ namespace AppMetrics.Analytics
 			{
 				var recordsByCities = Util.GroupBy(records, record => (record.Session.Location.city) ?? "");
 				recordsByCities.Remove("");
-				foreach (var pair in recordsByCities)
-				{
-					var cityName = pair.Key;
-					if (string.IsNullOrEmpty(cityName))
-						continue;
 
-					var curSummaries = CalculateByFunction(pair.Value);
-					foreach (var summary in curSummaries)
+				if (recordsByCities.Count > 1)
+				{
+					foreach (var pair in recordsByCities)
 					{
-						summary.City = cityName;
+						var cityName = pair.Key;
+						if (string.IsNullOrEmpty(cityName))
+							continue;
+
+						var curSummaries = CalculateByFunction(pair.Value);
+						foreach (var summary in curSummaries)
+						{
+							summary.City = cityName;
+						}
+						res.AddRange(curSummaries);
 					}
-					res.AddRange(curSummaries);
 				}
 			}
 
