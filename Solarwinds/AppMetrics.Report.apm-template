@@ -62,7 +62,7 @@
                         <d5p1:Value>
                             <Required>false</Required>
                             <SettingLevel>Template</SettingLevel>
-                            <Value>http://analytics.metrics.labs.cityindex.com/GetReport.ashx?Application=CIAPI.CS.Excel&amp;Locations=(World)</Value>
+                            <Value>url="http://analytics.metrics.labs.cityindex.com/GetReport.ashx?Application=CIAPI.CS.Excel&amp;Locations=(World)&amp;Period=0:1:0"</Value>
                             <ValueType>String</ValueType>
                             <Key>ScriptArguments</Key>
                         </d5p1:Value>
@@ -72,9 +72,11 @@
                         <d5p1:Value>
                             <Required>true</Required>
                             <SettingLevel>Template</SettingLevel>
-                            <Value>try
+                            <Value>Param($url)
+try
 {
-	$url = $args.get(0);
+	$url = $url.Replace("`"", "")
+	write-host $url "`r`n"
 	$page = (New-Object System.Net.WebClient).DownloadString($url)
 
 	$lines = $page.Split("`r`n", [StringSplitOptions]::RemoveEmptyEntries)
@@ -82,6 +84,7 @@
 	if (($lines.length -lt 2) -or ($lines.length -gt 3))
 	{
 	  Write-Host "Invalid lines count"
+	  write-host $page "`r`n"
 	  exit 1
 	}
 
@@ -287,8 +290,8 @@ catch [Exception] {
         <IsMockTemplate>false</IsMockTemplate>
         <Description></Description>
         <Tags />
-        <Created>2012-02-07T12:17:31.61Z</Created>
-        <LastModified>2012-02-08T11:03:06.48Z</LastModified>
+        <Created>2012-02-10T11:41:27.35Z</Created>
+        <LastModified>2012-02-15T06:41:57.447Z</LastModified>
         <Version>1.0</Version>
         <ViewID>23</ViewID>
         <ViewXml>
