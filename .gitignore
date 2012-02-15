@@ -35,5 +35,6 @@ AppMetrics/App_Data/
 AppMetrics/log.txt
 _data/
 _nuget/
+_package/
 
 ~$*

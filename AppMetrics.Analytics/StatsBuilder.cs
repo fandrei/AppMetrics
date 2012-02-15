@@ -165,6 +165,7 @@ namespace AppMetrics.Analytics
 			var watch = Stopwatch.StartNew();
 
 			var geoLookup = new LookupService(LookupService.GEOIP_MEMORY_CACHE);
+			var overrides = GetLocationOverrides();
 
 			foreach (var session in _sessions)
 			{
@@ -175,8 +176,9 @@ namespace AppMetrics.Analytics
 					continue;
 				}
 
-				session.Ip = ipRecord.Value;
-				session.Location = geoLookup.getLocation(session.Ip);
+				var ip = ipRecord.Value;
+				session.Ip = ip;
+				session.Location = overrides.ContainsKey(ip) ? overrides[ip] : geoLookup.getLocation(ip);
 
 				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record));
 
@@ -195,6 +197,23 @@ namespace AppMetrics.Analytics
 			_sessions.RemoveAll(session => session.Records.Count == 0);
 
 			Console.WriteLine("Preparing data: {0} secs", watch.Elapsed.TotalSeconds);
+		}
+
+		static Dictionary<string, Location> GetLocationOverrides()
+		{
+			var path = AppMetrics.Util.GetAppLocation() + @"\GeoIP\Override.txt";
+			var text = System.IO.File.ReadAllText(path);
+			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+			var res = new Dictionary<string, Location>();
+			foreach (var line in lines)
+			{
+				var parts = line.Split('\t');
+				var ip = parts[0];
+				var loc = new Location { countryName = parts[1], city = parts[2] };
+				res.Add(ip, loc);
+			}
+			return res;
 		}
 
 		static void AdjustJitter(SessionEx session)
