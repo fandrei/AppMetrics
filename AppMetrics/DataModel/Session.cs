@@ -15,7 +15,7 @@ namespace AppMetrics.DataModel
 		public DateTime LastUpdateTime { get; set; }
 		public int TimeZoneOffset { get; set; }
 
-		internal string FileName { get; set; }
+		public string FileName { get; internal set; }
 
 		public override string ToString()
 		{
