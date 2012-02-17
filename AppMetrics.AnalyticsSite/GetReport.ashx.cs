@@ -117,6 +117,6 @@ namespace AppMetrics.AnalyticsSite
 		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
 			new Dictionary<AnalysisOptions, ReportInfo>();
 		private static readonly TimeSpan DefaultReportPeriod = TimeSpan.FromMinutes(1);
-		private static readonly TimeSpan CacheInvalidationPeriod = TimeSpan.FromSeconds(60);
+		private static readonly TimeSpan CacheInvalidationPeriod = TimeSpan.FromSeconds(10);
 	}
 }
