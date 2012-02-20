@@ -131,21 +131,25 @@ namespace AppMetrics.DataModel
 			return Encoding.UTF8;
 		}
 
+		private static readonly List<byte> _buf = new List<byte>(1024 * 1024);
+
 		static string ReadLine(Stream stream, Encoding encoding)
 		{
-			var bytes = new List<byte>(1024 * 1024);
+			_buf.Clear();
 			while (true)
 			{
 				var cur = stream.ReadByte();
 				if (cur < 0)
 					break;
 
-				bytes.Add((byte)cur);
+				_buf.Add((byte)cur);
 
 				if (cur == '\n')
 					break;
 			}
-			var res = encoding.GetString(bytes.ToArray());
+			if (_buf.Count == 0)
+				return null;
+			var res = encoding.GetString(_buf.ToArray());
 			return res;
 		}
 
@@ -240,27 +244,34 @@ namespace AppMetrics.DataModel
 						if (line == null)
 							break;
 
-						var fields = line.Split('\t');
-
-						var name = fields[1];
-						var lineTime = GetLineTime(line);
-
-						if (filterRecords && curTime - lineTime > period && !name.StartsWith("Client") && !name.StartsWith("System"))
-							continue;
-
-						var record = new Record
+						var record = ParseLine(line, session.Id);
+						if (filterRecords && !record.Name.StartsWith("Client") && !record.Name.StartsWith("System"))
 						{
-							SessionId = session.Id,
-							Time = lineTime,
-							Name = name,
-							Value = fields[2],
-						};
+							if (curTime - record.Time > period)
+								continue;
+						}
 						res.Add(record);
 					}
 				}
 			}
 
 			return res;
+		}
+
+		private static Record ParseLine(string line, string sessionId)
+		{
+			var fields = line.Split('\t');
+
+			var name = fields[1];
+			var lineTime = GetLineTime(line);
+
+			return new Record
+					{
+						SessionId = sessionId,
+						Time = lineTime,
+						Name = name,
+						Value = fields[2],
+					};
 		}
 	}
 }
