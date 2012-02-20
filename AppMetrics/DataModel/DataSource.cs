@@ -234,7 +234,7 @@ namespace AppMetrics.DataModel
 							break;
 
 						var record = ParseLine(line, session.Id);
-						if (filterRecords && !record.Name.StartsWith("Client") && !record.Name.StartsWith("System"))
+						if (filterRecords && !IsServiceMessage(record.Name))
 						{
 							if (curTime - record.Time > period)
 								continue;
@@ -261,6 +261,11 @@ namespace AppMetrics.DataModel
 						Name = name,
 						Value = fields[2],
 					};
+		}
+
+		static bool IsServiceMessage(string name)
+		{
+			return name.StartsWith("Client") || name.StartsWith("System");
 		}
 	}
 }
