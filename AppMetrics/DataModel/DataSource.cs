@@ -233,12 +233,13 @@ namespace AppMetrics.DataModel
 						if (line == null)
 							break;
 
-						var record = ParseLine(line, session.Id);
+						var record = ParseLine(line);
 						if (filterRecords && !IsServiceMessage(record.Name))
 						{
 							if (curTime - record.Time > period)
 								continue;
 						}
+						record.SessionId = session.Id;
 						res.Add(record);
 					}
 				}
@@ -248,6 +249,7 @@ namespace AppMetrics.DataModel
 		}
 
 		private static Record ParseLine(string line, string sessionId)
+		private static Record ParseLine(string line)
 		{
 			var fields = line.Split('\t');
 
@@ -256,7 +258,6 @@ namespace AppMetrics.DataModel
 
 			return new Record
 					{
-						SessionId = sessionId,
 						Time = lineTime,
 						Name = name,
 						Value = fields[2],
