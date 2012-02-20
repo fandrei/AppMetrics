@@ -86,7 +86,7 @@ namespace AppMetrics.DataModel
 										Id = sessionId,
 										CreationTime = sessionCreationTime,
 										LastUpdateTime = lastUpdateTime,
-										TimeZoneOffset = timeZoneOffset,
+										TimeZoneOffset = TimeSpan.FromHours(timeZoneOffset),
 									};
 					res.Add(session);
 				}
@@ -249,7 +249,7 @@ namespace AppMetrics.DataModel
 						res.Add(record);
 					}
 
-					SkipOutdatedRecords(stream, encoding, curTime, period);
+					SkipOutdatedRecords(stream, encoding, curTime, period, session.TimeZoneOffset);
 				}
 
 				using (var reader = new StreamReader(stream, encoding, true))
@@ -261,7 +261,7 @@ namespace AppMetrics.DataModel
 							break;
 
 						var record = ParseLine(line);
-						if (filterRecords && curTime - record.Time > period)
+						if (filterRecords && curTime - (record.Time - session.TimeZoneOffset) > period)
 								continue;
 
 						record.SessionId = session.Id;
@@ -273,9 +273,10 @@ namespace AppMetrics.DataModel
 			return res;
 		}
 
-		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime curTime, TimeSpan period)
+		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime curTime, TimeSpan period, TimeSpan timeZone)
 		{
 			var startPos = stream.Position;
+
 			while (true)
 			{
 				ReadLine(stream, encoding); // skip line - it can be incomplete
@@ -284,13 +285,14 @@ namespace AppMetrics.DataModel
 					break;
 
 				var lineTime = GetLineTime(line);
-				if (curTime - lineTime > period)
+				if (curTime - (lineTime - timeZone) > period)
 					break;
 
 				startPos = stream.Position;
 				var newPos = stream.Position + 128 * 1024;
 				stream.Position = Math.Min(newPos, stream.Length);
 			}
+
 			stream.Position = startPos;
 		}
 

@@ -12,7 +12,7 @@ namespace AppMetrics.DataModel
 
 		public DateTime CreationTime { get; set; }
 		public DateTime LastUpdateTime { get; set; }
-		public int TimeZoneOffset { get; set; }
+		public TimeSpan TimeZoneOffset { get; set; }
 
 		public string FileName { get; internal set; }
 
