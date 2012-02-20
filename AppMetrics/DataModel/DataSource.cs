@@ -142,10 +142,12 @@ namespace AppMetrics.DataModel
 				if (cur < 0)
 					break;
 
-				_buf.Add((byte)cur);
-
+				if (cur == '\r')
+					continue;
 				if (cur == '\n')
 					break;
+
+				_buf.Add((byte)cur);
 			}
 			if (_buf.Count == 0)
 				return null;
