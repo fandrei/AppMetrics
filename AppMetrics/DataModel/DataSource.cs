@@ -227,7 +227,32 @@ namespace AppMetrics.DataModel
 
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
-				using (var reader = new StreamReader(stream, Encoding.UTF8, true))
+				var encoding = DetectEncoding(stream);
+
+				if (filterRecords)
+				{
+					while (true)
+					{
+						var startPos = stream.Position;
+						var line = ReadLine(stream, encoding);
+						if (line == null)
+							break;
+
+						var record = ParseLine(line);
+						if (!IsServiceMessage(record.Name))
+						{
+							stream.Position = startPos;
+							break;
+						}
+
+						record.SessionId = session.Id;
+						res.Add(record);
+					}
+
+					SkipOutdatedRecords(stream, encoding, curTime, period);
+				}
+
+				using (var reader = new StreamReader(stream, encoding, true))
 				{
 					while (true)
 					{
@@ -236,11 +261,9 @@ namespace AppMetrics.DataModel
 							break;
 
 						var record = ParseLine(line);
-						if (filterRecords && !IsServiceMessage(record.Name))
-						{
-							if (curTime - record.Time > period)
+						if (filterRecords && curTime - record.Time > period)
 								continue;
-						}
+
 						record.SessionId = session.Id;
 						res.Add(record);
 					}
@@ -250,7 +273,27 @@ namespace AppMetrics.DataModel
 			return res;
 		}
 
-		private static Record ParseLine(string line, string sessionId)
+		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime curTime, TimeSpan period)
+		{
+			var startPos = stream.Position;
+			while (true)
+			{
+				ReadLine(stream, encoding); // skip line - it can be incomplete
+				var line = ReadLine(stream, encoding);
+				if (line == null)
+					break;
+
+				var lineTime = GetLineTime(line);
+				if (curTime - lineTime > period)
+					break;
+
+				startPos = stream.Position;
+				var newPos = stream.Position + 128 * 1024;
+				stream.Position = Math.Min(newPos, stream.Length);
+			}
+			stream.Position = startPos;
+		}
+
 		private static Record ParseLine(string line)
 		{
 			var fields = line.Split('\t');
