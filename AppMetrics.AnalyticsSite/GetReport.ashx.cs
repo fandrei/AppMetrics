@@ -21,7 +21,7 @@ namespace AppMetrics.AnalyticsSite
 			context.Response.ContentType = "text/plain";
 			try
 			{
-				InitLog();
+				Init();
 				ReportLog(string.Format("request: {0}", context.Request.Url.Query));
 
 				var options = GetOptions(context.Request.QueryString);
@@ -137,43 +137,24 @@ namespace AppMetrics.AnalyticsSite
 			return latencyReport;
 		}
 
-		private static StreamWriter _logFile;
-		private static readonly object LogSync = new object();
+		static string _logPath;
 
-		static void InitLog()
+		static void Init()
 		{
-			lock (LogSync)
-			{
-				if (_logFile == null)
-				{
-					var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
-					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
-				}
-			}
+			if (_logPath == null)
+				_logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
 		}
 
 		static void ReportLog(string text)
 		{
 			try
 			{
-				lock (LogSync)
-				{
-					if (_logFile != null)
-					{
-						var time = DateTime.UtcNow;
-						bool multiLineData = text.Contains('\n');
-						if (multiLineData)
-						{
-							_logFile.WriteLine(time);
-							_logFile.WriteLine(text);
-							_logFile.WriteLine(Const.Delimiter);
-						}
-						else
-						{
-							_logFile.WriteLine("{0}\t{1}", time, text);
-						}
-					}
-				}
+				var time = DateTime.UtcNow;
+				var multiLineData = text.Contains('\n');
+				var message = multiLineData
+					? string.Format("{0}\r\n{1}\r\n{2}\r\n", time, text, Const.Delimiter)
+					: string.Format("{0}\t{1}\r\n", time, text);
+				File.AppendAllText(_logPath, message, Encoding.UTF8);
 			}
 			catch (Exception exc)
 			{
