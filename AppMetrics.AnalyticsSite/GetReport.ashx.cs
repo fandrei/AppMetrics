@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,9 +22,9 @@ namespace AppMetrics.AnalyticsSite
 			try
 			{
 				InitLog();
-				ReportLog(string.Format("Request {0}", context.Request.Url.Query));
+				ReportLog(string.Format("Request: {0}", context.Request.Url.Query));
 
-				var options = GetOptions(context);
+				var options = GetOptions(context.Request.QueryString);
 				var report = GetOrCreateReport(options);
 
 				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
@@ -44,9 +45,8 @@ namespace AppMetrics.AnalyticsSite
 			}
 		}
 
-		private static AnalysisOptions GetOptions(HttpContext context)
+		private static AnalysisOptions GetOptions(NameValueCollection requestParams)
 		{
-			var requestParams = context.Request.QueryString;
 			var application = requestParams.Get("Application");
 			if (application == null)
 				throw new ApplicationException("Application key is not defined");
