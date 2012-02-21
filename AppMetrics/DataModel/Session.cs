@@ -12,9 +12,16 @@ namespace AppMetrics.DataModel
 
 		public DateTime CreationTime { get; set; }
 		public DateTime LastUpdateTime { get; set; }
-		public TimeSpan TimeZoneOffset { get; set; }
 
-		public string FileName { get; internal set; }
+		public double TimeZoneHours
+		{
+			get { return TimeZoneOffset.TotalHours; }
+			set { TimeZoneOffset = TimeSpan.FromHours(value); }
+		}
+
+		public TimeSpan TimeZoneOffset;
+
+		public string FileName;
 
 		public override string ToString()
 		{

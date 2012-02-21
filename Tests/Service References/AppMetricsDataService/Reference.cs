@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 1/25/2012 5:30:32 PM
+// Generation date: 2/21/2012 12:36:20 PM
 namespace Tests.AppMetricsDataService
 {
     
@@ -125,15 +125,15 @@ namespace Tests.AppMetricsDataService
         /// <param name="ID">Initial value of Id.</param>
         /// <param name="creationTime">Initial value of CreationTime.</param>
         /// <param name="lastUpdateTime">Initial value of LastUpdateTime.</param>
-        /// <param name="timeZoneOffset">Initial value of TimeZoneOffset.</param>
+        /// <param name="timeZoneHours">Initial value of TimeZoneHours.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static Session CreateSession(string ID, global::System.DateTime creationTime, global::System.DateTime lastUpdateTime, int timeZoneOffset)
+        public static Session CreateSession(string ID, global::System.DateTime creationTime, global::System.DateTime lastUpdateTime, double timeZoneHours)
         {
             Session session = new Session();
             session.Id = ID;
             session.CreationTime = creationTime;
             session.LastUpdateTime = lastUpdateTime;
-            session.TimeZoneOffset = timeZoneOffset;
+            session.TimeZoneHours = timeZoneHours;
             return session;
         }
         /// <summary>
@@ -203,27 +203,27 @@ namespace Tests.AppMetricsDataService
         partial void OnLastUpdateTimeChanging(global::System.DateTime value);
         partial void OnLastUpdateTimeChanged();
         /// <summary>
-        /// There are no comments for Property TimeZoneOffset in the schema.
+        /// There are no comments for Property TimeZoneHours in the schema.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public int TimeZoneOffset
+        public double TimeZoneHours
         {
             get
             {
-                return this._TimeZoneOffset;
+                return this._TimeZoneHours;
             }
             set
             {
-                this.OnTimeZoneOffsetChanging(value);
-                this._TimeZoneOffset = value;
-                this.OnTimeZoneOffsetChanged();
-                this.OnPropertyChanged("TimeZoneOffset");
+                this.OnTimeZoneHoursChanging(value);
+                this._TimeZoneHours = value;
+                this.OnTimeZoneHoursChanged();
+                this.OnPropertyChanged("TimeZoneHours");
             }
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private int _TimeZoneOffset;
-        partial void OnTimeZoneOffsetChanging(int value);
-        partial void OnTimeZoneOffsetChanged();
+        private double _TimeZoneHours;
+        partial void OnTimeZoneHoursChanging(double value);
+        partial void OnTimeZoneHoursChanged();
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]

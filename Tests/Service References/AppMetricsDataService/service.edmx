@@ -8,7 +8,7 @@
         <Property Name="Id" Type="Edm.String" Nullable="false" />
         <Property Name="CreationTime" Type="Edm.DateTime" Nullable="false" />
         <Property Name="LastUpdateTime" Type="Edm.DateTime" Nullable="false" />
-        <Property Name="TimeZoneOffset" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TimeZoneHours" Type="Edm.Double" Nullable="false" />
       </EntityType>
       <EntityType Name="Record">
         <Key>
