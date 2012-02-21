@@ -141,11 +141,6 @@ namespace AppMetrics.Analytics
 			var latencies = records.Where(Util.IsLatency).Select(record => record.ValueAsNumber).ToList();
 			if (latencies.Count > 0)
 			{
-				// remove highest 2% values
-				latencies.Sort();
-				var countToRemove = (int)(latencies.Count * 0.02);
-				latencies.RemoveRange(latencies.Count - countToRemove, countToRemove);
-
 				res.StatSummary = Stats.CalculateSummaries(latencies);
 				res.Distribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
