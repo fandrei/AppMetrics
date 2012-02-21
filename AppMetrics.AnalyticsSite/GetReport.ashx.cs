@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -16,6 +17,9 @@ namespace AppMetrics.AnalyticsSite
 	{
 		public void ProcessRequest(HttpContext context)
 		{
+			InitLog();
+			ReportLog(string.Format("Request {0}", context.Request.Url.Query));
+
 			context.Response.ContentType = "text/plain";
 
 			var requestParams = context.Request.QueryString;
@@ -111,6 +115,51 @@ namespace AppMetrics.AnalyticsSite
 			var latencyReport = Report.GetLatencyStatSummariesReport(res);
 
 			return latencyReport;
+		}
+
+		private static StreamWriter _logFile;
+		private static readonly object LogSync = new object();
+
+		static void InitLog()
+		{
+			lock (LogSync)
+			{
+				if (_logFile == null)
+				{
+					var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
+					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
+				}
+			}
+		}
+
+		static void ReportLog(string text)
+		{
+			try
+			{
+				lock (LogSync)
+				{
+					if (_logFile != null)
+					{
+						var time = DateTime.UtcNow;
+						bool multiLineData = text.Contains('\n');
+						if (multiLineData)
+						{
+							_logFile.WriteLine(time);
+							_logFile.WriteLine(text);
+							_logFile.WriteLine(Const.Delimiter);
+						}
+						else
+						{
+							_logFile.WriteLine("{0}\t{1}", time, text);
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				Trace.WriteLine(text);
+				Trace.WriteLine(exc);
+			}
 		}
 
 		private static readonly object Sync = new object();

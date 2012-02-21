@@ -33,6 +33,8 @@ temp/
 
 AppMetrics/App_Data/
 AppMetrics/log.txt
+AppMetrics.AnalyticsSite/App_Data/
+
 _data/
 _nuget/
 _package/
