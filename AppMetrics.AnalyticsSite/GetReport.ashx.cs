@@ -20,15 +20,22 @@ namespace AppMetrics.AnalyticsSite
 			InitLog();
 			ReportLog(string.Format("Request {0}", context.Request.Url.Query));
 
-			context.Response.ContentType = "text/plain";
+			var options = GetOptions(context);
+			var report = GetOrCreateReport(options);
 
+			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
+				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
+			context.Response.ContentType = "text/plain";
+			context.Response.Write(status);
+			context.Response.Write(report.ReportText);
+		}
+
+		private static AnalysisOptions GetOptions(HttpContext context)
+		{
 			var requestParams = context.Request.QueryString;
 			var application = requestParams.Get("Application");
 			if (application == null)
-			{
-				context.Response.Write("Application key is not defined");
-				return;
-			}
+				throw new ApplicationException("Application key is not defined");
 			var countries = requestParams.Get("Locations") ?? "";
 			var countryList = countries.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
 			var includeWorldOverall = (countryList.Length == 0);
@@ -38,22 +45,15 @@ namespace AppMetrics.AnalyticsSite
 			var periodString = requestParams.Get("Period") ?? "";
 			var period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
 
-			var options = new AnalysisOptions
-			{
-				ApplicationKey = application,
-				LocationIncludeOverall = includeWorldOverall,
-				SliceByLocation = LocationSliceType.Countries,
-				SliceByFunction = false,
-				CountryFilter = new HashSet<string>(countryList),
-				Period = period,
-			};
-
-			var report = GetOrCreateReport(options);
-
-			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
-				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
-			context.Response.Write(status);
-			context.Response.Write(report.ReportText);
+			return new AnalysisOptions
+					{
+						ApplicationKey = application,
+						LocationIncludeOverall = includeWorldOverall,
+						SliceByLocation = LocationSliceType.Countries,
+						SliceByFunction = false,
+						CountryFilter = new HashSet<string>(countryList),
+						Period = period,
+					};
 		}
 
 		private static ReportInfo GetOrCreateReport(AnalysisOptions options)
