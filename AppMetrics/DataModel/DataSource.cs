@@ -231,25 +231,25 @@ namespace AppMetrics.DataModel
 
 				if (filterRecords)
 				{
-					while (true)
-					{
-						var startPos = stream.Position;
-						var line = ReadLine(stream, encoding);
-						if (line == null)
-							break;
+					//while (true)
+					//{
+					//    var startPos = stream.Position;
+					//    var line = ReadLine(stream, encoding);
+					//    if (line == null)
+					//        break;
 
-						var record = ParseLine(line);
-						if (!IsServiceMessage(record.Name))
-						{
-							stream.Position = startPos;
-							break;
-						}
+					//    var record = ParseLine(line);
+					//    if (!IsServiceMessage(record.Name))
+					//    {
+					//        stream.Position = startPos;
+					//        break;
+					//    }
 
-						record.SessionId = session.Id;
-						res.Add(record);
-					}
+					//    record.SessionId = session.Id;
+					//    res.Add(record);
+					//}
 
-					SkipOutdatedRecords(stream, encoding, curTime, period, session.TimeZoneOffset);
+					//SkipOutdatedRecords(stream, encoding, curTime, period, session.TimeZoneOffset);
 				}
 
 				using (var reader = new StreamReader(stream, encoding, true))
@@ -262,7 +262,7 @@ namespace AppMetrics.DataModel
 
 						var record = ParseLine(line);
 						if (filterRecords && curTime - (record.Time - session.TimeZoneOffset) > period)
-								continue;
+							continue;
 
 						record.SessionId = session.Id;
 						res.Add(record);
