@@ -17,17 +17,31 @@ namespace AppMetrics.AnalyticsSite
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			InitLog();
-			ReportLog(string.Format("Request {0}", context.Request.Url.Query));
-
-			var options = GetOptions(context);
-			var report = GetOrCreateReport(options);
-
-			var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
-				options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"), report.GenerationElapsed);
 			context.Response.ContentType = "text/plain";
-			context.Response.Write(status);
-			context.Response.Write(report.ReportText);
+			try
+			{
+				InitLog();
+				ReportLog(string.Format("Request {0}", context.Request.Url.Query));
+
+				var options = GetOptions(context);
+				var report = GetOrCreateReport(options);
+
+				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
+					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+					report.GenerationElapsed);
+				context.Response.Write(status);
+				context.Response.Write(report.ReportText);
+			}
+			catch (ApplicationException exc)
+			{
+				context.Response.Write(exc.Message);
+				ReportLog(exc.Message);
+			}
+			catch (Exception exc)
+			{
+				context.Response.Write(exc.ToString());
+				ReportLog(exc.ToString());
+			}
 		}
 
 		private static AnalysisOptions GetOptions(HttpContext context)
