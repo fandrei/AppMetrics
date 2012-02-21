@@ -19,17 +19,17 @@ namespace AppMetrics.AnalyticsSite
 		public void ProcessRequest(HttpContext context)
 		{
 			context.Response.ContentType = "text/plain";
+			var queryString = context.Request.Url.Query;
 			try
 			{
 				Init();
-				ReportLog(string.Format("request: {0}", context.Request.Url.Query));
 
 				var options = GetOptions(context.Request.QueryString);
 				var lookup = GetOrCreateReport(options);
 				var report = lookup.Item2;
 				ReportLog(lookup.Item1
-					? "reusing cached"
-					: string.Format("generated in {0} secs", report.GenerationElapsed.TotalSeconds));
+					? string.Format("request: '{0}' reusing cached", queryString)
+					: string.Format("request: '{0}' generated in {1} secs", queryString, report.GenerationElapsed.TotalSeconds));
 
 				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
 					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
@@ -40,12 +40,14 @@ namespace AppMetrics.AnalyticsSite
 			catch (ApplicationException exc)
 			{
 				context.Response.Write(exc.Message);
-				ReportLog(exc.Message);
+				var message = string.Format("request: '{0}' error '{1}'", queryString, exc.Message);
+				ReportLog(message);
 			}
 			catch (Exception exc)
 			{
 				context.Response.Write(exc.ToString());
-				ReportLog(exc.ToString());
+				var message = string.Format("request: '{0}' exception:\r\n{1}", queryString, exc);
+				ReportLog(message);
 			}
 		}
 
