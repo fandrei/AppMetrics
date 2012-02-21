@@ -275,7 +275,10 @@ namespace AppMetrics.DataModel
 
 		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime curTime, TimeSpan period, TimeSpan timeZone)
 		{
-			var startPos = stream.Position;
+			if (stream.Length - stream.Position < 16 * 1024)
+				return;
+
+			var pos = stream.Position;
 
 			while (true)
 			{
@@ -285,15 +288,15 @@ namespace AppMetrics.DataModel
 					break;
 
 				var lineTime = GetLineTime(line);
-				if (curTime - (lineTime - timeZone) > period)
+				if (curTime - (lineTime - timeZone) < period)
 					break;
 
-				startPos = stream.Position;
-				var newPos = stream.Position + 128 * 1024;
-				stream.Position = Math.Min(newPos, stream.Length);
+				pos = stream.Position;
+				var newPos = stream.Position + (stream.Length - stream.Position) / 2;
+				stream.Position = newPos;
 			}
 
-			stream.Position = startPos;
+			stream.Position = pos;
 		}
 
 		private static Record ParseLine(string line)
