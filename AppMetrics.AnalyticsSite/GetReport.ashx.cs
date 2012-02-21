@@ -22,10 +22,14 @@ namespace AppMetrics.AnalyticsSite
 			try
 			{
 				InitLog();
-				ReportLog(string.Format("Request: {0}", context.Request.Url.Query));
+				ReportLog(string.Format("request: {0}", context.Request.Url.Query));
 
 				var options = GetOptions(context.Request.QueryString);
-				var report = GetOrCreateReport(options);
+				var lookup = GetOrCreateReport(options);
+				var report = lookup.Item2;
+				ReportLog(lookup.Item1
+					? "reusing cached"
+					: string.Format("generated in {0} secs", report.GenerationElapsed.TotalSeconds));
 
 				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
 					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
@@ -70,15 +74,17 @@ namespace AppMetrics.AnalyticsSite
 					};
 		}
 
-		private static ReportInfo GetOrCreateReport(AnalysisOptions options)
+		private static Tuple<bool, ReportInfo> GetOrCreateReport(AnalysisOptions options)
 		{
 			ReportInfo report;
+			bool cached = true;
 			lock (Sync)
 			{
 				RemoveOutdatedReports();
 
 				if (!CachedReports.TryGetValue(options, out report))
 				{
+					cached = false;
 					var watch = Stopwatch.StartNew();
 					report = new ReportInfo { ReportText = CreateReport(options) };
 					watch.Stop();
@@ -88,7 +94,7 @@ namespace AppMetrics.AnalyticsSite
 					CachedReports.Add(options, report);
 				}
 			}
-			return report;
+			return new Tuple<bool, ReportInfo>(cached, report);
 		}
 
 		private static void RemoveOutdatedReports()
