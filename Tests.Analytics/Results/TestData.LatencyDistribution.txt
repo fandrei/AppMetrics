@@ -3,22 +3,26 @@
 (World)		(World)	GetClientAndTradingAccount	0.5	1
 (World)		(World)	GetMarketInfo	1	1
 (World)		(World)	GetPriceBars	1	54
-(World)		(World)	GetPriceBars	2.5	1
+(World)		(World)	GetPriceBars	2.5	2
 (World)		(World)	ListActiveOrders	0.5	29
 (World)		(World)	ListActiveOrders	1	109
 (World)		(World)	ListActiveOrders	1.5	23
+(World)		(World)	ListActiveOrders	2	3
 (World)		(World)	ListOpenPositions	0.5	63
 (World)		(World)	ListOpenPositions	1	77
 (World)		(World)	ListOpenPositions	1.5	5
 (World)		(World)	ListOpenPositions	2	12
-(World)		(World)	ListOpenPositions	2.5	4
+(World)		(World)	ListOpenPositions	2.5	6
+(World)		(World)	ListOpenPositions	3	1
 (World)		(World)	ListStopLimitOrderHistory	0.5	23
 (World)		(World)	ListStopLimitOrderHistory	1	90
-(World)		(World)	ListStopLimitOrderHistory	1.5	48
+(World)		(World)	ListStopLimitOrderHistory	1.5	50
+(World)		(World)	ListStopLimitOrderHistory	2	1
 (World)		(World)	ListTradeHistory	0.5	4
 (World)		(World)	ListTradeHistory	1	143
 (World)		(World)	ListTradeHistory	1.5	9
-(World)		(World)	ListTradeHistory	2	5
+(World)		(World)	ListTradeHistory	2	6
+(World)		(World)	ListTradeHistory	2.5	2
 (World)		(World)	LogIn	3.5	1
 (World)		(World)	LogOut	0.5	1
 (World)		(World)	StreamingClient.Dispose	0.5	1
@@ -28,22 +32,26 @@ Japan	(All)	Japan/(All)	CreateStreamingClient	0.5	1
 Japan	(All)	Japan/(All)	GetClientAndTradingAccount	0.5	1
 Japan	(All)	Japan/(All)	GetMarketInfo	1	1
 Japan	(All)	Japan/(All)	GetPriceBars	1	54
-Japan	(All)	Japan/(All)	GetPriceBars	2.5	1
+Japan	(All)	Japan/(All)	GetPriceBars	2.5	2
 Japan	(All)	Japan/(All)	ListActiveOrders	0.5	29
 Japan	(All)	Japan/(All)	ListActiveOrders	1	109
 Japan	(All)	Japan/(All)	ListActiveOrders	1.5	23
+Japan	(All)	Japan/(All)	ListActiveOrders	2	3
 Japan	(All)	Japan/(All)	ListOpenPositions	0.5	63
 Japan	(All)	Japan/(All)	ListOpenPositions	1	77
 Japan	(All)	Japan/(All)	ListOpenPositions	1.5	5
 Japan	(All)	Japan/(All)	ListOpenPositions	2	12
-Japan	(All)	Japan/(All)	ListOpenPositions	2.5	4
+Japan	(All)	Japan/(All)	ListOpenPositions	2.5	6
+Japan	(All)	Japan/(All)	ListOpenPositions	3	1
 Japan	(All)	Japan/(All)	ListStopLimitOrderHistory	0.5	23
 Japan	(All)	Japan/(All)	ListStopLimitOrderHistory	1	90
-Japan	(All)	Japan/(All)	ListStopLimitOrderHistory	1.5	48
+Japan	(All)	Japan/(All)	ListStopLimitOrderHistory	1.5	50
+Japan	(All)	Japan/(All)	ListStopLimitOrderHistory	2	1
 Japan	(All)	Japan/(All)	ListTradeHistory	0.5	4
 Japan	(All)	Japan/(All)	ListTradeHistory	1	143
 Japan	(All)	Japan/(All)	ListTradeHistory	1.5	9
-Japan	(All)	Japan/(All)	ListTradeHistory	2	5
+Japan	(All)	Japan/(All)	ListTradeHistory	2	6
+Japan	(All)	Japan/(All)	ListTradeHistory	2.5	2
 Japan	(All)	Japan/(All)	LogIn	3.5	1
 Japan	(All)	Japan/(All)	LogOut	0.5	1
 Japan	(All)	Japan/(All)	StreamingClient.Dispose	0.5	1
