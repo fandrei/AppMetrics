@@ -99,13 +99,14 @@ namespace AppMetrics.DataModel
 
 		static DateTime GetSessionLastWriteTime(string filePath, DateTime creationUtcTime, out int timeZoneOffset)
 		{
-			// try to detect client's time zone from logged client time 
-			// (can work incorrectly, if the first message was sent after delay > 1 hour)
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				var encoding = DetectEncoding(stream);
 
 				var firstLine = ReadLine(stream, encoding);
+
+				// try to detect client's time zone from logged client time 
+				// (can work incorrectly, if the first message was sent after delay > 1 hour)
 				var timeOffset = GetLineTime(firstLine) - creationUtcTime;
 				timeZoneOffset = (int)Math.Round(timeOffset.TotalHours);
 
