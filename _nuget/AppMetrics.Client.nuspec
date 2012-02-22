@@ -11,6 +11,5 @@
   </metadata>
   <files>
     <file src="..\_bin\Release\AppMetrics.Client.dll" target="lib\net40"/>
-    <file src="..\_bin\Release\AppMetrics.Client.pdb" target="lib\net40"/>
   </files>
 </package>
