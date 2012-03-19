@@ -14,6 +14,7 @@ namespace AppMetrics.Analytics
 		public string FunctionName;
 		public string City;
 		public string Country;
+
 		public string Location
 		{
 			get

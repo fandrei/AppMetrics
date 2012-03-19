@@ -42,8 +42,8 @@ namespace AppMetrics.Analytics
 
 			if (_options.SliceByLocation != LocationSliceType.None)
 			{
-				var sessionsByCountries = Util.GroupBy(_sessions, session => session.Location.countryName);
-				foreach (var pair in sessionsByCountries)
+				var sessionsByCountry = Util.GroupBySorted(_sessions, session => session.Location.countryName);
+				foreach (var pair in sessionsByCountry)
 				{
 					var countryName = pair.Key;
 					if (_options.FilterByCountries && !_options.CountryFilter.Contains(countryName))
@@ -83,12 +83,12 @@ namespace AppMetrics.Analytics
 
 			if (_options.SliceByLocation == LocationSliceType.CountriesAndCities)
 			{
-				var recordsByCities = Util.GroupBy(records, record => (record.Session.Location.city) ?? "");
-				recordsByCities.Remove("");
+				var recordsByCity = Util.GroupBySorted(records, record => (record.Session.Location.city) ?? "");
+				recordsByCity.Remove("");
 
-				if (recordsByCities.Count > 1)
+				if (recordsByCity.Count > 1)
 				{
-					foreach (var pair in recordsByCities)
+					foreach (var pair in recordsByCity)
 					{
 						var cityName = pair.Key;
 						if (string.IsNullOrEmpty(cityName))
@@ -118,7 +118,7 @@ namespace AppMetrics.Analytics
 			}
 			else
 			{
-				var recordsByFunction = Util.GroupBy(records, record => record.Name.Split(' ')[1]);
+				var recordsByFunction = Util.GroupBySorted(records, record => record.Name.Split(' ')[1]);
 				foreach (var pair in recordsByFunction)
 				{
 					var functionName = pair.Key;
@@ -222,7 +222,7 @@ namespace AppMetrics.Analytics
 				return;
 
 			// slice records with period of 30 secs
-			var jitterRecordsSlicedByTime = Util.GroupBy(jitterRecords,
+			var jitterRecordsSlicedByTime = Util.GroupBySorted(jitterRecords,
 				record => Math.Floor((record.Time - DateTime.MinValue).TotalMinutes * 2));
 
 			foreach (var pair in jitterRecordsSlicedByTime)
