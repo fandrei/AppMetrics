@@ -6,6 +6,7 @@ using System.Text;
 namespace AppMetrics.Analytics
 {
 	public enum LocationSliceType { None, Countries, CountriesAndCities }
+	public enum ReportType { LatencySummaries, LatencyDistribution, JitterDistribution, AveragePercentile98 }
 
 	public class AnalysisOptions
 	{
@@ -20,6 +21,8 @@ namespace AppMetrics.Analytics
 
 		public HashSet<string> CountryFilter = new HashSet<string>();
 		public bool FilterByCountries { get { return CountryFilter.Count > 0; } }
+
+		public ReportType ReportType;
 
 		public override bool Equals(object obj)
 		{

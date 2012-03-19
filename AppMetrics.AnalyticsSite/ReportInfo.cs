@@ -10,7 +10,7 @@ namespace AppMetrics.AnalyticsSite
 	{
 		public AnalysisOptions Options;
 
-		public string ReportText;
+		public List<CalcResult> Result;
 
 		public DateTime LastUpdateTime;
 		public TimeSpan GenerationElapsed;

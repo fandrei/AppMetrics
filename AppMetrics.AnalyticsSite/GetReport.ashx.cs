@@ -35,7 +35,23 @@ namespace AppMetrics.AnalyticsSite
 					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
 					report.GenerationElapsed);
 				context.Response.Write(status);
-				context.Response.Write(report.ReportText);
+
+				string reportText;
+				switch (options.ReportType)
+				{
+					case ReportType.LatencySummaries:
+						reportText = Report.GetLatencyStatSummariesReport(report.Result);
+						break;
+					case ReportType.LatencyDistribution:
+						reportText = Report.GetLatencyDistributionReport(report.Result);
+						break;
+					case ReportType.JitterDistribution:
+						reportText = Report.GetJitterDistributionReport(report.Result);
+						break;
+					default:
+						throw new NotSupportedException();
+				}
+				context.Response.Write(reportText);
 			}
 			catch (ApplicationException exc)
 			{
@@ -65,6 +81,11 @@ namespace AppMetrics.AnalyticsSite
 			var periodString = requestParams.Get("Period") ?? "";
 			var period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
 
+			var reportTypeText = requestParams.Get("Type");
+			var reportType = string.IsNullOrEmpty(reportTypeText)
+								? ReportType.LatencySummaries
+								: (ReportType)Enum.Parse(typeof(ReportType), reportTypeText);
+
 			return new AnalysisOptions
 					{
 						ApplicationKey = application,
@@ -73,6 +94,7 @@ namespace AppMetrics.AnalyticsSite
 						SliceByFunction = false,
 						CountryFilter = new HashSet<string>(countryList),
 						Period = period,
+						ReportType = reportType,
 					};
 		}
 
@@ -88,7 +110,7 @@ namespace AppMetrics.AnalyticsSite
 				{
 					cached = false;
 					var watch = Stopwatch.StartNew();
-					report = new ReportInfo { ReportText = CreateReport(options) };
+					report = new ReportInfo { Result = CreateReport(options) };
 					watch.Stop();
 					report.GenerationElapsed = watch.Elapsed;
 					report.LastUpdateTime = DateTime.UtcNow;
@@ -127,16 +149,14 @@ namespace AppMetrics.AnalyticsSite
 			}
 		}
 
-		static string CreateReport(AnalysisOptions options)
+		static List<CalcResult> CreateReport(AnalysisOptions options)
 		{
 			var sessions = LogReader.Parse(options);
 
 			var convertor = new StatsBuilder();
 			var res = convertor.Process(sessions, options);
 
-			var latencyReport = Report.GetLatencyStatSummariesReport(res);
-
-			return latencyReport;
+			return res;
 		}
 
 		static string _logPath;
