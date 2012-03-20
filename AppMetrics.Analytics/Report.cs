@@ -94,7 +94,7 @@ namespace AppMetrics.Analytics
 		{
 			var res = new StringBuilder(DefaultBufferSize);
 
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tAverage\tTotalCount\tOutliersCount");
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\tAveragePercentile98\tTotalCount\tOutliersCount");
 
 			foreach (var result in results)
 			{
