@@ -10,6 +10,7 @@ namespace AppMetrics.Analytics
 		public StatSummary StatSummary;
 		public Distribution Distribution;
 		public Distribution Jitter;
+		public Percentile98Info Percentile98;
 
 		public string FunctionName;
 		public string City;

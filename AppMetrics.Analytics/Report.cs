@@ -90,6 +90,26 @@ namespace AppMetrics.Analytics
 			return res.ToString();
 		}
 
+		public static string GetAveragePercentile98Report(IEnumerable<CalcResult> results)
+		{
+			var res = new StringBuilder(DefaultBufferSize);
+
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\tAverage\tTotalCount\tOutliersCount");
+
+			foreach (var result in results)
+			{
+				var cur = result.Percentile98;
+				if (cur == null)
+					continue;
+
+				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
+					result.Country, result.City, result.Location, result.FunctionName,
+					cur.Average, cur.TotalCount, cur.OutliersCount);
+			}
+
+			return res.ToString();
+		}
+
 		public static void AppendLine(this StringBuilder res, string format, params object[] args)
 		{
 			var tmp = string.Format(format, args);
