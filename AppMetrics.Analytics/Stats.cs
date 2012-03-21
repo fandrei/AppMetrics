@@ -94,15 +94,15 @@ namespace AppMetrics.Analytics
 			jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
 		}
 
-		public static Percentile98Info CalculatePercentile98Info(List<decimal> latencies)
+		public static Percentile98Info CalculatePercentile98Info(IList<decimal> original)
 		{
-			var totalCount = latencies.Count;
-			Stats.RemoveTop(latencies, 0.02M);
+			var latencies = new List<decimal>(original);
+			RemoveTop(latencies, 0.02M);
 
 			return new Percentile98Info
 			{
-				TotalCount = totalCount,
-				OutliersCount = totalCount - latencies.Count,
+				TotalCount = original.Count,
+				OutliersCount = original.Count - latencies.Count,
 				Average = latencies.Average(),
 			};
 		}
