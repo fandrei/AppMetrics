@@ -152,11 +152,7 @@ namespace AppMetrics.Analytics
 			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
 			if (jitterVals.Count > 0)
 			{
-				// remove highest 2% values
-				jitterVals.Sort();
-				var countToRemove = (int)(jitterVals.Count * 0.02);
-				jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
-
+				Stats.RemoveTop(jitterVals, 0.02M);
 				res.Jitter = Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
 			}
 
@@ -166,16 +162,12 @@ namespace AppMetrics.Analytics
 		public static Percentile98Info CalculatePercentile98Info(List<decimal> latencies)
 		{
 			var totalCount = latencies.Count;
-
-			// remove highest 2% values
-			latencies.Sort();
-			var countToRemove = (int)(latencies.Count * 0.02);
-			latencies.RemoveRange(latencies.Count - countToRemove, countToRemove);
+			Stats.RemoveTop(latencies, 0.02M);
 
 			return new Percentile98Info
 				{
 					TotalCount = totalCount,
-					OutliersCount = countToRemove,
+					OutliersCount = totalCount - latencies.Count,
 					Average = latencies.Average(),
 				};
 		}

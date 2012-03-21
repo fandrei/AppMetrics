@@ -86,5 +86,12 @@ namespace AppMetrics.Analytics
 
 			return res;
 		}
+
+		public static void RemoveTop(List<decimal> jitterVals, decimal fraction)
+		{
+			jitterVals.Sort();
+			var countToRemove = (int)(jitterVals.Count * fraction);
+			jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
+		}
 	}
 }
