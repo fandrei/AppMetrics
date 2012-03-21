@@ -146,7 +146,7 @@ namespace AppMetrics.Analytics
 				res.StatSummary = Stats.CalculateSummaries(latencies);
 				res.Distribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 
-				res.Percentile98 = CalculatePercentile98Info(latencyRecords, latencies);
+				res.Percentile98 = CalculatePercentile98Info(latencies);
 			}
 
 			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
@@ -163,8 +163,10 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
-		private static Percentile98Info CalculatePercentile98Info(RecordEx[] latencyRecords, List<decimal> latencies)
+		public static Percentile98Info CalculatePercentile98Info(List<decimal> latencies)
 		{
+			var totalCount = latencies.Count;
+
 			// remove highest 2% values
 			latencies.Sort();
 			var countToRemove = (int)(latencies.Count * 0.02);
@@ -172,7 +174,7 @@ namespace AppMetrics.Analytics
 
 			return new Percentile98Info
 				{
-					TotalCount = latencyRecords.Length,
+					TotalCount = totalCount,
 					OutliersCount = countToRemove,
 					Average = latencies.Average(),
 				};
