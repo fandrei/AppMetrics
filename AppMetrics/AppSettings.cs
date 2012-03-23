@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Hosting;
 
 namespace AppMetrics
 {
@@ -17,11 +18,10 @@ namespace AppMetrics
 				var res = Config.AppSettings.Settings["DataStoragePath"].Value;
 				if (!res.Contains(':')) // not an absolute path
 				{
-					var server = HttpContext.Current.Server;
 					if (res.StartsWith(".")) // relative path
-						res = Path.GetFullPath(server.MapPath("~") + "\\" + res);
+						res = Path.GetFullPath(HostingEnvironment.MapPath("~") + "\\" + res);
 					else
-						res = HttpContext.Current.Server.MapPath(res); // resolve as site relative path
+						res = HostingEnvironment.MapPath(res); // resolve as site relative path
 				}
 				return res;
 			}
