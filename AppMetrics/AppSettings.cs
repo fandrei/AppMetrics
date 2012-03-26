@@ -31,7 +31,7 @@ namespace AppMetrics
 		{
 			get
 			{
-				var res = HttpContext.Current.Server.MapPath("~/App_Data");
+				var res = HostingEnvironment.MapPath("~/App_Data");
 				return res;
 			}
 		}
