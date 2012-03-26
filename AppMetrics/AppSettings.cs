@@ -15,7 +15,7 @@ namespace AppMetrics
 		{
 			get
 			{
-				var res = Config.AppSettings.Settings["DataStoragePath"].Value;
+				var res = Get("DataStoragePath");
 				if (!res.Contains(':')) // not an absolute path
 				{
 					if (res.StartsWith(".")) // relative path
@@ -34,6 +34,17 @@ namespace AppMetrics
 				var res = HostingEnvironment.MapPath("~/App_Data");
 				return res;
 			}
+		}
+
+
+		static string Get(string name)
+		{
+			return Config.AppSettings.Settings[name].Value;
+		}
+
+		static void Set(string name, string value)
+		{
+			Config.AppSettings.Settings[name].Value = value;
 		}
 
 		private static Configuration _config;
