@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Timers;
 using System.Web;
+using Timer = System.Timers.Timer;
 
 namespace AppMetrics
 {
@@ -21,6 +24,18 @@ namespace AppMetrics
 				{
 					var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
 					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
+				}
+				if (_timer == null)
+				{
+					_timer = new Timer { Interval = 1000 * 60 * 15, AutoReset = false };
+					_timer.Elapsed += OnTimer;
+
+					ThreadPool.QueueUserWorkItem(
+						s =>
+						{
+							OnTimer(null, null);
+							_timer.Start();
+						});
 				}
 			}
 		}
@@ -211,6 +226,58 @@ namespace AppMetrics
 				Trace.WriteLine(exc);
 			}
 		}
+
+		static void OnTimer(object sender, ElapsedEventArgs e)
+		{
+			return;
+			using (var mutex = new Mutex(false, "AppMetrics.Backup"))
+			{
+				if (!mutex.WaitOne(TimeSpan.FromSeconds(3), false))
+					return;
+
+				BackupAll();
+			}
+			_timer.Enabled = true;
+		}
+
+		private static void BackupAll()
+		{
+			try
+			{
+				var now = DateTime.UtcNow;
+				var sessions = DataModel.DataSource.GetSessionsFromPath(AppSettings.DataStoragePath, TimeSpan.MaxValue);
+
+				foreach (var session in sessions)
+				{
+					if (now - session.LastUpdateTime < NonArchivePeriod)
+						continue;
+
+					try
+					{
+						BackupFile(session.FileName);
+					}
+					catch (Exception exc)
+					{
+						ReportLog(exc);
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportLog(exc);
+			}
+		}
+
+		static void BackupFile(string fileName)
+		{
+			var zipFile = Backup.ArchiveFile(fileName);
+			Backup.SendFileToS3(zipFile);
+
+			File.Delete(fileName);
+		}
+
+		private static Timer _timer;
+		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(7);
 
 		private static StreamWriter _logFile;
 		static readonly object Sync = new object();
