@@ -7,11 +7,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web.Configuration;
 using System.Web.Hosting;
+using System.Xml.Serialization;
 
 namespace AppMetrics
 {
-	public static class AppSettings
+	public class AppSettings
 	{
+		#region Site config
+
 		public static string DataStoragePath
 		{
 			get
@@ -37,38 +40,12 @@ namespace AppMetrics
 			}
 		}
 
-		public static string AmazonAccessKey
-		{
-			get { return Get("AmazonAccessKey"); }
-		}
-
-		static readonly byte[] AdditionalEntropy = { 0xF0, 0x3A, 0xDD, 0x14, 0xCB, 0x7C, 0x4A, 0xCC, 0x9E, 0x8A };
-
-		public static string AmazonSecretAccessKey
-		{
-			get
-			{
-				var encrypted = Convert.FromBase64String(Get("AmazonSecretAccessKey"));
-				var data = ProtectedData.Unprotect(encrypted, AdditionalEntropy, DataProtectionScope.LocalMachine);
-				var res = Encoding.UTF8.GetString(data);
-				return res;
-			}
-			set
-			{
-				var data = Encoding.UTF8.GetBytes(value);
-				var encrypted = ProtectedData.Protect(data, AdditionalEntropy, DataProtectionScope.LocalMachine);
-				Set("AmazonSecretAccessKey", Convert.ToBase64String(encrypted));
-			}
-		}
-
 		static string Get(string name)
 		{
-			return Config.AppSettings.Settings[name].Value;
-		}
-
-		static void Set(string name, string value)
-		{
-			Config.AppSettings.Settings[name].Value = value;
+			var tmp = Config.AppSettings.Settings[name];
+			if (tmp == null)
+				return null;
+			return tmp.Value;
 		}
 
 		private static Configuration _config;
@@ -82,5 +59,82 @@ namespace AppMetrics
 				return _config;
 			}
 		}
+
+		#endregion
+
+		#region Shared settings
+
+		public string AmazonAccessKey { get; set; }
+
+		public string AmazonSecretAccessKeyEncrypted { get; set; }
+
+		[XmlIgnore]
+		public string AmazonSecretAccessKey
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(AmazonSecretAccessKeyEncrypted))
+					return null;
+
+				var encryptedBytes = Convert.FromBase64String(AmazonSecretAccessKeyEncrypted);
+				var data = ProtectedData.Unprotect(encryptedBytes, AdditionalEntropy, DataProtectionScope.LocalMachine);
+				var res = Encoding.UTF8.GetString(data);
+				return res;
+			}
+			set
+			{
+				var data = Encoding.UTF8.GetBytes(value);
+				var encrypted = ProtectedData.Protect(data, AdditionalEntropy, DataProtectionScope.LocalMachine);
+				AmazonSecretAccessKeyEncrypted = Convert.ToBase64String(encrypted);
+			}
+		}
+
+		static readonly byte[] AdditionalEntropy = { 0xF0, 0x3A, 0xDD, 0x14, 0xCB, 0x7C, 0x4A, 0xCC, 0x9E, 0x8A };
+
+		private static AppSettings _instance;
+
+		public static AppSettings Instance
+		{
+			get { return _instance ?? (_instance = Load()); }
+		}
+
+		private static readonly string FileName = DataStoragePath + "\\settings.xml";
+
+		public static void Reload()
+		{
+			_instance = Load();
+		}
+
+		public static AppSettings Load()
+		{
+			AppSettings settings;
+
+			if (File.Exists(FileName))
+			{
+				var s = new XmlSerializer(typeof(AppSettings));
+				using (var rd = new StreamReader(FileName))
+				{
+					settings = (AppSettings)s.Deserialize(rd);
+				}
+			}
+			else
+				settings = new AppSettings();
+
+			return settings;
+		}
+
+		public void Save()
+		{
+			var directory = Path.GetDirectoryName(FileName);
+			if (!Directory.Exists(directory))
+				Directory.CreateDirectory(directory);
+
+			var s = new XmlSerializer(typeof(AppSettings));
+			using (var writer = new StreamWriter(FileName))
+			{
+				s.Serialize(writer, this);
+			}
+		}
+		#endregion
 	}
 }

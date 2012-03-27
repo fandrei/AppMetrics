@@ -30,7 +30,11 @@ namespace AppMetrics
 
 		public static void SendFileToS3(string fileName)
 		{
-			using (var client = new AmazonS3Client(AppSettings.AmazonAccessKey, AppSettings.AmazonSecretAccessKey))
+			if (string.IsNullOrEmpty(AppSettings.Instance.AmazonAccessKey) || 
+					string.IsNullOrEmpty(AppSettings.Instance.AmazonSecretAccessKey))
+				return;
+
+			using (var client = new AmazonS3Client(AppSettings.Instance.AmazonAccessKey, AppSettings.Instance.AmazonSecretAccessKey))
 			{
 				using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
 				{

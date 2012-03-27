@@ -102,6 +102,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config.aspx" />
     <Content Include="DataService.svc" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -116,6 +117,13 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Backup.cs" />
     <Compile Include="BasicAuthenticationModule.cs" />
+    <Compile Include="Config.aspx.cs">
+      <DependentUpon>Config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Config.aspx.designer.cs">
+      <DependentUpon>Config.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Const.cs" />
     <Compile Include="DataModel\DataSource.cs" />
     <Compile Include="DataModel\Record.cs" />
