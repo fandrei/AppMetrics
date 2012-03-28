@@ -13,7 +13,6 @@ namespace AppMetrics
 			if (!Page.IsPostBack)
 			{
 				AccessKeyEdit.Text = AppSettings.Instance.AmazonAccessKey;
-				SecretAccessKeyEdit.Text = AppSettings.Instance.AmazonSecretAccessKey;
 			}
 		}
 
