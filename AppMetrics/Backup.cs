@@ -12,6 +12,42 @@ namespace AppMetrics
 {
 	public static class Backup
 	{
+		public static void BackupAll(ReportLogDelegate reportLog)
+		{
+			try
+			{
+				var now = DateTime.UtcNow;
+				var sessions = DataModel.DataSource.GetSessionsFromPath(AppSettings.DataStoragePath, TimeSpan.MaxValue);
+
+				foreach (var session in sessions)
+				{
+					if (now - session.LastUpdateTime < NonArchivePeriod)
+						continue;
+
+					try
+					{
+						BackupFile(session.FileName);
+					}
+					catch (Exception exc)
+					{
+						reportLog(exc);
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				reportLog(exc);
+			}
+		}
+
+		static void BackupFile(string fileName)
+		{
+			var zipFile = ArchiveFile(fileName);
+			SendFileToS3(zipFile);
+
+			//File.Delete(fileName);
+		}
+
 		public static string ArchiveFile(string fileName)
 		{
 			var zipFileName = Path.ChangeExtension(fileName, ".zip");
@@ -53,5 +89,6 @@ namespace AppMetrics
 		}
 
 		private const string BucketName = "CityIndex.AppMetrics";
+		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(7);
 	}
 }

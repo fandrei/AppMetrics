@@ -192,15 +192,13 @@ namespace AppMetrics
 			}
 		}
 
-		enum Priority { Low, High }
-
-		static void ReportLog(object val, Priority priority = Priority.High)
+		static void ReportLog(object val, LogPriority priority = LogPriority.High)
 		{
 			try
 			{
 				var text = val.ToString();
 
-				if (priority != Priority.Low)
+				if (priority != LogPriority.Low)
 					EventLog.WriteEntry(Const.EventLogSourceName, text);
 
 				if (_logFile != null)
@@ -229,55 +227,17 @@ namespace AppMetrics
 
 		static void OnTimer(object sender, ElapsedEventArgs e)
 		{
-			return;
 			using (var mutex = new Mutex(false, "AppMetrics.Backup"))
 			{
 				if (!mutex.WaitOne(TimeSpan.FromSeconds(3), false))
 					return;
 
-				BackupAll();
+				Backup.BackupAll(ReportLog);
 			}
 			_timer.Enabled = true;
 		}
 
-		private static void BackupAll()
-		{
-			try
-			{
-				var now = DateTime.UtcNow;
-				var sessions = DataModel.DataSource.GetSessionsFromPath(AppSettings.DataStoragePath, TimeSpan.MaxValue);
-
-				foreach (var session in sessions)
-				{
-					if (now - session.LastUpdateTime < NonArchivePeriod)
-						continue;
-
-					try
-					{
-						BackupFile(session.FileName);
-					}
-					catch (Exception exc)
-					{
-						ReportLog(exc);
-					}
-				}
-			}
-			catch (Exception exc)
-			{
-				ReportLog(exc);
-			}
-		}
-
-		static void BackupFile(string fileName)
-		{
-			var zipFile = Backup.ArchiveFile(fileName);
-			Backup.SendFileToS3(zipFile);
-
-			File.Delete(fileName);
-		}
-
 		private static Timer _timer;
-		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(7);
 
 		private static StreamWriter _logFile;
 		static readonly object Sync = new object();
@@ -290,4 +250,7 @@ namespace AppMetrics
 			}
 		}
 	}
+
+	public enum LogPriority { Low, High }
+	public delegate void ReportLogDelegate(object val, LogPriority priority = LogPriority.High);
 }
