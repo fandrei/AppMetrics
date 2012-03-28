@@ -111,7 +111,7 @@ namespace AppMetrics
 			return new AmazonS3Client(AppSettings.Instance.AmazonAccessKey, AppSettings.Instance.AmazonSecretAccessKey);
 		}
 
-		private const string AppMetricsBucketName = "CityIndex.AppMetrics";
+		private const string AppMetricsBucketName = "cityindex.appmetrics";
 		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(7);
 	}
 }
