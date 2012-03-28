@@ -95,11 +95,16 @@ namespace AppMetrics
 			{
 				var key = Path.GetFileName(fileName);
 
+				var nameParts = key.Split('.');
+				var fullTime = nameParts.First();
+				var timeParts = fullTime.Split(' ');
+				var date = timeParts.First();
+
 				client.PutObject(
 					new PutObjectRequest
 						{
 							BucketName = AppMetricsBucketName,
-							Key = key,
+							Key = date + "/" + key,
 							InputStream = stream,
 							ContentType = "application/zip"
 						});
