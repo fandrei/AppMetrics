@@ -229,7 +229,7 @@ namespace AppMetrics
 		{
 			using (var mutex = new Mutex(false, "AppMetrics.Backup"))
 			{
-				if (!mutex.WaitOne(TimeSpan.FromSeconds(3), false))
+				if (!mutex.WaitOne(0, false))
 					return;
 
 				Backup.BackupAll(ReportLog);
