@@ -99,12 +99,15 @@ namespace AppMetrics
 				var fullTime = nameParts.First();
 				var timeParts = fullTime.Split(' ');
 				var date = timeParts.First();
+				var dateParts = date.Split('-');
+				var yearMonth = dateParts[0] + "-" + dateParts[1];
+				var day = dateParts.Last();
 
 				client.PutObject(
 					new PutObjectRequest
 						{
 							BucketName = AppMetricsBucketName,
-							Key = date + "/" + key,
+							Key = yearMonth + "/" + day + "/" + key,
 							InputStream = stream,
 							ContentType = "application/zip"
 						});
