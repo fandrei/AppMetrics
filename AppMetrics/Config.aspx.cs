@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AppMetrics
 {
@@ -11,6 +8,8 @@ namespace AppMetrics
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			LogEvent.Init();
+
 			if (!Page.IsPostBack)
 			{
 				AccessKeyEdit.Text = AppSettings.Instance.AmazonAccessKey;
