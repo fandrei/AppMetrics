@@ -125,11 +125,11 @@ namespace AppMetrics.Backup
 			return res;
 		}
 
-		private static string GetKey(string fileName)
+		private static string GetKey(string filePath)
 		{
-			var keyBase = Path.GetFileName(fileName);
+			var fileName = Path.GetFileName(filePath);
 
-			var nameParts = keyBase.Split('.');
+			var nameParts = fileName.Split('.');
 			var fullTime = nameParts.First();
 			var timeParts = fullTime.Split(' ');
 			var date = timeParts.First();
@@ -137,7 +137,7 @@ namespace AppMetrics.Backup
 			var yearMonth = dateParts[0] + "-" + dateParts[1];
 			var day = dateParts.Last();
 
-			return yearMonth + "/" + day + "/" + keyBase;
+			return yearMonth + "/" + day + "/" + fileName;
 		}
 
 		static AmazonS3Client CreateAmazonS3Client()
