@@ -70,8 +70,8 @@ namespace AppMetrics.Backup
 
 			using (var client = CreateAmazonS3Client())
 			{
-				var storedFiles = client.ListObjects(new ListObjectsRequest { BucketName = AppMetricsBucketName });
-				var storedFilesDic = storedFiles.S3Objects.ToDictionary(storedObject => storedObject.Key);
+				var storedFiles = ListS3Objects(client, new ListObjectsRequest { BucketName = AppMetricsBucketName });
+				var storedFilesDic = storedFiles.ToDictionary(storedObject => storedObject.Key);
 
 				foreach (var filePath in Directory.GetFiles(dataStoragePath, "*.zip", SearchOption.AllDirectories))
 				{
@@ -104,6 +104,25 @@ namespace AppMetrics.Backup
 							ContentType = "application/zip"
 						});
 			}
+		}
+
+		static List<S3Object> ListS3Objects(AmazonS3Client client, ListObjectsRequest request)
+		{
+			var res = new List<S3Object>(1000);
+
+			while (true)
+			{
+				var response = client.ListObjects(request);
+
+				res.AddRange(response.S3Objects);
+
+				if (response.IsTruncated)
+					request.Marker = response.NextMarker;
+				else
+					break;
+			}
+
+			return res;
 		}
 
 		private static string GetKey(string fileName)
