@@ -37,7 +37,7 @@ namespace AppMetrics.Backup
 					}
 				}
 
-				SyncAllToS3(dataStoragePath);
+				SyncAllToS3(dataStoragePath, reportLog);
 			}
 			catch (Exception exc)
 			{
@@ -62,7 +62,7 @@ namespace AppMetrics.Backup
 			File.Delete(fileName);
 		}
 
-		static void SyncAllToS3(string dataStoragePath)
+		static void SyncAllToS3(string dataStoragePath, ReportLogDelegate reportLog)
 		{
 			if (string.IsNullOrEmpty(AppSettings.Instance.AmazonAccessKey) ||
 					string.IsNullOrEmpty(AppSettings.Instance.AmazonSecretAccessKey))
@@ -86,6 +86,7 @@ namespace AppMetrics.Backup
 							continue;
 					}
 
+					reportLog(string.Format("Sending file to S3 {0}", filePath));
 					SendFileToS3(client, filePath);
 				}
 			}
