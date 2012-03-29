@@ -75,7 +75,8 @@ namespace AppMetrics.Backup
 
 				foreach (var filePath in Directory.GetFiles(dataStoragePath, "*.zip", SearchOption.AllDirectories))
 				{
-					var key = Path.GetFileName(filePath);
+					var key = GetKey(filePath);
+
 					S3Object storedObject;
 					if (storedFilesDic.TryGetValue(key, out storedObject))
 					{
@@ -94,25 +95,30 @@ namespace AppMetrics.Backup
 		{
 			using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
 			{
-				var key = Path.GetFileName(fileName);
-
-				var nameParts = key.Split('.');
-				var fullTime = nameParts.First();
-				var timeParts = fullTime.Split(' ');
-				var date = timeParts.First();
-				var dateParts = date.Split('-');
-				var yearMonth = dateParts[0] + "-" + dateParts[1];
-				var day = dateParts.Last();
-
 				client.PutObject(
 					new PutObjectRequest
 						{
 							BucketName = AppMetricsBucketName,
-							Key = yearMonth + "/" + day + "/" + key,
+							Key = GetKey(fileName),
 							InputStream = stream,
 							ContentType = "application/zip"
 						});
 			}
+		}
+
+		private static string GetKey(string fileName)
+		{
+			var keyBase = Path.GetFileName(fileName);
+
+			var nameParts = keyBase.Split('.');
+			var fullTime = nameParts.First();
+			var timeParts = fullTime.Split(' ');
+			var date = timeParts.First();
+			var dateParts = date.Split('-');
+			var yearMonth = dateParts[0] + "-" + dateParts[1];
+			var day = dateParts.Last();
+
+			return yearMonth + "/" + day + "/" + keyBase;
 		}
 
 		static AmazonS3Client CreateAmazonS3Client()
