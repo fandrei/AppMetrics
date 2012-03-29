@@ -38,6 +38,8 @@ namespace AppMetrics.Backup
 				}
 
 				SyncAllToS3(dataStoragePath, reportLog);
+
+				reportLog("Finished ok");
 			}
 			catch (Exception exc)
 			{
@@ -86,7 +88,7 @@ namespace AppMetrics.Backup
 							continue;
 					}
 
-					reportLog(string.Format("Sending file to S3 {0}", filePath));
+					reportLog(string.Format("Sending {0}", filePath));
 					SendFileToS3(client, filePath);
 				}
 			}
