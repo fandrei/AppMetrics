@@ -12,6 +12,28 @@ namespace Tests.Analytics
 	[TestFixture]
 	class UnitTesting
 	{
+        /// <summary>
+        /// http://en.wikipedia.org/wiki/Percentile : 
+        /// In statistics, a percentile (or centile) is the value of a variable below which 
+        /// a certain percent of observations fall. For example, the 20th percentile is the 
+        /// value (or score) below which 20 percent of the observations may be found. 
+        /// The term percentile and the related term percentile rank are often used in the 
+        /// reporting of scores from norm-referenced tests.
+        /// 
+        /// The 25th percentile is also known as the first quartile (Q1), the 50th percentile 
+        /// as the median or second quartile (Q2), and the 75th percentile as the third quartile (Q3).
+        /// 
+        /// R gives the following:
+        /// > data1 = c(6, 47, 49, 15, 42, 41, 7, 39, 43, 40, 36);
+        /// > data2 = c(7, 15, 36, 39, 40, 41);
+        /// 
+        /// > quantile(data1, c(.25, .50, .75));
+        ///    25%  50%  75% 
+        ///   25.5 40.0 42.5
+        /// > quantile(data2, c(.25, .50, .75));
+        ///    25%   50%   75% 
+        ///   20.25 37.50 39.75 
+        /// </summary>
 		[Test]
 		public void TestQuantilesCalculation()
 		{
@@ -64,6 +86,25 @@ namespace Tests.Analytics
 			}
 		}
 
+        /// <summary>
+        /// http://en.wikipedia.org/wiki/Percentile : 
+        /// In statistics, a percentile (or centile) is the value of a variable below which 
+        /// a certain percent of observations fall. For example, the 20th percentile is the 
+        /// value (or score) below which 20 percent of the observations may be found. 
+        /// The term percentile and the related term percentile rank are often used in the 
+        /// reporting of scores from norm-referenced tests.
+        /// 
+        /// R gives the following:
+        /// > data = c(0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+        ///     20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+        ///     41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,
+        ///     62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,
+        ///     83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99);
+        /// 
+        /// > quantile(data, c(.02, .25, .50, .75, .98));
+        ///       2%   25%   50%   75%   98% 
+        ///      1.98 24.75 49.50 74.25 97.02 
+        /// </summary>
 		[Test]
 		public void TestPercentile98Calculation()
 		{
