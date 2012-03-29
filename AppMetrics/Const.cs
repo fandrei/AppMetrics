@@ -14,4 +14,6 @@ namespace AppMetrics
 
 		public static readonly byte[] Utf8Bom = new byte[] { 0xEF, 0xBB, 0xBF };
 	}
+
+	public enum LogPriority { Low, High }
 }

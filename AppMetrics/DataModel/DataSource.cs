@@ -51,7 +51,7 @@ namespace AppMetrics.DataModel
 
 		public static List<Session> GetSessions(string appKey, TimeSpan period)
 		{
-			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
+			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);
 			return GetSessionsFromPath(dataPath, period);
 		}
 
@@ -202,7 +202,7 @@ namespace AppMetrics.DataModel
 
 		public static List<Record> GetRecords(string appKey, TimeSpan period)
 		{
-			var dataPath = Path.Combine(AppSettings.DataStoragePath, appKey);
+			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);
 			return GetRecordsFromPath(dataPath, period);
 		}
 

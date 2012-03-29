@@ -4,10 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Timers;
 using System.Web;
-using Timer = System.Timers.Timer;
 
 namespace AppMetrics
 {
@@ -20,22 +17,13 @@ namespace AppMetrics
 		{
 			lock (Sync)
 			{
+				if (AppSettings.Instance == null)
+					AppSettings.Load(SiteConfig.DataStoragePath);
+
 				if (_logFile == null)
 				{
-					var logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
+					var logPath = Path.Combine(SiteConfig.AppDataPath, Const.LogFileName);
 					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
-				}
-				if (_timer == null)
-				{
-					_timer = new Timer { Interval = 1000 * 60 * 15, AutoReset = false };
-					_timer.Elapsed += OnTimer;
-
-					ThreadPool.QueueUserWorkItem(
-						s =>
-						{
-							OnTimer(null, null);
-							_timer.Start();
-						});
 				}
 			}
 		}
@@ -166,7 +154,7 @@ namespace AppMetrics
 
 		private static string GetDataFilePath(string applicationKey, string sessionId)
 		{
-			var basePath = AppSettings.DataStoragePath;
+			var basePath = SiteConfig.DataStoragePath;
 			var dataRootPath = Path.Combine(basePath, applicationKey);
 			if (!dataRootPath.StartsWith(basePath)) // block malicious application keys
 				throw new ArgumentException(dataRootPath);
@@ -225,20 +213,6 @@ namespace AppMetrics
 			}
 		}
 
-		static void OnTimer(object sender, ElapsedEventArgs e)
-		{
-			using (var mutex = new Mutex(false, "AppMetrics.Backup"))
-			{
-				if (!mutex.WaitOne(0, false))
-					return;
-
-				Backup.BackupAll(ReportLog);
-			}
-			_timer.Enabled = true;
-		}
-
-		private static Timer _timer;
-
 		private static StreamWriter _logFile;
 		static readonly object Sync = new object();
 
@@ -250,7 +224,4 @@ namespace AppMetrics
 			}
 		}
 	}
-
-	public enum LogPriority { Low, High }
-	public delegate void ReportLogDelegate(object val, LogPriority priority = LogPriority.High);
 }

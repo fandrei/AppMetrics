@@ -1,69 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web.Configuration;
-using System.Web.Hosting;
 using System.Xml.Serialization;
 
 namespace AppMetrics
 {
 	public class AppSettings
 	{
-		#region Site config
-
-		public static string DataStoragePath
-		{
-			get
-			{
-				var res = Get("DataStoragePath");
-				if (!res.Contains(':')) // not an absolute path
-				{
-					if (res.StartsWith(".")) // relative path
-						res = Path.GetFullPath(HostingEnvironment.MapPath("~") + "\\" + res);
-					else
-						res = HostingEnvironment.MapPath(res); // resolve as site relative path
-				}
-				return res;
-			}
-		}
-
-		public static string AppDataPath
-		{
-			get
-			{
-				var res = HostingEnvironment.MapPath("~/App_Data");
-				return res;
-			}
-		}
-
-		static string Get(string name)
-		{
-			var tmp = Config.AppSettings.Settings[name];
-			if (tmp == null)
-				return null;
-			return tmp.Value;
-		}
-
-		private static Configuration _config;
-
-		static Configuration Config
-		{
-			get
-			{
-				if (_config == null)
-					_config = WebConfigurationManager.OpenWebConfiguration("~/App_Data");
-				return _config;
-			}
-		}
-
-		#endregion
-
-		#region Shared settings
-
 		public string AmazonAccessKey { get; set; }
 
 		public string AmazonSecretAccessKeyEncrypted { get; set; }
@@ -95,18 +41,14 @@ namespace AppMetrics
 
 		public static AppSettings Instance
 		{
-			get { return _instance ?? (_instance = Load()); }
+			get { return _instance; }
 		}
 
-		private static readonly string FileName = DataStoragePath + "\\settings.xml";
+		private static string FileName;
 
-		public static void Reload()
+		public static void Load(string dataPath)
 		{
-			_instance = Load();
-		}
-
-		public static AppSettings Load()
-		{
+			FileName = dataPath + "\\settings.xml";
 			AppSettings settings;
 
 			if (File.Exists(FileName))
@@ -120,7 +62,7 @@ namespace AppMetrics
 			else
 				settings = new AppSettings();
 
-			return settings;
+			_instance = settings;
 		}
 
 		public void Save()
@@ -135,6 +77,5 @@ namespace AppMetrics
 				s.Serialize(writer, this);
 			}
 		}
-		#endregion
 	}
 }

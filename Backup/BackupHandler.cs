@@ -8,17 +8,17 @@ using Amazon.S3.Model;
 using Ionic.Zip;
 using Ionic.Zlib;
 
-namespace AppMetrics
+namespace AppMetrics.Backup
 {
-	public static class Backup
+	public static class BackupHandler
 	{
-		public static void BackupAll(ReportLogDelegate reportLog)
+		public static void BackupAll(string dataStoragePath, ReportLogDelegate reportLog)
 		{
 			try
 			{
 				{
 					var now = DateTime.UtcNow;
-					var sessions = DataModel.DataSource.GetSessionsFromPath(AppSettings.DataStoragePath, TimeSpan.MaxValue);
+					var sessions = DataModel.DataSource.GetSessionsFromPath(dataStoragePath, TimeSpan.MaxValue);
 
 					foreach (var session in sessions)
 					{
@@ -27,6 +27,7 @@ namespace AppMetrics
 
 						try
 						{
+							reportLog(string.Format("Archiving {0}", session.FileName));
 							ArchiveFile(session.FileName);
 						}
 						catch (Exception exc)
@@ -36,7 +37,7 @@ namespace AppMetrics
 					}
 				}
 
-				SyncAllToS3();
+				SyncAllToS3(dataStoragePath);
 			}
 			catch (Exception exc)
 			{
@@ -61,7 +62,7 @@ namespace AppMetrics
 			File.Delete(fileName);
 		}
 
-		static void SyncAllToS3()
+		static void SyncAllToS3(string dataStoragePath)
 		{
 			if (string.IsNullOrEmpty(AppSettings.Instance.AmazonAccessKey) ||
 					string.IsNullOrEmpty(AppSettings.Instance.AmazonSecretAccessKey))
@@ -72,7 +73,7 @@ namespace AppMetrics
 				var storedFiles = client.ListObjects(new ListObjectsRequest { BucketName = AppMetricsBucketName });
 				var storedFilesDic = storedFiles.S3Objects.ToDictionary(storedObject => storedObject.Key);
 
-				foreach (var filePath in Directory.GetFiles(AppSettings.DataStoragePath, "*.zip", SearchOption.AllDirectories))
+				foreach (var filePath in Directory.GetFiles(dataStoragePath, "*.zip", SearchOption.AllDirectories))
 				{
 					var key = Path.GetFileName(filePath);
 					S3Object storedObject;

@@ -167,7 +167,7 @@ namespace AppMetrics.AnalyticsSite
 		static void Init()
 		{
 			if (_logPath == null)
-				_logPath = Path.Combine(AppSettings.AppDataPath, Const.LogFileName);
+				_logPath = Path.Combine(SiteConfig.AppDataPath, Const.LogFileName);
 		}
 
 		static void ReportLog(string text)

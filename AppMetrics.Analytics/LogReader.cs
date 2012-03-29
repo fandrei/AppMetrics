@@ -11,7 +11,7 @@ namespace AppMetrics.Analytics
 	{
 		public static List<SessionEx> Parse(AnalysisOptions options)
 		{
-			var dataPath = AppSettings.DataStoragePath + "\\" + options.ApplicationKey;
+			var dataPath = SiteConfig.DataStoragePath + "\\" + options.ApplicationKey;
 			return Parse(dataPath, options.Period);
 		}
 

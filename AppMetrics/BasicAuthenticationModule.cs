@@ -91,7 +91,7 @@ namespace AppMetrics
 				{
 					if (_users == null)
 					{
-						var fileName = Path.Combine(AppSettings.DataStoragePath, "users.config");
+						var fileName = Path.Combine(SiteConfig.DataStoragePath, "users.config");
 						var text = File.ReadAllText(fileName);
 
 						_users = new Dictionary<string, string>();
