@@ -116,7 +116,7 @@ namespace AppMetrics.Client
 							Name = name,
 							Value = Util.Escape(val.ToString()),
 							SessionId = SessionId,
-							Time = DateTime.Now,
+							Time = DateTime.UtcNow,
 							Priority = priority
 						});
 			}
