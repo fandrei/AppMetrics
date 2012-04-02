@@ -40,7 +40,13 @@ namespace AppMetrics
 
 				var messages = context.Request.Params["MessagesList"];
 				if (!string.IsNullOrEmpty(messages))
-					ProcessMessages(context.Request, applicationKey, messages);
+				{
+					var sessionId = context.Request.Params["MessageSession"];
+					if (string.IsNullOrEmpty(sessionId))
+						ProcessMessages(context.Request, applicationKey, messages);
+					else
+						ProcessMessages(context.Request, applicationKey, sessionId, messages);
+				}
 				else
 					ProcessMessage(context, applicationKey);
 			}
@@ -74,6 +80,16 @@ namespace AppMetrics
 					throw new ApplicationException("Invalid count of items in the line");
 				WriteData(request, applicationKey, sessionId, lines);
 			}
+		}
+
+		private static void ProcessMessages(HttpRequest request, string applicationKey, string sessionId, string messagesText)
+		{
+			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+			var lines = textLines.Select(line => line.Split('\t')).ToArray();
+			if (lines.Any(line => line.Length != 3))
+				throw new ApplicationException("Invalid count of items in the line");
+
+			WriteData(request, applicationKey, sessionId, lines);
 		}
 
 		private static void WriteData(HttpRequest request, string appKey, string sessionId, string[][] lines)
