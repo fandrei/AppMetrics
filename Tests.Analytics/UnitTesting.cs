@@ -35,7 +35,7 @@ namespace Tests.Analytics
 		///   20.25 37.50 39.75 
 		/// </summary>
 		[Test]
-		public void TestQuantilesCalculation()
+		public void TestSummariesCalculation()
 		{
 			{
 				var data = new decimal[] { 6, 47, 49, 15, 42, 41, 7, 39, 43, 40, 36 };
@@ -50,9 +50,9 @@ namespace Tests.Analytics
 				var data = new decimal[] { 7, 15, 36, 39, 40, 41 };
 				var res = Stats.CalculateSummaries(data);
 
-				Assert.IsTrue(res.LowerQuartile == 15M);
+				Assert.IsTrue(res.LowerQuartile == 20.25M);
 				Assert.IsTrue(res.Median == 37.5M);
-				Assert.IsTrue(res.UpperQuartile == 40M);
+				Assert.IsTrue(res.UpperQuartile == 39.75M);
 			}
 		}
 
@@ -96,7 +96,7 @@ namespace Tests.Analytics
 		/// reporting of scores from norm-referenced tests.
 		/// 
 		/// R gives the following:
-		/// > data = c(0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+		/// > data = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
 		///     20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
 		///     41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,
 		///     62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,

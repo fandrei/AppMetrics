@@ -17,34 +17,15 @@ namespace AppMetrics.Analytics
 			var sorted = new List<decimal>(vals);
 			sorted.Sort();
 
-			var medianIndex = GetMedianIndex(sorted.Count) - 1;
-			res.Median = FindValue(sorted, medianIndex);
-
-			var lowerQuartileIndex = GetMedianIndex(Math.Floor(medianIndex) + 1) - 1;
-			res.LowerQuartile = FindValue(sorted, lowerQuartileIndex);
-
-			var upperQuartileIndex = Math.Ceiling(medianIndex) + GetMedianIndex(sorted.Count - Math.Ceiling(medianIndex)) - 1;
-			res.UpperQuartile = FindValue(sorted, upperQuartileIndex);
+			res.Median = CalculateQuantile(sorted, 0.5M);
+			res.LowerQuartile = CalculateQuantile(sorted, 0.25M);
+			res.UpperQuartile = CalculateQuantile(sorted, 0.75M);
 
 			res.Min = sorted.First();
 			res.Max = sorted.Last();
 
 			Validate(sorted, res);
 			return res;
-		}
-
-		private static decimal GetMedianIndex(decimal count)
-		{
-			return (count + 1) / 2;
-		}
-
-		static decimal FindValue(IList<decimal> vals, decimal i)
-		{
-			var rounded = (int)Math.Floor(i);
-			if (i == rounded)
-				return vals[rounded];
-			else
-				return (vals[rounded] + vals[rounded + 1]) / 2;
 		}
 
 		static void Validate(ICollection<decimal> vals, StatSummary summary)
@@ -129,7 +110,7 @@ namespace AppMetrics.Analytics
 				throw new ApplicationException();
 
 			var res = prev + (next - prev) * (splitter - prevIndex); // use linear interpolation
-
+			ValidateSplitterValue(vals, res, q);
 			return res;
 		}
 
