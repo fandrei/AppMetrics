@@ -46,9 +46,9 @@ namespace AppMetrics.Analytics
 					biggerCount++;
 			}
 
-			if (smallerCount > Math.Round(vals.Count * splittingCoefficient))
+			if (smallerCount > Math.Ceiling(vals.Count * splittingCoefficient))
 				throw new ValidationException();
-			if (biggerCount > Math.Round(vals.Count * (1 - splittingCoefficient)))
+			if (biggerCount > Math.Ceiling(vals.Count * (1 - splittingCoefficient)))
 				throw new ValidationException();
 		}
 
