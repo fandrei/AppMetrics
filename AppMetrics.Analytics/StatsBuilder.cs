@@ -142,11 +142,12 @@ namespace AppMetrics.Analytics
 			if (latencyRecords.Length > 0)
 			{
 				var latencies = latencyRecords.Select(record => record.ValueAsNumber).ToList();
+				latencies.Sort();
 
 				res.StatSummary = Stats.CalculateSummaries(latencies);
 				res.Distribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 
-				res.Percentile98 = Stats.CalculatePercentile98Info(latencies);
+				res.Percentile98 = Stats.CalculateQuantileInfo(latencies, 0.98M);
 			}
 
 			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();

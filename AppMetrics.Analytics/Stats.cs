@@ -94,17 +94,65 @@ namespace AppMetrics.Analytics
 			jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
 		}
 
-		public static Percentile98Info CalculatePercentile98Info(IList<decimal> original)
+		// vals must be sorted ascending
+		public static QuantileInfo CalculateQuantileInfo(IList<decimal> vals, decimal q)
 		{
-			var latencies = new List<decimal>(original);
-			RemoveTop(latencies, 0.02M);
+			var index = CalculateQuantileIndex(vals, q);
 
-			return new Percentile98Info
-			{
-				TotalCount = original.Count,
-				OutliersCount = original.Count - latencies.Count,
-				Average = latencies.Average(),
-			};
+			var res = new QuantileInfo
+				{
+					TotalCount = vals.Count(),
+					OutliersCount = vals.Count() - (int)Math.Floor(index),
+					Quantile = CalculateQuantile(vals, q)
+				};
+			return res;
+		}
+
+		// vals must be sorted ascending
+		public static decimal CalculateQuantile(IList<decimal> vals, decimal q)
+		{
+			if (q < 0 || q > 100)
+				throw new ArgumentOutOfRangeException();
+
+			var splitter = CalculateQuantileIndex(vals, q);
+
+			var rounded = (int)Math.Floor(splitter);
+			if (splitter == rounded)
+				return vals[rounded];
+
+			var prevIndex = (int)Math.Floor(splitter);
+			var nextIndex = (int)Math.Ceiling(splitter);
+
+			var prev = vals[prevIndex];
+			var next = vals[nextIndex];
+			if (prev > next)
+				throw new ApplicationException();
+
+			var res = prev + (next - prev) * (splitter - prevIndex); // use linear interpolation
+
+			return res;
+		}
+
+		public static decimal CalculateQuantileIndex(IList<decimal> vals, decimal q)
+		{
+			var res = (vals.Count - 1) * q;
+			return res;
+		}
+
+		public static decimal[] CalculateQuantiles(IList<decimal> vals, params decimal[] q)
+		{
+			var res = new decimal[q.Length];
+			for (int i = 0; i < q.Length; i++)
+				res[i] = CalculateQuantile(vals, q[i]);
+			return res;
+		}
+
+		public static decimal[] CalculateQuantileIndexes(IList<decimal> vals, params decimal[] q)
+		{
+			var res = new decimal[q.Length];
+			for (int i = 0; i < q.Length; i++)
+				res[i] = CalculateQuantileIndex(vals, q[i]);
+			return res;
 		}
 	}
 }

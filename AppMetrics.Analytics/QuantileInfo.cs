@@ -5,9 +5,9 @@ using System.Text;
 
 namespace AppMetrics.Analytics
 {
-	public class Percentile98Info
+	public class QuantileInfo
 	{
-		public decimal Average;
+		public decimal Quantile;
 		public int TotalCount;
 		public int OutliersCount;
 	}

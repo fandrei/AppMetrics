@@ -90,11 +90,11 @@ namespace AppMetrics.Analytics
 			return res.ToString();
 		}
 
-		public static string GetAveragePercentile98Report(IEnumerable<CalcResult> results)
+		public static string GetPercentile98Report(IEnumerable<CalcResult> results)
 		{
 			var res = new StringBuilder(DefaultBufferSize);
 
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tAveragePercentile98\tTotalCount\tOutliersCount");
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\tPercentile98\tTotalCount\tOutliersCount");
 
 			foreach (var result in results)
 			{
@@ -104,7 +104,7 @@ namespace AppMetrics.Analytics
 
 				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
 					result.Country, result.City, result.Location, result.FunctionName,
-					cur.Average, cur.TotalCount, cur.OutliersCount);
+					cur.Quantile, cur.TotalCount, cur.OutliersCount);
 			}
 
 			return res.ToString();
