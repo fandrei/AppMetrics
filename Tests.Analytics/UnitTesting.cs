@@ -163,13 +163,13 @@ namespace Tests.Analytics
             Assert.IsTrue(res.Max == 99M);
         }
 
-        [Test, Ignore("TODO:  Add percentile calculations to summary")]
+        [Test]
         public void SummaryShouldInclude2And98Percentile()
         {
             var res = Stats.CalculateSummaries(_sampleData);
 
-//            Assert.IsTrue(res.Percentile2 == 1.98M);
-//            Assert.IsTrue(res.Percentile98 == 97.02M);
+			Assert.IsTrue(res.Percentile2 == 1.98M);
+			Assert.IsTrue(res.Percentile98 == 97.02M);
         }
 
 
