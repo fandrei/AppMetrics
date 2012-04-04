@@ -24,8 +24,8 @@ namespace AppMetrics.Analytics
 			res.Min = sorted.First();
 			res.Max = sorted.Last();
 
-			res.Percentile2 = CalculateQuantile(vals, 0.02M);
-			res.Percentile98 = CalculateQuantile(vals, 0.98M);
+			res.Percentile2 = CalculateQuantile(sorted, 0.02M);
+			res.Percentile98 = CalculateQuantile(sorted, 0.98M);
 
 			Validate(sorted, res);
 			return res;
