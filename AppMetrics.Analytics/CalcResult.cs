@@ -11,6 +11,8 @@ namespace AppMetrics.Analytics
 		public Distribution Distribution;
 		public Distribution Jitter;
 
+		public int ExceptionsCount;
+
 		public string FunctionName;
 		public string City;
 		public string Country;

@@ -24,6 +24,11 @@ namespace AppMetrics.Analytics
 			return record.Name.StartsWith("Jitter");
 		}
 
+		public static bool IsException(RecordEx record)
+		{
+			return record.Name.StartsWith("Exception");
+		}
+
 		public static SortedDictionary<TKey, List<TSource>> GroupBySorted<TSource, TKey>(IEnumerable<TSource> source,
 			Func<TSource, TKey> keySelector)
 		{

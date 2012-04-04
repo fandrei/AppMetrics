@@ -41,7 +41,7 @@ namespace AppMetrics.Analytics
 		{
 			var res = new StringBuilder(DefaultBufferSize);
 
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage" +
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tExceptionsCount\tAverage" +
 				"\tMin\tPercentile2\tLowerQuartile\tMedian\tUpperQuartile\tPercentile98\tMax");
 
 			foreach (var result in results)
@@ -49,9 +49,9 @@ namespace AppMetrics.Analytics
 				var summary = result.StatSummary;
 				if (summary == null)
 					continue;
-				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}",
+				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}",
 					result.Country, result.City, result.Location, result.FunctionName,
-					summary.Count, summary.Average,
+					summary.Count, result.ExceptionsCount, summary.Average,
 					summary.Min, summary.Percentile2, summary.LowerQuartile, summary.Median,
 					summary.UpperQuartile, summary.Percentile98, summary.Max);
 			}

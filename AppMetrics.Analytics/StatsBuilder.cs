@@ -138,6 +138,9 @@ namespace AppMetrics.Analytics
 		{
 			var res = new CalcResult();
 
+			var exceptionRecords = records.Where(Util.IsException).ToArray();
+			res.ExceptionsCount = exceptionRecords.Length;
+
 			var latencyRecords = records.Where(Util.IsLatency).ToArray();
 			if (latencyRecords.Length > 0)
 			{
@@ -178,10 +181,12 @@ namespace AppMetrics.Analytics
 				session.Ip = ip;
 				session.Location = overrides.ContainsKey(ip) ? overrides[ip] : geoLookup.getLocation(ip);
 
-				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record));
+				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record) && !Util.IsException(record));
 
 				foreach (var record in session.Records)
 				{
+					if (Util.IsException(record))
+						continue;
 					decimal cur;
 					if (!decimal.TryParse(record.Value, out cur))
 						cur = (decimal)(double.Parse(record.Value));
