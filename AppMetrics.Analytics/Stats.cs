@@ -7,7 +7,7 @@ namespace AppMetrics.Analytics
 {
 	public static class Stats
 	{
-		public static StatSummary CalculateSummaries(ICollection<decimal> vals)
+		public static StatSummary CalculateSummaries(IList<decimal> vals)
 		{
 			var res = new StatSummary();
 
@@ -23,6 +23,9 @@ namespace AppMetrics.Analytics
 
 			res.Min = sorted.First();
 			res.Max = sorted.Last();
+
+			res.Percentile2 = CalculateQuantile(vals, 0.02M);
+			res.Percentile98 = CalculateQuantile(vals, 0.98M);
 
 			Validate(sorted, res);
 			return res;
@@ -73,20 +76,6 @@ namespace AppMetrics.Analytics
 			jitterVals.Sort();
 			var countToRemove = (int)(jitterVals.Count * fraction);
 			jitterVals.RemoveRange(jitterVals.Count - countToRemove, countToRemove);
-		}
-
-		// vals must be sorted ascending
-		public static QuantileInfo CalculateQuantileInfo(IList<decimal> vals, decimal q)
-		{
-			var index = CalculateQuantileIndex(vals, q);
-
-			var res = new QuantileInfo
-				{
-					TotalCount = vals.Count(),
-					OutliersCount = vals.Count() - (int)Math.Floor(index),
-					Quantile = CalculateQuantile(vals, q)
-				};
-			return res;
 		}
 
 		// vals must be sorted ascending

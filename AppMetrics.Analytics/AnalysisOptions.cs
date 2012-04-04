@@ -6,7 +6,7 @@ using System.Text;
 namespace AppMetrics.Analytics
 {
 	public enum LocationSliceType { None, Countries, CountriesAndCities }
-	public enum ReportType { LatencySummaries, LatencyDistribution, JitterDistribution, Percentile98 }
+	public enum ReportType { LatencySummaries, LatencyDistribution, JitterDistribution }
 
 	public class AnalysisOptions
 	{

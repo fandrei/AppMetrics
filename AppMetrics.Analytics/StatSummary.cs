@@ -14,6 +14,8 @@ namespace AppMetrics.Analytics
 		public decimal UpperQuartile;
 		public decimal Min;
 		public decimal Max;
+		public decimal Percentile2;
+		public decimal Percentile98;
 
 		public int Count;
 	}

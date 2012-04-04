@@ -41,17 +41,19 @@ namespace AppMetrics.Analytics
 		{
 			var res = new StringBuilder(DefaultBufferSize);
 
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage\tMin\tLowerQuartile\tMedian\tUpperQuartile\tMax");
+			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tAverage" +
+				"\tMin\tPercentile2\tLowerQuartile\tMedian\tUpperQuartile\tPercentile98\tMax");
 
 			foreach (var result in results)
 			{
 				var summary = result.StatSummary;
 				if (summary == null)
 					continue;
-				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}",
+				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}",
 					result.Country, result.City, result.Location, result.FunctionName,
 					summary.Count, summary.Average,
-					summary.Min, summary.LowerQuartile, summary.Median, summary.UpperQuartile, summary.Max);
+					summary.Min, summary.Percentile2, summary.LowerQuartile, summary.Median,
+					summary.UpperQuartile, summary.Percentile98, summary.Max);
 			}
 
 			return res.ToString();
@@ -85,26 +87,6 @@ namespace AppMetrics.Analytics
 					result.Country, result.City, result.Location, result.FunctionName,
 					pair.Key, pair.Value);
 				}
-			}
-
-			return res.ToString();
-		}
-
-		public static string GetPercentile98Report(IEnumerable<CalcResult> results)
-		{
-			var res = new StringBuilder(DefaultBufferSize);
-
-			res.AppendLine("Country\tCity\tLocation\tFunctionName\tPercentile98\tTotalCount\tOutliersCount");
-
-			foreach (var result in results)
-			{
-				var cur = result.Percentile98;
-				if (cur == null)
-					continue;
-
-				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}",
-					result.Country, result.City, result.Location, result.FunctionName,
-					cur.Quantile, cur.TotalCount, cur.OutliersCount);
 			}
 
 			return res.ToString();

@@ -48,9 +48,6 @@ namespace AppMetrics.AnalyticsSite
 					case ReportType.JitterDistribution:
 						reportText = Report.GetJitterDistributionReport(report.Result);
 						break;
-					case ReportType.Percentile98:
-						reportText = Report.GetPercentile98Report(report.Result);
-						break;
 					default:
 						throw new NotSupportedException();
 				}
