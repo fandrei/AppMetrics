@@ -41,8 +41,17 @@ namespace AppMetrics.Analytics
 		private static void ValidateSplitterValue(ICollection<decimal> vals, decimal splitterValue, decimal splittingCoefficient)
 		{
 			int smallerCount = 0, biggerCount = 0;
+			decimal? prevVal = null;
+
 			foreach (var val in vals)
 			{
+				if (prevVal != null)
+				{
+					if (prevVal > val)
+						throw new ValidationException();
+				}
+				prevVal = val;
+
 				if (val < splitterValue)
 					smallerCount++;
 				if (val > splitterValue)
