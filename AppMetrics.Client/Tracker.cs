@@ -272,6 +272,10 @@ namespace AppMetrics.Client
 
 			var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
 			Log("Client_ProcessVersion", processVersion);
+
+			var curAssembly = GetType().Assembly;
+			var curAssemblyVersion = curAssembly.GetName().Version;
+			Log("Client_AppMetricsVersion", curAssemblyVersion);
 		}
 
 		static void ReportPeriodicInfoAllSessions()
