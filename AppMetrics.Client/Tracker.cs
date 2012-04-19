@@ -274,8 +274,7 @@ namespace AppMetrics.Client
 			Log("Client_ProcessVersion", processVersion);
 
 			var curAssembly = GetType().Assembly;
-			var curAssemblyVersion = curAssembly.GetName().Version;
-			Log("Client_AppMetricsVersion", curAssemblyVersion);
+			Log("Client_AppMetricsVersion", curAssembly.FullName);
 		}
 
 		static void ReportPeriodicInfoAllSessions()
