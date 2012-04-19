@@ -106,15 +106,21 @@ namespace AppMetrics.Client
 			if (_terminated)
 				return;
 
+			string valText;
 			if (val == null)
-				val = "";
-
-			if (val is double)
-				val = ((double)val).ToString(CultureInfo.InvariantCulture);
+				valText = "";
+			else if (val is string)
+				valText = (string)val;
+			else if (val is double)
+				valText = ((double)val).ToString(CultureInfo.InvariantCulture);
 			else if (val is float)
-				val = ((float)val).ToString(CultureInfo.InvariantCulture);
+				valText = ((float)val).ToString(CultureInfo.InvariantCulture);
 			else if (val is decimal)
-				val = ((decimal)val).ToString(CultureInfo.InvariantCulture);
+				valText = ((decimal)val).ToString(CultureInfo.InvariantCulture);
+			else
+				valText = val.ToString();
+
+			valText = Util.Escape(valText);
 
 			lock (Sync)
 			{
@@ -122,7 +128,7 @@ namespace AppMetrics.Client
 					new MessageInfo
 						{
 							Name = name,
-							Value = Util.Escape(val.ToString()),
+							Value = valText,
 							SessionId = SessionId,
 							Time = DateTime.UtcNow,
 							Priority = priority
