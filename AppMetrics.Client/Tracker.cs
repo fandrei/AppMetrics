@@ -251,7 +251,7 @@ namespace AppMetrics.Client
 
 			Log("System_SystemDefaultEncoding", Encoding.Default.WebName);
 
-			Log("System_CalendarType", computerInfo.InstalledUICulture.Calendar.GetType().Name);
+			Log("System_CalendarType", CultureInfo.CurrentCulture.Calendar.GetType().Name);
 
 			Log("System_NumberDecimalSeparator", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
 
