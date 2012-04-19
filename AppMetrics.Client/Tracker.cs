@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Globalization;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -107,6 +108,13 @@ namespace AppMetrics.Client
 
 			if (val == null)
 				val = "";
+
+			if (val is double)
+				val = ((double)val).ToString(CultureInfo.InvariantCulture);
+			else if (val is float)
+				val = ((float)val).ToString(CultureInfo.InvariantCulture);
+			else if (val is decimal)
+				val = ((decimal)val).ToString(CultureInfo.InvariantCulture);
 
 			lock (Sync)
 			{
