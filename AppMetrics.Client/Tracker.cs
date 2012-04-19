@@ -253,7 +253,7 @@ namespace AppMetrics.Client
 
 			Log("System_CalendarType", computerInfo.InstalledUICulture.Calendar.GetType().Name);
 
-			Log("System_NumberDecimalSeparator", computerInfo.InstalledUICulture.NumberFormat.NumberDecimalSeparator);
+			Log("System_NumberDecimalSeparator", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
 
 			var timeZone = TimeZone.CurrentTimeZone;
 			Log("System_TimeZone", timeZone.StandardName);
