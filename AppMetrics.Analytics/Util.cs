@@ -31,7 +31,7 @@ namespace AppMetrics.Analytics
 
 		public static bool IsStreaming(RecordEx record)
 		{
-			return record.Name.Contains("Stream");
+			return record.Name.EndsWith("Stream");
 		}
 
 		public static SortedDictionary<TKey, List<TSource>> GroupBySorted<TSource, TKey>(IEnumerable<TSource> source,
