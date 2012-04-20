@@ -86,12 +86,14 @@ namespace AppMetrics.AnalyticsSite
 								? ReportType.LatencySummaries
 								: (ReportType)Enum.Parse(typeof(ReportType), reportTypeText);
 
+			var splitByFunctions = (requestParams.Get("SplitByFunctions") ?? "").ToLower();
+
 			return new AnalysisOptions
 					{
 						ApplicationKey = application,
 						LocationIncludeOverall = includeWorldOverall,
 						SliceByLocation = LocationSliceType.Countries,
-						SliceByFunction = false,
+						SliceByFunction = (splitByFunctions == "yes"),
 						CountryFilter = new HashSet<string>(countryList),
 						Period = period,
 						ReportType = reportType,
