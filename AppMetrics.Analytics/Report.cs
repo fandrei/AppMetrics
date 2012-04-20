@@ -39,6 +39,16 @@ namespace AppMetrics.Analytics
 
 		public static string GetLatencyStatSummariesReport(IEnumerable<CalcResult> results)
 		{
+			return GetLatencyStatSummariesReport(results, calc => calc.StatSummary);
+		}
+
+		public static string GetStreamingLatencyStatSummariesReport(IEnumerable<CalcResult> results)
+		{
+			return GetLatencyStatSummariesReport(results, calc => calc.StreamingStatSummary);
+		}
+
+		public static string GetLatencyStatSummariesReport(IEnumerable<CalcResult> results, Func<CalcResult, StatSummary> selector)
+		{
 			var res = new StringBuilder(DefaultBufferSize);
 
 			res.AppendLine("Country\tCity\tLocation\tFunctionName\tCount\tExceptionsCount\tAverage" +
@@ -46,7 +56,7 @@ namespace AppMetrics.Analytics
 
 			foreach (var result in results)
 			{
-				var summary = result.StatSummary;
+				var summary = selector(result);
 				if (summary == null)
 					continue;
 				res.AppendLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}",
@@ -61,12 +71,17 @@ namespace AppMetrics.Analytics
 
 		public static string GetLatencyDistributionReport(IEnumerable<CalcResult> results)
 		{
-			return GetDistributionReport(results, "Latency", calc => calc.Distribution);
+			return GetDistributionReport(results, "Latency", calc => calc.LatencyDistribution);
 		}
 
 		public static string GetJitterDistributionReport(IEnumerable<CalcResult> results)
 		{
-			return GetDistributionReport(results, "Difference", calc => calc.Jitter);
+			return GetDistributionReport(results, "Difference", calc => calc.StreamingJitter);
+		}
+
+		public static string GetStreamingLatencyDistributionReport(IEnumerable<CalcResult> results)
+		{
+			return GetDistributionReport(results, "Latency", calc => calc.StreamingLatencyDistribution);
 		}
 
 		public static string GetDistributionReport(IEnumerable<CalcResult> results, string paramName,

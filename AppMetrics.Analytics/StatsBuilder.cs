@@ -143,21 +143,32 @@ namespace AppMetrics.Analytics
 			var exceptionRecords = records.Where(Util.IsException).ToArray();
 			res.ExceptionsCount = exceptionRecords.Length;
 
-			var latencyRecords = records.Where(Util.IsLatency).ToArray();
+			var latencyRecords = records.Where(val => Util.IsLatency(val) && !Util.IsStreaming(val)).ToArray();
 			if (latencyRecords.Length > 0)
 			{
 				var latencies = latencyRecords.Select(record => record.ValueAsNumber).ToList();
 				latencies.Sort();
 
 				res.StatSummary = Stats.CalculateSummaries(latencies);
-				res.Distribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
+				res.LatencyDistribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
 
-			var jitterVals = records.Where(Util.IsJitter).Select(record => record.ValueAsNumber).ToList();
+			var streamingLatencyRecords = records.Where(val => Util.IsLatency(val) && Util.IsStreaming(val)).ToArray();
+			if (streamingLatencyRecords.Length > 0)
+			{
+				var latencies = streamingLatencyRecords.Select(record => record.ValueAsNumber).ToList();
+				latencies.Sort();
+
+				res.StreamingStatSummary = Stats.CalculateSummaries(latencies);
+				res.StreamingLatencyDistribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
+			}
+
+			var streamingRecords = records.Where(val => Util.IsJitter(val) && Util.IsStreaming(val)).ToArray();
+			var jitterVals = streamingRecords.Select(record => record.ValueAsNumber).ToList();
 			if (jitterVals.Count > 0)
 			{
 				Stats.RemoveTop(jitterVals, 0.02M);
-				res.Jitter = Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
+				res.StreamingJitter = Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
 			}
 
 			return res;
@@ -245,7 +256,7 @@ namespace AppMetrics.Analytics
 
 		static void Validate(SessionEx session)
 		{
-			if (session.Records.Any(record => record.ValueAsNumber < 0))
+			if (session.Records.Any(record => Util.IsJitter(record) && record.ValueAsNumber < 0))
 				throw new ValidationException();
 		}
 

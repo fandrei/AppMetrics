@@ -48,9 +48,16 @@ namespace AppMetrics.AnalyticsSite
 					case ReportType.JitterDistribution:
 						reportText = Report.GetJitterDistributionReport(report.Result);
 						break;
+					case ReportType.StreamingLatencySummaries:
+						reportText = Report.GetStreamingLatencyStatSummariesReport(report.Result);
+						break;
+					case ReportType.StreamingLatencyDistribution:
+						reportText = Report.GetStreamingLatencyDistributionReport(report.Result);
+						break;
 					default:
 						throw new NotSupportedException();
 				}
+
 				context.Response.Write(reportText);
 			}
 			catch (ApplicationException exc)

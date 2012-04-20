@@ -29,6 +29,11 @@ namespace AppMetrics.Analytics
 			return record.Name.StartsWith("Exception");
 		}
 
+		public static bool IsStreaming(RecordEx record)
+		{
+			return record.Name.Contains("Stream");
+		}
+
 		public static SortedDictionary<TKey, List<TSource>> GroupBySorted<TSource, TKey>(IEnumerable<TSource> source,
 			Func<TSource, TKey> keySelector)
 		{

@@ -8,8 +8,12 @@ namespace AppMetrics.Analytics
 	public class CalcResult
 	{
 		public StatSummary StatSummary;
-		public Distribution Distribution;
-		public Distribution Jitter;
+		public StatSummary StreamingStatSummary;
+
+		public Distribution LatencyDistribution;
+		public Distribution StreamingLatencyDistribution;
+
+		public Distribution StreamingJitter;
 
 		public int ExceptionsCount;
 
