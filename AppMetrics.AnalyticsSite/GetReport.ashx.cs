@@ -54,6 +54,9 @@ namespace AppMetrics.AnalyticsSite
 					case ReportType.StreamingLatencyDistribution:
 						reportText = Report.GetStreamingLatencyDistributionReport(report.Result);
 						break;
+					case ReportType.Exceptions:
+						reportText = Report.GetExceptionsReport(report.Result);
+						break;
 					default:
 						throw new NotSupportedException();
 				}
@@ -95,7 +98,7 @@ namespace AppMetrics.AnalyticsSite
 
 			var splitByFunctions = (requestParams.Get("SplitByFunctions") ?? "").ToLower();
 
-			return new AnalysisOptions
+			var res = new AnalysisOptions
 					{
 						ApplicationKey = application,
 						LocationIncludeOverall = includeWorldOverall,
@@ -105,6 +108,13 @@ namespace AppMetrics.AnalyticsSite
 						Period = period,
 						ReportType = reportType,
 					};
+
+			if (reportType == ReportType.Exceptions)
+			{
+				res.SliceByFunction = false;
+			}
+
+			return res;
 		}
 
 		private static Tuple<bool, ReportInfo> GetOrCreateReport(AnalysisOptions options)

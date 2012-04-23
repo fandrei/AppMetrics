@@ -17,6 +17,8 @@ namespace AppMetrics.Analytics
 
 		public int ExceptionsCount;
 
+		public Dictionary<string, int> Exceptions = new Dictionary<string, int>();
+
 		public string FunctionName;
 		public string City;
 		public string Country;

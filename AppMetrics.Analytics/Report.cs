@@ -107,6 +107,28 @@ namespace AppMetrics.Analytics
 			return res.ToString();
 		}
 
+		public static string GetExceptionsReport(IEnumerable<CalcResult> results)
+		{
+			var res = new StringBuilder(DefaultBufferSize);
+
+			foreach (var result in results)
+			{
+				res.AppendLine("{0}\r\n{1}\r\n{2}",
+					Delimiter1, result.Location, Delimiter1);
+
+				foreach (var pair in result.Exceptions)
+				{
+					res.AppendLine("{0}\r\n{1}\r\n{2}\r\n{3}",
+						pair.Key, Delimiter2, pair.Value, Delimiter2);
+				}
+			}
+
+			return res.ToString();
+		}
+
+		private static readonly string Delimiter1 = new string('=', 40);
+		private static readonly string Delimiter2 = new string('-', 40);
+
 		public static void AppendLine(this StringBuilder res, string format, params object[] args)
 		{
 			var tmp = string.Format(format, args);

@@ -141,6 +141,11 @@ namespace AppMetrics.Analytics
 			var res = new CalcResult();
 
 			var exceptionRecords = records.Where(Util.IsException).ToArray();
+			var exceptionsGrouped = Util.GroupBy(exceptionRecords, record => record.Value);
+			foreach (var pair in exceptionsGrouped)
+			{
+				res.Exceptions.Add(pair.Key, pair.Value.Count);
+			}
 			res.ExceptionsCount = exceptionRecords.Length;
 
 			var latencyRecords = records.Where(val => Util.IsLatency(val) && !Util.IsStreaming(val)).ToArray();
