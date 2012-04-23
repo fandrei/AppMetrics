@@ -163,7 +163,8 @@ namespace AppMetrics.Analytics
 				res.StreamingLatencyDistribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
 
-			var streamingRecords = records.Where(val => Util.IsJitter(val) && Util.IsStreaming(val)).ToArray();
+			var streamingRecords = records.Where(val => (Util.IsJitter(val) || Util.IsLatency(val)) &&
+				Util.IsStreaming(val)).ToArray();
 			var jitterVals = streamingRecords.Select(record => record.ValueAsNumber).ToList();
 			if (jitterVals.Count > 0)
 			{
