@@ -34,6 +34,11 @@ namespace AppMetrics.Analytics
 			return record.Name.EndsWith("Stream");
 		}
 
+		public static bool IsInfo(RecordEx record)
+		{
+			return record.Name  == "Info";
+		}
+
 		public static SortedDictionary<TKey, List<TSource>> GroupBySorted<TSource, TKey>(IEnumerable<TSource> source,
 			Func<TSource, TKey> keySelector)
 		{

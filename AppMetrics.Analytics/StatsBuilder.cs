@@ -173,7 +173,6 @@ namespace AppMetrics.Analytics
 			var jitterVals = streamingRecords.Select(record => record.ValueAsNumber).ToList();
 			if (jitterVals.Count > 0)
 			{
-				Stats.RemoveTop(jitterVals, 0.02M);
 				res.StreamingJitter = Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
 			}
 
@@ -200,11 +199,12 @@ namespace AppMetrics.Analytics
 				session.Ip = ip;
 				session.Location = overrides.ContainsKey(ip) ? overrides[ip] : geoLookup.getLocation(ip);
 
-				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record) && !Util.IsException(record));
+				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record) &&
+					!Util.IsException(record) && !Util.IsInfo(record));
 
 				foreach (var record in session.Records)
 				{
-					if (Util.IsException(record))
+					if (!Util.IsLatency(record) && !Util.IsJitter(record))
 						continue;
 					decimal cur;
 					if (!decimal.TryParse(record.Value, out cur))
