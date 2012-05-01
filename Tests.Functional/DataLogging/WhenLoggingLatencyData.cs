@@ -33,7 +33,8 @@ namespace Tests.DataLogging
         [Test]
         public void The_the_session_txt_file_should_contain_client_info()
         {
-            var sessionData = File.ReadAllLines(GetSessionFiles().Last());
+            var files = GetSessionFiles();
+            var sessionData = File.ReadAllLines(files.Last());
 
             Assert.That(ContainsLogEntry(sessionData, "ClientIP","127.0.0.1"), Is.True);
             Assert.That(ContainsLogEntry(sessionData, "ClientHostName", "127.0.0.1"), Is.True);
@@ -47,7 +48,7 @@ namespace Tests.DataLogging
         private string[] GetSessionFiles()
         {
             return Directory.GetFiles(
-                Path.Combine(TestSettings.Instance.ServiceRootFolder, "App_Data", _appKey));
+                Path.Combine(TestSettings.Instance.ServiceRootFolder, _appKey), "*.txt");
         }
     }
 }
