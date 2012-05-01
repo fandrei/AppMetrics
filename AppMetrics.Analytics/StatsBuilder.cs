@@ -168,8 +168,17 @@ namespace AppMetrics.Analytics
 				res.StreamingLatencyDistribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
 
+			// calculate jitter
+
 			var streamingRecords = records.Where(val => (Util.IsJitter(val) || Util.IsLatency(val)) &&
 				Util.IsStreaming(val)).ToArray();
+
+			var recordsBySessions = Util.GroupBy(streamingRecords, record => record.Session.Id);
+			foreach (var pair in recordsBySessions)
+			{
+				AdjustJitter(pair.Value); // this modifies original records, use carefully
+			}
+
 			var jitterVals = streamingRecords.Select(record => record.ValueAsNumber).ToList();
 			if (jitterVals.Count > 0)
 			{
@@ -212,7 +221,6 @@ namespace AppMetrics.Analytics
 					record.ValueAsNumber = cur;
 				}
 
-				AdjustJitter(session);
 				Validate(session);
 			}
 
@@ -238,10 +246,9 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
-		static void AdjustJitter(SessionEx session)
+		static void AdjustJitter(IList<RecordEx> jitterRecords)
 		{
-			var jitterRecords = session.Records.Where(Util.IsJitter).ToArray();
-			if (jitterRecords.Length == 0)
+			if (jitterRecords.Count == 0)
 				return;
 
 			// slice records with period of 30 secs
