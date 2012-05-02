@@ -253,7 +253,7 @@ namespace AppMetrics.Analytics
 			var min = double.Parse(minParts[1]);
 			var max = double.Parse(maxParts[1]);
 
-			var res = Math.Abs(max - min);
+			var res = Math.Max(Math.Abs(max), Math.Abs(min));
 			return res;
 		}
 
