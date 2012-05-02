@@ -158,7 +158,7 @@ namespace AppMetrics.Analytics
 				res.LatencyDistribution = Stats.CalculateDistribution(latencies.ToArray(), 0.5M);
 			}
 
-			var streamingLatencyRecords = records.Where(val => Util.IsLatency(val) && Util.IsStreaming(val)).ToArray();
+			var streamingLatencyRecords = GetLatencyRecords(records);
 			if (streamingLatencyRecords.Length > 0)
 			{
 				var latencies = streamingLatencyRecords.Select(record => record.ValueAsNumber).ToList();
@@ -190,6 +190,74 @@ namespace AppMetrics.Analytics
 				return Stats.CalculateDistribution(jitterVals.ToArray(), 0.2M);
 			}
 			return null;
+		}
+
+		static RecordEx[] GetLatencyRecords(ICollection<RecordEx> records)
+		{
+			var res = new List<RecordEx>();
+
+			var filteredRecords = records.Where(val => IsNtpdInfo(val) || (Util.IsLatency(val) && Util.IsStreaming(val))).ToArray();
+			var recordsBySessions = Util.GroupBy(filteredRecords, record => record.Session.Id);
+
+			foreach (var pair in recordsBySessions)
+			{
+				var sessionRecords = pair.Value;
+				if (sessionRecords.Count == 0)
+					continue;
+
+				for (int i = 1; i < sessionRecords.Count; i++)
+				{
+					if (sessionRecords[i].Time < sessionRecords[i - 1].Time)
+						throw new ValidationException();
+				}
+
+				var timeIsStable = false;
+				foreach (var record in sessionRecords)
+				{
+					if (IsNtpdInfo(record))
+					{
+						var jitter = GetNtpdJitter(record);
+						timeIsStable = (jitter < MaxTimeJitter);
+					}
+					else
+					{
+						if (timeIsStable)
+						{
+							res.Add(record);
+						}
+					}
+				}
+			}
+
+			return res.ToArray();
+		}
+
+		private const double MaxTimeJitter = 0.01;
+
+		private static double GetNtpdJitter(RecordEx record)
+		{
+			var text = record.Value;
+			var infoText = text.Split(':')[1];
+			var parts = infoText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+			var minParts = parts[1].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			if (minParts[0] != "min")
+				throw new ApplicationException();
+
+			var maxParts = parts[2].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			if (maxParts[0] != "max")
+				throw new ApplicationException();
+
+			var min = double.Parse(minParts[1]);
+			var max = double.Parse(maxParts[1]);
+
+			var res = Math.Abs(max - min);
+			return res;
+		}
+
+		static bool IsNtpdInfo(RecordEx record)
+		{
+			return Util.IsInfo(record) && record.Value.StartsWith("ntpd");
 		}
 
 		private void PrepareData()
