@@ -14,7 +14,6 @@
     <!-- This gets set by the build server -->
     <BuildVersion>0</BuildVersion>
     <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
-    <DeploymentTarget>Default Web Site/AppMetrics_$(BuildVersion)</DeploymentTarget>
   </PropertyGroup>
 
   <Target Name="UpdateVersion" >
@@ -41,12 +40,6 @@
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
 
-    <!-- Set deployment target location -->
-    <FileUpdate
-        Files="$(MSBuildProjectDirectory)\_package\$(Configuration)\AppMetrics.SetParameters.xml"
-        Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
-        ReplacementText="$1&quot;$(DeploymentTarget)&quot;" />
-
     <!-- store parameters in the file to be used in other build jobs -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\ContinuousIntegration\properties.xml"
@@ -68,8 +61,10 @@
       Files="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\App_Data\web.config"
       Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
       ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
+    
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
+    
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >

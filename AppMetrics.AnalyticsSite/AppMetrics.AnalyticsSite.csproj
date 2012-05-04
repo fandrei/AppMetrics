@@ -23,8 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DesktopBuildPackageLocation>..\_package\AppMetrics.Analytics.zip</DesktopBuildPackageLocation>
-    <DeployIisAppPath>Default Web Site/AppMetrics.Analytics</DeployIisAppPath>
+    <DesktopBuildPackageLocation>..\_package\Analytics\AppMetrics.Analytics.zip</DesktopBuildPackageLocation>
+    <DeployIisAppPath>Default Web Site/Testing/AppMetrics.Analytics</DeployIisAppPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
