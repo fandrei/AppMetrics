@@ -15,7 +15,7 @@
     <BuildVersion>0</BuildVersion>
     <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
 
-    <LiveDeploymentTarget>metrics.labs.cityindex.com/</LiveDeploymentTarget>
+    <LiveDeploymentTarget>metrics.labs.cityindex.com</LiveDeploymentTarget>
   </PropertyGroup>
 
   <Target Name="UpdateVersion" >
