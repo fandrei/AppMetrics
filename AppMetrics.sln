@@ -39,7 +39,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "Co
 	ProjectSection(SolutionItems) = preProject
 		ContinuousIntegration\properties.xml = ContinuousIntegration\properties.xml
 		ContinuousIntegration\publishToNuGet.xml = ContinuousIntegration\publishToNuGet.xml
-		ContinuousIntegration\setEntryPoint.xml = ContinuousIntegration\setEntryPoint.xml
 		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
 		ContinuousIntegration\testAnalytics.xml = ContinuousIntegration\testAnalytics.xml
 	EndProjectSection
