@@ -34,7 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DesktopBuildPackageLocation>..\_package\Tracker\AppMetrics.zip</DesktopBuildPackageLocation>
-    <DeployIisAppPath>Default Web Site/AppMetrics</DeployIisAppPath>
+    <DeployIisAppPath>Default Web Site/Testing/AppMetrics</DeployIisAppPath>
   </PropertyGroup>
   <PropertyGroup>
     <OnBeforePackageUsingManifest>AddSkipRules</OnBeforePackageUsingManifest>
