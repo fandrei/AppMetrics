@@ -69,7 +69,7 @@ namespace AppMetrics.Client
 			LoggingThread.Abort();
 		}
 
-		public void Log(string name, object val, MessagePriority priority = MessagePriority.Low)
+		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
 		{
 			lock (Sync)
 			{
@@ -79,7 +79,7 @@ namespace AppMetrics.Client
 				}
 				catch (Exception exc)
 				{
-					Log("Exception", exc);
+					Log(exc);
 				}
 
 				if (Messages.Count >= MaxMessagesCount)
@@ -98,29 +98,61 @@ namespace AppMetrics.Client
 			}
 		}
 
+		public void Log(Exception exc)
+		{
+			Log("Exception", exc.ToString(), MessagePriority.High);
+		}
+
+		public void Log(string name, object val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(), priority);
+		}
+
+		public void Log(string name, double val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
+		}
+
+		public void Log(string name, float val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
+		}
+
+		public void Log(string name, decimal val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
+		}
+
+		public void Log(string name, long val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
+		}
+
+		public void Log(string name, ulong val, MessagePriority priority = MessagePriority.Low)
+		{
+			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
+		}
+
+		public void LogFormat(string name, MessagePriority priority, string format, params object[] args)
+		{
+			var text = string.Format(CultureInfo.InvariantCulture, format, args);
+			Log(name, text, priority);
+		}
+
+		public void LogFormat(string name, string format, params object[] args)
+		{
+			LogFormat(name, MessagePriority.Low, format, args);
+		}
+
 		private const string WarningName = "AppMetrics.Warning";
 		private const string ErrorName = "AppMetrics.Error";
 
-		private void AddMessage(string name, object val, MessagePriority priority)
+		private void AddMessage(string name, string val, MessagePriority priority)
 		{
 			if (_terminated)
 				return;
 
-			string valText;
-			if (val == null)
-				valText = "";
-			else if (val is string)
-				valText = (string)val;
-			else if (val is double)
-				valText = ((double)val).ToString(CultureInfo.InvariantCulture);
-			else if (val is float)
-				valText = ((float)val).ToString(CultureInfo.InvariantCulture);
-			else if (val is decimal)
-				valText = ((decimal)val).ToString(CultureInfo.InvariantCulture);
-			else
-				valText = val.ToString();
-
-			valText = Util.Escape(valText);
+			var valText = Util.Escape(val ?? "");
 
 			lock (Sync)
 			{
