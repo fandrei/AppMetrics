@@ -82,36 +82,36 @@ namespace AppMetrics.AnalyticsSite
 			var application = requestParams.Get("Application");
 			if (application == null)
 				throw new ApplicationException("Application key is not defined");
-			var countries = requestParams.Get("Locations") ?? "";
-			var countryList = countries.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-			var includeWorldOverall = (countryList.Length == 0);
-			if (countryList.Contains("(World)"))
-				includeWorldOverall = true;
+
+			var res = new AnalysisOptions
+			{
+				ApplicationKey = application,
+				SliceByLocation = LocationSliceType.Countries,
+			};
+
+			var locations = requestParams.Get("Locations") ?? "";
+			var locationList = locations.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+			res.LocationIncludeOverall = (locationList.Length == 0);
+			if (locationList.Contains("(World)"))
+				res.LocationIncludeOverall = true;
+			res.CountryFilter = new HashSet<string>(locationList);
 
 			var periodString = requestParams.Get("Period") ?? "";
-			var period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
+			res.Period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
 
 			var reportTypeText = requestParams.Get("Type");
-			var reportType = string.IsNullOrEmpty(reportTypeText)
+			res.ReportType = string.IsNullOrEmpty(reportTypeText)
 								? ReportType.LatencySummaries
 								: (ReportType)Enum.Parse(typeof(ReportType), reportTypeText);
 
-			var splitByFunctions = (requestParams.Get("SplitByFunctions") ?? "").ToLower();
-
-			var res = new AnalysisOptions
-					{
-						ApplicationKey = application,
-						LocationIncludeOverall = includeWorldOverall,
-						SliceByLocation = LocationSliceType.Countries,
-						SliceByFunction = (splitByFunctions == "yes"),
-						CountryFilter = new HashSet<string>(countryList),
-						Period = period,
-						ReportType = reportType,
-					};
-
-			if (reportType == ReportType.Exceptions)
+			if (res.ReportType == ReportType.Exceptions)
 			{
 				res.SliceByFunction = false;
+			}
+			else
+			{
+				var splitByFunctionsText = (requestParams.Get("SplitByFunctions") ?? "").ToLower();
+				res.SliceByFunction = (splitByFunctionsText == "yes");
 			}
 
 			return res;
