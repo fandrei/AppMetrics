@@ -314,7 +314,7 @@ namespace AppMetrics.Analytics
 			{
 				var parts = line.Split('\t');
 				var ip = parts[0];
-				var loc = new Location { countryName = parts[1], city = parts[2] };
+				var loc = new Location { countryName = parts[1], regionName = parts[2], city = parts[3] };
 				res.Add(ip, loc);
 			}
 			return res;
