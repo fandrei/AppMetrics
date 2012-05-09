@@ -36,7 +36,11 @@ namespace Tests.Analytics
 			var sessions = LogReader.Parse(dataPath, TimeSpan.MaxValue);
 			Assert.IsTrue(sessions.Count > 0);
 
-			var options = new AnalysisOptions { ApplicationKey = "CIAPI.CS.Excel" };
+			var options = new AnalysisOptions
+				{
+					ApplicationKey = "CIAPI.CS.Excel",
+					LocationIncludeOverall = true,
+				};
 			var convertor = new StatsBuilder();
 			var res = convertor.Process(sessions, options);
 			Assert.IsTrue(res != null);
