@@ -86,8 +86,12 @@ namespace AppMetrics.AnalyticsSite
 			var res = new AnalysisOptions
 			{
 				ApplicationKey = application,
-				SliceByLocation = LocationSliceType.Countries,
 			};
+
+			var sliceByLocationText = requestParams.Get("SliceByLocation");
+			res.SliceByLocation = string.IsNullOrEmpty(sliceByLocationText)
+				? LocationSliceType.Countries
+				: (LocationSliceType)Enum.Parse(typeof(LocationSliceType), sliceByLocationText);
 
 			var locations = requestParams.Get("Locations") ?? "";
 			var locationList = locations.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
@@ -101,8 +105,8 @@ namespace AppMetrics.AnalyticsSite
 
 			var reportTypeText = requestParams.Get("Type");
 			res.ReportType = string.IsNullOrEmpty(reportTypeText)
-								? ReportType.LatencySummaries
-								: (ReportType)Enum.Parse(typeof(ReportType), reportTypeText);
+				? ReportType.LatencySummaries
+				: (ReportType)Enum.Parse(typeof(ReportType), reportTypeText);
 
 			if (res.ReportType == ReportType.Exceptions)
 			{

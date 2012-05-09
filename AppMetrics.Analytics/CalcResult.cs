@@ -22,6 +22,7 @@ namespace AppMetrics.Analytics
 		public string FunctionName;
 		public string City;
 		public string Country;
+		public string Region;
 
 		public string Location
 		{
@@ -29,7 +30,7 @@ namespace AppMetrics.Analytics
 			{
 				if (string.IsNullOrEmpty(City))
 					return Country;
-				return string.Format("{0}/{1}", Country, City);
+				return string.Format("{0}/{1}/{2}", Country, Region, City);
 			}
 		}
 

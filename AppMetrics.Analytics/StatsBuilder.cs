@@ -94,10 +94,13 @@ namespace AppMetrics.Analytics
 						if (string.IsNullOrEmpty(cityName))
 							continue;
 
+						var regionName = pair.Value.First().Session.Location.regionName;
+
 						var curSummaries = CalculateByFunction(pair.Value);
 						foreach (var summary in curSummaries)
 						{
 							summary.City = cityName;
+							summary.Region = regionName;
 						}
 						res.AddRange(curSummaries);
 					}
@@ -206,12 +209,6 @@ namespace AppMetrics.Analytics
 				var sessionRecords = pair.Value;
 				if (sessionRecords.Count == 0)
 					continue;
-
-				for (int i = 1; i < sessionRecords.Count; i++)
-				{
-					if (sessionRecords[i].Time < sessionRecords[i - 1].Time)
-						throw new ValidationException();
-				}
 
 				var timeIsStable = false;
 				foreach (var record in sessionRecords)
