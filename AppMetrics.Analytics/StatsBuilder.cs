@@ -86,7 +86,7 @@ namespace AppMetrics.Analytics
 				var recordsByCity = Util.GroupBySorted(records, record => (record.Session.Location.city) ?? "");
 				recordsByCity.Remove("");
 
-				if (recordsByCity.Count > 1)
+				if (recordsByCity.Count > 1 || !_options.LocationIncludeOverall)
 				{
 					foreach (var pair in recordsByCity)
 					{
