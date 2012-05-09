@@ -98,7 +98,7 @@ namespace AppMetrics.AnalyticsSite
 			res.LocationIncludeOverall = (locationList.Length == 0);
 			if (locationList.Contains("(World)"))
 				res.LocationIncludeOverall = true;
-			res.CountryFilter = new HashSet<string>(locationList);
+			res.LocationFilter = new HashSet<string>(locationList);
 
 			var periodString = requestParams.Get("Period") ?? "";
 			res.Period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);

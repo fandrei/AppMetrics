@@ -18,10 +18,20 @@ namespace AppMetrics.Analytics
 		public bool SliceByFunction = true;
 
 		public LocationSliceType SliceByLocation = LocationSliceType.CountriesAndCities;
-		public bool LocationIncludeOverall = true;
+		public bool LocationIncludeOverall;
 
-		public HashSet<string> CountryFilter = new HashSet<string>();
-		public bool FilterByCountries { get { return CountryFilter.Count > 0; } }
+		public HashSet<string> LocationFilter = new HashSet<string>();
+		public bool FilterByLocation { get { return LocationFilter.Count > 0; } }
+
+		public bool LocationIsAllowed(Location loc)
+		{
+			if (!FilterByLocation)
+				return true;
+
+			var locName = Util.GetLocationName(loc);
+			var res = LocationFilter.Any(locName.StartsWith);
+			return res;
+		}
 
 		public ReportType ReportType;
 
@@ -33,13 +43,13 @@ namespace AppMetrics.Analytics
 
 			var res = (ApplicationKey == that.ApplicationKey) && Period == that.Period &&
 				SliceByLocation == that.SliceByLocation && LocationIncludeOverall == that.LocationIncludeOverall &&
-				SliceByFunction == that.SliceByFunction && CountryFilter.SequenceEqual(that.CountryFilter);
+				SliceByFunction == that.SliceByFunction && LocationFilter.SequenceEqual(that.LocationFilter);
 			return res;
 		}
 
 		public override int GetHashCode()
 		{
-			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ CountryFilter.Count ^ 
+			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ LocationFilter.Count ^ 
 				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
 		}
 
@@ -47,7 +57,7 @@ namespace AppMetrics.Analytics
 		{
 			if (string.IsNullOrEmpty(ApplicationKey))
 				throw new ArgumentException();
-			if (SliceByLocation == LocationSliceType.None && CountryFilter.Count > 0)
+			if (SliceByLocation == LocationSliceType.None && LocationFilter.Count > 0)
 				throw new ArgumentException();
 		}
 	}

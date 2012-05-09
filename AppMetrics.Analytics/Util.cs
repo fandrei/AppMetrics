@@ -52,5 +52,10 @@ namespace AppMetrics.Analytics
 			var res = source.GroupBy(keySelector).ToDictionary(pair => pair.Key, pair => pair.ToList());
 			return new Dictionary<TKey, List<TSource>>(res);
 		}
+
+		public static string GetLocationName(Location loc)
+		{
+			return string.Format("{0}/{1}/{2}", loc.countryName, loc.regionName, loc.city);
+		}
 	}
 }

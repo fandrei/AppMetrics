@@ -42,12 +42,12 @@ namespace AppMetrics.Analytics
 
 			if (_options.SliceByLocation != LocationSliceType.None)
 			{
-				var sessionsByCountry = Util.GroupBySorted(_sessions, session => session.Location.countryName);
+				var sessionsFilteredByLocation = _sessions.Where(session => _options.LocationIsAllowed(session.Location)).ToArray();
+				var sessionsByCountry = Util.GroupBySorted(sessionsFilteredByLocation, session => session.Location.countryName);
+
 				foreach (var pair in sessionsByCountry)
 				{
 					var countryName = pair.Key;
-					if (_options.FilterByCountries && !_options.CountryFilter.Contains(countryName))
-						continue;
 
 					var records = GetRecords(pair.Value);
 
