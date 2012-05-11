@@ -27,9 +27,11 @@ namespace AppMetrics.AnalyticsSite
 				var options = GetOptions(context.Request.QueryString);
 				var lookup = GetOrCreateReport(options);
 				var report = lookup.Item2;
+				var callerIp = context.Request.UserHostAddress;
 				ReportLog(lookup.Item1
-					? string.Format("request: '{0}' reusing cached", queryString)
-					: string.Format("request: '{0}' generated in {1} secs", queryString, report.GenerationElapsed.TotalSeconds));
+					? string.Format("request from {0}: '{1}' reusing cached", callerIp, queryString)
+					: string.Format("request from {0}: '{1}' generated in {2} secs", 
+						callerIp, queryString, report.GenerationElapsed.TotalSeconds));
 
 				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
 					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
