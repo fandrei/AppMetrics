@@ -114,7 +114,7 @@ namespace AppMetrics.AnalyticsSite
 			}
 			else
 			{
-				var splitByFunctionsText = (requestParams.Get("SplitByFunctions") ?? "").ToLower();
+				var splitByFunctionsText = (requestParams.Get("SliceByFunctions") ?? "").ToLower();
 				res.SliceByFunction = (splitByFunctionsText == "yes");
 			}
 
