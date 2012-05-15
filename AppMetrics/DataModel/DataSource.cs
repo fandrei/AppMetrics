@@ -248,7 +248,7 @@ namespace AppMetrics.DataModel
 					break;
 
 				var lineTime = GetLineTime(line);
-				if (lineTime < startTime)
+				if (lineTime > startTime)
 					break;
 
 				pos = stream.Position;
