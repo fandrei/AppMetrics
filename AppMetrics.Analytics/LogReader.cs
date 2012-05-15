@@ -21,9 +21,9 @@ namespace AppMetrics.Analytics
 
 			var res = new List<SessionEx>();
 
-			var startTime = DateTime.UtcNow - period;
+			var startTime = (period == TimeSpan.MaxValue) ? DateTime.MinValue : DateTime.UtcNow - period;
 			{
-				var sessions = DataSource.GetSessionsFromPath(dataPath, period);
+				var sessions = DataSource.GetSessionsFromPath(dataPath, startTime);
 
 				foreach (var session in sessions)
 				{

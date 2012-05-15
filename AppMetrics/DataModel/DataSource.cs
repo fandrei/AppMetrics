@@ -18,11 +18,6 @@ namespace AppMetrics.DataModel
 			return GetSessionsFromPath(dataPath, startTime);
 		}
 
-		public static List<Session> GetSessionsFromPath(string dataPath, TimeSpan period)
-		{
-			return GetSessionsFromPath(dataPath, DateTime.UtcNow - period);
-		}
-
 		public static List<Session> GetSessionsFromPath(string dataPath, DateTime startTime)
 		{
 			var res = new List<Session>();

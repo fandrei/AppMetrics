@@ -13,7 +13,7 @@ namespace AppMetrics.Analytics
 	{
 		public string ApplicationKey = "";
 
-		public TimeSpan Period = TimeSpan.FromDays(1);
+		public TimeSpan Period;
 
 		public bool SliceByFunction = true;
 
