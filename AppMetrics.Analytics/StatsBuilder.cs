@@ -15,7 +15,7 @@ namespace AppMetrics.Analytics
 			options.Validate();
 
 			_options = options;
-			_sessions = sessions;
+			_sessions = new List<SessionEx>(sessions);
 
 			PrepareData();
 			GC.Collect();
