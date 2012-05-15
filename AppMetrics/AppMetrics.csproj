@@ -25,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <DeployIisAppPath>Default Web Site/Testing_AppMetrics</DeployIisAppPath>
     <DesktopBuildPackageLocation>..\_package\Tracker\AppMetrics.zip</DesktopBuildPackageLocation>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
