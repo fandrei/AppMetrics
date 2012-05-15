@@ -5,61 +5,25 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace AppMetrics.DataModel
 {
-	public partial class DataSource
+	public static class DataSource
 	{
-		public IQueryable<Session> Sessions
-		{
-			get
-			{
-				string appKey;
-				TimeSpan period;
-				GetParams(out appKey, out period);
-
-				var res = GetSessions(appKey, period);
-
-				return res.AsQueryable();
-			}
-		}
-
-		public IQueryable<Record> Records
-		{
-			get
-			{
-				string appKey;
-				TimeSpan period;
-				GetParams(out appKey, out period);
-
-				var res = GetRecords(appKey, period);
-
-				return res.AsQueryable();
-			}
-		}
-
-		static void GetParams(out string appKey, out TimeSpan period)
-		{
-			var args = HttpContext.Current.Request.Params;
-
-			appKey = args["appKey"];
-
-			var periodText = args["period"];
-			period = TimeSpan.Parse(periodText);
-		}
-
-		public static List<Session> GetSessions(string appKey, TimeSpan period)
+		public static List<Session> GetSessions(string appKey, DateTime startTime)
 		{
 			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);
-			return GetSessionsFromPath(dataPath, period);
+			return GetSessionsFromPath(dataPath, startTime);
 		}
 
 		public static List<Session> GetSessionsFromPath(string dataPath, TimeSpan period)
 		{
-			var res = new List<Session>();
+			return GetSessionsFromPath(dataPath, DateTime.UtcNow - period);
+		}
 
-			var curTime = DateTime.UtcNow;
+		public static List<Session> GetSessionsFromPath(string dataPath, DateTime startTime)
+		{
+			var res = new List<Session>();
 
 			if (Directory.Exists(dataPath))
 			{
@@ -68,27 +32,9 @@ namespace AppMetrics.DataModel
 					if (filePath.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
 						continue;
 
-					var fileName = Path.GetFileNameWithoutExtension(filePath);
-					var nameParts = fileName.Split('.');
-					var sessionId = nameParts.Last();
-
-					var timeText = nameParts.First().Replace('_', ':');
-					var sessionCreationTime = ParseDateTime(timeText);
-
-					int timeZoneOffset;
-					var lastUpdateTime = GetSessionLastWriteTime(filePath, sessionCreationTime, out timeZoneOffset);
-					if (curTime - lastUpdateTime > period)
-						continue;
-
-					var session = new Session
-									{
-										FileName = filePath,
-										Id = sessionId,
-										CreationTime = sessionCreationTime,
-										LastUpdateTime = lastUpdateTime,
-										TimeZoneOffset = TimeSpan.FromHours(timeZoneOffset),
-									};
-					res.Add(session);
+					var session = ReadSession(filePath, startTime);
+					if (session != null)
+						res.Add(session);
 				}
 
 				res.Sort((x, y) => x.CreationTime.CompareTo(y.CreationTime));
@@ -97,24 +43,41 @@ namespace AppMetrics.DataModel
 			return res;
 		}
 
-		static DateTime GetSessionLastWriteTime(string filePath, DateTime creationUtcTime, out int timeZoneOffset)
+		public static Session ReadSession(string filePath, DateTime startTime)
+		{
+			var fileName = Path.GetFileNameWithoutExtension(filePath);
+			var nameParts = fileName.Split('.');
+			var sessionId = nameParts.Last();
+
+			var timeText = nameParts.First().Replace('_', ':');
+			var sessionCreationTime = ParseDateTime(timeText);
+
+			var lastUpdateTime = GetSessionLastWriteTime(filePath);
+			if (lastUpdateTime < startTime)
+				return null;
+
+			return new Session
+				{
+					FileName = filePath,
+					Id = sessionId,
+					CreationTime = sessionCreationTime,
+					LastUpdateTime = lastUpdateTime,
+				};
+		}
+
+		public static Session ReadSession(string appKey, string sessionId, DateTime startTime)
+		{
+			throw new NotImplementedException();
+		}
+
+		static DateTime GetSessionLastWriteTime(string filePath)
 		{
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				var encoding = DetectEncoding(stream);
 
-				var firstLine = ReadLine(stream, encoding);
-
-				// try to detect client's time zone from logged client time 
-				// (can work incorrectly, if the first message was sent after delay > 1 hour)
-				var timeOffset = GetLineTime(firstLine) - creationUtcTime;
-				timeZoneOffset = (int)Math.Round(timeOffset.TotalHours);
-
 				var lastLine = ReadLastLine(stream, encoding);
-				if (lastLine == null)
-					lastLine = firstLine;
-
-				var res = GetLineTime(lastLine) - TimeSpan.FromHours(timeZoneOffset);
+				var res = GetLineTime(lastLine);
 				return res;
 			}
 		}
@@ -200,30 +163,24 @@ namespace AppMetrics.DataModel
 			return lastLine;
 		}
 
-		public static List<Record> GetRecords(string appKey, TimeSpan period)
-		{
-			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);
-			return GetRecordsFromPath(dataPath, period);
-		}
-
-		public static List<Record> GetRecordsFromPath(string dataPath, TimeSpan period)
+		public static List<Record> GetRecords(string appKey, DateTime startTime)		{			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);			return GetRecordsFromPath(dataPath, startTime);		}
+		public static List<Record> GetRecordsFromPath(string dataPath, DateTime startTime)
 		{
 			var res = new List<Record>();
 
-			var sessions = GetSessionsFromPath(dataPath, period);
+			var sessions = GetSessionsFromPath(dataPath, startTime);
 
 			foreach (var session in sessions)
 			{
-				var tmp = GetRecordsFromSession(session, period);
+				var tmp = GetRecordsFromSession(session, startTime);
 				res.AddRange(tmp);
 			}
 
 			return res;
 		}
 
-		public static List<Record> GetRecordsFromSession(Session session, TimeSpan period, bool filterRecords = true)
+		public static List<Record> GetRecordsFromSession(Session session, DateTime startTime, bool filterRecords = true)
 		{
-			var curTime = DateTime.UtcNow;
 			var res = new List<Record>();
 
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -250,7 +207,7 @@ namespace AppMetrics.DataModel
 						res.Add(record);
 					}
 
-					SkipOutdatedRecords(stream, encoding, curTime, period, session.TimeZoneOffset);
+					SkipOutdatedRecords(stream, encoding, startTime);
 				}
 
 				using (var reader = new StreamReader(stream, encoding, true))
@@ -262,7 +219,7 @@ namespace AppMetrics.DataModel
 							break;
 
 						var record = ParseLine(line);
-						if (filterRecords && curTime - (record.Time - session.TimeZoneOffset) > period)
+						if (filterRecords && record.Time < startTime)
 							continue;
 
 						record.SessionId = session.Id;
@@ -274,7 +231,7 @@ namespace AppMetrics.DataModel
 			return res;
 		}
 
-		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime curTime, TimeSpan period, TimeSpan timeZone)
+		private static void SkipOutdatedRecords(Stream stream, Encoding encoding, DateTime startTime)
 		{
 			if (stream.Length - stream.Position < 16 * 1024)
 				return;
@@ -289,7 +246,7 @@ namespace AppMetrics.DataModel
 					break;
 
 				var lineTime = GetLineTime(line);
-				if (curTime - (lineTime - timeZone) < period)
+				if (lineTime < startTime)
 					break;
 
 				pos = stream.Position;

@@ -21,12 +21,13 @@ namespace AppMetrics.Analytics
 
 			var res = new List<SessionEx>();
 
+			var startTime = DateTime.UtcNow - period;
 			{
 				var sessions = DataSource.GetSessionsFromPath(dataPath, period);
 
 				foreach (var session in sessions)
 				{
-					var records = DataSource.GetRecordsFromSession(session, period);
+					var records = DataSource.GetRecordsFromSession(session, startTime);
 
 					var sessionEx = new SessionEx
 										{

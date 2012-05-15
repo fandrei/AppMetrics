@@ -8,7 +8,6 @@ using System.Text;
 using NUnit.Framework;
 
 using AppMetrics.Client;
-using Tests.AppMetricsDataService;
 
 namespace Tests
 {
@@ -28,17 +27,20 @@ namespace Tests
 
 			Tracker.Terminate(true);
 
-			var dataSource = new DataSource(new Uri(TestSettings.Instance.MetricsExportUrl))
-				{
-					Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password)
-				};
+			using (var client = new WebClient())
+			{
+				client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
+				client.QueryString["AppKey"] = AppKey;
+				client.QueryString["Period"] = RequestPeriod;
 
-			var sessions = new List<Session>(
-				dataSource.Sessions.AddQueryOption("appKey", AppKey).AddQueryOption("period", RequestPeriod));
-			Assert.IsTrue(sessions.Count > 0);
+				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
+				var lines = response.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-			var thisSession = sessions.Find(val => val.Id == tracker.SessionId);
-			Assert.IsTrue(thisSession != null);
+				Assert.IsTrue(lines.Count() > 0);
+
+				var thisSession = Array.Find(lines, line => line.StartsWith(tracker.SessionId));
+				Assert.IsTrue(thisSession != null);
+			}
 		}
 	}
 }

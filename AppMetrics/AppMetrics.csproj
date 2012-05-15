@@ -97,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.aspx" />
-    <Content Include="DataService.svc" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -121,8 +120,11 @@
     <Compile Include="DataModel\DataSource.cs" />
     <Compile Include="DataModel\Record.cs" />
     <Compile Include="DataModel\Session.cs" />
-    <Compile Include="DataService.svc.cs">
-      <DependentUpon>DataService.svc</DependentUpon>
+    <Compile Include="GetRecords.ashx.cs">
+      <DependentUpon>GetRecords.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="GetSessions.ashx.cs">
+      <DependentUpon>GetSessions.ashx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -142,6 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetSessions.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetRecords.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

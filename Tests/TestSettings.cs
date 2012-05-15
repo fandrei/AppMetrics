@@ -18,7 +18,7 @@ namespace Tests
 		[XmlIgnore]
 		public string MetricsLoggingUrl { get { return CombineUri(ServiceRootUrl, "LogEvent.ashx"); } }
 		[XmlIgnore]
-		public string MetricsExportUrl { get { return CombineUri(ServiceRootUrl, "DataService.svc/"); } }
+		public string SessionsExportUrl { get { return CombineUri(ServiceRootUrl, "GetSessions.ashx"); } }
 
 		public static string CombineUri(string root, string tail)
 		{

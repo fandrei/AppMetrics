@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Services.Common;
 using System.Linq;
 
 namespace AppMetrics.DataModel
 {
-	[DataServiceKey("Time")]
 	public class Record
 	{
 		public string SessionId { get; set; }
@@ -17,6 +15,12 @@ namespace AppMetrics.DataModel
 		public override string ToString()
 		{
 			var res = string.Format("{0} {1} {2}", Time, Name, Value);
+			return res;
+		}
+
+		public string Serialize()
+		{
+			var res = string.Format("{0}\t{1}\t{2}\t{3}", SessionId, Time, Name, Value);
 			return res;
 		}
 	}
