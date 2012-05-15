@@ -152,7 +152,7 @@ namespace AppMetrics.Client
 			if (_terminated)
 				return;
 
-			var valText = Util.Escape(val ?? "");
+			var valText = Shared.Util.Escape(val ?? "");
 
 			lock (Sync)
 			{

@@ -118,6 +118,10 @@
       <Project>{136B2C53-0675-4BB0-9EB5-2406A0027794}</Project>
       <Name>AppMetrics</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{C88815D0-6E1C-4673-878A-54D1F62C0C47}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\web.config" />

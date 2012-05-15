@@ -302,7 +302,7 @@ namespace AppMetrics.Analytics
 
 		static Dictionary<string, Location> GetLocationOverrides()
 		{
-			var path = AppMetrics.Util.GetAppLocation() + @"\GeoIP\Override.txt";
+			var path = Shared.Util.GetAppLocation() + @"\GeoIP\Override.txt";
 			var text = System.IO.File.ReadAllText(path);
 			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 

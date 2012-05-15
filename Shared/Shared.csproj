@@ -5,13 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{25355CDE-A7B2-4C34-890C-812CAE1986BC}</ProjectGuid>
+    <ProjectGuid>{C88815D0-6E1C-4673-878A-54D1F62C0C47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppMetrics.Analytics</RootNamespace>
-    <AssemblyName>AppMetrics.Analytics</AssemblyName>
+    <RootNamespace>AppMetrics.Shared</RootNamespace>
+    <AssemblyName>AppMetrics.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApiGeoIP">
-      <HintPath>..\tools\GeoIP\ApiGeoIP\bin\Debug\ApiGeoIP.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,35 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalysisOptions.cs" />
-    <Compile Include="CalcResult.cs" />
-    <Compile Include="Distribution.cs" />
-    <Compile Include="Exceptions.cs" />
-    <Compile Include="LogReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordEx.cs" />
-    <Compile Include="Report.cs" />
-    <Compile Include="SessionEx.cs" />
-    <Compile Include="Stats.cs" />
-    <Compile Include="StatsBuilder.cs" />
-    <Compile Include="StatSummary.cs" />
+    <Compile Include="Record.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Util.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
-      <Project>{136B2C53-0675-4BB0-9EB5-2406A0027794}</Project>
-      <Name>AppMetrics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{C88815D0-6E1C-4673-878A-54D1F62C0C47}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="GeoIP\Override.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

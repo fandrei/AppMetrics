@@ -162,7 +162,7 @@ namespace AppMetrics
 				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
 			}
 
-			data = Util.Escape(data);
+			data = Shared.Util.Escape(data);
 			writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 		}
 
