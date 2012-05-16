@@ -118,7 +118,7 @@
       <DependentUpon>Config.aspx</DependentUpon>
     </Compile>
     <Compile Include="Const.cs" />
-    <Compile Include="DataModel\DataSource.cs" />
+    <Compile Include="DataReader.cs" />
     <Compile Include="GetRecords.ashx.cs">
       <DependentUpon>GetRecords.ashx</DependentUpon>
     </Compile>

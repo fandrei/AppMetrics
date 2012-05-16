@@ -18,7 +18,7 @@ namespace AppMetrics.Backup
 			{
 				{
 					var now = DateTime.UtcNow;
-					var sessions = DataModel.DataSource.GetSessionsFromPath(dataStoragePath, DateTime.MinValue);
+					var sessions = DataReader.GetSessionsFromPath(dataStoragePath, DateTime.MinValue);
 
 					foreach (var session in sessions)
 					{

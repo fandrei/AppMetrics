@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using AppMetrics.DataModel;
 using AppMetrics.Shared;
 
 namespace AppMetrics
@@ -29,7 +28,7 @@ namespace AppMetrics
 				startTime = DateTime.UtcNow - period;
 			}
 
-			var sessions = DataSource.GetSessions(appKey, startTime);
+			var sessions = DataReader.GetSessions(appKey, startTime);
 
 			context.Response.ContentType = "text/plain";
 			foreach (var session in sessions)

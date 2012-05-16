@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using AppMetrics.DataModel;
 using AppMetrics.Shared;
 
 namespace AppMetrics
@@ -28,11 +27,11 @@ namespace AppMetrics
 
 			List<Record> records;
 			if (string.IsNullOrEmpty(sessionId))
-				records = DataSource.GetRecords(appKey, startTime);
+				records = DataReader.GetRecords(appKey, startTime);
 			else
 			{
-				var session = DataSource.ReadSession(appKey, sessionId, startTime);
-				records = DataSource.GetRecordsFromSession(session, startTime, true);
+				var session = DataReader.ReadSession(appKey, sessionId, startTime);
+				records = DataReader.GetRecordsFromSession(session, startTime, true);
 			}
 
 			foreach (var record in records)

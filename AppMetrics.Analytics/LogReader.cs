@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-using AppMetrics.DataModel;
-
 namespace AppMetrics.Analytics
 {
 	public static class LogReader
@@ -23,11 +21,11 @@ namespace AppMetrics.Analytics
 
 			var startTime = (period == TimeSpan.MaxValue) ? DateTime.MinValue : DateTime.UtcNow - period;
 			{
-				var sessions = DataSource.GetSessionsFromPath(dataPath, startTime);
+				var sessions = DataReader.GetSessionsFromPath(dataPath, startTime);
 
 				foreach (var session in sessions)
 				{
-					var records = DataSource.GetRecordsFromSession(session, startTime);
+					var records = DataReader.GetRecordsFromSession(session, startTime);
 
 					var sessionEx = new SessionEx
 										{
