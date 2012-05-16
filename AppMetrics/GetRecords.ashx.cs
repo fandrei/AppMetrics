@@ -22,7 +22,7 @@ namespace AppMetrics
 			var sessionId = requestParams.Get("AppKey") ?? "";
 
 			var startTimeString = requestParams.Get("StartTime") ?? "";
-			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : DateTime.Parse(startTimeString);
+			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : Util.ParseDateTime(startTimeString);
 
 			context.Response.ContentType = "text/plain";
 

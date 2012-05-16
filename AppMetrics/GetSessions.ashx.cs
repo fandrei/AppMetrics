@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using AppMetrics.DataModel;
+using AppMetrics.Shared;
 
 namespace AppMetrics
 {
@@ -19,7 +20,7 @@ namespace AppMetrics
 			var appKey = requestParams.Get("AppKey") ?? "";
 
 			var startTimeString = requestParams.Get("StartTime");
-			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : DateTime.Parse(startTimeString);
+			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : Util.ParseDateTime(startTimeString);
 
 			var periodString = requestParams.Get("Period");
 			if (!string.IsNullOrEmpty(periodString))

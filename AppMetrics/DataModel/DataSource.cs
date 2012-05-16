@@ -47,7 +47,7 @@ namespace AppMetrics.DataModel
 			var sessionId = nameParts.Last();
 
 			var timeText = nameParts.First().Replace('_', ':');
-			var sessionCreationTime = ParseDateTime(timeText);
+			var sessionCreationTime = Util.ParseDateTime(timeText);
 
 			var lastUpdateTime = GetSessionLastWriteTime(filePath);
 			if (lastUpdateTime < startTime)
@@ -119,21 +119,7 @@ namespace AppMetrics.DataModel
 		private static DateTime GetLineTime(string line)
 		{
 			var text = line.Split('\t')[0];
-			return ParseDateTime(text);
-		}
-
-		private static DateTime ParseDateTime(string text)
-		{
-			var formats = new[]
-				{
-					"yyyy-MM-dd HH:mm:ss.fffffff",
-					"yyyy-MM-dd HH:mm:ss",
-					"u",
-				};
-			DateTime res;
-			if (!DateTime.TryParseExact(text, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out res))
-				throw new ArgumentException();
-			return res;
+			return Util.ParseDateTime(text);
 		}
 
 		private static string ReadLastLine(Stream stream, Encoding encoding)
