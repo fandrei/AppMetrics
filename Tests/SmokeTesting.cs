@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
-
+using AppMetrics.Shared;
 using NUnit.Framework;
 
 using AppMetrics.Client;
@@ -34,11 +34,11 @@ namespace Tests
 				client.QueryString["Period"] = RequestPeriod;
 
 				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
-				var lines = response.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+				var sessions = Session.Parse(response);
 
-				Assert.IsTrue(lines.Count() > 0);
+				Assert.IsTrue(sessions.Count() > 0);
 
-				var thisSession = Array.Find(lines, line => line.StartsWith(tracker.SessionId));
+				var thisSession = sessions.Find(session => session.Id == tracker.SessionId);
 				Assert.IsTrue(thisSession != null);
 			}
 		}

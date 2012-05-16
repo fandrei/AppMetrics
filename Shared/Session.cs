@@ -21,18 +21,28 @@ namespace AppMetrics.Shared
 
 		public string Serialize()
 		{
-			var res = string.Format("{0}\t{1}\t{2}", Id, CreationTime, LastUpdateTime);
+			var res = string.Format("{0}\t{1}\t{2}", Id, Util.Serialize(CreationTime), Util.Serialize(LastUpdateTime));
 			return res;
 		}
 
 		public static List<Session> Parse(string text)
 		{
+			var res = new List<Session>();
+
 			var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			foreach (var line in lines)
 			{
-
+				var columns = line.Split('\t');
+				var cur = new Session
+					{
+						Id = columns[0],
+						CreationTime = Util.ParseDateTime(columns[1]),
+						LastUpdateTime = Util.ParseDateTime(columns[2]),
+					};
+				res.Add(cur);
 			}
-			throw new NotImplementedException();
+
+			return res;
 		}
 	}
 }
