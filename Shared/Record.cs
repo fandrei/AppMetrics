@@ -20,7 +20,7 @@ namespace AppMetrics.Shared
 
 		public string Serialize()
 		{
-			var res = string.Format("{0}\t{1}\t{2}\t{3}", SessionId, Time, Name, Value);
+			var res = string.Format("{0}\t{1}\t{2}\t{3}", SessionId, Util.Serialize(Time), Name, Value);
 			return res;
 		}
 	}
