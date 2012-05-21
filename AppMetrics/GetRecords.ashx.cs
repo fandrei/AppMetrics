@@ -16,7 +16,7 @@ namespace AppMetrics
 		{
 			var requestParams = context.Request.Params;
 
-			var appKey = requestParams.Get("AppKey") ?? "";
+			var appKey = requestParams.Get("Application") ?? "";
 
 			var sessionId = requestParams.Get("AppKey") ?? "";
 

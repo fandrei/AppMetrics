@@ -16,7 +16,7 @@ namespace AppMetrics
 		{
 			var requestParams = context.Request.Params;
 
-			var appKey = requestParams.Get("AppKey") ?? "";
+			var appKey = requestParams.Get("Application") ?? "";
 
 			var startTimeString = requestParams.Get("StartTime");
 			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : Util.ParseDateTime(startTimeString);
