@@ -332,6 +332,22 @@ namespace AppMetrics.Client
 			var privateMemorySize = ToMegabytes((ulong)Process.GetCurrentProcess().PrivateMemorySize64);
 			Log("Client_PrivateMemorySize", privateMemorySize);
 
+			try
+			{
+				var processorSecondsUsed = Process.GetCurrentProcess().TotalProcessorTime.TotalSeconds;
+				if (_lastProcessorTimeUsage != 0)
+				{
+					var secondsPassed = (DateTime.UtcNow - _lastSentPeriodic).TotalSeconds;
+					var averageProcessorUsage = ((processorSecondsUsed - _lastProcessorTimeUsage) / secondsPassed) * 100;
+					Log("Client_PeriodProcessorUsage", averageProcessorUsage);
+				}
+				_lastProcessorTimeUsage = processorSecondsUsed;
+			}
+			catch (Exception exc)
+			{
+				Log(exc);
+			}
+
 			var computerInfo = new ComputerInfo();
 
 			Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
@@ -360,6 +376,8 @@ namespace AppMetrics.Client
 
 		private static DateTime _lastSentPeriodic;
 		private static readonly TimeSpan PeriodicTime = TimeSpan.FromMinutes(10);
+
+		private static double _lastProcessorTimeUsage;
 
 		private static long _requestsSent;
 		private static volatile bool _terminated;
