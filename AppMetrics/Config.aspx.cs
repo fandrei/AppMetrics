@@ -8,19 +8,34 @@ namespace AppMetrics
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			LogEvent.Init();
-
-			if (!Page.IsPostBack)
+			try
 			{
-				AccessKeyEdit.Text = AppSettings.Instance.AmazonAccessKey;
+				WebUtil.CheckIpAddress();
+				LogEvent.Init();
+
+				if (!Page.IsPostBack)
+				{
+					AccessKeyEdit.Text = AppSettings.Instance.AmazonAccessKey;
+				}
+			}
+			catch (UnauthorizedAccessException)
+			{
 			}
 		}
 
 		protected void OkButton_Click(object sender, EventArgs e)
 		{
-			AppSettings.Instance.AmazonAccessKey = AccessKeyEdit.Text;
-			AppSettings.Instance.AmazonSecretAccessKey = SecretAccessKeyEdit.Text;
-			AppSettings.Instance.Save();
+			try
+			{
+				WebUtil.CheckIpAddress();
+
+				AppSettings.Instance.AmazonAccessKey = AccessKeyEdit.Text;
+				AppSettings.Instance.AmazonSecretAccessKey = SecretAccessKeyEdit.Text;
+				AppSettings.Instance.Save();
+			}
+			catch (UnauthorizedAccessException)
+			{
+			}
 		}
 	}
 }
