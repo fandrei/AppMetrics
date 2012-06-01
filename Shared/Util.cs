@@ -40,7 +40,7 @@ namespace AppMetrics.Shared
 			DateTime res;
 			if (!DateTime.TryParseExact(val, formats, CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces, out res))
 			{
-				var message = string.Format("Invalid datetime value: {0}", val);
+				var message = string.Format("Invalid datetime value: \"{0}\"", val);
 				throw new ArgumentException(message);
 			}
 			return res;
