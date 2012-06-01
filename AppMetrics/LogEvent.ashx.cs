@@ -196,7 +196,7 @@ namespace AppMetrics
 			}
 		}
 
-		static void ReportLog(object val, LogPriority priority = LogPriority.High)
+		public static void ReportLog(object val, LogPriority priority = LogPriority.Low)
 		{
 			try
 			{

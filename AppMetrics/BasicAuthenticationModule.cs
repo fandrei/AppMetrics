@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Web;
@@ -14,6 +15,7 @@ namespace AppMetrics
 	{
 		public void Init(HttpApplication context)
 		{
+			LogEvent.Init();
 			context.AuthenticateRequest += AuthenticateRequest;
 		}
 
@@ -21,14 +23,21 @@ namespace AppMetrics
 
 		static void AuthenticateRequest(object sender, EventArgs e)
 		{
-			var application = (HttpApplication)sender;
-			var context = application.Context;
-			if (!Authenticate(context))
+			try
 			{
-				context.Response.Status = "401 Unauthorized";
-				context.Response.StatusCode = 401;
-				context.Response.AddHeader("WWW-Authenticate", "Basic");
-				context.Response.End();
+				var application = (HttpApplication)sender;
+				var context = application.Context;
+				if (!Authenticate(context))
+				{
+					var response = context.Response;
+					response.Status = "401 Unauthorized";
+					response.StatusCode = 401;
+					response.AddHeader("WWW-Authenticate", "Basic");
+				}
+			}
+			catch (Exception exc)
+			{
+				LogEvent.ReportLog(exc.ToString());
 			}
 		}
 
@@ -46,7 +55,7 @@ namespace AppMetrics
 				return true; // anonymous user
 
 			var principal = TryGetPrincipal(creds);
-			
+
 			context.User = principal;
 			return true;
 		}
@@ -57,7 +66,8 @@ namespace AppMetrics
 				return null;
 
 			var base64Credentials = authHeader.Substring(6);
-			var credentials = Encoding.ASCII.GetString(Convert.FromBase64String(base64Credentials)).Split(new[] { ':' });
+			var credentialsText = Encoding.ASCII.GetString(Convert.FromBase64String(base64Credentials));
+			var credentials = credentialsText.Split(new[] { ':' });
 
 			if (credentials.Length != 2 || string.IsNullOrEmpty(credentials[0]) || string.IsNullOrEmpty(credentials[1]))
 				return null;
@@ -67,23 +77,26 @@ namespace AppMetrics
 
 		private static IPrincipal TryGetPrincipal(string[] creds)
 		{
-			var users = GetUsers();
+			if (creds.Length != 2)
+				return null;
 
-			foreach (var pair in users)
+			var userName = creds[0];
+			var password = creds[1];
+
+			var user = GetUser(userName);
+			if (user != null)
 			{
-				if (creds[0] == pair.Key && creds[1] == pair.Value)
-				{
-					return new GenericPrincipal(new GenericIdentity(pair.Key), new[] { "Administrator", "User" });
-				}
+				if (CheckPassword(user, password))
+					return new GenericPrincipal(new GenericIdentity(userName), new[] { "Administrator", "User" });
 			}
 
 			return null;
 		}
 
-		private static Dictionary<string, string> _users;
+		private static Dictionary<string, UserCredentials> _users;
 		private static readonly object Sync = new object();
 
-		static Dictionary<string, string> GetUsers()
+		static UserCredentials GetUser(string name)
 		{
 			lock (Sync)
 			{
@@ -94,25 +107,67 @@ namespace AppMetrics
 						var fileName = GetConfigFileName();
 						var text = File.ReadAllText(fileName);
 
-						_users = new Dictionary<string, string>();
+						_users = new Dictionary<string, UserCredentials>();
 						var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 						foreach (var line in lines)
 						{
 							var parts = line.Split('\t');
-							if (parts.Length == 2)
+							if (parts.Length == 3)
 							{
-								_users.Add(parts[0], parts[1]);
+								var user = new UserCredentials
+									{
+										Name = parts[0],
+										Salt = Encoding.Unicode.GetString(Convert.FromBase64String(parts[1])),
+										PasswordHash = parts[2],
+									};
+								_users.Add(user.Name, user);
 							}
 						}
 					}
 				}
 				catch (Exception exc)
 				{
-					Trace.WriteLine(exc);
+					LogEvent.ReportLog(exc);
 				}
-				var res = (_users == null) ? new Dictionary<string, string>() : new Dictionary<string, string>(_users);
+
+				UserCredentials res;
+				_users.TryGetValue(name, out res);
 				return res;
 			}
+		}
+
+		public static void CreateUser(string userName, string password)
+		{
+			lock (Sync)
+			{
+				_users = null;
+
+				var random = new Random();
+				var salt = new string((char)(random.Next(char.MaxValue)), 1);
+				var hashString = GetPasswordHash(salt, password);
+				var saltEncoded = Convert.ToBase64String(Encoding.Unicode.GetBytes(salt));
+
+				var newData = string.Format("{0}\t{1}\t{2}\r\n", userName, saltEncoded, hashString);
+				File.AppendAllText(GetConfigFileName(), newData);
+			}
+		}
+
+		private static string GetPasswordHash(string salt, string password)
+		{
+			var saltedPassword = salt + password;
+			var buf = Encoding.Unicode.GetBytes(saltedPassword);
+
+			var algorithm = SHA256.Create();
+			algorithm.TransformFinalBlock(buf, 0, buf.Length);
+			var hash = algorithm.Hash;
+			return Convert.ToBase64String(hash);
+		}
+
+		static bool CheckPassword(UserCredentials user, string password)
+		{
+			var hash = GetPasswordHash(user.Salt, password);
+			var res = (user.PasswordHash == hash);
+			return res;
 		}
 
 		private static string GetConfigFileName()
@@ -126,5 +181,12 @@ namespace AppMetrics
 		}
 
 		static readonly GenericPrincipal AnonymousUser = new GenericPrincipal(new GenericIdentity(""), new string[0]);
+
+		class UserCredentials
+		{
+			public string Name;
+			public string Salt;
+			public string PasswordHash;
+		}
 	}
 }

@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.aspx" />
+    <Content Include="CreateUser.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -118,6 +119,13 @@
       <DependentUpon>Config.aspx</DependentUpon>
     </Compile>
     <Compile Include="Const.cs" />
+    <Compile Include="CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataReader.cs" />
     <Compile Include="GetRecords.ashx.cs">
       <DependentUpon>GetRecords.ashx</DependentUpon>
