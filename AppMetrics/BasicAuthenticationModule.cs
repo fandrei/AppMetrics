@@ -91,7 +91,7 @@ namespace AppMetrics
 				{
 					if (_users == null)
 					{
-						var fileName = Path.Combine(SiteConfig.DataStoragePath, "users.config");
+						var fileName = GetConfigFileName();
 						var text = File.ReadAllText(fileName);
 
 						_users = new Dictionary<string, string>();
@@ -113,6 +113,11 @@ namespace AppMetrics
 				var res = (_users == null) ? new Dictionary<string, string>() : new Dictionary<string, string>(_users);
 				return res;
 			}
+		}
+
+		private static string GetConfigFileName()
+		{
+			return Path.Combine(SiteConfig.DataStoragePath, "users.config");
 		}
 
 		public static bool IsAnonymousAccessAllowed(HttpRequest request)
