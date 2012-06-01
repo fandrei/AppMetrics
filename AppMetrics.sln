@@ -53,6 +53,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backup", "Backup\Backup.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{C88815D0-6E1C-4673-878A-54D1F62C0C47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solarwinds", "Solarwinds", "{BABAEEBB-F64F-494B-B99A-476192816606}"
+	ProjectSection(SolutionItems) = preProject
+		Solarwinds\CIAPI Latency.apm-template.xml = Solarwinds\CIAPI Latency.apm-template.xml
+		Solarwinds\GetDefaultPageMonitor.ps1 = Solarwinds\GetDefaultPageMonitor.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
