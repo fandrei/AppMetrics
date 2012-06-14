@@ -128,6 +128,9 @@ namespace AppMetrics.WebUtils
 					WebLogger.Report(exc);
 				}
 
+				if (_users == null)
+					return null;
+
 				UserCredentials res;
 				_users.TryGetValue(name, out res);
 				return res;
