@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using AppMetrics.WebUtils;
+
 namespace AppMetrics
 {
 	public partial class CreateUser : System.Web.UI.Page

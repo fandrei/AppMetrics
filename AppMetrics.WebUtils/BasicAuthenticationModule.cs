@@ -9,13 +9,12 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 
-namespace AppMetrics
+namespace AppMetrics.WebUtils
 {
 	public class BasicAuthenticationModule : IHttpModule
 	{
 		public void Init(HttpApplication context)
 		{
-			LogEvent.Init();
 			context.AuthenticateRequest += AuthenticateRequest;
 		}
 
@@ -37,7 +36,7 @@ namespace AppMetrics
 			}
 			catch (Exception exc)
 			{
-				LogEvent.ReportLog(exc.ToString());
+				WebLogger.Report(exc.ToString());
 			}
 		}
 
@@ -104,8 +103,7 @@ namespace AppMetrics
 				{
 					if (_users == null)
 					{
-						var fileName = GetConfigFileName();
-						var text = File.ReadAllText(fileName);
+						var text = File.ReadAllText(CredentialsFileName);
 
 						_users = new Dictionary<string, UserCredentials>();
 						var lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -127,7 +125,7 @@ namespace AppMetrics
 				}
 				catch (Exception exc)
 				{
-					LogEvent.ReportLog(exc);
+					WebLogger.Report(exc);
 				}
 
 				UserCredentials res;
@@ -148,7 +146,7 @@ namespace AppMetrics
 				var saltEncoded = Convert.ToBase64String(Encoding.Unicode.GetBytes(salt));
 
 				var newData = string.Format("{0}\t{1}\t{2}\r\n", userName, saltEncoded, hashString);
-				File.AppendAllText(GetConfigFileName(), newData);
+				File.AppendAllText(CredentialsFileName, newData);
 			}
 		}
 
@@ -170,10 +168,7 @@ namespace AppMetrics
 			return res;
 		}
 
-		private static string GetConfigFileName()
-		{
-			return Path.Combine(SiteConfig.DataStoragePath, "users.config");
-		}
+		public static string CredentialsFileName { get; set; }
 
 		public static bool IsAnonymousAccessAllowed(HttpRequest request)
 		{

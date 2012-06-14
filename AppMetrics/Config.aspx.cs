@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AppMetrics.WebUtils;
+
 namespace AppMetrics
 {
 	public partial class Config : System.Web.UI.Page
