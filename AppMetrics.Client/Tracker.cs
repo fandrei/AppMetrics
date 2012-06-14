@@ -144,6 +144,19 @@ namespace AppMetrics.Client
 			LogFormat(name, MessagePriority.Low, format, args);
 		}
 
+		public Stopwatch StartMeasure()
+		{
+			return Stopwatch.StartNew();
+		}
+
+		public void EndMeasure(Stopwatch watch, string label)
+		{
+			var diff = watch.Elapsed;
+			watch.Stop();
+
+			Log("Latency " + label, diff.TotalSeconds);
+		}
+
 		private const string WarningName = "AppMetrics.Warning";
 		private const string ErrorName = "AppMetrics.Error";
 
