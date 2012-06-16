@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web.Configuration;
 using System.Web.Hosting;
 
-namespace AppMetrics
+namespace AppMetrics.WebUtils
 {
 	public static class SiteConfig
 	{
@@ -15,14 +15,7 @@ namespace AppMetrics
 			get
 			{
 				var res = Get("DataStoragePath");
-				if (!res.Contains(':')) // not an absolute path
-				{
-					if (res.StartsWith(".")) // relative path
-						res = Path.GetFullPath(HostingEnvironment.MapPath("~") + "\\" + res);
-					else
-						res = HostingEnvironment.MapPath(res); // resolve as site relative path
-				}
-				return res;
+				return WebUtil.ResolvePath(res);
 			}
 		}
 

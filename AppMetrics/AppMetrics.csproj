@@ -141,7 +141,6 @@
       <DependentUpon>LogEvent.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SiteConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogEvent.ashx" />

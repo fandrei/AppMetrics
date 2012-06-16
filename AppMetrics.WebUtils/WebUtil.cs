@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Hosting;
@@ -29,6 +30,17 @@ namespace AppMetrics.WebUtils
 				var res = HostingEnvironment.MapPath("~/App_Data");
 				return res;
 			}
+		}
+
+		public static string ResolvePath(string val)
+		{
+			if (val.Contains(':')) // an absolute path
+				return val;
+
+			if (val.StartsWith("~"))
+				return HostingEnvironment.MapPath(val); // resolve as site path
+			else
+				return Path.GetFullPath(HostingEnvironment.MapPath("~") + "\\" + val); // resolve as relative path
 		}
 	}
 }

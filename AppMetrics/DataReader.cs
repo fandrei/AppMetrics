@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using AppMetrics.Shared;
+using AppMetrics.WebUtils;
 
 namespace AppMetrics
 {

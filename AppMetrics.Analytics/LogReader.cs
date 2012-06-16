@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+using AppMetrics.WebUtils;
+
 namespace AppMetrics.Analytics
 {
 	public static class LogReader

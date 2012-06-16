@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 
 using AppMetrics.Analytics;
+using AppMetrics.WebUtils;
 
 namespace AppMetrics.AnalyticsSite
 {

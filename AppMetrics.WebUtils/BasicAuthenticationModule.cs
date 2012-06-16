@@ -171,7 +171,14 @@ namespace AppMetrics.WebUtils
 			return res;
 		}
 
-		public static string CredentialsFileName { get; set; }
+		public static string CredentialsFileName
+		{
+			get
+			{
+				var res = SiteConfig.DataStoragePath + "/users.config";
+				return res;
+			}
+		}
 
 		public static bool IsAnonymousAccessAllowed(HttpRequest request)
 		{
