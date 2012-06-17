@@ -34,7 +34,6 @@ namespace AppMetrics.Client
 
 		public void Dispose()
 		{
-			Log("SessionFinished", null, MessagePriority.High);
 			lock (Sync)
 			{
 				Sessions.Remove(this);
@@ -54,16 +53,23 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
-				var sessionsTmp = new HashSet<Tracker>(Sessions);
-				foreach (var session in sessionsTmp)
+				foreach (var session in Sessions)
 				{
-					session.Dispose();
+					session.Log("SessionFinished", null, MessagePriority.High);
 				}
 			}
+
 			_terminated = true;
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
 			LoggingThread.Abort();
+
+			lock (Sync)
+			{
+				var sessionsTmp = new HashSet<Tracker>(Sessions);				foreach (var session in sessionsTmp)				{
+					session.Dispose();
+				}
+			}
 		}
 
 		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
@@ -190,6 +196,8 @@ namespace AppMetrics.Client
 
 				SendAllMessages();
 			}
+			catch (ThreadInterruptedException)
+			{ }
 			catch (ThreadAbortException)
 			{ }
 			catch (Exception exc)
