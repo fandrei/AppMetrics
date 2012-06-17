@@ -34,11 +34,11 @@ namespace AppMetrics.Client
 
 		public void Dispose()
 		{
-			lock (Sync)
-			{
-				Sessions.Remove(this);
-			}
+			Log("SessionFinished", null, MessagePriority.High);
+			_disposed = true;
 		}
+
+		private volatile bool _disposed;
 
 		static Tracker()
 		{
@@ -55,10 +55,9 @@ namespace AppMetrics.Client
 			{
 				foreach (var session in Sessions)
 				{
-					session.Log("SessionFinished", null, MessagePriority.High);
+					session.Dispose();
 				}
-			}
-
+			}
 			_terminated = true;
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
@@ -66,10 +65,7 @@ namespace AppMetrics.Client
 
 			lock (Sync)
 			{
-				var sessionsTmp = new HashSet<Tracker>(Sessions);				foreach (var session in sessionsTmp)				{
-					session.Dispose();
-				}
-			}
+				Sessions.Clear();			}
 		}
 
 		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
@@ -165,6 +161,8 @@ namespace AppMetrics.Client
 
 		private void AddMessage(string name, string val, MessagePriority priority)
 		{
+			if (_disposed)
+				throw new ObjectDisposedException("Tracker");
 			if (_terminated)
 				return;
 
@@ -217,6 +215,14 @@ namespace AppMetrics.Client
 			foreach (var session in sessions)
 			{
 				session.SendMessages();
+
+				if (session._disposed)
+				{
+					lock (Sync)
+					{
+						Sessions.Remove(session);
+					}
+				}
 			}
 		}
 
