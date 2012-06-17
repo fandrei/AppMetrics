@@ -295,42 +295,49 @@ namespace AppMetrics.Client
 				_systemInfoIsReported = true;
 			}
 
-			var computerInfo = new ComputerInfo();
+			try
+			{
+				var computerInfo = new ComputerInfo();
 
-			Log("System_OsName", computerInfo.OSFullName);
-			Log("System_OsVersion", Environment.OSVersion.VersionString);
+				Log("System_OsName", computerInfo.OSFullName);
+				Log("System_OsVersion", Environment.OSVersion.VersionString);
 
-			Log("System_ComputerName", Environment.MachineName);
-			Log("System_UserName", Environment.UserName);
+				Log("System_ComputerName", Environment.MachineName);
+				Log("System_UserName", Environment.UserName);
 
-			Log("System_ClrVersion", Environment.Version.ToString());
+				Log("System_ClrVersion", Environment.Version.ToString());
 
-			Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
-			Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
+				Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
+				Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
 
-			Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
-			Log("System_CurrentUiCulture", Thread.CurrentThread.CurrentUICulture.Name);
+				Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
+				Log("System_CurrentUiCulture", Thread.CurrentThread.CurrentUICulture.Name);
 
-			Log("System_SystemDefaultEncoding", Encoding.Default.WebName);
+				Log("System_SystemDefaultEncoding", Encoding.Default.WebName);
 
-			Log("System_CalendarType", CultureInfo.CurrentCulture.Calendar.GetType().Name);
+				Log("System_CalendarType", CultureInfo.CurrentCulture.Calendar.GetType().Name);
 
-			Log("System_NumberDecimalSeparator", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+				Log("System_NumberDecimalSeparator", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
 
-			var timeZone = TimeZone.CurrentTimeZone;
-			Log("System_TimeZone", timeZone.StandardName);
+				var timeZone = TimeZone.CurrentTimeZone;
+				Log("System_TimeZone", timeZone.StandardName);
 
-			var offset = timeZone.GetUtcOffset(DateTime.Now);
-			Log("System_TimeZoneOffset", offset.TotalHours);
+				var offset = timeZone.GetUtcOffset(DateTime.Now);
+				Log("System_TimeZoneOffset", offset.TotalHours);
 
-			var processFile = Process.GetCurrentProcess().MainModule.FileName;
-			Log("Client_ProcessName", processFile);
+				var processFile = Process.GetCurrentProcess().MainModule.FileName;
+				Log("Client_ProcessName", processFile);
 
-			var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
-			Log("Client_ProcessVersion", processVersion);
+				var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
+				Log("Client_ProcessVersion", processVersion);
 
-			var curAssembly = GetType().Assembly;
-			Log("Client_AppMetricsVersion", curAssembly.FullName);
+				var curAssembly = GetType().Assembly;
+				Log("Client_AppMetricsVersion", curAssembly.FullName);
+			}
+			catch (Exception exc)
+			{
+				Log(exc);
+			}
 		}
 
 		static void ReportPeriodicInfoAllSessions()
@@ -350,15 +357,22 @@ namespace AppMetrics.Client
 
 		private void ReportPeriodicInfo()
 		{
-			var workingSet = ToMegabytes((ulong)Process.GetCurrentProcess().WorkingSet64);
-			Log("Client_WorkingSet", workingSet);
-
-			var privateMemorySize = ToMegabytes((ulong)Process.GetCurrentProcess().PrivateMemorySize64);
-			Log("Client_PrivateMemorySize", privateMemorySize);
-
 			try
 			{
-				var processorSecondsUsed = Process.GetCurrentProcess().TotalProcessorTime.TotalSeconds;
+				var curProcess = Process.GetCurrentProcess();
+
+				var workingSet = ToMegabytes((ulong)curProcess.WorkingSet64);
+				Log("Client_WorkingSet", workingSet);
+
+				var privateMemorySize = ToMegabytes((ulong)curProcess.PrivateMemorySize64);
+				Log("Client_PrivateMemorySize", privateMemorySize);
+
+				var computerInfo = new ComputerInfo();
+
+				Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
+				Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
+
+				var processorSecondsUsed = curProcess.TotalProcessorTime.TotalSeconds;
 				if (_lastProcessorTimeUsage != 0)
 				{
 					var secondsPassed = (DateTime.UtcNow - _lastSentPeriodic).TotalSeconds;
@@ -371,11 +385,6 @@ namespace AppMetrics.Client
 			{
 				Log(exc);
 			}
-
-			var computerInfo = new ComputerInfo();
-
-			Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
-			Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
 		}
 
 		static ulong ToMegabytes(ulong val)
