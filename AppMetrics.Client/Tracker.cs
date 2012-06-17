@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -16,14 +17,10 @@ namespace AppMetrics.Client
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
-			if (!string.IsNullOrEmpty(_url) && url != _url)
-				throw new InvalidOperationException();
 			_url = url;
 
 			if (string.IsNullOrEmpty(applicationKey))
 				throw new ArgumentNullException();
-			if (!string.IsNullOrEmpty(_applicationKey) && _applicationKey != applicationKey)
-				throw new InvalidOperationException();
 			_applicationKey = applicationKey;
 
 			SessionId = Guid.NewGuid().ToString();
@@ -82,14 +79,14 @@ namespace AppMetrics.Client
 					Log(exc);
 				}
 
-				if (Messages.Count >= MaxMessagesCount)
+				if (_messages.Count >= MaxMessagesCount)
 				{
-					Messages.RemoveAll(message => message.Priority == MessagePriority.Low);
+					_messages.RemoveAll(message => message.Priority == MessagePriority.Low);
 
 					AddMessage(WarningName, "Message queue overflow. Some messages are skipped.", MessagePriority.High);
-					if (Messages.Count >= MaxMessagesCount) // too much high-priority messages
+					if (_messages.Count >= MaxMessagesCount) // too much high-priority messages
 					{
-						Messages.Clear();
+						_messages.Clear();
 						AddMessage(ErrorName, "Critical message queue overflow. All messages are removed.", MessagePriority.High);
 					}
 				}
@@ -169,7 +166,7 @@ namespace AppMetrics.Client
 
 			lock (Sync)
 			{
-				Messages.Add(
+				_messages.Add(
 					new MessageInfo
 						{
 							Name = name,
@@ -187,11 +184,11 @@ namespace AppMetrics.Client
 			{
 				while (!_terminated)
 				{
-					SendMessages();
+					SendAllMessages();
 					Thread.Sleep(SendingPeriod);
 				}
 
-				SendMessages();
+				SendAllMessages();
 			}
 			catch (ThreadAbortException)
 			{ }
@@ -201,7 +198,21 @@ namespace AppMetrics.Client
 			}
 		}
 
-		private static void SendMessages()
+		private static void SendAllMessages()
+		{
+			Tracker[] sessions;
+			lock (Sync)
+			{
+				sessions = Sessions.ToArray();
+			}
+
+			foreach (var session in sessions)
+			{
+				session.SendMessages();
+			}
+		}
+
+		private void SendMessages()
 		{
 			try
 			{
@@ -215,13 +226,13 @@ namespace AppMetrics.Client
 						{
 							lock (Sync)
 							{
-								if (Messages.Count == 0)
+								if (_messages.Count == 0)
 									return;
 
 								int i = 0;
-								for (; i < Messages.Count; i++)
+								for (; i < _messages.Count; i++)
 								{
-									var message = Messages[i];
+									var message = _messages[i];
 									var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
 										message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
 
@@ -231,11 +242,11 @@ namespace AppMetrics.Client
 								}
 
 								var messagesSent = i;
-								Messages.RemoveRange(0, messagesSent);
+								_messages.RemoveRange(0, messagesSent);
 							}
 						}
 
-						SendPacket(client, _packet.ToString());
+						SendPacket(client, _url, _applicationKey, _packet.ToString());
 						_packet.Clear(); // clear packet if succeeded
 					}
 				}
@@ -248,15 +259,15 @@ namespace AppMetrics.Client
 			}
 		}
 
-		static void SendPacket(WebClient client, string packet)
+		static void SendPacket(WebClient client, string url, string appKey, string packet)
 		{
 			var vals = new NameValueCollection
 				{
-					{ "MessageAppKey", _applicationKey },
+					{ "MessageAppKey", appKey },
 					{ "MessagesList", packet }, 
 				};
 
-			var response = client.UploadValues(_url, "POST", vals);
+			var response = client.UploadValues(url, "POST", vals);
 			CountNewRequest();
 			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
@@ -372,14 +383,15 @@ namespace AppMetrics.Client
 			return val / (1024 * 1024);
 		}
 
-		private static string _url;
-
+		private readonly string _url;
+		private readonly string _applicationKey;
 		public string SessionId { get; private set; }
-		private static string _applicationKey;
 
 		private static readonly object Sync = new object();
-		private static readonly List<MessageInfo> Messages = new List<MessageInfo>(MaxMessagesCount);
-		private static StringBuilder _packet = new StringBuilder(MaxPacketSize);
+
+		private readonly List<MessageInfo> _messages = new List<MessageInfo>(MaxMessagesCount);
+		private readonly StringBuilder _packet = new StringBuilder(MaxPacketSize);
+
 		private static readonly HashSet<Tracker> Sessions = new HashSet<Tracker>();
 		private static readonly Thread LoggingThread = new Thread(LoggingThreadEntry);
 
