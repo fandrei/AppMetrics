@@ -1,0 +1,8 @@
+﻿Invalid command line arguments.
+Command line format:
+
+backup.exe PathToData
+(do backup)
+
+backup.exe PathToData -config AmazonKey AmazonSecretKey
+(set Amazon config data)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using AppMetrics.Backup.Resources;
 
 namespace AppMetrics.Backup
 {
@@ -12,17 +13,33 @@ namespace AppMetrics.Backup
 		{
 			try
 			{
-				if (args.Length != 1)
-					throw new ApplicationException("Invalid command line arguments");
+				if (args.Length < 1)
+					ExitAndShowManual();
 
 				var dataPath = args[0];
+
+				AppSettings.Load(dataPath);
+
+				if (args.Length >= 2)
+				{
+					if (args[1] == "-config")
+					{
+						if (args.Length != 4)
+							ExitAndShowManual();
+
+						AppSettings.Instance.AmazonAccessKey = args[2];
+						AppSettings.Instance.AmazonSecretAccessKey = args[3];
+
+						AppSettings.Instance.Save();
+
+						return;
+					}
+				}
 
 				using (var mutex = new Mutex(false, "AppMetrics.Backup"))
 				{
 					if (!mutex.WaitOne(0, false))
 						throw new ApplicationException("Another instance is running");
-
-					AppSettings.Load(dataPath);
 
 					BackupHandler.BackupAll(dataPath, 
 						(val, priority) => Console.WriteLine(val));
@@ -37,7 +54,11 @@ namespace AppMetrics.Backup
 				Console.WriteLine(exc);
 			}
 		}
+
+		static void ExitAndShowManual()
+		{
+			throw new ApplicationException(Resource.Manual);
+		}
 	}
 
-	public delegate void ReportLogDelegate(object val, LogPriority priority = LogPriority.High);
-}
+	public delegate void ReportLogDelegate(object val, LogPriority priority = LogPriority.High);}
