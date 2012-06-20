@@ -17,7 +17,8 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
-				var found = Sessions.Where(session => session._url == url && session._applicationKey == applicationKey);
+				var found = Sessions.Where(
+					session => !session._disposed && session._url == url && session._applicationKey == applicationKey);
 				if (found.FirstOrDefault() != null)
 					return found.First();
 				var res = new Tracker(url, applicationKey);
