@@ -13,7 +13,19 @@ namespace AppMetrics.Client
 {
 	public class Tracker : IDisposable
 	{
-		public Tracker(string url, string applicationKey)
+		public static Tracker Create(string url, string applicationKey)
+		{
+			lock (Sync)
+			{
+				var found = Sessions.Where(session => session._url == url && session._applicationKey == applicationKey);
+				if (found.FirstOrDefault() != null)
+					return found.First();
+				var res = new Tracker(url, applicationKey);
+				return res;
+			}
+		}
+
+		private Tracker(string url, string applicationKey)
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();

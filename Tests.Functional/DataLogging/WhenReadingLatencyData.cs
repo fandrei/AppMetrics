@@ -17,7 +17,7 @@ namespace Tests.DataLogging
 		{
 			_appKey = GetType().FullName;
 
-			var tracker = new Tracker(NormalizeUrl("LogEvent.ashx"), _appKey);
+			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey);
 			tracker.Log("TestMessage", "TestValue");
 			Tracker.Terminate(true);
 

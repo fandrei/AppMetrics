@@ -22,7 +22,7 @@ namespace Tests
 		{
 			Console.WriteLine("\r\nTesting service located at {0}\r\n", TestSettings.Instance.ServiceRootUrl);
 
-			var tracker = new Tracker(TestSettings.Instance.MetricsLoggingUrl, AppKey);
+			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey);
 			tracker.Log("TestMessage", "TestValue");
 
 			Tracker.Terminate(true);

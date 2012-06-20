@@ -21,7 +21,7 @@ namespace DebugProject
 				var listeners = new[] { new TextWriterTraceListener(Console.Out) };
 				Debug.Listeners.AddRange(listeners);
 
-				var tracker = new Tracker(url, "DebugProject");
+				var tracker = Tracker.Create(url, "DebugProject");
 
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);

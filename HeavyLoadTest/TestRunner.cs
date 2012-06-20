@@ -14,7 +14,7 @@ namespace HeavyLoadTest
 		{
 			try
 			{
-				var tracker = new Tracker(url, "HeavyLoadTest");
+				var tracker = Tracker.Create(url, "HeavyLoadTest");
 				for (int i = 0; i < LoopsCount; i++)
 				{
 					tracker.Log("Counter", i);
