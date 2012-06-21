@@ -24,6 +24,14 @@ namespace AppMetrics.Analytics
 			return record.Name.StartsWith("Jitter");
 		}
 
+		public static string GetFunctionName(RecordEx record)
+		{
+			if (!IsLatency(record) && !IsJitter(record))
+				throw new InvalidOperationException();
+			var res = record.Name.Split(' ')[1];
+			return res;
+		}
+
 		public static bool IsException(RecordEx record)
 		{
 			return record.Name.StartsWith("Exception");

@@ -33,6 +33,18 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
+		public HashSet<string> FunctionFilter = new HashSet<string>();
+		public bool FilterByFunction { get { return FunctionFilter.Count > 0; } }
+
+		public bool FunctionIsAllowed(string functionName)
+		{
+			if (!FilterByFunction)
+				return true;
+
+			var res = FunctionFilter.Any(functionName.StartsWith);
+			return res;
+		}
+
 		public ReportType ReportType;
 
 		public override bool Equals(object obj)
@@ -43,13 +55,14 @@ namespace AppMetrics.Analytics
 
 			var res = (ApplicationKey == that.ApplicationKey) && Period == that.Period &&
 				SliceByLocation == that.SliceByLocation && LocationIncludeOverall == that.LocationIncludeOverall &&
-				SliceByFunction == that.SliceByFunction && LocationFilter.SequenceEqual(that.LocationFilter);
+				SliceByFunction == that.SliceByFunction && LocationFilter.SequenceEqual(that.LocationFilter) &&
+				FunctionFilter.SequenceEqual(that.FunctionFilter);
 			return res;
 		}
 
 		public override int GetHashCode()
 		{
-			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ LocationFilter.Count ^ 
+			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ LocationFilter.Count ^ FunctionFilter.Count ^ 
 				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
 		}
 

@@ -103,6 +103,10 @@ namespace AppMetrics.AnalyticsSite
 				res.LocationIncludeOverall = true;
 			res.LocationFilter = new HashSet<string>(locationList);
 
+			var functionFilter = requestParams.Get("FunctionFilter") ?? "";
+			var functionFilterList = functionFilter.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+			res.FunctionFilter = new HashSet<string>(functionFilterList);
+
 			var periodString = requestParams.Get("Period") ?? "";
 			res.Period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
 

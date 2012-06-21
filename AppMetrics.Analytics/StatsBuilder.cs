@@ -112,6 +112,11 @@ namespace AppMetrics.Analytics
 
 		private List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
 		{
+			records = records.Where(
+					val => (Util.IsLatency(val) || Util.IsJitter(val)) && 
+						_options.FunctionIsAllowed(Util.GetFunctionName(val))
+				).ToArray();
+
 			var res = new List<CalcResult>();
 
 			if (!_options.SliceByFunction)
@@ -121,8 +126,6 @@ namespace AppMetrics.Analytics
 			}
 			else
 			{
-				records = records.Where(val => Util.IsLatency(val) || Util.IsJitter(val)).ToArray();
-
 				var recordsByFunction = Util.GroupBySorted(records, record => record.Name.Split(' ')[1]);
 				foreach (var pair in recordsByFunction)
 				{
