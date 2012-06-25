@@ -17,21 +17,20 @@ namespace AppMetrics
 			var requestParams = context.Request.Params;
 
 			var appKey = requestParams.Get("Application") ?? "";
-
-			var sessionId = requestParams.Get("AppKey") ?? "";
-
-			var startTimeString = requestParams.Get("StartTime") ?? "";
-			var startTime = string.IsNullOrEmpty(startTimeString) ? DateTime.MinValue : Util.ParseDateTime(startTimeString);
+			var sessionId = requestParams.Get("SessionId") ?? "";
+			var period = new TimePeriod(requestParams);
 
 			context.Response.ContentType = "text/plain";
 
 			List<Record> records;
 			if (string.IsNullOrEmpty(sessionId))
-				records = DataReader.GetRecords(appKey, startTime);
+				records = DataReader.GetRecords(appKey, period);
 			else
 			{
-				var session = DataReader.ReadSession(appKey, sessionId, startTime);
-				records = DataReader.GetRecordsFromSession(session, startTime, true);
+				var session = DataReader.ReadSession(appKey, sessionId, period);
+				if (session == null)
+					return;
+				records = DataReader.GetRecordsFromSession(session, period, true);
 			}
 
 			foreach (var record in records)

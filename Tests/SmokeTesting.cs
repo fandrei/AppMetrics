@@ -22,6 +22,8 @@ namespace Tests
 		{
 			Console.WriteLine("\r\nTesting service located at {0}\r\n", TestSettings.Instance.ServiceRootUrl);
 
+			var startTime = DateTime.UtcNow;
+
 			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey);
 			tracker.Log("TestMessage", "TestValue");
 
@@ -31,7 +33,7 @@ namespace Tests
 			{
 				client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
 				client.QueryString["AppKey"] = AppKey;
-				client.QueryString["Period"] = RequestPeriod;
+				client.QueryString["StartTime"] = startTime.ToString("u");
 
 				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
 				var sessions = Session.Parse(response);

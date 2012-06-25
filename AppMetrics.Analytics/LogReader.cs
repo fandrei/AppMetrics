@@ -15,19 +15,20 @@ namespace AppMetrics.Analytics
 			return Parse(dataPath, options.Period);
 		}
 
-		public static List<SessionEx> Parse(string dataPath, TimeSpan period)
+		public static List<SessionEx> Parse(string dataPath, TimeSpan timeSpan)
 		{
 			var watch = Stopwatch.StartNew();
 
 			var res = new List<SessionEx>();
 
-			var startTime = (period == TimeSpan.MaxValue) ? DateTime.MinValue : DateTime.UtcNow - period;
+			var startTime = (timeSpan == TimeSpan.MaxValue) ? DateTime.MinValue : DateTime.UtcNow - timeSpan;
+			var period = new TimePeriod(startTime, DateTime.MaxValue);
 			{
-				var sessions = DataReader.GetSessionsFromPath(dataPath, startTime);
+				var sessions = DataReader.GetSessionsFromPath(dataPath, period);
 
 				foreach (var session in sessions)
 				{
-					var records = DataReader.GetRecordsFromSession(session, startTime);
+					var records = DataReader.GetRecordsFromSession(session, period);
 
 					var sessionEx = new SessionEx
 										{

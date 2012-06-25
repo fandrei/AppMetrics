@@ -17,6 +17,8 @@ namespace Tests.DataLogging
 		{
 			_appKey = GetType().FullName;
 
+			var startTime = DateTime.UtcNow;
+
 			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey);
 			tracker.Log("TestMessage", "TestValue");
 			Tracker.Terminate(true);
@@ -25,7 +27,7 @@ namespace Tests.DataLogging
 			{
 				client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
 				client.QueryString["AppKey"] = _appKey;
-				client.QueryString["Period"] = TimeSpan.FromSeconds(30).ToString();
+				client.QueryString["StartTime"] = startTime.ToString("u");
 
 				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
 				_sessions = response.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);

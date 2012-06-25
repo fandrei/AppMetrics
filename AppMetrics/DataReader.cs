@@ -12,13 +12,13 @@ namespace AppMetrics
 {
 	public static class DataReader
 	{
-		public static List<Session> GetSessions(string appKey, DateTime startTime)
+		public static List<Session> GetSessions(string appKey, TimePeriod period)
 		{
 			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);
-			return GetSessionsFromPath(dataPath, startTime);
+			return GetSessionsFromPath(dataPath, period);
 		}
 
-		public static List<Session> GetSessionsFromPath(string dataPath, DateTime startTime)
+		public static List<Session> GetSessionsFromPath(string dataPath, TimePeriod period)
 		{
 			var res = new List<Session>();
 
@@ -29,7 +29,7 @@ namespace AppMetrics
 					if (filePath.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
 						continue;
 
-					var session = ReadSession(filePath, startTime);
+					var session = ReadSession(filePath, period);
 					if (session != null)
 						res.Add(session);
 				}
@@ -40,7 +40,7 @@ namespace AppMetrics
 			return res;
 		}
 
-		public static Session ReadSession(string filePath, DateTime startTime)
+		public static Session ReadSession(string filePath, TimePeriod period)
 		{
 			var fileName = Path.GetFileNameWithoutExtension(filePath);
 			var nameParts = fileName.Split('.');
@@ -48,9 +48,11 @@ namespace AppMetrics
 
 			var timeText = nameParts.First().Replace('_', ':');
 			var sessionCreationTime = Util.ParseDateTime(timeText);
+			if (sessionCreationTime > period.EndTime)
+				return null;
 
 			var lastUpdateTime = GetSessionLastWriteTime(filePath);
-			if (lastUpdateTime < startTime)
+			if (lastUpdateTime < period.StartTime)
 				return null;
 
 			return new Session
@@ -62,9 +64,18 @@ namespace AppMetrics
 				};
 		}
 
-		public static Session ReadSession(string appKey, string sessionId, DateTime startTime)
+		public static Session ReadSession(string appKey, string sessionId, TimePeriod period)
 		{
-			throw new NotImplementedException();
+			var mask = string.Format("*.{0}.txt", sessionId);
+			var fileList = Directory.GetFiles(GetSessionsDataPath(appKey), mask, SearchOption.AllDirectories);
+
+			if (fileList.Length == 0)
+				return null;
+			if (fileList.Length != 1)
+				throw new ApplicationException();
+
+			var res = ReadSession(fileList[0], period);
+			return res;
 		}
 
 		static DateTime GetSessionLastWriteTime(string filePath)
@@ -92,11 +103,9 @@ namespace AppMetrics
 			return Encoding.UTF8;
 		}
 
-		private static readonly List<byte> _buf = new List<byte>(1024 * 1024);
-
 		static string ReadLine(Stream stream, Encoding encoding)
 		{
-			_buf.Clear();
+			var buffer = new List<byte>(8 * 1024);
 			while (true)
 			{
 				var cur = stream.ReadByte();
@@ -108,11 +117,11 @@ namespace AppMetrics
 				if (cur == '\n')
 					break;
 
-				_buf.Add((byte)cur);
+				buffer.Add((byte)cur);
 			}
-			if (_buf.Count == 0)
+			if (buffer.Count == 0)
 				return null;
-			var res = encoding.GetString(_buf.ToArray());
+			var res = encoding.GetString(buffer.ToArray());
 			return res;
 		}
 
@@ -146,23 +155,28 @@ namespace AppMetrics
 			return lastLine;
 		}
 
-		public static List<Record> GetRecords(string appKey, DateTime startTime)		{			var dataPath = Path.Combine(SiteConfig.DataStoragePath, appKey);			return GetRecordsFromPath(dataPath, startTime);		}
-		public static List<Record> GetRecordsFromPath(string dataPath, DateTime startTime)
+		public static List<Record> GetRecords(string appKey, TimePeriod period)
+		{
+			var dataPath = GetSessionsDataPath(appKey);
+			return GetRecordsFromPath(dataPath, period);
+		}
+
+		public static List<Record> GetRecordsFromPath(string dataPath, TimePeriod period)
 		{
 			var res = new List<Record>();
 
-			var sessions = GetSessionsFromPath(dataPath, startTime);
+			var sessions = GetSessionsFromPath(dataPath, period);
 
 			foreach (var session in sessions)
 			{
-				var tmp = GetRecordsFromSession(session, startTime);
+				var tmp = GetRecordsFromSession(session, period);
 				res.AddRange(tmp);
 			}
 
 			return res;
 		}
 
-		public static List<Record> GetRecordsFromSession(Session session, DateTime startTime, bool filterRecords = true)
+		public static List<Record> GetRecordsFromSession(Session session, TimePeriod period, bool filterRecords = true)
 		{
 			var res = new List<Record>();
 
@@ -190,7 +204,7 @@ namespace AppMetrics
 						res.Add(record);
 					}
 
-					SkipOutdatedRecords(stream, encoding, startTime);
+					SkipOutdatedRecords(stream, encoding, period.StartTime);
 				}
 
 				using (var reader = new StreamReader(stream, encoding, true))
@@ -202,7 +216,10 @@ namespace AppMetrics
 							break;
 
 						var record = ParseLine(line);
-						if (filterRecords && record.Time < startTime)
+
+						if (filterRecords && record.Time > period.EndTime)
+							break;
+						if (filterRecords && record.Time < period.StartTime)
 							continue;
 
 						record.SessionId = session.Id;
@@ -258,6 +275,11 @@ namespace AppMetrics
 		static bool IsServiceMessage(string name)
 		{
 			return name.StartsWith("Client") || name.StartsWith("System");
+		}
+
+		private static string GetSessionsDataPath(string appKey)
+		{
+			return Path.Combine(SiteConfig.DataStoragePath, appKey);
 		}
 	}
 }
