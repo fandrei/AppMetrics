@@ -31,7 +31,7 @@ namespace AppMetrics.Client
 
     public class Tracker : ITracker
     {
-		public static Tracker Create(string url, string applicationKey)
+		public static ITracker Create(string url, string applicationKey)
 		{
 			lock (Sync)
 			{
@@ -44,7 +44,7 @@ namespace AppMetrics.Client
 			}
 		}
 
-		private Tracker(string url, string applicationKey)
+		public Tracker(string url, string applicationKey)
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
