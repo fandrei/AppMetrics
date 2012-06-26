@@ -11,32 +11,31 @@ using Microsoft.VisualBasic.Devices;
 
 namespace AppMetrics.Client
 {
-    public interface ITracker : IDisposable
-    {
-        void Dispose();
-        void Log(string name, string val, MessagePriority priority = MessagePriority.Low);
-        void Log(Exception exc);
-        void Log(string name, object val, MessagePriority priority = MessagePriority.Low);
-        void Log(string name, double val, MessagePriority priority = MessagePriority.Low);
-        void Log(string name, float val, MessagePriority priority = MessagePriority.Low);
-        void Log(string name, decimal val, MessagePriority priority = MessagePriority.Low);
-        void Log(string name, long val, MessagePriority priority = MessagePriority.Low);
-        void Log(string name, ulong val, MessagePriority priority = MessagePriority.Low);
-        void LogFormat(string name, MessagePriority priority, string format, params object[] args);
-        void LogFormat(string name, string format, params object[] args);
-        Stopwatch StartMeasure();
-        void EndMeasure(Stopwatch watch, string label);
-        string SessionId { get; }
-    }
+	public interface ITracker : IDisposable
+	{
+		void Log(string name, string val, MessagePriority priority = MessagePriority.Low);
+		void Log(Exception exc);
+		void Log(string name, object val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, double val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, float val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, decimal val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, long val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, ulong val, MessagePriority priority = MessagePriority.Low);
+		void LogFormat(string name, MessagePriority priority, string format, params object[] args);
+		void LogFormat(string name, string format, params object[] args);
+		Stopwatch StartMeasure();
+		void EndMeasure(Stopwatch watch, string label);
+		string SessionId { get; }
+	}
 
-    public class Tracker : ITracker
-    {
+	public class Tracker : ITracker
+	{
 		public static Tracker Create(string url, string applicationKey)
 		{
 			lock (Sync)
 			{
 				var found = Sessions.Where(
-					session => !session._disposed && session._url == url && session._applicationKey == applicationKey);
+					session => !session._disposed && session.Url == url && session.ApplicationKey == applicationKey);
 				if (found.FirstOrDefault() != null)
 					return found.First();
 				var res = new Tracker(url, applicationKey);
@@ -48,11 +47,11 @@ namespace AppMetrics.Client
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
-			_url = url;
+			Url = url;
 
 			if (string.IsNullOrEmpty(applicationKey))
 				throw new ArgumentNullException();
-			_applicationKey = applicationKey;
+			ApplicationKey = applicationKey;
 
 			SessionId = Guid.NewGuid().ToString();
 
@@ -88,7 +87,8 @@ namespace AppMetrics.Client
 				{
 					session.Dispose();
 				}
-			}
+			}
+
 			_terminated = true;
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
@@ -96,7 +96,8 @@ namespace AppMetrics.Client
 
 			lock (Sync)
 			{
-				Sessions.Clear();			}
+				Sessions.Clear();
+			}
 		}
 
 		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
@@ -291,7 +292,7 @@ namespace AppMetrics.Client
 							}
 						}
 
-						SendPacket(client, _url, _applicationKey, _packet.ToString());
+						SendPacket(client, Url, ApplicationKey, _packet.ToString());
 						_packet.Clear(); // clear packet if succeeded
 					}
 				}
@@ -437,8 +438,8 @@ namespace AppMetrics.Client
 			return val / (1024 * 1024);
 		}
 
-		private readonly string _url;
-		private readonly string _applicationKey;
+		public string Url { get; private set; }
+		public string ApplicationKey { get; private set; }
 		public string SessionId { get; private set; }
 
 		private static readonly object Sync = new object();
