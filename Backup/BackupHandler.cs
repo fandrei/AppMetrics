@@ -52,6 +52,8 @@ namespace AppMetrics.Backup
 			var zipFileName = Path.ChangeExtension(fileName, ".zip");
 			using (var zipFile = new ZipFile(zipFileName))
 			{
+				zipFile.TempFileFolder = Path.GetTempPath();
+
 				zipFile.RemoveEntries(zipFile.Entries.ToArray());
 
 				zipFile.CompressionMethod = CompressionMethod.Deflate;
