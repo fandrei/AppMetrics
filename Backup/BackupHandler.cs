@@ -130,8 +130,14 @@ namespace AppMetrics.Backup
 
 		private static string GetKey(string filePath)
 		{
-			var fileName = Path.GetFileName(filePath);
 			var parentName = Path.GetFileName(Path.GetDirectoryName(filePath));
+			var res = parentName + "/" + GetHierarchyName(filePath);
+			return res;
+		}
+
+		private static string GetHierarchyName(string filePath)
+		{
+			var fileName = Path.GetFileName(filePath);
 
 			var nameParts = fileName.Split('.');
 			var fullTime = nameParts.First();
@@ -141,7 +147,7 @@ namespace AppMetrics.Backup
 			var yearMonth = dateParts[0] + "-" + dateParts[1];
 			var day = dateParts.Last();
 
-			return parentName + "/" + yearMonth + "/" + day + "/" + fileName;
+			return yearMonth + "/" + day + "/" + fileName;
 		}
 
 		static AmazonS3Client CreateAmazonS3Client()
