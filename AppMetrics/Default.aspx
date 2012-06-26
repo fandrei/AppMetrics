@@ -12,11 +12,12 @@
         <ul>
         <li><a href="CreateUser.aspx">Create User</a> (this only works when accessed from localhost)</li>
         <li>Log some test data 
-        <form action="LogEvent.ashx" method="POST">
+        <form action="LogEvent.ashx" method="POST" target="_blank">
             <table>
                 <tr><th>MessageAppKey</th><td><input name="MessageAppKey" value="test"/></td></tr>
                 <tr><th>MessageSession</th><td><input name="MessageSession" value="test-session"/></td></tr>
-                <tr><th>MessagesList</th><td><textarea name="MessagesList" cols="60">2012-04-02 08:56:16.0527220  Latency TestMethod  0.0992977</textarea><br /><em>(tab separated)</em</td></tr>
+                <tr><th>MessagesList</th><td><textarea name="MessagesList" cols="60">2012-04-02 08:56:16.0527220|Latency TestMethod|0.0992977
+                </textarea><br /><em>( | separated)</em</td></tr>
                 <tr><td colspan="2"><input type="submit" value="Post"/></td></tr>
             </table>
         </form>
@@ -25,7 +26,7 @@
         <ul>
             <li><a href="GetSessions.ashx">Get sessions</a></li>
             <li>Get raw data records</a>
-            <form action="GetRecords.ashx" method="GET">
+            <form action="GetRecords.ashx" method="GET" target="_blank">
                 <table>
                 <tr><th>Application</th><td><input name="Application" value="test"/></td></tr>
                 <tr><th>StartTime</th><td><input name="StartTime" value="2012-04-02 08:00:00"/></td></tr>
