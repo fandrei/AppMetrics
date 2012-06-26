@@ -18,7 +18,7 @@ namespace AppMetrics.Client
 			lock (Sync)
 			{
 				var found = Sessions.Where(
-					session => !session._disposed && session._url == url && session._applicationKey == applicationKey);
+					session => !session._disposed && session.Url == url && session.ApplicationKey == applicationKey);
 				if (found.FirstOrDefault() != null)
 					return found.First();
 				var res = new Tracker(url, applicationKey);
@@ -30,11 +30,11 @@ namespace AppMetrics.Client
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
-			_url = url;
+			Url = url;
 
 			if (string.IsNullOrEmpty(applicationKey))
 				throw new ArgumentNullException();
-			_applicationKey = applicationKey;
+			ApplicationKey = applicationKey;
 
 			SessionId = Guid.NewGuid().ToString();
 
@@ -273,7 +273,7 @@ namespace AppMetrics.Client
 							}
 						}
 
-						SendPacket(client, _url, _applicationKey, _packet.ToString());
+						SendPacket(client, Url, ApplicationKey, _packet.ToString());
 						_packet.Clear(); // clear packet if succeeded
 					}
 				}
@@ -419,8 +419,8 @@ namespace AppMetrics.Client
 			return val / (1024 * 1024);
 		}
 
-		private readonly string _url;
-		private readonly string _applicationKey;
+		public string Url { get; private set; }
+		public string ApplicationKey { get; private set; }
 		public string SessionId { get; private set; }
 
 		private static readonly object Sync = new object();
