@@ -16,8 +16,7 @@
             <table>
                 <tr><th>MessageAppKey</th><td><input name="MessageAppKey" value="test"/></td></tr>
                 <tr><th>MessageSession</th><td><input name="MessageSession" value="test-session"/></td></tr>
-                <tr><th>MessagesList</th><td><textarea name="MessagesList" cols="60">2012-04-02 08:56:16.0527220|Latency TestMethod|0.0992977
-                </textarea><br /><em>( | separated)</em</td></tr>
+                <tr><th>MessagesList</th><td><textarea name="MessagesList" cols="60">2012-04-02 08:56:16.0527220|Latency TestMethod|0.0992977</textarea><br /><em>( | separated)</em</td></tr>
                 <tr><td colspan="2"><input type="submit" value="Post"/></td></tr>
             </table>
         </form>
@@ -30,7 +29,7 @@
                 <table>
                 <tr><th>Application</th><td><input name="Application" value="test"/></td></tr>
                 <tr><th>StartTime</th><td><input name="StartTime" value="2012-04-02 08:00:00"/></td></tr>
-                <tr><th>EndTime</th><td><input name="EndTime" value="2012-04-02 09:00:00"/></td></tr>
+                <tr><th>EndTime</th><td><input name="EndTime" value="2013-04-02 09:00:00"/></td></tr>
                 <tr><td colspan="2"><input type="submit" value="Get Records"/></td></tr>
             </table>
             </form>
