@@ -11,7 +11,24 @@ using Microsoft.VisualBasic.Devices;
 
 namespace AppMetrics.Client
 {
-	public class Tracker : IDisposable
+	public interface ITracker : IDisposable
+	{
+		void Log(string name, string val, MessagePriority priority = MessagePriority.Low);
+		void Log(Exception exc);
+		void Log(string name, object val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, double val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, float val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, decimal val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, long val, MessagePriority priority = MessagePriority.Low);
+		void Log(string name, ulong val, MessagePriority priority = MessagePriority.Low);
+		void LogFormat(string name, MessagePriority priority, string format, params object[] args);
+		void LogFormat(string name, string format, params object[] args);
+		Stopwatch StartMeasure();
+		void EndMeasure(Stopwatch watch, string label);
+		string SessionId { get; }
+	}
+
+	public class Tracker : ITracker
 	{
 		public static Tracker Create(string url, string applicationKey)
 		{
@@ -70,7 +87,8 @@ namespace AppMetrics.Client
 				{
 					session.Dispose();
 				}
-			}
+			}
+
 			_terminated = true;
 			var period = waitAll ? Timeout.Infinite : 5 * 1000;
 			LoggingThread.Join(period);
@@ -78,7 +96,8 @@ namespace AppMetrics.Client
 
 			lock (Sync)
 			{
-				Sessions.Clear();			}
+				Sessions.Clear();
+			}
 		}
 
 		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
