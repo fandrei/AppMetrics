@@ -154,6 +154,8 @@ namespace AppMetrics.Backup
 				throw new ApplicationException();
 			var res = filePath.Substring(dataStoragePath.Length);
 			res = res.Replace('\\', '/');
+			if (res.StartsWith("/"))
+				res = res.Substring(1);
 			return res;
 		}
 
