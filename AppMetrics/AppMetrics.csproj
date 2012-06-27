@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CreateUser.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -120,6 +121,13 @@
       <DependentUpon>CreateUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataReader.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GetRecords.ashx.cs">
       <DependentUpon>GetRecords.ashx</DependentUpon>
     </Compile>
