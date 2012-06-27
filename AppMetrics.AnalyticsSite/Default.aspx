@@ -10,6 +10,7 @@
         AppMetrics Analytics server</h1>
     <h2>
         Generate report</h2>
+        <a href="https://github.com/fandrei/AppMetrics/wiki/Creating-reports-on-collected-data">Full documentation on report types</a>
     <form action="GetReport.ashx" method="GET" target="_blank">
     <table>
         <tr>
@@ -55,17 +56,6 @@
                     <option value="Countries">Countries</option>
                     <option value="CountriesAndCities">Countries And Cities</option>
                     <option value="None">None</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Slice By Function
-            </th>
-            <td>
-                <select name="SliceByFunction">
-                    <option value="No">No</option>
-                    <option value="Yes">Yes</option>
                 </select>
             </td>
         </tr>
