@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>AppMetrics server</title>
-    <script src="Scripts/jquery-1.7.2.js"></script>
 </head>
 <body>
         <h1>AppMetrics server</h1>
