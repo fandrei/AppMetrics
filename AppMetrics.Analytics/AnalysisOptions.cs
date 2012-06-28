@@ -28,6 +28,9 @@ namespace AppMetrics.Analytics
 			if (!FilterByLocation)
 				return true;
 
+			if (loc == null)
+				return false;
+
 			var locName = Util.GetLocationName(loc);
 			var res = LocationFilter.Any(locName.StartsWith);
 			return res;

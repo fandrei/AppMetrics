@@ -29,9 +29,11 @@ namespace AppMetrics.Analytics
 			var watch = Stopwatch.StartNew();
 			var res = new List<CalcResult>();
 
+			var sessionsFiltered = _sessions.Where(session => _options.LocationIsAllowed(session.Location)).ToArray();
+
 			if (_options.LocationIncludeOverall || _options.SliceByLocation == LocationSliceType.None)
 			{
-				var allRecords = GetRecords(_sessions);
+				var allRecords = GetRecords(sessionsFiltered);
 				var overallSummariesByFunction = CalculateByFunction(allRecords);
 				foreach (var summary in overallSummariesByFunction)
 				{
@@ -42,8 +44,9 @@ namespace AppMetrics.Analytics
 
 			if (_options.SliceByLocation != LocationSliceType.None)
 			{
-				var sessionsFilteredByLocation = _sessions.Where(session => _options.LocationIsAllowed(session.Location)).ToArray();
-				var sessionsByCountry = Util.GroupBySorted(sessionsFilteredByLocation, session => session.Location.countryName);
+				sessionsFiltered = sessionsFiltered.Where(session => session.Location != null).ToArray();
+
+				var sessionsByCountry = Util.GroupBySorted(sessionsFiltered, session => session.Location.countryName);
 
 				foreach (var pair in sessionsByCountry)
 				{
