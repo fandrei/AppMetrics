@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AppMetrics.WebUtils;
 
 namespace AppMetrics
 {
@@ -20,6 +21,7 @@ namespace AppMetrics
 
 			var sessions = DataReader.GetSessions(appKey, period);
 
+			WebUtil.TryEnableCompression(context);
 			context.Response.ContentType = "text/plain";
 			foreach (var session in sessions)
 			{

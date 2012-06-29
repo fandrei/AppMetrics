@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using AppMetrics.Shared;
+using AppMetrics.WebUtils;
 
 namespace AppMetrics
 {
@@ -20,6 +21,7 @@ namespace AppMetrics
 			var sessionId = requestParams.Get("SessionId") ?? "";
 			var period = new TimePeriod(requestParams);
 
+			WebUtil.TryEnableCompression(context);
 			context.Response.ContentType = "text/plain";
 
 			List<Record> records;
