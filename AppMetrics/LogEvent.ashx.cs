@@ -66,7 +66,7 @@ namespace AppMetrics
 		private static void ProcessMessages(HttpRequest request, string applicationKey, string messagesText)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            var itemsByLines = textLines.Select(line => line.Split(new[] { '\t', '|' })).ToArray();
+			var itemsByLines = textLines.Select(line => line.Split(new[] { '\t', '|' })).ToArray();
 			var tmp = itemsByLines.GroupBy(line => line[0], line => line.Skip(1).ToArray()).
 				ToDictionary(group => group.Key, group => group.ToArray());
 			var messagesBySessions = new Dictionary<string, string[][]>(tmp);
@@ -87,7 +87,7 @@ namespace AppMetrics
 		private static void ProcessMessages(HttpRequest request, string applicationKey, string sessionId, string messagesText)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-			var lines = textLines.Select(line => line.Split(new[]{'\t','|'})).ToArray();
+			var lines = textLines.Select(line => line.Split(new[] { '\t', '|' })).ToArray();
 			if (lines.Any(line => line.Length != 3))
 				throw new ApplicationException("Invalid count of items in the line");
 
