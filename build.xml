@@ -2,10 +2,13 @@
 <Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
   <PropertyGroup>
+    <NUnit-ToolPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnit-ToolPath>
+    <OpenCover-ToolPath>$(MSBuildProjectDirectory)\packages\OpenCover.4.0.519\</OpenCover-ToolPath>
+    <ReportGenerator-ToolPath>$(MSBuildProjectDirectory)\packages\ReportGenerator.1.4.1.0\</ReportGenerator-ToolPath>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
-
+  
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
@@ -79,6 +82,14 @@
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
       Properties="Configuration=$(Configuration)" />
 
+  </Target>
+  
+  <Target Name="RunTests">
+    <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
+    <MakeDir Directories="_reports" />
+    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll" "-targetdir:$(MSBuildProjectDirectory)\_bin\$(Configuration)" -filter:+[*]* -output:_reports\CodeCoverageResults.xml' />
+    <Exec Command="$(ReportGenerator-ToolPath)ReportGenerator.exe _reports\CodeCoverageResults.xml coveragereport html" />
+    <Exec Command="$(ReportGenerator-ToolPath)ReportGenerator.exe _reports\CodeCoverageResults.xml coveragereport xmlsummary" />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Package" >
