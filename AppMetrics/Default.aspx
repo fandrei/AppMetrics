@@ -19,7 +19,10 @@
                     <textarea name="MessagesList" cols="60">2012-04-02 08:56:16.0527220|Latency TestMethod|0.0992977</textarea>
                     <br /><em>( | separated)</em>
                 </td></tr>
-                <tr><td colspan="2"><input type="submit" value="Post"/></td></tr>
+                <tr><td colspan="2">
+                    <input type="submit" value="Post"/>
+                    <input type="hidden" name="LineSeparator" value="|"/>
+                </td></tr>
             </table>
         </form>
         </li>

@@ -40,14 +40,22 @@ namespace AppMetrics
 				if (string.IsNullOrEmpty(applicationKey))
 					throw new ApplicationException("No application key");
 
+				// NOTE that client side has to escape data if it contains the same char that is used as line separator char
+				var tmp = context.Request.Params["LineSeparator"];
+				if (string.IsNullOrEmpty(tmp))
+					tmp = "\t";
+				if (tmp.Length > 1)
+					throw new ApplicationException("Invalid line separator");
+				var separator = tmp[0];
+
 				var messages = context.Request.Params["MessagesList"];
 				if (!string.IsNullOrEmpty(messages))
 				{
 					var sessionId = context.Request.Params["MessageSession"];
 					if (string.IsNullOrEmpty(sessionId))
-						ProcessMessages(context.Request, applicationKey, messages);
+						ProcessMessages(context.Request, applicationKey, messages, separator);
 					else
-						ProcessMessages(context.Request, applicationKey, sessionId, messages);
+						ProcessMessages(context.Request, applicationKey, sessionId, messages, separator);
 				}
 				else
 					ProcessMessage(context, applicationKey);
@@ -63,10 +71,10 @@ namespace AppMetrics
 
 		#region Multi-message mode
 
-		private static void ProcessMessages(HttpRequest request, string applicationKey, string messagesText)
+		private static void ProcessMessages(HttpRequest request, string applicationKey, string messagesText, char separator)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-			var itemsByLines = textLines.Select(line => line.Split(new[] { '\t', '|' })).ToArray();
+			var itemsByLines = textLines.Select(line => line.Split(new[] { separator })).ToArray();
 			var tmp = itemsByLines.GroupBy(line => line[0], line => line.Skip(1).ToArray()).
 				ToDictionary(group => group.Key, group => group.ToArray());
 			var messagesBySessions = new Dictionary<string, string[][]>(tmp);
@@ -84,10 +92,11 @@ namespace AppMetrics
 			}
 		}
 
-		private static void ProcessMessages(HttpRequest request, string applicationKey, string sessionId, string messagesText)
+		private static void ProcessMessages(HttpRequest request,
+			string applicationKey, string sessionId, string messagesText, char separator)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-			var lines = textLines.Select(line => line.Split(new[] { '\t', '|' })).ToArray();
+			var lines = textLines.Select(line => line.Split(new[] { separator })).ToArray();
 			if (lines.Any(line => line.Length != 3))
 				throw new ApplicationException("Invalid count of items in the line");
 
