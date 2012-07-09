@@ -40,3 +40,4 @@ _nuget/
 _package/
 
 ~$*
+_reports/*
