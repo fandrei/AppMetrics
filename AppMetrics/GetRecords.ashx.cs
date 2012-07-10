@@ -15,31 +15,39 @@ namespace AppMetrics
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			var requestParams = context.Request.Params;
-
-			var appKey = requestParams.Get("Application") ?? "";
-			var sessionId = requestParams.Get("SessionId") ?? "";
-			var period = new TimePeriod(requestParams);
-
-			WebUtil.TryEnableCompression(context);
-			context.Response.ContentType = "text/plain";
-
-			List<Record> records;
-			if (string.IsNullOrEmpty(sessionId))
-				records = DataReader.GetRecords(appKey, period);
-			else
+			try
 			{
-				var session = DataReader.ReadSession(appKey, sessionId, period);
-				if (session == null)
-					return;
-				records = DataReader.GetRecordsFromSession(session, period, true);
+				var requestParams = context.Request.Params;
+
+				var appKey = requestParams.Get("Application") ?? "";
+				var sessionId = requestParams.Get("SessionId") ?? "";
+				var period = new TimePeriod(requestParams);
+
+				WebUtil.TryEnableCompression(context);
+				context.Response.ContentType = "text/plain";
+
+				List<Record> records;
+				if (string.IsNullOrEmpty(sessionId))
+					records = DataReader.GetRecords(appKey, period);
+				else
+				{
+					var session = DataReader.ReadSession(appKey, sessionId, period);
+					if (session == null)
+						return;
+					records = DataReader.GetRecordsFromSession(session, period, true);
+				}
+
+				foreach (var record in records)
+				{
+					var text = record.Serialize();
+					context.Response.Write(text);
+					context.Response.Write(Environment.NewLine);
+				}
 			}
-
-			foreach (var record in records)
+			catch (Exception exc)
 			{
-				var text = record.Serialize();
-				context.Response.Write(text);
-				context.Response.Write(Environment.NewLine);
+				WebLogger.Report(exc);
+				throw;
 			}
 		}
 

@@ -162,6 +162,9 @@ namespace AppMetrics
 
 			var name = context.Request.Params["MessageName"];
 			var data = context.Request.Params["MessageData"];
+			if (string.IsNullOrEmpty(data))
+				return;
+
 			var clientTime = context.Request.Params["MessageTime"];
 
 			if (!fileExisted)

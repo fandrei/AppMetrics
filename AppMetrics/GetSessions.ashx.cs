@@ -13,20 +13,28 @@ namespace AppMetrics
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			var requestParams = context.Request.Params;
-
-			var appKey = requestParams.Get("Application") ?? "";
-
-			var period = new TimePeriod(requestParams);
-
-			var sessions = DataReader.GetSessions(appKey, period);
-
-			WebUtil.TryEnableCompression(context);
-			context.Response.ContentType = "text/plain";
-			foreach (var session in sessions)
+			try
 			{
-				context.Response.Write(session.Serialize());
-				context.Response.Write(Environment.NewLine);
+				var requestParams = context.Request.Params;
+
+				var appKey = requestParams.Get("Application") ?? "";
+
+				var period = new TimePeriod(requestParams);
+
+				var sessions = DataReader.GetSessions(appKey, period);
+
+				WebUtil.TryEnableCompression(context);
+				context.Response.ContentType = "text/plain";
+				foreach (var session in sessions)
+				{
+					context.Response.Write(session.Serialize());
+					context.Response.Write(Environment.NewLine);
+				}
+			}
+			catch (Exception exc)
+			{
+				WebLogger.Report(exc);
+				throw;
 			}
 		}
 

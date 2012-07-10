@@ -42,26 +42,34 @@ namespace AppMetrics
 
 		public static Session ReadSession(string filePath, TimePeriod period)
 		{
-			var fileName = Path.GetFileNameWithoutExtension(filePath);
-			var nameParts = fileName.Split('.');
-			var sessionId = nameParts.Last();
+			try
+			{
+				var fileName = Path.GetFileNameWithoutExtension(filePath);
+				var nameParts = fileName.Split('.');
+				var sessionId = nameParts.Last();
 
-			var timeText = nameParts.First().Replace('_', ':');
-			var sessionCreationTime = Util.ParseDateTime(timeText);
-			if (sessionCreationTime > period.EndTime)
-				return null;
+				var timeText = nameParts.First().Replace('_', ':');
+				var sessionCreationTime = Util.ParseDateTime(timeText);
+				if (sessionCreationTime > period.EndTime)
+					return null;
 
-			var lastUpdateTime = GetSessionLastWriteTime(filePath);
-			if (lastUpdateTime < period.StartTime)
-				return null;
+				var lastUpdateTime = GetSessionLastWriteTime(filePath);
+				if (lastUpdateTime < period.StartTime)
+					return null;
 
-			return new Session
-				{
-					FileName = filePath,
-					Id = sessionId,
-					CreationTime = sessionCreationTime,
-					LastUpdateTime = lastUpdateTime,
-				};
+				return new Session
+					{
+						FileName = filePath,
+						Id = sessionId,
+						CreationTime = sessionCreationTime,
+						LastUpdateTime = lastUpdateTime,
+					};
+			}
+			catch (Exception exc)
+			{
+				var message = string.Format("Error in session file {0}", filePath);
+				throw new ApplicationException(message, exc);
+			}
 		}
 
 		public static Session ReadSession(string appKey, string sessionId, TimePeriod period)
