@@ -2,10 +2,13 @@
 <Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
   <PropertyGroup>
+    <NUnit-ToolPath>$(MSBuildProjectDirectory)\packages\NUnit.2.5.10.11092\tools\</NUnit-ToolPath>
+    <OpenCover-ToolPath>$(MSBuildProjectDirectory)\packages\OpenCover.4.0.519\</OpenCover-ToolPath>
+    <ReportGenerator-ToolPath>$(MSBuildProjectDirectory)\packages\ReportGenerator.1.4.1.0\</ReportGenerator-ToolPath>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
-
+  
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
@@ -16,6 +19,11 @@
     <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
 
     <LiveDeploymentTarget>metrics.labs.cityindex.com</LiveDeploymentTarget>
+
+	<!-- list of test assemblies (space separated) -->
+	<TestAssemblies>$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll</TestAssemblies>
+	<!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
+	<OpenCoverFilter>+[*]* -[Test*]*</OpenCoverFilter>
   </PropertyGroup>
 
   <Target Name="UpdateVersion" >
@@ -32,7 +40,16 @@
       Properties="Configuration=$(Configuration)" />
   </Target>
 
-  <Target Name="Package" DependsOnTargets="Build" >
+  <Target Name="RunTests" DependsOnTargets="Build">
+		<Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
+		<RemoveDir Directories="_reports" />
+		<MakeDir Directories="_reports" />
+		<Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(MSBuildProjectDirectory)\_bin\$(Configuration)" "-filter:$(OpenCoverFilter)" -output:_reports\CodeCoverageResults.xml' />
+		<Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:_reports\CodeCoverageResults.xml" "-targetdir:_reports\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
+  </Target>
+
+	
+  <Target Name="Package" DependsOnTargets="RunTests" >
 
     <!-- package data collector website -->
     <FileUpdate
@@ -85,7 +102,8 @@
       Properties="Configuration=$(Configuration)" />
 
   </Target>
-
+  
+ 
   <Target Name="DoItAll" DependsOnTargets="Package" >
   </Target>
 
