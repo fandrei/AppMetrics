@@ -35,8 +35,11 @@ namespace Tests
 
 		private void SetDefaultsIfEmpty()
 		{
-            if (string.IsNullOrEmpty(ServiceRootFolder))
-                ServiceRootFolder = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootFolder");
+			if (string.IsNullOrEmpty(ServiceRootFolder))
+				ServiceRootFolder = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootFolder");
+
+			if (string.IsNullOrEmpty(DataFolder))
+				DataFolder = Environment.GetEnvironmentVariable("AppMetricsTest_DataFolder");
 
 			if (string.IsNullOrEmpty(ServiceRootUrl))
 				ServiceRootUrl = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootUrl");
