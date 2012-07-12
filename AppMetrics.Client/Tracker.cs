@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using Microsoft.VisualBasic.Devices;
+using ThreadState = System.Threading.ThreadState;
 
 namespace AppMetrics.Client
 {
@@ -34,6 +35,9 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
+				if (LoggingThread.ThreadState != ThreadState.Running)
+					throw new InvalidOperationException();
+
 				var found = Sessions.Where(
 					session => !session._disposed && session.Url == url && session.ApplicationKey == applicationKey);
 				if (found.FirstOrDefault() != null)
