@@ -81,6 +81,11 @@ namespace Tests
 
 			settings.SetDefaultsIfEmpty();
 
+			Trace.WriteLine("### Loaded settings ###");
+			Trace.WriteLine(settings.ServiceRootFolder);
+			Trace.WriteLine(settings.DataFolder);
+			Trace.WriteLine("######");
+
 			return settings;
 		}
 

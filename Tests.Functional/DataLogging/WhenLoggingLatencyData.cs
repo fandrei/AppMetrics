@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using AppMetrics.Client;
@@ -17,6 +18,8 @@ namespace Tests.DataLogging
 		[TestFixtureSetUp]
 		public void LogSomeLatencyData()
 		{
+			Trace.WriteLine(string.Format("Starting test {0}", GetType().FullName));
+
 			StartWebServer();
 
 			_appKey = GetType().FullName;
