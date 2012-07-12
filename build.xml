@@ -21,7 +21,7 @@
     <LiveDeploymentTarget>metrics.labs.cityindex.com</LiveDeploymentTarget>
 
 	<!-- list of test assemblies (space separated) -->
-	<TestAssemblies>$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll</TestAssemblies>
+	<TestAssemblies>$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll $(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.dll $(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Functional.dll</TestAssemblies>
 	<!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
 	<OpenCoverFilter>+[*]* -[Test*]*</OpenCoverFilter>
   </PropertyGroup>
