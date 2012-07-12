@@ -47,8 +47,6 @@
     <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
 
     <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)"/>
-    <SetEnvVariable Name="AppMetricsTest_UserName" Value="$(AppMetricsTest_UserName)"/>
-    <SetEnvVariable Name="AppMetricsTest_Password" Value="$(AppMetricsTest_Password)"/>
 
     <RemoveDir Directories="_data" />
     <MakeDir Directories="_data" />
