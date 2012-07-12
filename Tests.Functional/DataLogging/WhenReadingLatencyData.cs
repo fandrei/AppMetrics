@@ -16,13 +16,15 @@ namespace Tests.DataLogging
 		[TestFixtureSetUp]
 		public void LogThenReadSomeLatencyData()
 		{
+			StartWebServer();
+
 			_appKey = GetType().FullName;
 
 			var startTime = DateTime.UtcNow;
 
 			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey);
 			tracker.Log("TestMessage", "TestValue");
-			Tracker.Terminate(true);
+			tracker.FlushMessages();
 
 			using (var client = new WebClient())
 			{
@@ -33,6 +35,12 @@ namespace Tests.DataLogging
 				var response = client.DownloadString(NormalizeUrl("GetSessions.ashx"));
 				_sessions = response.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			}
+		}
+
+		[TestFixtureTearDown]
+		public void TestFixtureTearDown()
+		{
+			StopWebServer();
 		}
 
 		[Test]

@@ -26,8 +26,7 @@ namespace Tests
 
 			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey);
 			tracker.Log("TestMessage", "TestValue");
-
-			Tracker.Terminate(true);
+			tracker.FlushMessages();
 
 			using (var client = new WebClient())
 			{

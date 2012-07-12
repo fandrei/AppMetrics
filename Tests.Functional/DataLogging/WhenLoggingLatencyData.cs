@@ -17,11 +17,19 @@ namespace Tests.DataLogging
 		[TestFixtureSetUp]
 		public void LogSomeLatencyData()
 		{
+			StartWebServer();
+
 			_appKey = GetType().FullName;
 
 			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey);
 			tracker.Log(_logField, _logValue);
-			Tracker.Terminate(true);
+			tracker.FlushMessages();
+		}
+
+		[TestFixtureTearDown]
+		public void TestFixtureTearDown()
+		{
+			StopWebServer();
 		}
 
 		[Test]

@@ -12,18 +12,6 @@ namespace Tests
 	{
 		private readonly CassiniDevServer _server = new CassiniDevServer();
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
-		{
-			StartWebServer();
-		}
-
-		[TestFixtureTearDown]
-		public void TestFixtureTearDown()
-		{
-			StopWebServer();
-		}
-
 		protected void StartWebServer()
 		{
 			try
