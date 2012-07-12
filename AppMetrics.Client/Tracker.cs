@@ -35,7 +35,7 @@ namespace AppMetrics.Client
 		{
 			lock (Sync)
 			{
-				if (LoggingThread.ThreadState != ThreadState.Running)
+				if (_terminated)
 					throw new InvalidOperationException();
 
 				var found = Sessions.Where(
