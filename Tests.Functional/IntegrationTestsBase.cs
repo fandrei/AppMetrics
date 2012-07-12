@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using CassiniDev;
@@ -27,12 +28,10 @@ namespace Tests
 		{
 			try
 			{
-				if (IsRunByReSharperUnitTestRunner())
-				{
-					var basePath = FindAppMetricsPath();
-					_server.StartServer(basePath, "/AppMetrics");
-					return;
-				}
+				var basePath = FindAppMetricsPath();
+				Trace.WriteLine(string.Format("Starting CassiniDev server ({0})", basePath));
+				_server.StartServer(basePath, "/AppMetrics");
+				return;
 			}
 			catch (InvalidOperationException operationException)
 			{
@@ -61,12 +60,6 @@ namespace Tests
 					string.Format("Cannot find {0}.  Make sure that your unit test runner is not copying the tests to a shadow folder", p));
 			}
 			return p;
-		}
-
-		private static bool IsRunByReSharperUnitTestRunner()
-		{
-			return AppDomain.CurrentDomain.GetAssemblies()
-				.Any(a => a.FullName.StartsWith("JetBrains.ReSharper.TaskRunnerFramework"));
 		}
 
 		protected void StopWebServer()
