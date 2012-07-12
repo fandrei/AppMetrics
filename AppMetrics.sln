@@ -61,6 +61,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solarwinds", "Solarwinds", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.WebUtils", "AppMetrics.WebUtils\AppMetrics.WebUtils.csproj", "{A51DA5AD-EA3E-43A5-8108-C33035482AE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{48F79111-E078-49B6-9449-28236C54235E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
