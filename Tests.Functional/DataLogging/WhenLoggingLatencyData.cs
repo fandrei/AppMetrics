@@ -31,7 +31,7 @@ namespace Tests.DataLogging
 		}
 
 		[Test]
-		public void The_the_session_txt_file_should_contain_client_info()
+		public void Then_the_session_txt_file_should_contain_client_info()
 		{
 			var files = GetSessionFiles();
 			var sessionData = File.ReadAllLines(files.Last());
@@ -47,8 +47,8 @@ namespace Tests.DataLogging
 
 		private string[] GetSessionFiles()
 		{
-			return Directory.GetFiles(
-				Path.Combine(TestSettings.Instance.DataFolder, _appKey), "*.txt");
+			var sessionPath = Path.Combine(TestSettings.Instance.DataFolder, _appKey);
+			return Directory.GetFiles(sessionPath, "*.txt");
 		}
 	}
 }
