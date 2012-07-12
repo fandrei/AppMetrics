@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+
 using AppMetrics.Client;
 using NUnit.Framework;
 
@@ -29,7 +30,7 @@ namespace Tests.DataLogging
 				client.QueryString["AppKey"] = _appKey;
 				client.QueryString["StartTime"] = startTime.ToString("u");
 
-				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
+				var response = client.DownloadString(NormalizeUrl("GetSessions.ashx"));
 				_sessions = response.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			}
 		}
