@@ -46,7 +46,8 @@
   <Target Name="RunTests" DependsOnTargets="Build">
     <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
 
-    <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)"/>
+    <SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
+    <SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
 
     <RemoveDir Directories="_data" />
     <MakeDir Directories="_data" />
