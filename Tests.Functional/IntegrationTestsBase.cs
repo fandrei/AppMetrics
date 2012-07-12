@@ -40,8 +40,6 @@ namespace Tests
 
 				throw;
 			}
-
-			throw new Exception("Unrecognised unit test runner - currently only support running via Resharper runner");
 		}
 
 		private static string FindAppMetricsPath()
