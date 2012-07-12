@@ -64,6 +64,7 @@ namespace Tests
 
 		protected void StopWebServer()
 		{
+			Trace.WriteLine("Stopping CassiniDev server");
 			_server.StopServer();
 		}
 
