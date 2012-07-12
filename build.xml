@@ -8,7 +8,9 @@
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
-  
+  <UsingTask TaskName="SetEnvVariable"
+             AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
+
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
@@ -20,10 +22,10 @@
 
     <LiveDeploymentTarget>metrics.labs.cityindex.com</LiveDeploymentTarget>
 
-	<!-- list of test assemblies (space separated) -->
-	<TestAssemblies>$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll $(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Functional.dll</TestAssemblies>
-	<!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
-	<OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
+    <!-- list of test assemblies (space separated) -->
+    <TestAssemblies>$(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Analytics.dll $(MSBuildProjectDirectory)\_bin\$(Configuration)\Tests.Functional.dll</TestAssemblies>
+    <!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
+    <OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
   </PropertyGroup>
 
   <Target Name="UpdateVersion" >
@@ -41,14 +43,19 @@
   </Target>
 
   <Target Name="RunTests" DependsOnTargets="Build">
-		<Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
-		<RemoveDir Directories="_reports" />
-		<MakeDir Directories="_reports" />
-		<Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(MSBuildProjectDirectory)\_bin\$(Configuration)" "-filter:$(OpenCoverFilter)" -output:_reports\CodeCoverageResults.xml' />
-		<Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:_reports\CodeCoverageResults.xml" "-targetdir:_reports\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
+    <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
+
+    <SetEnvVariable Name="AppMetricsTest_ServiceRootUrl" Value="$(AppMetricsTest_ServiceRootUrl)"/>
+    <SetEnvVariable Name="AppMetricsTest_UserName" Value="$(AppMetricsTest_UserName)"/>
+    <SetEnvVariable Name="AppMetricsTest_Password" Value="$(AppMetricsTest_Password)"/>
+
+    <RemoveDir Directories="_reports" />
+    <MakeDir Directories="_reports" />
+    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(MSBuildProjectDirectory)\_bin\$(Configuration)" "-filter:$(OpenCoverFilter)" -output:_reports\CodeCoverageResults.xml' />
+    <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:_reports\CodeCoverageResults.xml" "-targetdir:_reports\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
   </Target>
 
-	
+
   <Target Name="Package" DependsOnTargets="RunTests" >
 
     <!-- package data collector website -->
@@ -102,8 +109,8 @@
       Properties="Configuration=$(Configuration)" />
 
   </Target>
-  
- 
+
+
   <Target Name="DoItAll" DependsOnTargets="Package" >
   </Target>
 
