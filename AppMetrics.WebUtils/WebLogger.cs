@@ -16,7 +16,7 @@ namespace AppMetrics.WebUtils
 				var text = val.ToString();
 				Trace.WriteLine(text);
 
-				var filePath = Path.Combine(WebUtil.AppDataPath, "log.txt");
+				var filePath = Path.Combine(WebUtil.AppDataPath, FileName);
 
 				var time = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 				bool multiLineData = text.Contains('\n');
@@ -32,5 +32,6 @@ namespace AppMetrics.WebUtils
 		}
 
 		static readonly string Delimiter = new string('-', 80);
+		public const string FileName = "log.txt";
 	}
 }

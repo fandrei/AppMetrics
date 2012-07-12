@@ -21,12 +21,6 @@ namespace AppMetrics
 			{
 				if (AppSettings.Instance == null)
 					AppSettings.Load(SiteConfig.DataStoragePath);
-
-				if (_logFile == null)
-				{
-					var logPath = Path.Combine(SiteConfig.AppDataPath, Const.LogFileName);
-					_logFile = new StreamWriter(logPath, true, Encoding.UTF8) { AutoFlush = true };
-				}
 			}
 		}
 
@@ -219,22 +213,7 @@ namespace AppMetrics
 				if (priority != LogPriority.Low)
 					EventLog.WriteEntry(Const.EventLogSourceName, text);
 
-				if (_logFile != null)
-				{
-					var time = DateTime.UtcNow;
-					bool multiLineData = text.Contains('\n');
-					if (multiLineData)
-					{
-						_logFile.WriteLine(time);
-						_logFile.WriteLine(Const.Delimiter);
-						_logFile.WriteLine(text);
-						_logFile.WriteLine(Const.Delimiter);
-					}
-					else
-					{
-						_logFile.WriteLine("{0}\t{1}", time, text);
-					}
-				}
+				WebLogger.Report(val);
 			}
 			catch (Exception exc)
 			{
@@ -243,7 +222,6 @@ namespace AppMetrics
 			}
 		}
 
-		private static StreamWriter _logFile;
 		static readonly object Sync = new object();
 
 		public bool IsReusable

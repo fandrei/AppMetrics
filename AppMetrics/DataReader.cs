@@ -26,7 +26,7 @@ namespace AppMetrics
 			{
 				foreach (var filePath in Directory.GetFiles(dataPath, "*.*.txt", SearchOption.AllDirectories))
 				{
-					if (filePath.EndsWith(Const.LogFileName, StringComparison.OrdinalIgnoreCase))
+					if (filePath.EndsWith(WebLogger.FileName, StringComparison.OrdinalIgnoreCase))
 						continue;
 
 					var session = ReadSession(filePath, period);
