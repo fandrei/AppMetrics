@@ -139,21 +139,11 @@ namespace AppMetrics
 				throw new ApplicationException("No session ID");
 
 			var filePath = GetDataFilePath(applicationKey, sessionId);
-
-			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
-			{
-				using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
-				{
-					WriteData(writer, context);
-				}
-			}
+			WriteData(filePath, context);
 		}
 
-		private static void WriteData(StreamWriter writer, HttpContext context)
+		private static void WriteData(string filePath, HttpContext context)
 		{
-			var fileExisted = writer.BaseStream.Length > 0;
-			writer.BaseStream.Seek(0, SeekOrigin.End);
-
 			var name = context.Request.Params["MessageName"];
 			var data = context.Request.Params["MessageData"];
 			if (string.IsNullOrEmpty(data))
@@ -161,17 +151,26 @@ namespace AppMetrics
 
 			var clientTime = context.Request.Params["MessageTime"];
 
-			if (!fileExisted)
+			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
-				writer.BaseStream.Write(Const.Utf8Bom, 0, Const.Utf8Bom.Length);
+				using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
+				{
+					var fileExisted = writer.BaseStream.Length > 0;
+					writer.BaseStream.Seek(0, SeekOrigin.End);
 
-				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
-				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
-				writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
+					if (!fileExisted)
+					{
+						writer.BaseStream.Write(Const.Utf8Bom, 0, Const.Utf8Bom.Length);
+
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
+						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
+					}
+
+					data = Shared.Util.Escape(data);
+					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
+				}
 			}
-
-			data = Shared.Util.Escape(data);
-			writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 		}
 
 		#endregion
