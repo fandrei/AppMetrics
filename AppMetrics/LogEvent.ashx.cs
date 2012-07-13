@@ -99,6 +99,9 @@ namespace AppMetrics
 
 		private static void WriteData(HttpRequest request, string appKey, string sessionId, string[][] lines)
 		{
+			if (lines.Length == 0)
+				return;
+
 			var filePath = GetDataFilePath(appKey, sessionId);
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
