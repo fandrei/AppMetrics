@@ -4,7 +4,10 @@ try
 {
 $url = $url.Replace("`"", "")
 write-host $url "`r`n"
-$page = (New-Object System.Net.WebClient).DownloadString($url)
+
+$client = New-Object System.Net.WebClient
+$client.Credentials = New-Object System.Net.NetworkCredential($UserName, $Password)
+$page = $client.DownloadString($url)
 
 $lines = $page.Split("`r`n", [StringSplitOptions]::RemoveEmptyEntries)
 
