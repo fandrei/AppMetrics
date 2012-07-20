@@ -34,6 +34,18 @@ namespace AppMetrics
 				if (string.IsNullOrEmpty(applicationKey))
 					throw new ApplicationException("No application key");
 
+				var accessKey = context.Request.Params["AccessKey"];
+				if (string.IsNullOrEmpty(accessKey))
+				{
+					var appKeyParts = applicationKey.Split('|');
+					if (appKeyParts.Length == 2)
+					{
+						applicationKey = appKeyParts[0];
+						accessKey = appKeyParts[1];
+					}
+				}
+				AccessKeys.VerifyAccess(accessKey);
+
 				// NOTE that client side has to escape data if it contains the same char that is used as line separator char
 				var tmp = context.Request.Params["LineSeparator"];
 				if (string.IsNullOrEmpty(tmp))

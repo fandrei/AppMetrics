@@ -14,14 +14,15 @@ namespace DebugProject
 		{
 			try
 			{
-				if (args.Length != 1)
+				if (args.Length != 2)
 					throw new ApplicationException("Invalid args");
 				var url = args[0];
+				var accessKey = args[1];
 
 				var listeners = new[] { new TextWriterTraceListener(Console.Out) };
 				Debug.Listeners.AddRange(listeners);
 
-				var tracker = Tracker.Create(url, "DebugProject");
+				var tracker = Tracker.Create(url, "DebugProject", accessKey);
 
 				tracker.Log("SomeValue", DateTime.Now.Millisecond);
 				tracker.Log("SomeValue2", DateTime.Now.Millisecond);

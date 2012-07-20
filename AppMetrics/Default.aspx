@@ -13,6 +13,7 @@
         <li>Log some test data 
         <form action="LogEvent.ashx" method="POST" target="_blank">
             <table>
+                <tr><th>AccessKey</th><td><input name="AccessKey" value=""/></td></tr>
                 <tr><th>MessageAppKey</th><td><input name="MessageAppKey" value="test"/></td></tr>
                 <tr><th>MessageSession</th><td><input name="MessageSession" value="test-session"/></td></tr>
                 <tr><th>MessagesList</th><td>

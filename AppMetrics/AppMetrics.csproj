@@ -111,6 +111,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessKeys.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="CreateUser.aspx.cs">
