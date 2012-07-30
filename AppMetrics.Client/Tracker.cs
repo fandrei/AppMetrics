@@ -31,7 +31,7 @@ namespace AppMetrics.Client
 
 	public class Tracker : ITracker
 	{
-		public static Tracker Create(string url, string applicationKey)
+		public static Tracker Create(string url, string applicationKey, string accessKey = null)
 		{
 			lock (Sync)
 			{
@@ -42,12 +42,12 @@ namespace AppMetrics.Client
 					session => !session._disposed && session.Url == url && session.ApplicationKey == applicationKey);
 				if (found.FirstOrDefault() != null)
 					return found.First();
-				var res = new Tracker(url, applicationKey);
+				var res = new Tracker(url, applicationKey, accessKey);
 				return res;
 			}
 		}
 
-		private Tracker(string url, string applicationKey)
+		private Tracker(string url, string applicationKey, string accessKey)
 		{
 			if (string.IsNullOrEmpty(url))
 				throw new ArgumentNullException();
@@ -56,6 +56,8 @@ namespace AppMetrics.Client
 			if (string.IsNullOrEmpty(applicationKey))
 				throw new ArgumentNullException();
 			ApplicationKey = applicationKey;
+
+			AccessKey = accessKey;
 
 			SessionId = Guid.NewGuid().ToString();
 
@@ -304,7 +306,7 @@ namespace AppMetrics.Client
 							}
 						}
 
-						SendPacket(client, Url, ApplicationKey, _packet.ToString());
+						SendPacket(client, Url, AccessKey, ApplicationKey, _packet.ToString());
 						_packet.Clear(); // clear packet if succeeded
 					}
 				}
@@ -317,10 +319,11 @@ namespace AppMetrics.Client
 			}
 		}
 
-		static void SendPacket(WebClient client, string url, string appKey, string packet)
+		static void SendPacket(WebClient client, string url, string accessKey, string appKey, string packet)
 		{
 			var vals = new NameValueCollection
 				{
+					{ "AccessKey", accessKey },
 					{ "MessageAppKey", appKey },
 					{ "MessagesList", packet }, 
 				};
@@ -453,6 +456,7 @@ namespace AppMetrics.Client
 		public string Url { get; private set; }
 		public string ApplicationKey { get; private set; }
 		public string SessionId { get; private set; }
+		public string AccessKey { get; private set; }
 
 		private static readonly object Sync = new object();
 
