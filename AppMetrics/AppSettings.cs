@@ -36,6 +36,7 @@ namespace AppMetrics
 
 		static readonly byte[] AdditionalEntropy = { 0xF0, 0x3A, 0xDD, 0x14, 0xCB, 0x7C, 0x4A, 0xCC, 0x9E, 0x8A };
 
+		public bool RequireAccessKey { get; set; }
 		public string[] AccessKeys { get; set; }
 
 		private static AppSettings _instance;

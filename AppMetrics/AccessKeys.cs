@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using AppMetrics.WebUtils;
-
 namespace AppMetrics
 {
 	public static class AccessKeys
@@ -18,6 +16,9 @@ namespace AppMetrics
 		{
 			lock (Sync)
 			{
+				if (!AppSettings.Instance.RequireAccessKey)
+					return true;
+
 				if (_keys == null)
 				{
 					_keys = AppSettings.Instance.AccessKeys;
