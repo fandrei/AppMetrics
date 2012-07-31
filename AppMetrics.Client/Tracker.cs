@@ -8,7 +8,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using Microsoft.VisualBasic.Devices;
-using ThreadState = System.Threading.ThreadState;
 
 namespace AppMetrics.Client
 {
