@@ -8,17 +8,16 @@ namespace AppMetrics
 	{
 		public static void VerifyAccess(string key)
 		{
+			if (!AppSettings.Instance.RequireAccessKey)
+				return;
 			if (string.IsNullOrWhiteSpace(key) || !IsAllowed(key))
 				throw new ApplicationException("Wrong access key");
 		}
 
-		public static bool IsAllowed(string key)
+		static bool IsAllowed(string key)
 		{
 			lock (Sync)
 			{
-				if (!AppSettings.Instance.RequireAccessKey)
-					return true;
-
 				if (_keys == null)
 				{
 					_keys = AppSettings.Instance.AccessKeys;
