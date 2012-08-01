@@ -15,7 +15,6 @@ namespace Tests
 	public class SmokeTesting
 	{
 		private const string AppKey = "Tracking.SmokeTest";
-		private const string RequestPeriod = "0:5:0";
 
 		[Test]
 		public void SmokeTest()
