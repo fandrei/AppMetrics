@@ -53,7 +53,7 @@ namespace Tests
 				Password = Environment.GetEnvironmentVariable("AppMetricsTest_Password");
 
 			if (string.IsNullOrEmpty(AccessKey))
-				Password = Environment.GetEnvironmentVariable("AppMetricsTest_AccessKey");
+				AccessKey = Environment.GetEnvironmentVariable("AppMetricsTest_AccessKey");
 		}
 
 		#region Config storing implementation
