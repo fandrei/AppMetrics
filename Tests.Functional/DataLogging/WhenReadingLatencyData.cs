@@ -22,7 +22,7 @@ namespace Tests.DataLogging
 
 			var startTime = DateTime.UtcNow;
 
-			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey);
+			var tracker = Tracker.Create(NormalizeUrl("LogEvent.ashx"), _appKey, TestSettings.Instance.AccessKey);
 			tracker.Log("TestMessage", "TestValue");
 			tracker.FlushMessages();
 

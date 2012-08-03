@@ -13,9 +13,10 @@ namespace HeavyLoadTest
 		{
 			try
 			{
-				if (args.Length != 1)
+				if (args.Length != 2)
 					throw new ApplicationException("Invalid args");
 				_url = args[0];
+				_accessKey = args[1];
 
 				var listeners = new[] { new TextWriterTraceListener(Console.Out) };
 				Debug.Listeners.AddRange(listeners);
@@ -47,7 +48,7 @@ namespace HeavyLoadTest
 					{
 						var domain = AppDomain.CreateDomain("TestRunner" + i);
 						var proxy = (TestRunner) domain.CreateInstanceAndUnwrap(proxyType.Assembly.FullName, proxyType.FullName);
-						var subRes = proxy.Execute(_url);
+						var subRes = proxy.Execute(_url, _accessKey);
 						Console.WriteLine("Thread result: {0}", subRes);
 						lock (sync)
 						{
@@ -65,5 +66,6 @@ namespace HeavyLoadTest
 
 		private const int ThreadsCount = 32;
 		private static string _url;
+		private static string _accessKey;
 	}
 }

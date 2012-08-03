@@ -17,6 +17,8 @@ namespace Tests
 		public string UserName { get; set; }
 		public string Password { get; set; }
 
+		public string AccessKey { get; set; }
+
 		[XmlIgnore]
 		public string MetricsLoggingUrl { get { return CombineUri(ServiceRootUrl, "LogEvent.ashx"); } }
 		[XmlIgnore]
@@ -49,6 +51,9 @@ namespace Tests
 
 			if (string.IsNullOrEmpty(Password))
 				Password = Environment.GetEnvironmentVariable("AppMetricsTest_Password");
+
+			if (string.IsNullOrEmpty(AccessKey))
+				Password = Environment.GetEnvironmentVariable("AppMetricsTest_AccessKey");
 		}
 
 		#region Config storing implementation

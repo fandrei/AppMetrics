@@ -30,7 +30,7 @@ namespace AppMetrics.Client
 
 	public class Tracker : ITracker
 	{
-		public static Tracker Create(string url, string applicationKey, string accessKey = null)
+		public static Tracker Create(string url, string applicationKey, string accessKey)
 		{
 			lock (Sync)
 			{

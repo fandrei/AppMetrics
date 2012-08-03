@@ -23,7 +23,7 @@ namespace Tests
 
 			var startTime = DateTime.UtcNow;
 
-			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey);
+			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey, TestSettings.Instance.AccessKey);
 			tracker.Log("TestMessage", "TestValue");
 			tracker.FlushMessages();
 

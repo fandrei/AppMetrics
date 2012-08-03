@@ -10,11 +10,11 @@ namespace HeavyLoadTest
 {
 	class TestRunner : MarshalByRefObject
 	{
-		public long Execute(string url)
+		public long Execute(string url, string accessKey)
 		{
 			try
 			{
-				var tracker = Tracker.Create(url, "HeavyLoadTest");
+				var tracker = Tracker.Create(url, "HeavyLoadTest", accessKey);
 				for (int i = 0; i < LoopsCount; i++)
 				{
 					tracker.Log("Counter", i);
