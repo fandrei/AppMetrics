@@ -97,6 +97,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -113,6 +114,13 @@
   <ItemGroup>
     <Compile Include="AccessKeys.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Config.aspx.cs">
+      <DependentUpon>Config.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Config.aspx.designer.cs">
+      <DependentUpon>Config.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Const.cs" />
     <Compile Include="CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
