@@ -20,12 +20,15 @@ namespace AppMetrics
 				{
 					RequireAccessKey.Checked = AppSettings.Instance.RequireAccessKey;
 
-					var text = new StringBuilder();
-					foreach (var accessKey in AppSettings.Instance.AccessKeys)
+					if (AppSettings.Instance.AccessKeys != null)
 					{
-						text.AppendLine(accessKey);
+						var text = new StringBuilder();
+						foreach (var accessKey in AppSettings.Instance.AccessKeys)
+						{
+							text.AppendLine(accessKey);
+						}
+						AccessKeysList.Text = text.ToString();
 					}
-					AccessKeysList.Text = text.ToString();
 				}
 			}
 			catch (UnauthorizedAccessException)
