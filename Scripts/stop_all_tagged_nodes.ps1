@@ -42,9 +42,8 @@ foreach($endpoint in $endpoints) {
 	  }
 	}
 
-	#$stopInstanceResponse = $client.StopInstances($stopInstanceRequest)
+	Write-Host "Stopping" stopInstanceRequest.InstanceId.Count "instances in:" $endpoint
 
-	Write-Host "Stopping instances in:" $endpoint
-
-	#$stopInstanceResponse.ToString()
+	$stopInstanceResponse = $client.StopInstances($stopInstanceRequest)
+	$stopInstanceResponse.ToString()
 }
