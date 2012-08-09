@@ -1,7 +1,7 @@
 # stop_all_tagged_nodes.ps1 - Starts all the instances that match a specific tag, in all AWS regions
 # Eg: start_all_tagged_nodes.ps1 -tag isLatencyCollector -accessKeyID AKI******** -secretAccessKeyID 1VVllumsz*** 
 Param(
-    [parameter(mandatory=$true, HelpMessage="Enter your AWS access key.")]
+	[parameter(mandatory=$true, HelpMessage="Enter your AWS access key.")]
 	[String]
 	$accessKeyID,
 	[parameter(mandatory=$true, HelpMessage="Enter your AWS SECRET access key.")]
@@ -13,36 +13,39 @@ Param(
 )
 
 Add-Type -Path AWSSDK.dll
-$endpoints = "https://ec2.us-east-1.amazonaws.com","https://ec2.us-west-2.amazonaws.com","https://ec2.us-west-1.amazonaws.com","https://ec2.eu-west-1.amazonaws.com","https://ec2.ap-southeast-1.amazonaws.com","https://ec2.ap-northeast-1.amazonaws.com","https://ec2.sa-east-1.amazonaws.com"
 
-foreach($endpoint in $endpoints) {
+$drRequest = New-Object -TypeName Amazon.EC2.Model.DescribeRegionsRequest
+$regions = $client.DescribeRegions($drRequest).DescribeRegionsResult.Region
 
-    Write-Host "================================== "
-	Write-Host "Working in region:" $endpoint
+foreach($region in $regions) {
+
+	Write-Host "================================== "
+	Write-Host "Working in region:" $region.RegionName
 	$ec2Config = New-Object —TypeName Amazon.EC2.AmazonEC2Config
-	$ec2Config.ServiceURL = $endpoint
+	$ec2Config.ServiceURL = "https://" + $region.Endpoint
 
 	$client = [Amazon.AWSClientFactory]::CreateAmazonEC2Client($accessKeyID, $secretAccessKeyID, $ec2Config)
 	
-	$req = New-Object —TypeName Amazon.EC2.Model.DescribeInstancesRequest
-	$response = $client.DescribeInstances($req)
+	$filter = New-Object -TypeName Amazon.EC2.Model.Filter -Property @{
+		WithName = 'tag:' + $tag
+		WithValue = '*'
+	} 
+	$request = New-Object -TypeName Amazon.EC2.Model.DescribeInstancesRequest -Property @{
+		WithFilter = $filter
+	}
+	$response = $client.DescribeInstances($request)
 
 	$startInstanceRequest = New-Object —TypeName Amazon.EC2.Model.StartInstancesRequest
 	$startInstanceRequest.InstanceId = New-Object System.Collections.Generic.List``1[System.String]
 
 	foreach($reservation in $response.DescribeInstancesResult.Reservation) {
-	  foreach($instance in $reservation.RunningInstance) { 
-		 foreach($current_tag in $instance.Tag)	{
-			if ($current_tag.Key -eq $tag) 
-			{
-				Write-Host "Queueing instance" $instance.InstanceId "for starting..."
-				$startInstanceRequest.InstanceId.Add($instance.InstanceId)
-			}
+		foreach($instance in $reservation.RunningInstance) { 
+			Write-Host "Queueing instance" $instance.InstanceId "for starting..."
+			$startInstanceRequest.InstanceId.Add($instance.InstanceId)
 		}
-	  }
 	}
 
-	Write-Host "Starting" startInstanceRequest.InstanceId.Count "instances in:" $endpoint
+	Write-Host "Starting" $startInstanceRequest.InstanceId.Count "instances in:" $region.RegionName
 	$startInstanceResponse = $client.StartInstances($startInstanceRequest)
 	$startInstanceResponse.ToString()
 }
