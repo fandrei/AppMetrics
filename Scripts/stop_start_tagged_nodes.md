@@ -20,8 +20,8 @@ Installation
          {
            "Statement": [
              {
-               "Sid": "Stmt1344443650816",
                "Action": [
+			     "ec2:DescribeRegions",
                  "ec2:DescribeInstanceStatus",
                  "ec2:DescribeInstances",
                  "ec2:DescribeTags",

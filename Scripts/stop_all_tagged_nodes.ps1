@@ -14,8 +14,9 @@ Param(
 
 Add-Type -Path AWSSDK.dll
 
+$regionsClient = [Amazon.AWSClientFactory]::CreateAmazonEC2Client($accessKeyID, $secretAccessKeyID)
 $drRequest = New-Object -TypeName Amazon.EC2.Model.DescribeRegionsRequest
-$regions = $client.DescribeRegions($drRequest).DescribeRegionsResult.Region
+$regions = $regionsClient.DescribeRegions($drRequest).DescribeRegionsResult.Region
 
 foreach($region in $regions) {
 
@@ -28,7 +29,7 @@ foreach($region in $regions) {
 	
 	$filter = New-Object -TypeName Amazon.EC2.Model.Filter -Property @{
 		WithName = 'tag:' + $tag
-		WithValue = '*'
+		WithValue = 'true'
 	} 
 	$request = New-Object -TypeName Amazon.EC2.Model.DescribeInstancesRequest -Property @{
 		WithFilter = $filter
@@ -45,8 +46,8 @@ foreach($region in $regions) {
 		}
 	}
 
-	Write-Host "Stopping" $stopInstanceRequest.InstanceId.Count "instances in:" $region.RegionName
-
-	$stopInstanceResponse = $client.StopInstances($stopInstanceRequest)
-	$stopInstanceResponse.ToString()
+	If ($stopInstanceRequest.InstanceId.Count -gt 0) {
+		Write-Host "Stopping" $stopInstanceRequest.InstanceId.Count "instances in:" $region.RegionName
+		$client.StopInstances($stopInstanceRequest).ToString()
+	}
 }
