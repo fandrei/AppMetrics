@@ -180,6 +180,6 @@ namespace AppMetrics.Backup
 		}
 
 		private const string AppMetricsBucketName = "cityindex.appmetrics";
-		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(7);
+		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(60);
 	}
 }
