@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+using AppMetrics.Shared;
 using AppMetrics.WebUtils;
 
 namespace AppMetrics.Analytics

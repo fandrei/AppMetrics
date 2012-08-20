@@ -150,7 +150,6 @@
       <DependentUpon>LogEvent.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimePeriod.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogEvent.ashx" />

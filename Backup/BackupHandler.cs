@@ -8,6 +8,8 @@ using Amazon.S3.Model;
 using Ionic.Zip;
 using Ionic.Zlib;
 
+using AppMetrics.Shared;
+
 namespace AppMetrics.Backup
 {
 	public static class BackupHandler

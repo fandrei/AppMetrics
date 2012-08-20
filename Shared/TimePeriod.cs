@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
-using AppMetrics.Shared;
-
-namespace AppMetrics
+namespace AppMetrics.Shared
 {
 	public class TimePeriod
 	{
