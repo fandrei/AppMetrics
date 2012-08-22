@@ -6,6 +6,7 @@ using System.Text;
 
 using NUnit.Framework;
 
+using AppMetrics.Shared;
 using AppMetrics.Analytics;
 
 namespace Tests.Analytics
@@ -17,7 +18,7 @@ namespace Tests.Analytics
 		public void TestInternalValidation()
 		{
 			var dataPath = Util.GetAppLocation() + @"\Data\";
-			var sessions = LogReader.Parse(dataPath, TimeSpan.MaxValue);
+			var sessions = LogReader.Parse(dataPath, TimePeriod.Unlimited);
 			Assert.IsTrue(sessions.Count > 0);
 
 			var options = new AnalysisOptions { ApplicationKey = "CIAPI.CS.Excel" };
@@ -33,7 +34,7 @@ namespace Tests.Analytics
 		public void TestReportsCorrectness()
 		{
 			var dataPath = Util.GetAppLocation() + @"\Data\";
-			var sessions = LogReader.Parse(dataPath, TimeSpan.MaxValue);
+			var sessions = LogReader.Parse(dataPath, TimePeriod.Unlimited);
 			Assert.IsTrue(sessions.Count > 0);
 
 			var options = new AnalysisOptions

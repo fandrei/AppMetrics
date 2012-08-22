@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using AppMetrics.Shared;
+
 namespace AppMetrics.Analytics
 {
 	public enum LocationSliceType { None, Countries, CountriesAndCities }
@@ -13,7 +15,7 @@ namespace AppMetrics.Analytics
 	{
 		public string ApplicationKey = "";
 
-		public TimeSpan Period;
+		public TimePeriod TimePeriod;
 
 		public bool SliceByFunction = true;
 
@@ -49,25 +51,6 @@ namespace AppMetrics.Analytics
 		}
 
 		public ReportType ReportType;
-
-		public override bool Equals(object obj)
-		{
-			var that = obj as AnalysisOptions;
-			if (that == null)
-				return false;
-
-			var res = (ApplicationKey == that.ApplicationKey) && Period == that.Period &&
-				SliceByLocation == that.SliceByLocation && LocationIncludeOverall == that.LocationIncludeOverall &&
-				SliceByFunction == that.SliceByFunction && LocationFilter.SequenceEqual(that.LocationFilter) &&
-				FunctionFilter.SequenceEqual(that.FunctionFilter);
-			return res;
-		}
-
-		public override int GetHashCode()
-		{
-			return ApplicationKey.GetHashCode() ^ Period.GetHashCode() ^ LocationFilter.Count ^ FunctionFilter.Count ^ 
-				SliceByLocation.GetHashCode() ^ LocationIncludeOverall.GetHashCode() ^ SliceByFunction.GetHashCode();
-		}
 
 		public void Validate()
 		{

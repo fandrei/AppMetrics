@@ -13,17 +13,15 @@ namespace AppMetrics.Analytics
 		public static List<SessionEx> Parse(AnalysisOptions options)
 		{
 			var dataPath = SiteConfig.DataStoragePath + "\\" + options.ApplicationKey;
-			return Parse(dataPath, options.Period);
+			return Parse(dataPath, options.TimePeriod);
 		}
 
-		public static List<SessionEx> Parse(string dataPath, TimeSpan timeSpan)
+		public static List<SessionEx> Parse(string dataPath, TimePeriod period)
 		{
 			var watch = Stopwatch.StartNew();
 
 			var res = new List<SessionEx>();
 
-			var startTime = (timeSpan == TimeSpan.MaxValue) ? DateTime.MinValue : DateTime.UtcNow - timeSpan;
-			var period = new TimePeriod(startTime, DateTime.MaxValue);
 			{
 				var sessions = DataReader.GetSessionsFromPath(dataPath, period);
 

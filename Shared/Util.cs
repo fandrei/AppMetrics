@@ -45,5 +45,11 @@ namespace AppMetrics.Shared
 			}
 			return res;
 		}
+
+		public static string Format(DateTime val)
+		{
+			var res = val.ToString("yyyy-MM-dd HH:mm:ss");
+			return res;
+		}
 	}
 }

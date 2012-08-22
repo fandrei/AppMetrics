@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 
 using AppMetrics.Analytics;
+using AppMetrics.Shared;
 using AppMetrics.WebUtils;
 
 namespace AppMetrics.AnalyticsSite
@@ -27,40 +28,41 @@ namespace AppMetrics.AnalyticsSite
 			{
 				Init();
 
+				var requestTime = DateTime.UtcNow;
 				var options = GetOptions(context.Request.QueryString);
-				var lookup = GetOrCreateReport(options);
-				var report = lookup.Item2;
-				var callerIp = context.Request.UserHostAddress;
-				ReportLog(lookup.Item1
-					? string.Format("request from {0}: '{1}' reusing cached", callerIp, queryString)
-					: string.Format("request from {0}: '{1}' generated in {2} secs", 
-						callerIp, queryString, report.GenerationElapsed.TotalSeconds));
 
-				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2}\r\n",
-					options.Period, report.LastUpdateTime.ToString("yyyy-MM-dd HH:mm:ss"),
-					report.GenerationElapsed);
+				var watch = Stopwatch.StartNew();
+				var results = CreateReport(options);
+				watch.Stop();
+
+				var callerIp = context.Request.UserHostAddress;
+				ReportLog(string.Format("request from {0}: '{1}' generated in {2} secs",
+						callerIp, queryString, watch.Elapsed.TotalSeconds));
+
+				var status = string.Format("Period: {0}\tGenerated at: {1}\tGeneration time: {2} seconds\r\n",
+					options.TimePeriod, requestTime.ToString("yyyy-MM-dd HH:mm:ss"), watch.Elapsed.TotalSeconds);
 				context.Response.Write(status);
 
 				string reportText;
 				switch (options.ReportType)
 				{
 					case ReportType.LatencySummaries:
-						reportText = Report.GetLatencyStatSummariesReport(report.Result);
+						reportText = Report.GetLatencyStatSummariesReport(results);
 						break;
 					case ReportType.LatencyDistribution:
-						reportText = Report.GetLatencyDistributionReport(report.Result);
+						reportText = Report.GetLatencyDistributionReport(results);
 						break;
 					case ReportType.JitterDistribution:
-						reportText = Report.GetJitterDistributionReport(report.Result);
+						reportText = Report.GetJitterDistributionReport(results);
 						break;
 					case ReportType.StreamingLatencySummaries:
-						reportText = Report.GetStreamingLatencyStatSummariesReport(report.Result);
+						reportText = Report.GetStreamingLatencyStatSummariesReport(results);
 						break;
 					case ReportType.StreamingLatencyDistribution:
-						reportText = Report.GetStreamingLatencyDistributionReport(report.Result);
+						reportText = Report.GetStreamingLatencyDistributionReport(results);
 						break;
 					case ReportType.Exceptions:
-						reportText = Report.GetExceptionsReport(report.Result);
+						reportText = Report.GetExceptionsReport(results);
 						break;
 					default:
 						throw new NotSupportedException();
@@ -109,8 +111,13 @@ namespace AppMetrics.AnalyticsSite
 			var functionFilterList = functionFilter.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
 			res.FunctionFilter = new HashSet<string>(functionFilterList);
 
-			var periodString = requestParams.Get("Period") ?? "";
-			res.Period = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
+			res.TimePeriod = TimePeriod.TryRead(requestParams);
+			if (res.TimePeriod == null)
+			{
+				var periodString = requestParams.Get("Period") ?? "";
+				var timeSpan = string.IsNullOrEmpty(periodString) ? DefaultReportPeriod : TimeSpan.Parse(periodString);
+				res.TimePeriod = TimePeriod.Create(timeSpan);
+			}
 
 			var reportTypeText = requestParams.Get("Type");
 			res.ReportType = string.IsNullOrEmpty(reportTypeText)
@@ -128,49 +135,6 @@ namespace AppMetrics.AnalyticsSite
 			}
 
 			return res;
-		}
-
-		private static Tuple<bool, ReportInfo> GetOrCreateReport(AnalysisOptions options)
-		{
-			ReportInfo report;
-			bool cached = true;
-			lock (Sync)
-			{
-				RemoveOutdatedReports();
-
-				if (!CachedReports.TryGetValue(options, out report))
-				{
-					cached = false;
-					var watch = Stopwatch.StartNew();
-					report = new ReportInfo { Result = CreateReport(options) };
-					watch.Stop();
-					report.GenerationElapsed = watch.Elapsed;
-					report.LastUpdateTime = DateTime.UtcNow;
-
-					CachedReports.Add(options, report);
-				}
-			}
-			return new Tuple<bool, ReportInfo>(cached, report);
-		}
-
-		private static void RemoveOutdatedReports()
-		{
-			lock (Sync)
-			{
-				var now = DateTime.UtcNow;
-				var forRemoval = CachedReports.Where(
-					pair =>
-					{
-						var report = pair.Value;
-						var res = now - report.LastUpdateTime >= CacheInvalidationPeriod;
-						return res;
-					}).ToArray();
-
-				foreach (var pair in forRemoval)
-				{
-					CachedReports.Remove(pair.Key);
-				}
-			}
 		}
 
 		public bool IsReusable
@@ -218,8 +182,6 @@ namespace AppMetrics.AnalyticsSite
 		}
 
 		private static readonly object Sync = new object();
-		private static readonly Dictionary<AnalysisOptions, ReportInfo> CachedReports =
-			new Dictionary<AnalysisOptions, ReportInfo>();
 		private static readonly TimeSpan DefaultReportPeriod = TimeSpan.FromMinutes(1);
 		private static readonly TimeSpan CacheInvalidationPeriod = TimeSpan.FromSeconds(10);
 	}

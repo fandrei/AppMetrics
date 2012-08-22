@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using AppMetrics.Analytics;
+using AppMetrics.Shared;
 
 namespace AppMetrics.DataConvertor
 {
@@ -36,7 +37,7 @@ namespace AppMetrics.DataConvertor
 
 		private static void ProcessData(string resPath, string dataPath, TimeSpan period)
 		{
-			var sessions = LogReader.Parse(dataPath, period);
+			var sessions = LogReader.Parse(dataPath, TimePeriod.Create(period));
 
 			var options = new AnalysisOptions { ApplicationKey = "CIAPI.CS.Excel" };
 			var convertor = new StatsBuilder();

@@ -19,6 +19,11 @@ namespace AppMetrics.Shared
 
 		public TimePeriod(NameValueCollection vals)
 		{
+			Read(vals);
+		}
+
+		private void Read(NameValueCollection vals)
+		{
 			var startTimeString = vals.Get("StartTime") ?? "";
 			if (!string.IsNullOrEmpty(startTimeString))
 				StartTime = Util.ParseDateTime(startTimeString);
@@ -26,6 +31,28 @@ namespace AppMetrics.Shared
 			var endTimeString = vals.Get("EndTime") ?? "";
 			if (!string.IsNullOrEmpty(endTimeString))
 				EndTime = Util.ParseDateTime(endTimeString);
+		}
+
+		public static TimePeriod TryRead(NameValueCollection vals)
+		{
+			var res = new TimePeriod(vals);
+			if (res.StartTime.Equals(Unlimited.StartTime))
+				return null;
+			return res;
+		}
+
+		public static TimePeriod Create(TimeSpan timeSpan)
+		{
+			var now = DateTime.UtcNow;
+			var startTime = (timeSpan == TimeSpan.MaxValue) ? DateTime.MinValue : now - timeSpan;
+			var res = new TimePeriod(startTime, now);
+			return res;
+		}
+
+		public override string ToString()
+		{
+			var res = string.Format("'{0}'-'{1}'", Util.Format(StartTime), Util.Format(EndTime));
+			return res;
 		}
 
 		public DateTime StartTime = DateTime.MinValue;
