@@ -19,6 +19,8 @@ namespace AppMetrics.AnalyticsSite
 	{
 		public void ProcessRequest(HttpContext context)
 		{
+			context.Server.ScriptTimeout = 5 * 60;
+
 			context.Response.ContentType = "text/plain";
 			var queryString = context.Request.Url.Query;
 			try

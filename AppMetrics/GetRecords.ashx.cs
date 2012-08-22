@@ -17,6 +17,8 @@ namespace AppMetrics
 		{
 			try
 			{
+				context.Server.ScriptTimeout = 5 * 60;
+
 				var requestParams = context.Request.Params;
 
 				var appKey = requestParams.Get("Application") ?? "";
