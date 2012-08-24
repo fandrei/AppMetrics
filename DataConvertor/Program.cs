@@ -37,11 +37,14 @@ namespace AppMetrics.DataConvertor
 
 		private static void ProcessData(string resPath, string dataPath, TimeSpan period)
 		{
-			//var sessions = LogReader.Parse(dataPath, TimePeriod.Create(period));
+			var sessions = LogReader.Parse(dataPath, TimePeriod.Create(period));
+			sessions.AddRange(IisLogReader.ReadIisData(dataPath));
 
-			var sessions = IisLogReader.ReadIisData(dataPath);
+			var options = new AnalysisOptions
+				{
+					LocationIncludeOverall = true
+				};
 
-			var options = new AnalysisOptions { ApplicationKey = "CIAPI.CS.Excel", LocationIncludeOverall = true };
 			var convertor = new StatsBuilder();
 			var res = convertor.Process(sessions, options);
 
