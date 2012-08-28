@@ -18,6 +18,29 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
+		//[0]	"date"
+		//[1]	"time"
+		//[2]	"s-sitename"
+		//[3]	"s-computername"
+		//[4]	"s-ip"
+		//[5]	"cs-method"
+		//[6]	"cs-uri-stem"
+		//[7]	"cs-uri-query"
+		//[8]	"s-port"
+		//[9]	"cs-username"
+		//[10]	"c-ip"
+		//[11]	"cs-version"
+		//[12]	"cs(User-Agent)"
+		//[13]	"cs(Cookie)"
+		//[14]	"cs(Referer)"
+		//[15]	"cs-host"
+		//[16]	"sc-status"
+		//[17]	"sc-substatus"
+		//[18]	"sc-win32-status"
+		//[19]	"sc-bytes"
+		//[20]	"cs-bytes"
+		//[21]	"time-taken"
+
 		private static List<SessionEx> ReadIisFile(string path)
 		{
 			var text = File.ReadAllText(path);
