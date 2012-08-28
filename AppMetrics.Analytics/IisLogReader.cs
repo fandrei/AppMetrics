@@ -60,9 +60,11 @@ namespace AppMetrics.Analytics
 				if (status != "200")
 					continue;
 
-				var url = parts[6].ToLowerInvariant();
-				if (!url.StartsWith("/tradingapi/"))
+				var contentPath = parts[6].ToLowerInvariant();
+				if (!contentPath.StartsWith("/tradingapi/"))
 					continue;
+
+				var url = parts[15] + contentPath;
 
 				var timeTaken = (double)int.Parse(parts[21]) / 1000;
 
