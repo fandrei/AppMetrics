@@ -54,8 +54,6 @@ namespace AppMetrics.Analytics
 
 		public void Validate()
 		{
-			if (string.IsNullOrEmpty(ApplicationKey))
-				throw new ArgumentException();
 			if (SliceByLocation == LocationSliceType.None && LocationFilter.Count > 0)
 				throw new ArgumentException();
 		}
