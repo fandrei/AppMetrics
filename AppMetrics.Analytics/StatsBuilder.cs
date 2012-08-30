@@ -296,6 +296,13 @@ namespace AppMetrics.Analytics
 					if (!decimal.TryParse(record.Value, out cur))
 						cur = (decimal)(double.Parse(record.Value));
 					record.ValueAsNumber = cur;
+
+					if (Util.IsLatency(record))
+					{
+						var queryStringArgsPos = record.Name.IndexOf('?');
+						if (queryStringArgsPos != -1)
+							record.Name = record.Name.Substring(0, queryStringArgsPos);
+					}
 				}
 
 				Validate(session);
