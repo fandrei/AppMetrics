@@ -1,0 +1,52 @@
+```{r init, echo=FALSE}
+library("ggplot2")
+library("RCurl")
+library("plyr")
+library("scales")
+readRenviron("~/.Renviron") # Make sure you have a APPMETRICS_CREDENTIALS=username:password entry
+metrics_credentials <- Sys.getenv(c("APPMETRICS_CREDENTIALS"))
+```
+
+```{r fetchData, echo=FALSE}
+application <- "CIAPILatencyCollector" # note that https://github.com/fandrei/AppMetrics/issues/101 causes an extra 50ms delay to be introduced by the client side library.
+startTime <- "2012-08-20 00:00:00"
+endTime <- "2012-08-25 23:59:59"
+data_url <- URLencode(paste("http://metrics.cityindex.com/GetRecords.ashx?Application=",application,"&StartTime=",startTime,'&EndTime=',endTime, sep = ''))
+
+webpage <- getURL(data_url,userpwd=metrics_credentials, httpauth = 1L)
+logdata <- read.table(tc <- textConnection(webpage), header=F, sep="\t", fill=TRUE, as.is=c(1,4)); 
+close(tc)
+colnames(logdata)=c('session','timestamp','key','value')
+```
+
+```{r groupSessionByNodes, echo=FALSE}
+# 46.137.47.103  => Production Ireland CIAPI Latency Collector node     (switched to 79.125.25.36  on 2012-09-03)
+# 175.41.155.112 => Production Singapore CIAPI Latency Collector node   (switched to 54.251.61.159 on 2012-09-03)
+
+nodes <- logdata[logdata$"key" %in% c("ClientIP"), ]
+nodes$nodeName = nodes$value
+nodes$nodeName <- sub('46.137.47.103', 'AWS_Ireland(46.137.47.103)',nodes$nodeName, fixed = TRUE)
+nodes$nodeName <- sub('175.41.155.112', 'AWS_Singapore(175.41.155.112)',nodes$nodeName, fixed = TRUE)
+nodes <- subset(nodes, select=c(-timestamp,-key,-value))
+```
+
+Resource usage on CIAPI Latency Collector nodes
+-----------------------------------
+```{r service_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
+rpc2 <- logdata[logdata$"key" %in% c("Client_PrivateMemorySize"
+                                    ,"System_AvailablePhysicalMemory"
+                                    ,"System_AvailableVirtualMemory"
+                                    ,"Client_PeriodProcessorUsage" ), ]
+
+rpc2$datetime <- strptime(rpc2$timestamp, "%Y-%m-%d %H:%M:%S")
+rpc2$key <- sub('Latency CIAPI.', '',rpc2$key)
+rpc2 <- join(rpc2, nodes, by = "session", match = "first")
+
+d <- ggplot(rpc2, aes(x=datetime, y=as.double(value)))
+d <- d + theme_bw()
+d <- d + geom_line()
+d <- d + xlab("Measurement time (UTC)")
+d <- d + facet_grid(key ~ nodeName, scales = "free_y")
+d <- d + opts(strip.text.y = theme_text( angle=0))
+print(d)
+```
