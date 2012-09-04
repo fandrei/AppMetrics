@@ -31,6 +31,13 @@
 
   <Target Name="UpdateVersion" >
     <Message Text="Updating version to $(FullVersion)" />
+
+    <!-- Remove read-only attribute -->
+    <ItemGroup>
+      <AllCodeFiles Include="$(SolutionRoot)\**\*.cs" />
+    </ItemGroup>
+    <Attrib ReadOnly="false" Files="@(AllCodeFiles)" />
+
     <!-- Update assembly version number using build number -->
     <FileUpdate
         Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
