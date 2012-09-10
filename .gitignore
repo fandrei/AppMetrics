@@ -41,3 +41,4 @@ _package/
 
 ~$*
 _reports/*
+.Rproj.user
