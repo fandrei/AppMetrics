@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "Co
 		ContinuousIntegration\publishToNuGet.xml = ContinuousIntegration\publishToNuGet.xml
 		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
 		ContinuousIntegration\testAnalytics.xml = ContinuousIntegration\testAnalytics.xml
-		testAndCover.xml = testAndCover.xml
+		ContinuousIntegration\testAndCover.xml = ContinuousIntegration\testAndCover.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solarwinds", "Solarwinds", "{BABAEEBB-F64F-494B-B99A-476192816606}"
