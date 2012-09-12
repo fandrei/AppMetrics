@@ -24,7 +24,7 @@
 
     <!-- Remove read-only attribute -->
     <ItemGroup>
-      <AllCodeFiles Include="$(SolutionRoot)\**\*.cs" />
+      <AllCodeFiles Include="$(SolutionRoot)\**\*.*" />
     </ItemGroup>
     <Attrib ReadOnly="false" Files="@(AllCodeFiles)" />
 
