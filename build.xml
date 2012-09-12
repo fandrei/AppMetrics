@@ -6,7 +6,7 @@
     <SolutionRoot>$(MSBuildProjectDirectory)\</SolutionRoot>
 
     <PackagingPath>$(SolutionRoot)\_package</PackagingPath>
-    <PackagingPath Condition=" '$(OutDir)' != '' ">$(OutDir)\_PublishedWebsites\</PackagingPath>
+    <PackagingPath Condition=" '$(OutDir)' != '' ">$(OutDir)\_package\</PackagingPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
@@ -51,7 +51,7 @@
       ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
 
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
-      Properties="Configuration=$(Configuration)" />
+      Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Tracker\AppMetrics.zip" />
 
     <ItemGroup>
       <PackageSourceFiles Include="$(PackagingPath)\Tracker\**\*.*" />
@@ -92,7 +92,7 @@
       ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
 
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
-      Properties="Configuration=$(Configuration)" />
+      Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Analytics\AppMetrics.Analytics.zip" />
 
   </Target>
 
