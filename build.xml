@@ -4,6 +4,9 @@
   <PropertyGroup>
     <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
     <SolutionRoot>$(MSBuildProjectDirectory)\</SolutionRoot>
+
+    <PackagingPath>$(SolutionRoot)\_package</PackagingPath>
+    <PackagingPath Condition=" '$(OutDir)' != '' ">$(OutDir)\_PublishedWebsites\</PackagingPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
@@ -51,13 +54,13 @@
       Properties="Configuration=$(Configuration)" />
 
     <ItemGroup>
-      <PackageSourceFiles Include="$(MSBuildProjectDirectory)\_package\Tracker\**\*.*" />
+      <PackageSourceFiles Include="$(PackagingPath)\Tracker\**\*.*" />
     </ItemGroup>
 
-    <Copy SourceFiles="@(PackageSourceFiles)" DestinationFolder="$(MSBuildProjectDirectory)\_package\TrackerLive\" />
+    <Copy SourceFiles="@(PackageSourceFiles)" DestinationFolder="$(PackagingPath)\TrackerLive\" />
 
     <FileUpdate
-      Files="$(MSBuildProjectDirectory)\_package\TrackerLive\AppMetrics.SetParameters.xml"
+      Files="$(PackagingPath)\TrackerLive\AppMetrics.SetParameters.xml"
       Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
       ReplacementText="$1&quot;$(LiveDeploymentTarget)&quot;" />
 
