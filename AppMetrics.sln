@@ -35,9 +35,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solarwinds", "Solarwinds", 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{48F79111-E078-49B6-9449-28236C54235E}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugProject", "DebugProject\DebugProject.csproj", "{228924C1-162A-48BD-BEA9-770524A7C7CE}"
 EndProject

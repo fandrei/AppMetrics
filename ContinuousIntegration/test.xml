@@ -13,7 +13,7 @@
 
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <NUnitPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.0.12051\tools\</NUnitPath>
+    <NUnitPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnitPath>
   </PropertyGroup>
 
   <Target Name="Test" >
