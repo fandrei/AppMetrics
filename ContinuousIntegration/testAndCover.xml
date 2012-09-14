@@ -30,11 +30,12 @@
     <SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
     <SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
 
-    <RemoveDir Directories="_AppMetricsData" />
-    <MakeDir Directories="_AppMetricsData" />
+    <RemoveDir Directories="$(SolutionRoot)\_AppMetricsData" />
+    <MakeDir Directories="$(SolutionRoot)\_AppMetricsData" />
 
     <RemoveDir Directories="$(ReportsPath)" />
     <MakeDir Directories="$(ReportsPath)" />
+
     <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(SolutionRoot)\_bin\$(Configuration)" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
     <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
   </Target>
