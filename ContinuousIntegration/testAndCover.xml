@@ -29,6 +29,7 @@
 
     <SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
     <SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
+    <SetEnvVariable Name="AppMetricsTest_AccessKey" Value="$(AppMetricsTest_AccessKey)"/>
 
     <MakeDir Directories="$(AppMetricsTest_DataFolder)" />
 
