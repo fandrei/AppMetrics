@@ -30,8 +30,8 @@
     <SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
     <SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
 
-    <RemoveDir Directories="_data" />
-    <MakeDir Directories="_data" />
+    <RemoveDir Directories="_AppMetricsData" />
+    <MakeDir Directories="_AppMetricsData" />
 
     <RemoveDir Directories="$(ReportsPath)" />
     <MakeDir Directories="$(ReportsPath)" />
