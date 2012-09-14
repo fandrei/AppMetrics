@@ -18,7 +18,7 @@ namespace Tests
 			{
 				var basePath = FindAppMetricsPath();
 				Trace.WriteLine(string.Format("Starting CassiniDev server ({0})", basePath));
-				_server.StartServer(basePath, "/AppMetrics");
+				_server.StartServer(basePath, Port, "/AppMetrics", "");
 				return;
 			}
 			catch (InvalidOperationException operationException)
@@ -37,7 +37,7 @@ namespace Tests
 			{
 				throw new ApplicationException(
 					"Unable to find the TestSettings.Instance.ServiceRootFolder. "
-				   + @"Make sure that you have configured the AppMetricsTest_ServiceRootFolder environment variable to point to the folder location of the AppMetrics website - eg C:\Dev\fandrei\AppMetrics\AppMetrics");
+					+ @"Make sure that you have configured the AppMetricsTest_ServiceRootFolder environment variable to point to the folder location of the AppMetrics website - eg C:\Dev\fandrei\AppMetrics\AppMetrics");
 			}
 			var p = Path.GetFullPath(serviceRootFolder);
 			if (!Directory.Exists(p))
@@ -56,8 +56,10 @@ namespace Tests
 
 		protected string NormalizeUrl(string relativeUrl)
 		{
-			return _server.NormalizeUrl(relativeUrl);
+			var res = _server.NormalizeUrl(relativeUrl);
+			return res;
 		}
 
+		const int Port = 15668;
 	}
 }
