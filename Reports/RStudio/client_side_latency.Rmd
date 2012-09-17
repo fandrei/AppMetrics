@@ -9,8 +9,8 @@ metrics_credentials <- Sys.getenv(c("APPMETRICS_CREDENTIALS"))
 
 ```{r fetchData0, echo=FALSE}
 application <- "CIAPILatencyCollector" 
-startTime <- "2012-09-04 13:00:00"
-endTime <- "2012-09-10 23:59:59"
+startTime <- "2012-09-11 13:00:00"
+endTime <- "2012-09-17 23:59:59"
 data_url <- URLencode(paste("http://metrics.cityindex.com/GetRecords.ashx?Application=",application,"&StartTime=",startTime,'&EndTime=',endTime, sep = ''))
 
 webpage <- getURL(data_url,userpwd=metrics_credentials, httpauth = 1L)
@@ -20,14 +20,11 @@ colnames(logdata)=c('session','timestamp','key','value')
 ```
 
 ```{r groupSessionByNodes0, echo=FALSE}
-nodes <- logdata[logdata$"key" %in% c("Info_NodeName"), ]
+nodes1 <- logdata[logdata$"key" %in% c("Info_NodeName"), ]
 
-#temp bugfix - this session doesn't seem to report a ClientIP
-nodes[3,] <- c("39d948e7-5f2c-4b24-995e-94f1f6c3eab6", "2012-09-03 13:45:42.5018590", "NodeName", "AWS-EU-WEST-1B-79.125.25.36")
+nodes1$nodeName = nodes1$value
 
-nodes$nodeName = nodes$value
-
-nodes <- subset(nodes, select=c(-timestamp,-key,-value))
+nodes1 <- subset(nodes1, select=c(-timestamp,-key,-value))
 ```
 
 Latency between different endpoints
@@ -38,7 +35,7 @@ measures the latency due to the network:
 ```{r network_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
 rpc <- logdata[logdata$"key" %in% c("Latency General.DefaultPage"), ]
 rpc$datetime <- strptime(rpc$timestamp, "%Y-%m-%d %H:%M:%S")
-rpc <- join(rpc, nodes, by = "session", match = "first")
+rpc <- join(rpc, nodes1, by = "session", match = "first")
 
 d <- ggplot(rpc, aes(x=datetime, y=as.double(value)))
 d <- d + scale_y_continuous(limits=c(0.001, 1))
@@ -51,12 +48,10 @@ print(d)
 ```
 As is expected, both the latency measures and the variability is higher for nodes geographically further away.
 
-The collection nodes currently have a memory leak issue that causes periodic failure to collect data (hence the gaps.)  This will be addressed in the next release.
-
 ```{r fetchData, echo=FALSE}
 application <- "CIAPILatencyCollector.AllServiceMonitor.BuiltIn" #will switch to CIAPILatencyCollector once https://github.com/fandrei/AppMetrics/issues/101 has been resolved
-startTime <- "2012-09-04 13:00:00"
-endTime <- "2012-09-10 23:59:59"
+startTime <- "2012-09-11 13:00:00"
+endTime <- "2012-09-17 23:59:59"
 data_url <- URLencode(paste("http://metrics.cityindex.com/GetRecords.ashx?Application=",application,"&StartTime=",startTime,'&EndTime=',endTime, sep = ''))
 
 webpage <- getURL(data_url,userpwd=metrics_credentials, httpauth = 1L)
@@ -83,11 +78,8 @@ logdata$key <- sub('Latency CIAPI.order/newtradeorder', 'Latency CIAPI.Trade',lo
 ```{r groupSessionByNodes, echo=FALSE}
 nodes <- logdata[logdata$"key" %in% c("ClientIP"), ]
 
-#temp bugfix - this session doesn't seem to report a ClientIP
-nodes[2,] <- c("39d948e7-5f2c-4b24-995e-94f1f6c3eab6", "2012-09-03 13:45:42.5018590", "ClientIP", "AWS-EU-WEST-1B-79.125.25.36")
-
 nodes$nodeName = nodes$value
-nodes$nodeName <- sub('46.137.47.103', 'AWS-EU-WEST-1B-79.125.25.36',nodes$nodeName, fixed = TRUE)
+nodes$nodeName <- sub('46.137.47.103', 'AWS-EU-WEST-1B-79.125.25.36', nodes$nodeName, fixed = TRUE)
 
 nodes <- subset(nodes, select=c(-timestamp,-key,-value))
 ```
@@ -124,10 +116,7 @@ d <- d + facet_grid(key ~ nodeName)
 d <- d + opts(strip.text.y = theme_text( angle=0))
 print(d)
 ```
-
-Latencies for different services are pretty similar, with the median being around 100ms and the 98th percentile being sub 300ms.
-
-Its noticable that those services which transfer more data - ListSpreadMarkets, ListTradeHistory - are 3 times slower that those that transfer very little data - Login, Trade, etc
+There appears to have been some downtime on Sept 15th and 16th with the ListOpenPositions & ListTradeHistory services.
 
 Selective latencies in depth
 -----------------------------------
@@ -161,12 +150,8 @@ d <- d + opts(strip.text.y = theme_text( angle=0))
 print(d)
 ```
 
-Since the last report a new release of the TradingAPI webserver component has been deployed, and as in the PPE environment we see a dramatic decrease in "low data" services like GetClientTradingAccount, Trade and Login median latency - from around 300ms to sub 100ms.
+Performance has been largly consistent, with median Trade andLogin requests where processed in 100ms.
 
-98% of Trade, GetClientTradingAccount and Login requests where processed within 300ms.
-
-Something unusual happened to the ListTradeHistory latency on 6th and again on the 8th.  At a guess, the amount of data transfered was probably dramatically reduced, perhaps due to some downtime on the backend service supplying the data.
-
-Finally, we still see quite a few outliers for the Trade and Login services, with some requests taking up to 10 seconds to process. 
+Finally, we continue to see quite a few outliers for the Trade and Login services, with some requests taking up to 10 seconds to process. 
 
 
