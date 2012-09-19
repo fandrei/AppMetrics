@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Hosting;
 
@@ -28,7 +29,7 @@ namespace AppMetrics.WebUtils
 		{
 			get
 			{
-				var res = HostingEnvironment.MapPath("~/App_Data");
+				var res = ResolvePath("~/App_Data");
 				return res;
 			}
 		}
@@ -38,10 +39,13 @@ namespace AppMetrics.WebUtils
 			if (val.Contains(':')) // an absolute path
 				return val;
 
-			if (val.StartsWith("~"))
-				return HostingEnvironment.MapPath(val); // resolve as site path
-			else
-				return Path.GetFullPath(HostingEnvironment.MapPath("~") + "\\" + val); // resolve as relative path
+			if (val.StartsWith("~")) // site path
+				return GetWebAppPath() + val.Substring(1);
+
+			if (val.StartsWith(".")) // relative path
+				return Path.GetFullPath(GetWebAppPath() + "\\" + val);
+
+			throw new ArgumentException();
 		}
 
 		public static void TryEnableCompression(HttpContext context)
@@ -65,6 +69,15 @@ namespace AppMetrics.WebUtils
 					response.AppendHeader("Content-Encoding", "gzip");
 				}
 			}
+		}
+
+		public static string GetWebAppPath()
+		{
+			var location = Assembly.GetExecutingAssembly().CodeBase;
+			location = (new Uri(location)).LocalPath;
+			var res = Path.GetDirectoryName(location) + "\\";
+			res = Path.GetFullPath(res + "..");
+			return res;
 		}
 	}
 }
