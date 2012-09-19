@@ -40,7 +40,7 @@ namespace AppMetrics.WebUtils
 				return val;
 
 			if (val.StartsWith("~")) // site path
-				return GetWebAppPath() + val.Substring(1);
+				return Path.GetFullPath(GetWebAppPath() + val.Substring(1));
 
 			if (val.StartsWith(".")) // relative path
 				return Path.GetFullPath(GetWebAppPath() + "\\" + val);
