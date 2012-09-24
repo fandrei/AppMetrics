@@ -7,47 +7,6 @@ readRenviron("~/.Renviron") # Make sure you have a APPMETRICS_CREDENTIALS=userna
 metrics_credentials <- Sys.getenv(c("APPMETRICS_CREDENTIALS"))
 ```
 
-```{r fetchData0, echo=FALSE}
-application <- "CIAPILatencyCollector" 
-startTime <- "2012-09-17 13:00:00"
-endTime <- "2012-09-24 23:59:59"
-data_url <- URLencode(paste("http://metrics.cityindex.com/GetRecords.ashx?Application=",application,"&StartTime=",startTime,'&EndTime=',endTime, sep = ''))
-
-webpage <- getURL(data_url,userpwd=metrics_credentials, httpauth = 1L)
-logdata <- read.table(tc <- textConnection(webpage), header=F, sep="\t", fill=TRUE, as.is=c(1,4)); 
-close(tc)
-colnames(logdata)=c('session','timestamp','key','value')
-```
-
-```{r groupSessionByNodes0, echo=FALSE}
-nodes1 <- logdata[logdata$"key" %in% c("Info_NodeName"), ]
-
-nodes1$nodeName = nodes1$value
-
-nodes1 <- subset(nodes1, select=c(-timestamp,-key,-value))
-```
-
-Latency between different endpoints
------------------------------------
-The following chart compares the latency of the Default IIS page from different 
-endpoints.  The IIS default page is assumed to be the fasted response the server can give, so this
-measures the latency due to the network:
-```{r network_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
-rpc <- logdata[logdata$"key" %in% c("Latency General.DefaultPage"), ]
-rpc$datetime <- strptime(rpc$timestamp, "%Y-%m-%d %H:%M:%S")
-rpc <- join(rpc, nodes1, by = "session", match = "first")
-
-d <- ggplot(rpc, aes(x=datetime, y=as.double(value)))
-d <- d + scale_y_continuous(limits=c(0.001, 1))
-d <- d + geom_hex()
-d <- d + stat_quantile( quantiles = c(0.5, 0.98) ) 
-d <- d + geom_rug(aes(x=NULL, y=as.double(value)), col=rgb(.5,0,0, alpha=.05))
-d <- d + scale_fill_gradient(low="grey", high="red") + theme_bw()
-d <- d + facet_grid(nodeName ~ key)
-print(d)
-```
-As is expected, both the latency measures and the variability is higher for nodes geographically further away.
-
 ```{r fetchData, echo=FALSE}
 application <- "CIAPILatencyCollector.AllServiceMonitor.BuiltIn" #will switch to CIAPILatencyCollector once https://github.com/fandrei/AppMetrics/issues/101 has been resolved
 startTime <- "2012-09-17 13:00:00"
@@ -84,11 +43,10 @@ nodes$nodeName <- sub('46.137.47.103', 'AWS-EU-WEST-1B-79.125.25.36', nodes$node
 nodes <- subset(nodes, select=c(-timestamp,-key,-value))
 ```
 
-
 Latency between different services
 -----------------------------------
 The following graph compares the latency of different services for the same node:
-```{r service_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
+```{r service_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE, echo=FALSE}
 rpc2 <- logdata[logdata$"key" %in% c("Latency CIAPI.LogIn"
                                     ,"Latency CIAPI.LogOut"
                                     ,"Latency CIAPI.ListSpreadMarkets"
@@ -116,23 +74,17 @@ d <- d + facet_grid(key ~ nodeName)
 d <- d + opts(strip.text.y = theme_text( angle=0))
 print(d)
 ```
-There appears to have been some downtime on Sept 15th and 16th with the ListOpenPositions & ListTradeHistory services.
+Some of the services had sudden latency "step changes" during the week.
 
-Selective latencies in depth
+ListSpreadMarkets and ListNewsHeadlinesWithSource
 -----------------------------------
-The following graph compares:
+The following graph compares the services that experienced "step changes" during the week.
 
-1. GetClientAndTradingAccount - A "readonly" service query 
-1. ListTradeHistory - A complex "readonly" query
-1. Login - A simple "change server state" query
-1. Trade - A complex "change server state" query
+*NB:*  Note that this graph has a continuous scaled y axis, compared with the log_10 scaling of the first graph.
 
-```{r service_latency_plot_in_depth, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
-rpc3 <- logdata[logdata$"key" %in% c("Latency CIAPI.LogIn"
-                                    ,"Latency CIAPI.Trade"
-                                    ,"Latency CIAPI.ListSpreadMarkets"
-                                    ,"Latency CIAPI.ListOpenPositions"         
-                                    ,"Latency CIAPI.ListTradeHistory"), ]
+```{r service_latency_plot_in_depth, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE, echo=FALSE}
+rpc3 <- logdata[logdata$"key" %in% c("Latency CIAPI.ListNewsHeadlinesWithSource"
+                                    ,"Latency CIAPI.ListSpreadMarkets"), ]
 
 rpc3$datetime <- strptime(rpc3$timestamp, "%Y-%m-%d %H:%M:%S")
 rpc3$key <- sub('Latency CIAPI.', '',rpc3$key)
@@ -141,7 +93,7 @@ rpc3 <- rpc3[rpc3$nodeName %in% c("AWS-EU-WEST-1B-79.125.25.36"),]
 
 d <- ggplot(rpc3, aes(x=datetime, y=as.double(value)))
 d <- d + ylab("Latency in seconds") + xlab("Measurement time (UTC)")
-d <- d + scale_y_log10() 
+d <- d + scale_y_continuous(limits=c(0.05, 0.5)) 
 d <- d + geom_hex()
 d <- d + stat_quantile( quantiles = c(0.5, 0.98) ) 
 d <- d + geom_rug(aes(x=NULL, y=as.double(value)), col=rgb(.5,0,0, alpha=.05))
@@ -151,8 +103,38 @@ d <- d + opts(strip.text.y = theme_text( angle=0))
 print(d)
 ```
 
-Performance has been largly consistent, with median Trade andLogin requests where processed in 100ms.
+ListSpreadMarkets exhibited large & sudden improvement in performance on Wed 19th Sept that disappeared just as quickly as it arose on Sun Sep 21st.  The only other service that exhibited the same pattern was the ListNewsHeadlinesWithSource service, although the improvements there were not as dramatic.
 
-Finally, we continue to see quite a few outliers for the Trade and Login services, with some requests taking up to 10 seconds to process. 
+ListTradeHistory, Login and Trade
+-----------------------------------
+The following graph compares the services that experienced "step changes" during the week:
+
+*NB:*  Note that this graph has a continuous scaled y axis, compared with the log_10 scaling of the first graph.
+
+```{r service_latency_plot_in_depth2, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE, echo=FALSE}
+rpc3 <- logdata[logdata$"key" %in% c("Latency CIAPI.LogIn"
+                                    ,"Latency CIAPI.Trade"      
+                                    ,"Latency CIAPI.ListTradeHistory"), ]
+
+rpc3$datetime <- strptime(rpc3$timestamp, "%Y-%m-%d %H:%M:%S")
+rpc3$key <- sub('Latency CIAPI.', '',rpc3$key)
+rpc3 <- join(rpc3, nodes, by = "session", match = "first")
+rpc3 <- rpc3[rpc3$nodeName %in% c("AWS-EU-WEST-1B-79.125.25.36"),]
+
+d <- ggplot(rpc3, aes(x=datetime, y=as.double(value)))
+d <- d + ylab("Latency in seconds") + xlab("Measurement time (UTC)")
+d <- d + scale_y_continuous(limits=c(0.05, 0.5)) 
+d <- d + geom_hex()
+d <- d + stat_quantile( quantiles = c(0.5, 0.98) ) 
+d <- d + geom_rug(aes(x=NULL, y=as.double(value)), col=rgb(.5,0,0, alpha=.05))
+d <- d + scale_fill_gradient(low="grey", high="red") + theme_bw()
+d <- d + facet_grid(key ~ nodeName, scales="free_y")
+d <- d + opts(strip.text.y = theme_text( angle=0))
+print(d)
+```
+
+ListTradeHistory, Login and Trade all seemed to experience a performance degredation during the same period between Thurs 20 Sept and Sun Sept 23.
+
+
 
 
