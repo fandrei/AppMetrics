@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
-    <MSBuildCommunityTasksPath>$(SolutionRoot)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
 
