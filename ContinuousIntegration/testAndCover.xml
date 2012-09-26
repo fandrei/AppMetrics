@@ -3,6 +3,7 @@
 
   <PropertyGroup>
     <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <NUnit-ToolPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnit-ToolPath>
     <OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
     <ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
@@ -31,8 +32,6 @@
              AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
 
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-
     <!-- list of test assemblies (space separated) -->
     <TestAssemblies>$(BinDir)\Tests.Analytics.dll $(BinDir)\Tests.Functional.dll</TestAssemblies>
     <!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
