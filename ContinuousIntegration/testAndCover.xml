@@ -7,10 +7,25 @@
     <OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
     <ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
     <MSBuildCommunityTasksPath>$(SolutionRoot)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
-    
-    <ReportsPath>$(SolutionRoot)\_reports\</ReportsPath>
-    <CodeCoverageResultsPath>$(SolutionRoot)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
   </PropertyGroup>
+
+    <Choose>
+    <When Condition=" '$(OutDir)'=='' ">
+      <PropertyGroup>
+        <BinDir>$(SolutionRoot)\_bin\$(Configuration)</BinDir>
+        <ReportsPath>$(SolutionRoot)\_reports\</ReportsPath>
+        <CodeCoverageResultsPath>$(SolutionRoot)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <BinDir Condition=" '$(OutDir)' != '' ">$(OutDir)\</BinDir>
+        <ReportsPath>$(OutDir)\_reports\</ReportsPath>
+        <CodeCoverageResultsPath>$(OutDir)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
   <UsingTask TaskName="SetEnvVariable"
              AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
@@ -19,7 +34,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
 
     <!-- list of test assemblies (space separated) -->
-    <TestAssemblies>$(SolutionRoot)\_bin\$(Configuration)\Tests.Analytics.dll $(SolutionRoot)\_bin\$(Configuration)\Tests.Functional.dll</TestAssemblies>
+    <TestAssemblies>$(BinDir)\Tests.Analytics.dll $(BinDir)\Tests.Functional.dll</TestAssemblies>
     <!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
     <OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
   </PropertyGroup>
@@ -36,7 +51,7 @@
     <RemoveDir Directories="$(ReportsPath)" />
     <MakeDir Directories="$(ReportsPath)" />
 
-    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(SolutionRoot)\_bin\$(Configuration)" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
+    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir)" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
     <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
   </Target>
 
