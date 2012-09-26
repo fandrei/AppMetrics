@@ -50,7 +50,7 @@
     <RemoveDir Directories="$(ReportsPath)" />
     <MakeDir Directories="$(ReportsPath)" />
 
-    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir)" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
+    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir.TrimEnd("\"))" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
     <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
   </Target>
 
