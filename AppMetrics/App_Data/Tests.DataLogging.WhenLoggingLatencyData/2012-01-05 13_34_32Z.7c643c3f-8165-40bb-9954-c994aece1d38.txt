@@ -1,0 +1,18 @@
+﻿2012-01-05 13:34:30.5724807	ClientIP	127.0.0.1
+2012-01-05 13:34:30.5724807	ClientHostName	127.0.0.1
+2012-01-05 13:34:30.5724807	ClientUserAgent	
+2012-01-05 13:34:30.5724807	System_OsName	Microsoft Windows 7 Enterprise 
+2012-01-05 13:34:30.5729808	System_OsVersion	Microsoft Windows NT 6.1.7600.0
+2012-01-05 13:34:30.5729808	System_ComputerName	LON-WS00872
+2012-01-05 13:34:30.5729808	System_UserName	David.Laing
+2012-01-05 13:34:30.5729808	System_ClrVersion	4.0.30319.239
+2012-01-05 13:34:30.5739810	System_PhysicalMemory	16340
+2012-01-05 13:34:30.5739810	System_AvailablePhysicalMemory	8612
+2012-01-05 13:34:30.5744811	System_VirtualMemory	2047
+2012-01-05 13:34:30.5744811	System_AvailableVirtualMemory	1814
+2012-01-05 13:34:30.5744811	System_CurrentCulture	en-GB
+2012-01-05 13:34:30.5744811	System_CurrentUiCulture	en-US
+2012-01-05 13:34:30.5744811	System_SystemDefaultEncoding	Windows-1252
+2012-01-05 13:34:30.5744811	System_CalendarType	GregorianCalendar
+2012-01-05 13:34:30.5744811	System_NumberDecimalSeparator	.
+2012-01-05 13:34:30.5744811	WhenLoggingLatencyData_Field	13:34:18

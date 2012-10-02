@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="next.metrics.labs.cityindex.com/" />
+  <setParameter name="RedirectionTarget" value="" />
+</parameters>

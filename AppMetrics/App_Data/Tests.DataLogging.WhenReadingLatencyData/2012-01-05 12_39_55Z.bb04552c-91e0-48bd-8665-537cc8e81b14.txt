@@ -1,0 +1,18 @@
+﻿2012-01-05 12:39:53.3261625	ClientIP	127.0.0.1
+2012-01-05 12:39:53.3261625	ClientHostName	127.0.0.1
+2012-01-05 12:39:53.3261625	ClientUserAgent	
+2012-01-05 12:39:53.3261625	System_OsName	Microsoft Windows 7 Enterprise 
+2012-01-05 12:39:53.3266626	System_OsVersion	Microsoft Windows NT 6.1.7600.0
+2012-01-05 12:39:53.3266626	System_ComputerName	LON-WS00872
+2012-01-05 12:39:53.3266626	System_UserName	David.Laing
+2012-01-05 12:39:53.3266626	System_ClrVersion	4.0.30319.239
+2012-01-05 12:39:53.3276628	System_PhysicalMemory	16340
+2012-01-05 12:39:53.3276628	System_AvailablePhysicalMemory	8979
+2012-01-05 12:39:53.3276628	System_VirtualMemory	2047
+2012-01-05 12:39:53.3276628	System_AvailableVirtualMemory	1820
+2012-01-05 12:39:53.3276628	System_CurrentCulture	en-GB
+2012-01-05 12:39:53.3276628	System_CurrentUiCulture	en-US
+2012-01-05 12:39:53.3276628	System_SystemDefaultEncoding	Windows-1252
+2012-01-05 12:39:53.3281629	System_CalendarType	GregorianCalendar
+2012-01-05 12:39:53.3281629	System_NumberDecimalSeparator	.
+2012-01-05 12:39:53.3281629	TestMessage	TestValue

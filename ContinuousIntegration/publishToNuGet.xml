@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="DoItAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <Import Project="properties.xml" />
+
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\tools\msbuild\MSBuildCommunityTasks\</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <NuGetEXE>$(SolutionRoot)\tools\nuget\nuget.exe</NuGetEXE>
+  </PropertyGroup>
+
+  <Target Name="Package" >
+    <Message Text="Packaging with NuGet" />
+    
+    <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Client.nuspec' ContinueOnError='false' 
+          WorkingDirectory='$(SolutionRoot)\_nuget\'/>
+
+    <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.WebUtils.nuspec' ContinueOnError='false'
+      WorkingDirectory='$(SolutionRoot)\_nuget\'/>
+  </Target>
+
+  <Target Name="Publish" DependsOnTargets="Package" >
+    <Message Text="Publishing to NuGet.org" />
+    
+    <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
+          ContinueOnError='false' />
+
+    <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.WebUtils.$(FullVersion).nupkg $(NuGetApiKey)'
+          ContinueOnError='false' />
+  </Target>
+
+  <Target Name="DoItAll" DependsOnTargets="Publish" >
+  </Target>
+
+</Project>

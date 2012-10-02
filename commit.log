@@ -1,0 +1,522 @@
+David Laing (19):
+      Add VS2010 load tests
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      IIS Default load test
+      Fleshed out technical goals & vision
+      Touch README to trigger build
+      Added BuildVersion property
+      Update build.xml
+      Beginnings of a Latency report
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      Beginnings of a box and whisker plot
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      Spike of test framework built on CassiniDev
+      Added Common.Logging
+      Split functional tests into own test assembly
+      Test resolution of system timer using Stopwatch class
+      Change Jitterhistogram chart x-axis label
+      Added quantile calculation samples from R for Analytics tests
+      #32 - Updated Solarwinds Application Template to import all columns
+      Update Solarwinds scripts
+
+fandrei (493):
+      init
+      refactoring
+      debugging params
+      refactoring
+      refactoring
+      heavy load test
+      performance counter
+      refactoring
+      deployment args
+      errors handling
+      debugging facilities
+      fixed typo
+      use IIS
+      refactoring
+      check session id
+      non-blocking message sending
+      refactoring
+      multi-line data handling
+      fixed performance measurement
+      refactoring, handling of message queue overflow
+      fixed heavy load test
+      bugfix
+      1 session - 1 file
+      bugfix
+      exceptions handling
+      refactoring
+      refactoring
+      refactoring
+      added authorization config params
+      isolate messages from different applications
+      refactoring
+      bugfix
+      server-side performance count
+      report to the windows event log
+      added logging to the file
+      improved logging
+      refactoring
+      refactoring
+      added readme
+      preserve App_Data on deployment
+      Excel-friendly time formatting
+      better multi-line values formatting
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      added simple Atom Syndication Feed for data retrieval
+      refactoring
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      bugfix (avoid validation for malformed-HTML-attacks of data posted to LogEvent handler)
+      bugfix
+      simple implementation of WCF Data export service
+      config update
+      parameterized requests to WCF data service
+      refactoring
+      update web packaging params
+      added simple analytics worksheet
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      analytics update
+      sample update
+      analytics update
+      analytics update
+      added NUnit package
+      added skeleton of smoke test
+      simplistic smoke test implementation
+      cleanup
+      formatting
+      added notes
+      installation notes
+      added Basic authentication for data export service
+      sample update (get data from the testing server)
+      solution config update
+      command line script to build and package web site
+      added notes
+      added notes
+      use dev server
+      set assembly version using build number from the build server
+      deployment script - use versioned path
+      added code to launch tests after build (inactive at this moment)
+      added notes
+      added notes
+      upgrade to PowerPivot 2012 RC0
+      notes
+      fixed typo
+      debugging output
+      bugfix
+      bugfix
+      sample update
+      added build file
+      split build and testing scripts
+      added settings storage for server url and credentials
+      test improvement
+      set deployment location to next.metrics.labs.cityindex.com
+      bugfix
+      improving tests
+      bugfix
+      refactoring
+      bugfix
+      bugfix
+      ignore temp files
+      scripts update
+      build script - deploy to the testing location by default
+      allow to set data storage location using config file
+      build path update
+      added missing nunit files
+      bugfix
+      bugfix
+      gitignore update
+      use environment variables to retrieve settings
+      added testing script
+      deployment script update
+      added diagnostics
+      projects build settings
+      bugfix
+      deploy to the versioned IIS location
+      bugfix
+      store build number in the file
+      bugfix
+      code cleanup
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      sample update
+      refactoring
+      bugfix
+      run test against versioned deployment location
+      code cleanup
+      bugfix
+      added session ID to the record items
+      log user's client info
+      refactoring
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      improved debug tool
+      report system info
+      refactoring
+      experimenting with reports
+      finalized boxplot and added histogram
+      imported data for last 7 days
+      data update
+      data update
+      added simple region detection and slicer by regions
+      data update
+      added "records count" column
+      refactoring
+      added simple tool to find median and quartiles for overall input
+      added min and max
+      refactoring
+      added time measuring
+      refactoring
+      added GeoIP API by MaxMind
+      integrated GeoIP; refactoring
+      added slicing by cities and report generation
+      added slicing by function name
+      refactoring
+      refactoring
+      added overall summary
+      bugfix
+      added count measure
+      refactoring
+      bugfix
+      more precise time measure
+      new version of report based on pre-aggregated data, latest stats
+      formatting update
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      added distribution calculation
+      refactoring
+      calculate distribution of latencies with step 0.5
+      added histogram of latency distribution
+      prevent deleting and overwriting files in App_Data folder
+      added comment
+      added user config file
+      added users config to the project (to include it into deployment package)
+      removed user config
+      code cleanup
+      set website data location on build
+      added license
+      added nuget spec
+      nuspec update
+      set version for NuGet package
+      script for auto-publishing to the NuGet site
+      bugfix
+      bugfix
+      added comment
+      added missing file
+      setting NuGet API key via command line
+      added axis labels
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      partition reports by location (country/city)
+      added summary info to report
+      logarithmic scale in report
+      show measures count in report
+      report update
+      formatting update; use normal scale instead of logarithmic
+      latency data update
+      Merge branch 'test-spike' of git@github.com:fandrei/AppMetrics.git
+      changed bin files location
+      added MSDeploy package for setting redirection rule of entry point
+      store deployment location into the file
+      update of MSDeploy entry point package
+      msbuild script to set website entry point
+      set redirection target parameter
+      bugfix
+      bugfix
+      bugfix
+      bugfix
+      bugfix
+      code cleanup
+      moved continuous integration scripts to a separate location
+      refactoring test script
+      fixed build script
+      fixed entry point setting
+      fixed NuGet publish script
+      code cleanup
+      added report sorting
+      bugfix (skip slices with no data)
+      report update
+      refactoring
+      refactoring
+      added price stream jitter calculation
+      cleanup
+      added price stream jitter report
+      report formatting update
+      refactoring
+      data update
+      refactoring
+      report data update
+      comment added
+      refactoring
+      find minimum price stream jitter for every session separately
+      set better resolution for jitter distribution calculation
+      refactoring
+      bugfix
+      refactoring
+      added time period limitation for stats processor tool
+      data update
+      added experimental reports
+      refactoring
+      bugfix
+      bugfix
+      refactoring and code cleanup
+      refactoring
+      deployment settings
+      refactoring
+      refactoring
+      code cleanup
+      cleanup
+      added debug code
+      added report page stub
+      refactoring
+      refactoring
+      bugfix
+      code cleanup
+      refactoring
+      cleanup
+      detect minimum jitter offset within 30 second windows
+      refactoring
+      data update
+      remove highest 2% jitter values
+      report user's time zone
+      validation code
+      refactoring
+      refactoring
+      validation code
+      data update
+      added test project stub
+      formatting update
+      remove top 2% of latency values
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      script for launching Tests.Analytics
+      smoke test stub
+      data update
+      bugfix
+      bugfix
+      bugfix
+      bugfix/refactoring
+      get session's last write time from the last logged message
+      filter records by period
+      refactoring
+      refactoring
+      bugfix
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring + bugfix
+      embedded GeoIP database into GeoIP assembly
+      bugfix (service reference update)
+      use embedded GeoIP database
+      refactoring; reduced RAM consumption
+      data update
+      refactoring
+      experimental implementation of realtime report generator
+      added simple integration test for analytics
+      move analytics code into a separate assembly
+      set assembly versions
+      send session finish message
+      log client process name and version
+      refactoring
+      periodically report RAM usage info
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      bugfix
+      bugfix
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      improved RAM info
+      bugfix
+      refactoring
+      refactoring
+      added quantiles calculation test
+      simple test-by-sample integration test
+      refactoring
+      refactoring
+      refactoring
+      simple unit test of distribution calculation
+      refactoring
+      msbuild script for analytics testing
+      code cleanup
+      refactoring
+      refactoring
+      overall summary report for analytics website
+      package analytics website
+      set analytics website parameters on build
+      bugfix
+      bugfix
+      changed report period
+      refactoring
+      added report status info
+      message fixed
+      refactoring
+      more report status info
+      template for simple Solarwinds integration
+      refactoring
+      Solarwinds template update
+      Solarwinds template update
+      tweaking report cache
+      GeoIP update
+      bugfix
+      refactoring
+      added report filtering by locations
+      added capability to filter realtime report by application key and country
+      report update
+      bugfix
+      cache cleanup
+      added app key to the template
+      cache tweak
+      report params - added "world overall" and "list of all countries" modes
+      template update
+      refactoring
+      added period request parameter
+      code cleanup
+      added multi-message reporting mode for better server's performance
+      refactoring
+      test upgrade
+      refactoring and bugfix
+      refactoring
+      bugfix
+      Solarwinds template update
+      added GeoIP override for known wrong locations
+      fixed test data
+      bugfix
+      cache tweaking
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      bugfix
+      partial log file reading to improve performance
+      bugfix (time zone correction)
+      bugfix
+      added analytics request logging
+      refactoring
+      added exception logging
+      refactoring
+      improved request logging
+      refactoring
+      temporarily disable optimization
+      improved request logging
+      preserve App_Data folder on deployment
+      re-enable log reader optimization
+      use dichotomy method for log reading
+      don't remove worst latency values
+      bugfix
+      exclude pdb file from nupackage
+      refactoring
+      refactoring
+      added different report types (as specified in issue https://github.com/fandrei/AppMetrics/issues/24)
+      GeoIP fix
+      added report for average of percentile 98 (issue https://github.com/fandrei/AppMetrics/issues/32 )
+      fixed column label
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      formatting
+      refactoring
+      simple unit test for percentile 98 average
+      refactoring
+      refactoring
+      refactoring
+      developing Amazon S3 backup
+      added config page
+      refactoring
+      refactoring
+      refactored S3 backup
+      refactoring
+      bugfix
+      refactoring
+      refactoring
+      bugfix
+      refactoring
+      bugfix
+      bugfix
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      refactoring
+      added a simple tracking sample
+      send UTC time from the client
+      refactoring and different algorithm for percentile 98 calculation (the same as in R package)
+      refactoring and different algorithm for median and quartiles
+      fixed unit tests
+      refactoring; include percentile 2 and 98 into overall summaries
+      Merge branch 'master' of github.com:fandrei/AppMetrics
+      unit test
+      added exceptions count to the summary report
+      added robots.txt to disallow web crawlers
+      bugfix
+      validation
+      bugfix (always use neutral decimal symbol)
+      bugfix
+      bugfix
+      refactoring
+      log assembly version
+      refactoring
+      added split by function parameter
+      added streaming latency reports
+      bugfix
+      experimental time checker
+      bugfix
+      added exceptions report
+      refactoring
+      bugfix
+      bugfix
+      refactoring
+      refactoring
+      use ntpd data to check if streaming latency is accurate enough
+      bugfix
+      refactoring
+      refactoring
+      code cleanup
+      bugfix
+      refactoring
+      code cleanup
+      refactoring
+      refactoring
+      bugfix
+      code cleanup
+      refactoring
+      refactoring
+      GeoIP update
+      improved GeoIP override table
+      bugfix
+      added capability to slice reports by more precise location (region, city)
+      added capability to filter by full location name
+      bugfix
+      bugfix
+      refactoring
+      refactoring
+      bugfix
+      refactoring and code cleanup
+      refactoring
+      refactoring
+      refactoring
+      bugfix
+      bugfix
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      refactoring
+      bugfix
+      refactoring
+
+mrdavidlaing (4):
+      Move VS2010 Load test into separate project (cause Load tests can't be built on the build server)
+      Beta of integration test framework
+      #32 - Add some tests to check for 2nd and 98th percentiles in summary data calculation
+      Create Solution Folder for Solarwind related scripts
+

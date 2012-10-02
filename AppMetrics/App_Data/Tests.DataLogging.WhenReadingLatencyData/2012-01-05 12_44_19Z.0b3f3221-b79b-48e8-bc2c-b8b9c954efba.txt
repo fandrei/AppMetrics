@@ -1,0 +1,5 @@
+﻿2012-01-05 12:44:18.5366940	ClientIP	127.0.0.1
+2012-01-05 12:44:18.5366940	ClientHostName	127.0.0.1
+2012-01-05 12:44:18.5366940	ClientUserAgent	
+2012-01-05 12:44:18.5366940	System_OsName	Microsoft Windows 7 Enterprise 
+2012-01-05 12:44:18.5371941	System_OsVersion	Microsoft Windows NT 6.1.7600.0

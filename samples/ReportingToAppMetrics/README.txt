@@ -1,0 +1,1 @@
+This sample shows possible ways to report events and metrics information to the AppMetrics server. See Program.cs and comments inside for more information.
