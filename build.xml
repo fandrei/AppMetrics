@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Package" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\</SolutionRoot>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
+
+    <PackagingPath>$(SolutionRoot)\_package</PackagingPath>
+    <PackagingPath Condition=" '$(OutDir)' != '' ">$(OutDir)\_package\</PackagingPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Any CPU</Platform>
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <!-- This gets set by the build server -->
+    <BuildVersion>0</BuildVersion>
+    <FullVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)</FullVersion>
+
+    <LiveDeploymentTarget>metrics.labs.cityindex.com</LiveDeploymentTarget>
+  </PropertyGroup>
+
+  <Target Name="UpdateVersion" >
+    <Message Text="Updating version to $(FullVersion)" />
+
+    <!-- Remove read-only attribute -->
+    <ItemGroup>
+      <AllCodeFiles Include="$(SolutionRoot)\**\*.*" />
+    </ItemGroup>
+    <Attrib ReadOnly="false" Files="@(AllCodeFiles)" />
+
+    <!-- Update assembly version number using build number -->
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\AppMetrics\Properties\AssemblyInfo.cs"
+        Regex="AssemblyVersion\(&quot;.*&quot;\)"
+        ReplacementText="AssemblyVersion(&quot;$(FullVersion)&quot;)" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="UpdateVersion" >
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.sln" Targets="Rebuild" Properties="Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="Package" DependsOnTargets="Build" >
+
+    <!-- package data collector website -->
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\AppMetrics\App_Data\web.config"
+      Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
+      ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
+
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics\AppMetrics.csproj" Targets="Package"
+      Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Tracker\AppMetrics.zip" />
+
+    <ItemGroup>
+      <PackageSourceFiles Include="$(PackagingPath)\Tracker\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(PackageSourceFiles)" DestinationFolder="$(PackagingPath)\TrackerLive\" />
+
+    <FileUpdate
+      Files="$(PackagingPath)\TrackerLive\AppMetrics.SetParameters.xml"
+      Regex="(name=&quot;IIS Web Application Name&quot; *?value=)&quot;[^&quot;]*&quot;"
+      ReplacementText="$1&quot;$(LiveDeploymentTarget)&quot;" />
+
+    <!-- store parameters in the file to be used in other build jobs -->
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\ContinuousIntegration\properties.xml"
+        Regex="(MyBuildNumber)&gt;.*?&lt;(/MyBuildNumber)"
+        ReplacementText="$1&gt;$(BuildVersion)&lt;$2" />
+    <FileUpdate
+        Files="$(MSBuildProjectDirectory)\ContinuousIntegration\properties.xml"
+        Regex="(FullVersion)&gt;.*?&lt;(/FullVersion)"
+        ReplacementText="$1&gt;$(FullVersion)&lt;$2" />
+
+    <!-- set version for NuGet package spec -->
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.nuspec"
+      Regex="version&gt;(.*?)&lt;/version"
+      ReplacementText="version&gt;$(FullVersion)&lt;/version" />
+
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.WebUtils.nuspec"
+      Regex="version&gt;(.*?)&lt;/version"
+      ReplacementText="version&gt;$(FullVersion)&lt;/version" />
+
+    <!-- package analytics website -->
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\App_Data\web.config"
+      Regex="(DataStoragePath&quot; value=)&quot;[^&quot;]*&quot;"
+      ReplacementText="$1&quot;~/../_AppMetricsData/&quot;" />
+
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
+      Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Analytics\AppMetrics.Analytics.zip" />
+
+  </Target>
+
+</Project>
