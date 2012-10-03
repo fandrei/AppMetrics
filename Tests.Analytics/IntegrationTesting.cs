@@ -55,7 +55,7 @@ namespace Tests.Analytics
 			}
 
 			{
-				var latencySummariesReport = Report.GetLatencyStatSummariesReport(res);
+				var latencySummariesReport = Report.GetLatencyStatSummariesReport(res, options);
 				var latencySummariesSample = File.ReadAllText(resultsPath + "TestData.LatencyStatSummaries.txt");
 				Assert.AreEqual(latencySummariesSample, latencySummariesReport);
 			}

@@ -72,6 +72,17 @@
         </tr>
         <tr>
             <th>
+                Slice By Node Name
+            </th>
+            <td>
+                <select name="SliceByNodeName">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
                 Filter by locations
             </th>
             <td>
