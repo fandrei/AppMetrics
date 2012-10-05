@@ -282,7 +282,7 @@ namespace AppMetrics
 
 		static bool IsServiceMessage(string name)
 		{
-			return name.StartsWith("Client") || name.StartsWith("System");
+			return name.StartsWith("Client") || name.StartsWith("System") || name.StartsWith("Info");
 		}
 
 		private static string GetSessionsDataPath(string appKey)

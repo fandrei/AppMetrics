@@ -11,6 +11,7 @@ namespace AppMetrics.Analytics
 	{
 		public string Ip;
 		public Location Location { get; set; }
+		public string NodeName;
 
 		public List<RecordEx> Records { get; set; }
 

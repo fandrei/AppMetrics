@@ -47,7 +47,7 @@ namespace AppMetrics.AnalyticsSite
 				switch (options.ReportType)
 				{
 					case ReportType.LatencySummaries:
-						reportText = Report.GetLatencyStatSummariesReport(results);
+						reportText = Report.GetLatencyStatSummariesReport(results, options);
 						break;
 					case ReportType.LatencyDistribution:
 						reportText = Report.GetLatencyDistributionReport(results);
@@ -56,7 +56,7 @@ namespace AppMetrics.AnalyticsSite
 						reportText = Report.GetJitterDistributionReport(results);
 						break;
 					case ReportType.StreamingLatencySummaries:
-						reportText = Report.GetStreamingLatencyStatSummariesReport(results);
+						reportText = Report.GetStreamingLatencyStatSummariesReport(results, options);
 						break;
 					case ReportType.StreamingLatencyDistribution:
 						reportText = Report.GetStreamingLatencyDistributionReport(results);
@@ -97,7 +97,7 @@ namespace AppMetrics.AnalyticsSite
 
 			var sliceByLocationText = requestParams.Get("SliceByLocation");
 			res.SliceByLocation = string.IsNullOrEmpty(sliceByLocationText)
-				? LocationSliceType.Countries
+				? LocationSliceType.None
 				: (LocationSliceType)Enum.Parse(typeof(LocationSliceType), sliceByLocationText);
 
 			var locations = requestParams.Get("Locations") ?? "";
@@ -133,6 +133,9 @@ namespace AppMetrics.AnalyticsSite
 				var splitByFunctionsText = (requestParams.Get("SliceByFunctions") ?? "").ToLower();
 				res.SliceByFunction = (splitByFunctionsText == "yes");
 			}
+
+			var sliceByNodeNameText = (requestParams.Get("SliceByNodeName") ?? "").ToLower();
+			res.SliceByNodeName = (sliceByNodeNameText == "yes");
 
 			return res;
 		}

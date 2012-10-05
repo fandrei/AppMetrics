@@ -23,6 +23,7 @@ namespace AppMetrics.Analytics
 		public string City;
 		public string Country;
 		public string Region;
+		public string NodeName;
 
 		public string Location
 		{

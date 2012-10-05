@@ -18,6 +18,7 @@ namespace AppMetrics.Analytics
 		public TimePeriod TimePeriod;
 
 		public bool SliceByFunction = true;
+		public bool SliceByNodeName = false;
 
 		public LocationSliceType SliceByLocation = LocationSliceType.CountriesAndCities;
 		public bool LocationIncludeOverall;

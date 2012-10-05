@@ -51,7 +51,7 @@ namespace AppMetrics.DataConvertor
 			var summaryReport = Report.GetSummaryReport(sessions);
 			File.WriteAllText(resPath + "\\Summary.txt", summaryReport, Encoding.UTF8);
 
-			var statSummariesReport = Report.GetLatencyStatSummariesReport(res);
+			var statSummariesReport = Report.GetLatencyStatSummariesReport(res, options);
 			File.WriteAllText(resPath + "\\LatencyStatSummaries.txt", statSummariesReport, Encoding.UTF8);
 
 			var latencyDistributionReport = Report.GetLatencyDistributionReport(res);

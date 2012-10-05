@@ -32,7 +32,7 @@ namespace AppMetrics.Analytics
 			if (_options.LocationIncludeOverall || _options.SliceByLocation == LocationSliceType.None)
 			{
 				var allRecords = GetRecords(_sessions);
-				var overallSummariesByFunction = CalculateByFunction(allRecords);
+				var overallSummariesByFunction = CalculateByNodeName(allRecords);
 				foreach (var summary in overallSummariesByFunction)
 				{
 					summary.Country = "(World)";
@@ -76,7 +76,7 @@ namespace AppMetrics.Analytics
 
 			if (_options.LocationIncludeOverall || _options.SliceByLocation == LocationSliceType.Countries)
 			{
-				var tmp = CalculateByFunction(records);
+				var tmp = CalculateByNodeName(records);
 				res.AddRange(tmp);
 				foreach (var summary in tmp)
 				{
@@ -99,7 +99,7 @@ namespace AppMetrics.Analytics
 
 						var regionName = pair.Value.First().Session.Location.regionName;
 
-						var curSummaries = CalculateByFunction(pair.Value);
+						var curSummaries = CalculateByNodeName(pair.Value);
 						foreach (var summary in curSummaries)
 						{
 							summary.City = cityName;
@@ -113,10 +113,39 @@ namespace AppMetrics.Analytics
 			return res;
 		}
 
+		private List<CalcResult> CalculateByNodeName(ICollection<RecordEx> records)
+		{
+			var res = new List<CalcResult>();
+
+			if (!_options.SliceByNodeName)
+			{
+				var tmp = CalculateByFunction(records);
+				res.AddRange(tmp);
+			}
+			else
+			{
+				var recordsByNodeName = Util.GroupBySorted(records, record => (record.Session.NodeName) ?? "");
+
+				foreach (var pair in recordsByNodeName)
+				{
+					var nodeName = pair.Key;
+
+					var curSummaries = CalculateByFunction(pair.Value);
+					foreach (var summary in curSummaries)
+					{
+						summary.NodeName = nodeName;
+					}
+					res.AddRange(curSummaries);
+				}
+			}
+
+			return res;
+		}
+
 		private List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
 		{
 			records = records.Where(
-					val => (Util.IsLatency(val) || Util.IsJitter(val)) && 
+					val => (Util.IsLatency(val) || Util.IsJitter(val)) &&
 						_options.FunctionIsAllowed(Util.GetFunctionName(val))
 				).ToArray();
 
@@ -284,6 +313,10 @@ namespace AppMetrics.Analytics
 				var ip = ipRecord.Value;
 				session.Ip = ip;
 				session.Location = overrides.ContainsKey(ip) ? overrides[ip] : geoLookup.getLocation(ip);
+
+				var nodeNameRecord = session.Records.Find(record => record.Name == "Info_NodeName");
+				if (nodeNameRecord != null)
+					session.NodeName = nodeNameRecord.Value;
 
 				session.Records.RemoveAll(record => !Util.IsLatency(record) && !Util.IsJitter(record) &&
 					!Util.IsException(record) && !Util.IsInfo(record));
