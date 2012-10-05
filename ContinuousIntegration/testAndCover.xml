@@ -8,9 +8,9 @@
 		<OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
 		<ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
 		<MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
-		<AppMetricsTest_ServiceRootFolder>{A7071B68-F1C5-4CB7-90BC-FC4D381D7558}</AppMetricsTest_ServiceRootFolder>
+		<AppMetricsTest_AccessKey>{A7071B68-F1C5-4CB7-90BC-FC4D381D7558}</AppMetricsTest_AccessKey>
 		<AppMetricsTest_DataFolder>$(BinariesRoot)\_PublishedWebsites\_AppMetricsData</AppMetricsTest_DataFolder>
-		<AppMetricsTest_AccessKey>$(BinariesRoot)\_PublishedWebsites\AppMetrics</AppMetricsTest_AccessKey>
+		<AppMetricsTest_ServiceRootFolder>$(BinariesRoot)\_PublishedWebsites\AppMetrics</AppMetricsTest_ServiceRootFolder>
 	</PropertyGroup>
 
 	<Choose>
