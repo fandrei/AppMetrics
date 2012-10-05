@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="RunTests" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
 	<PropertyGroup>
-		<SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+		<SolutionRoot>$(MSBuildProjectDirectory)\..</SolutionRoot>
 		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
 		<NUnit-ToolPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnit-ToolPath>
 		<OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
@@ -54,7 +54,8 @@
 		<MakeDir Directories="$(ReportsPath)" />
 
 		<Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir.TrimEnd("\"))" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
-		<Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"' />
+		<Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"'
+		 	IgnoreExitCode='true'  />
 	</Target>
 
 </Project>
