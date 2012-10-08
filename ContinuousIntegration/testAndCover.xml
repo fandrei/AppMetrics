@@ -1,61 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="RunTests" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
 
-	<PropertyGroup>
-		<SolutionRoot>$(MSBuildProjectDirectory)\..</SolutionRoot>
-		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-		<NUnit-ToolPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnit-ToolPath>
-		<OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
-		<ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
-		<MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
-		<AppMetricsTest_AccessKey>{A7071B68-F1C5-4CB7-90BC-FC4D381D7558}</AppMetricsTest_AccessKey>
-		<AppMetricsTest_DataFolder>$(BinariesRoot)\_PublishedWebsites\_AppMetricsData</AppMetricsTest_DataFolder>
-		<AppMetricsTest_ServiceRootFolder>$(BinariesRoot)\_PublishedWebsites\AppMetrics</AppMetricsTest_ServiceRootFolder>
-	</PropertyGroup>
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..</SolutionRoot>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <NUnit-ToolPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnit-ToolPath>
+    <OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
+    <ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
+    <MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
 
-	<Choose>
-		<When Condition=" '$(OutDir)'=='' ">
-			<PropertyGroup>
-				<BinDir>$(SolutionRoot)\_bin\$(Configuration)</BinDir>
-				<ReportsPath>$(SolutionRoot)\_reports\</ReportsPath>
-				<CodeCoverageResultsPath>$(SolutionRoot)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
-			</PropertyGroup>
-		</When>
-		<Otherwise>
-			<PropertyGroup>
-				<BinDir Condition=" '$(OutDir)' != '' ">$(OutDir)\</BinDir>
-				<ReportsPath>$(OutDir)\_reports\</ReportsPath>
-				<CodeCoverageResultsPath>$(OutDir)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
-			</PropertyGroup>
-		</Otherwise>
-	</Choose>
 
-	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
-	<UsingTask TaskName="SetEnvVariable"
+    <AppMetricsTest_ServiceRootFolder Condition=" '$(AppMetricsTest_ServiceRootFolder)' == '' ">
+      $(BinariesRoot)\_PublishedWebsites\AppMetrics/
+    </AppMetricsTest_ServiceRootFolder>
+    <AppMetricsTest_DataFolder Condition=" '$(AppMetricsTest_DataFolder)' == '' ">
+      $(BinariesRoot)\_PublishedWebsites\_AppMetricsData/
+    </AppMetricsTest_DataFolder>
+    <AppMetricsTest_AccessKey Condition=" '$(AppMetricsTest_AccessKey)' == '' ">NOT_SET</AppMetricsTest_AccessKey>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition=" '$(OutDir)'=='' ">
+      <PropertyGroup>
+        <BinDir>$(SolutionRoot)\_bin\$(Configuration)</BinDir>
+        <ReportsPath>$(SolutionRoot)\_reports\</ReportsPath>
+        <CodeCoverageResultsPath>$(SolutionRoot)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <BinDir Condition=" '$(OutDir)' != '' ">$(OutDir)\</BinDir>
+        <ReportsPath>$(OutDir)\_reports\</ReportsPath>
+        <CodeCoverageResultsPath>$(OutDir)\_reports\CodeCoverageResults.xml</CodeCoverageResultsPath>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+  <UsingTask TaskName="SetEnvVariable"
 			   AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
 
-	<PropertyGroup>
-		<!-- list of test assemblies (space separated) -->
-		<TestAssemblies>$(BinDir)\Tests.Analytics.dll $(BinDir)\Tests.Functional.dll</TestAssemblies>
-		<!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
-		<OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
-	</PropertyGroup>
+  <PropertyGroup>
+    <!-- list of test assemblies (space separated) -->
+    <TestAssemblies>$(BinDir)\Tests.Analytics.dll $(BinDir)\Tests.Functional.dll</TestAssemblies>
+    <!-- list of assembly filters (space separated) - see https://github.com/sawilde/opencover/wiki/Usage -filter: for syntax-->
+    <OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
+  </PropertyGroup>
 
-	<Target Name="RunTests" >
-		<Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
+  <Target Name="RunTests" >
+    <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
 
-		<SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
-		<SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
-		<SetEnvVariable Name="AppMetricsTest_AccessKey" Value="$(AppMetricsTest_AccessKey)"/>
+    <SetEnvVariable Name="AppMetricsTest_ServiceRootFolder" Value="$(AppMetricsTest_ServiceRootFolder)"/>
+    <SetEnvVariable Name="AppMetricsTest_DataFolder" Value="$(AppMetricsTest_DataFolder)"/>
+    <SetEnvVariable Name="AppMetricsTest_AccessKey" Value="$(AppMetricsTest_AccessKey)"/>
 
-		<MakeDir Directories="$(AppMetricsTest_DataFolder)" />
+    <MakeDir Directories="$(AppMetricsTest_DataFolder)" />
 
-		<RemoveDir Directories="$(ReportsPath)" />
-		<MakeDir Directories="$(ReportsPath)" />
+    <RemoveDir Directories="$(ReportsPath)" />
+    <MakeDir Directories="$(ReportsPath)" />
 
-		<Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir.TrimEnd("\"))" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
-		<Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"'
+    <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir.TrimEnd("\"))" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
+    <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"'
 		 	IgnoreExitCode='true'  />
-	</Target>
+  </Target>
 
 </Project>
