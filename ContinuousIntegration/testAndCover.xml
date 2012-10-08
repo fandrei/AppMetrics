@@ -29,17 +29,17 @@
 
   <PropertyGroup>
     <AppMetricsTest_ServiceRootFolder Condition=" '$(AppMetricsTest_ServiceRootFolder)' == '' ">
-      $(BinDir)\_PublishedWebsites\AppMetrics/
+      $(BinDir)\_PublishedWebsites\AppMetrics\
     </AppMetricsTest_ServiceRootFolder>
     <AppMetricsTest_DataFolder Condition=" '$(AppMetricsTest_DataFolder)' == '' ">
-      $(BinDir)\_PublishedWebsites\_AppMetricsData/
+      $(BinDir)\_PublishedWebsites\_AppMetricsData\
     </AppMetricsTest_DataFolder>
     <AppMetricsTest_AccessKey Condition=" '$(AppMetricsTest_AccessKey)' == '' ">NOT_SET</AppMetricsTest_AccessKey>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
   <UsingTask TaskName="SetEnvVariable"
-			   AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
+      AssemblyFile="$(SolutionRoot)\tools\MSBuild.SetEnvVariable\MSBuild.SetEnvVariable.dll"/>
 
   <PropertyGroup>
     <!-- list of test assemblies (space separated) -->
