@@ -28,12 +28,8 @@
   </Choose>
 
   <PropertyGroup>
-    <AppMetricsTest_ServiceRootFolder Condition=" '$(AppMetricsTest_ServiceRootFolder)' == '' ">
-      $(BinDir)\_PublishedWebsites\AppMetrics\
-    </AppMetricsTest_ServiceRootFolder>
-    <AppMetricsTest_DataFolder Condition=" '$(AppMetricsTest_DataFolder)' == '' ">
-      $(BinDir)\_PublishedWebsites\_AppMetricsData\
-    </AppMetricsTest_DataFolder>
+    <AppMetricsTest_ServiceRootFolder Condition=" '$(AppMetricsTest_ServiceRootFolder)' == '' ">$(BinDir)\_PublishedWebsites\AppMetrics\</AppMetricsTest_ServiceRootFolder>
+    <AppMetricsTest_DataFolder Condition=" '$(AppMetricsTest_DataFolder)' == '' ">$(BinDir)\_PublishedWebsites\_AppMetricsData\</AppMetricsTest_DataFolder>
     <AppMetricsTest_AccessKey Condition=" '$(AppMetricsTest_AccessKey)' == '' ">NOT_SET</AppMetricsTest_AccessKey>
   </PropertyGroup>
 
@@ -62,7 +58,7 @@
 
     <Exec Command='"$(OpenCover-ToolPath)\OpenCover.Console.exe" -register:user -target:"$(NUnit-ToolPath)\nunit-console-x86.exe" "-targetargs:$(TestAssemblies)" "-targetdir:$(BinDir.TrimEnd("\"))" "-filter:$(OpenCoverFilter)" -output:$(CodeCoverageResultsPath)' />
     <Exec Command='$(ReportGenerator-ToolPath)ReportGenerator.exe "-reports:$(CodeCoverageResultsPath)" "-targetdir:$(ReportsPath)\coveragereport" "-reporttypes:html;htmlsummary;xmlsummary"'
-		 	IgnoreExitCode='true'  />
+       IgnoreExitCode='true'  />
   </Target>
 
 </Project>
