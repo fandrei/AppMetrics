@@ -145,8 +145,7 @@ namespace AppMetrics.Analytics
 		private List<CalcResult> CalculateByFunction(ICollection<RecordEx> records)
 		{
 			records = records.Where(
-					val => (Util.IsLatency(val) || Util.IsJitter(val)) &&
-						_options.FunctionIsAllowed(Util.GetFunctionName(val))
+					val => !((Util.IsLatency(val) || Util.IsJitter(val)) && !_options.FunctionIsAllowed(Util.GetFunctionName(val)))
 				).ToArray();
 
 			var res = new List<CalcResult>();
