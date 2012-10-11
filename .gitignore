@@ -36,6 +36,7 @@ AppMetrics/log.txt
 AppMetrics.AnalyticsSite/App_Data/
 
 _data/
+_data.IIS/
 _nuget/
 _package/
 
