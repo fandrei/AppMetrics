@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AppMetrics.WebUtils
 {
-	public class WebLogger
+	public static class WebLogger
 	{
 		public static void Report(object val)
 		{
