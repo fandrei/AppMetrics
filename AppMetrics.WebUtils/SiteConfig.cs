@@ -27,7 +27,7 @@ namespace AppMetrics.WebUtils
 			}
 		}
 
-		static string Get(string name)
+		public static string Get(string name)
 		{
 			var tmp = Config.AppSettings.Settings[name];
 			if (tmp == null)
