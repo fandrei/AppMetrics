@@ -33,7 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DesktopBuildPackageLocation>..\_WebPackage\AgentService.ConfigSite.zip</DesktopBuildPackageLocation>
+    <DesktopBuildPackageLocation>..\_package\AgentService.ConfigSite.zip</DesktopBuildPackageLocation>
     <DeployIisAppPath>config.metrics.labs.cityindex.com</DeployIisAppPath>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
@@ -44,7 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DesktopBuildPackageLocation>..\_WebPackage\AgentService.ConfigSite.zip</DesktopBuildPackageLocation>
+    <DesktopBuildPackageLocation>..\_package\AgentService.ConfigSite.zip</DesktopBuildPackageLocation>
     <DeployIisAppPath>config.metrics.labs.cityindex.com</DeployIisAppPath>
   </PropertyGroup>
   <PropertyGroup>
