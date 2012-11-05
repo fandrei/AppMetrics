@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMetrics.WebUtils", "AppM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentService", "AgentService\AgentService.csproj", "{7B312C9B-4CA0-446E-B737-4D25F0BA5902}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentService.ConfigSite", "AgentService.ConfigSite\AgentService.ConfigSite.csproj", "{321D25F7-EA96-4828-82C7-90970536D11D}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AppMetrics.vsmdi
@@ -129,6 +131,10 @@ Global
 		{7B312C9B-4CA0-446E-B737-4D25F0BA5902}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{7B312C9B-4CA0-446E-B737-4D25F0BA5902}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{7B312C9B-4CA0-446E-B737-4D25F0BA5902}.Release|Mixed Platforms.Build.0 = Release|x86
+		{321D25F7-EA96-4828-82C7-90970536D11D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{321D25F7-EA96-4828-82C7-90970536D11D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{321D25F7-EA96-4828-82C7-90970536D11D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{321D25F7-EA96-4828-82C7-90970536D11D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
