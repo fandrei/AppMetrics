@@ -162,6 +162,9 @@
     <Compile Include="GetConfig.ashx.cs">
       <DependentUpon>GetConfig.ashx</DependentUpon>
     </Compile>
+    <Compile Include="plugins\List.ashx.cs">
+      <DependentUpon>List.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="plugins\List.ashx" />
     <None Include="Properties\PublishProfiles\ConfigSitePackage.pubxml" />
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +187,7 @@
       <Name>AppMetrics.WebUtils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="plugins\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

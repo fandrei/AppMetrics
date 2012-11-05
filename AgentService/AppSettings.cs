@@ -22,7 +22,7 @@ namespace AppMetrics.AgentService
 
 		public string PluginsUrl
 		{
-			get { return ConfigBaseUrl + "/plugins/"; }
+			get { return ConfigBaseUrl + "/plugins/List.ashx"; }
 		}
 
 		public string UserName { get; set; }
