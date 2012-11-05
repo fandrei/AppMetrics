@@ -9,7 +9,10 @@ namespace AppMetrics.AgentService
 	{
 		public static AppSettings Load()
 		{
-			return Load<AppSettings>(FileName);
+			var res = Load<AppSettings>(FileName);
+			if (string.IsNullOrWhiteSpace(res.ConfigBaseUrl))
+				throw new ApplicationException("ConfigBaseUrl config option is missing");
+			return res;
 		}
 
 		private static readonly string FileName = Const.WorkingAreaPath + "AppSettings.xml";
