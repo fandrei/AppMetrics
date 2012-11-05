@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Security.Cryptography;
+using System.Text;
+using System.Xml.Serialization;
 using AppMetrics.Shared;
 
 namespace AppMetrics.AgentService
@@ -10,8 +12,7 @@ namespace AppMetrics.AgentService
 		public static AppSettings Load()
 		{
 			var res = Load<AppSettings>(FileName);
-			if (string.IsNullOrWhiteSpace(res.ConfigBaseUrl))
-				throw new ApplicationException("ConfigBaseUrl config option is missing");
+			res.Normalize();
 			return res;
 		}
 
@@ -19,9 +20,42 @@ namespace AppMetrics.AgentService
 
 		public string ConfigBaseUrl { get; set; }
 
-		public string AutoUpdateUrl
+		public string PluginsUrl
 		{
-			get { return ConfigBaseUrl + "/CIAPILatencyCollector/updates/"; }
+			get { return ConfigBaseUrl + "/plugins/"; }
+		}
+
+		public string UserName { get; set; }
+
+		public string PasswordEncrypted { get; set; }
+		static readonly byte[] AdditionalEntropy = { 0x43, 0x71, 0xDE, 0x5B, 0x44, 0x72, 0x45, 0xE3, 0xBE, 0x1E, 0x98, 0x2B, 0xAA };
+
+		[XmlIgnore]
+		public string Password
+		{
+			get
+			{
+				if (string.IsNullOrEmpty(PasswordEncrypted))
+					return "";
+
+				var encrypted = Convert.FromBase64String(PasswordEncrypted);
+				var data = ProtectedData.Unprotect(encrypted, AdditionalEntropy, DataProtectionScope.LocalMachine);
+				var res = Encoding.UTF8.GetString(data);
+				return res;
+			}
+			set
+			{
+				var data = Encoding.UTF8.GetBytes(value);
+				var encrypted = ProtectedData.Protect(data, AdditionalEntropy, DataProtectionScope.LocalMachine);
+				PasswordEncrypted = Convert.ToBase64String(encrypted);
+			}
+		}
+
+		void Normalize()
+		{
+			if (string.IsNullOrWhiteSpace(ConfigBaseUrl))
+				throw new ApplicationException("ConfigBaseUrl config option is missing");
+			ConfigBaseUrl = ConfigBaseUrl.TrimEnd('/');
 		}
 	}
 }

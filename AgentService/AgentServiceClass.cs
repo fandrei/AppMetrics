@@ -93,16 +93,18 @@ namespace AppMetrics.AgentService
 				Directory.CreateDirectory(Const.WorkingAreaTempPath);
 
 			var settings = AppSettings.Load();
-			var updateUrl = settings.AutoUpdateUrl;
+			var pluginsUrl = settings.PluginsUrl;
 
 			using (var client = new WebClient())
 			{
+				client.Credentials = new NetworkCredential(settings.UserName, settings.Password);
+
 				// compare versions
 				var localVersionFile = Const.WorkingAreaBinPath + "version.txt";
 				if (File.Exists(localVersionFile))
 				{
 					var localVersion = File.ReadAllText(localVersionFile);
-					var newVersion = client.DownloadString(updateUrl + "version.txt");
+					var newVersion = client.DownloadString(pluginsUrl + "version.txt");
 					if (newVersion == localVersion)
 						return;
 					ReportEvent(string.Format("Trying to update to version {0}", newVersion));
@@ -112,7 +114,7 @@ namespace AppMetrics.AgentService
 				var zipFilePath = Const.WorkingAreaTempPath + zipFileName;
 				if (File.Exists(zipFilePath))
 					File.Delete(zipFilePath);
-				client.DownloadFile(updateUrl + zipFileName, zipFilePath);
+				client.DownloadFile(pluginsUrl + zipFileName, zipFilePath);
 
 				using (var zipFile = new ZipFile(zipFilePath))
 				{
