@@ -5,7 +5,7 @@ using AppMetrics.Shared;
 
 namespace AppMetrics.AgentService
 {
-	class AppSettings : AppSettingsBase
+	public class AppSettings : AppSettingsBase
 	{
 		public static AppSettings Load()
 		{
