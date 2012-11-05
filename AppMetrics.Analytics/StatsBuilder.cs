@@ -157,6 +157,7 @@ namespace AppMetrics.Analytics
 			}
 			else
 			{
+				records = records.Where(val => (Util.IsLatency(val) || Util.IsJitter(val))).ToArray();
 				var recordsByFunction = Util.GroupBySorted(records, record => record.Name.Split(' ')[1]);
 				foreach (var pair in recordsByFunction)
 				{
