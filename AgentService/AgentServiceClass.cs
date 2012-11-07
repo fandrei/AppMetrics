@@ -61,13 +61,14 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
+				Init();
+				FindPlugins();
+				EnsurePluginsStopped();
+
 				while (!_terminated)
 				{
 					try
 					{
-						Init();
-						FindPlugins();
-						EnsurePluginsStopped();
 						ApplyUpdates();
 						EnsurePluginsStarted();
 					}
