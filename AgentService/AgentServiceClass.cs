@@ -218,6 +218,17 @@ namespace AppMetrics.AgentService
 
 		private void StopPlugin(PluginInfo plugin)
 		{
+			try
+			{
+				// signal the process to close
+				var stopEvent = EventWaitHandle.OpenExisting("AppMetrics_" + plugin.Name);
+				stopEvent.Set();
+			}
+			catch (Exception exc)
+			{
+				Report(exc);
+			}
+
 			var exePath = Const.GetPluginExePath(plugin.Name);
 			if (plugin.Process == null)
 			{
@@ -240,17 +251,6 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				try
-				{
-					// signal the process to close
-					var stopEvent = EventWaitHandle.OpenExisting(process.ProcessName + process.Id);
-					stopEvent.Set();
-				}
-				catch (Exception exc)
-				{
-					Report(exc);
-				}
-
 				if (!process.WaitForExit(3*1000))
 					process.Kill();
 			}
