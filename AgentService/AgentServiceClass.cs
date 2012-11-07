@@ -143,7 +143,7 @@ namespace AppMetrics.AgentService
 				var localVersion = File.ReadAllText(localVersionFile);
 				if (newVersion == localVersion)
 					return;
-				ReportEvent(string.Format("Trying to update to version {0}", newVersion));
+				ReportEvent(string.Format("Trying to update plugin {0} to version {1}", name, newVersion));
 			}
 
 			string zipFileName = name + ".zip";
@@ -165,7 +165,7 @@ namespace AppMetrics.AgentService
 
 			{
 				var localVersion = File.ReadAllText(localVersionFile).Trim();
-				ReportEvent(string.Format("Update to version {0} is successful", localVersion));
+				ReportEvent(string.Format("Update of plugin {0} to version {1} is successful", name, localVersion));
 			}
 		}
 
