@@ -20,6 +20,9 @@ namespace AppMetrics.AgentService
 
 		public string ConfigBaseUrl { get; set; }
 
+		public string UserId { get; set; }
+		public string NodeName { get; set; }
+
 		public string PluginsUrl
 		{
 			get { return ConfigBaseUrl + "/plugins/"; }
