@@ -240,18 +240,24 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				// signal the process to close
-				var stopEvent = EventWaitHandle.OpenExisting(process.ProcessName + process.Id);
-				stopEvent.Set();
+				try
+				{
+					// signal the process to close
+					var stopEvent = EventWaitHandle.OpenExisting(process.ProcessName + process.Id);
+					stopEvent.Set();
+				}
+				catch (Exception exc)
+				{
+					Report(exc);
+				}
 
-				process.WaitForExit(3 * 1000);
+				if (!process.WaitForExit(3*1000))
+					process.Kill();
 			}
 			catch (Exception exc)
 			{
 				Report(exc);
 			}
-
-			process.Kill();
 		}
 
 		private void StopPlugin(string name)
