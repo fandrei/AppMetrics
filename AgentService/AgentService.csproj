@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="PluginInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

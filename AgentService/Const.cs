@@ -19,6 +19,16 @@ namespace AppMetrics.AgentService
 			}
 		}
 
+		public static string GetPluginBinPath(string name)
+		{
+			return WorkingAreaBinPath + @"\" + name + @"\";
+		}
+
+		public static string GetPluginExePath(string name)
+		{
+			return GetPluginBinPath(name) + @"\" + name + ".exe";
+		}
+
 		public static string WorkingAreaBinPath
 		{
 			get { return WorkingAreaPath + @"\bin\"; }
@@ -27,11 +37,6 @@ namespace AppMetrics.AgentService
 		public static string WorkingAreaTempPath
 		{
 			get { return WorkingAreaPath + @"\temp\"; }
-		}
-
-		public static string WorkerAssemblyPath
-		{
-			get { return WorkingAreaBinPath + @"\CiapiLatencyCollectorCore.exe"; }
 		}
 	}
 }

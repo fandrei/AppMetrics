@@ -45,7 +45,7 @@ namespace AppMetrics.AgentService
 					_terminated = true;
 					_thread.Abort();
 
-					StopWorkerDomain();
+					EnsurePluginsStopped();
 
 					_thread.Join();
 					_thread = null;
@@ -66,7 +66,7 @@ namespace AppMetrics.AgentService
 					try
 					{
 						ApplyUpdates();
-						EnsureWorkerDomainStarted();
+						EnsurePluginsStarted();
 					}
 					catch (ThreadAbortException)
 					{
@@ -93,41 +93,70 @@ namespace AppMetrics.AgentService
 				Directory.CreateDirectory(Const.WorkingAreaTempPath);
 
 			var settings = AppSettings.Load();
-			var pluginsUrl = settings.PluginsUrl;
 
 			using (var client = new WebClient())
 			{
 				client.Credentials = new NetworkCredential(settings.UserName, settings.Password);
 
-				// compare versions
-				var localVersionFile = Const.WorkingAreaBinPath + "version.txt";
-				if (File.Exists(localVersionFile))
+				var pluginsList = client.DownloadString(settings.PluginsListUrl);
+				var lines = pluginsList.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+				foreach (var line in lines)
 				{
-					var localVersion = File.ReadAllText(localVersionFile);
-					var newVersion = client.DownloadString(pluginsUrl + "version.txt");
-					if (newVersion == localVersion)
-						return;
-					ReportEvent(string.Format("Trying to update to version {0}", newVersion));
+					var parts = line.Split(' ');
+					if (parts.Count() != 2)
+						throw new ApplicationException();
+					var name = parts[0];
+					var version = parts[1];
+
+					RegisterPlugin(name);
+					UpdatePlugin(client, settings.PluginsUrl, name, version);
 				}
+			}
+		}
 
-				const string zipFileName = "LatencyCollectorCore.zip";
-				var zipFilePath = Const.WorkingAreaTempPath + zipFileName;
-				if (File.Exists(zipFilePath))
-					File.Delete(zipFilePath);
-				client.DownloadFile(pluginsUrl + zipFileName, zipFilePath);
+		private void RegisterPlugin(string name)
+		{
+			PluginInfo pluginInfo;
+			if (!_plugins.TryGetValue(name, out pluginInfo))
+				_plugins.Add(name, new PluginInfo(name));
+		}
 
-				using (var zipFile = new ZipFile(zipFilePath))
-				{
-					StopWorkerDomain();
-					DeleteAllFiles(Const.WorkingAreaBinPath);
+		private void UpdatePlugin(WebClient client, string pluginsUrl, string name, string newVersion)
+		{
+			var pluginPath = Const.WorkingAreaBinPath + @"\" + name + @"\";
+			if (!Directory.Exists(pluginPath))
+				Directory.CreateDirectory(pluginPath);
 
-					zipFile.ExtractAll(Const.WorkingAreaBinPath);
-				}
+			// check if update is needed
+			var localVersionFile = pluginPath + "version.txt";
+			if (File.Exists(localVersionFile))
+			{
+				var localVersion = File.ReadAllText(localVersionFile);
+				if (newVersion == localVersion)
+					return;
+				ReportEvent(string.Format("Trying to update to version {0}", newVersion));
+			}
 
-				{
-					var localVersion = File.ReadAllText(localVersionFile).Trim();
-					ReportEvent(string.Format("Update to version {0} is successful", localVersion));
-				}
+			string zipFileName = name + ".zip";
+			var zipFilePath = Const.WorkingAreaTempPath + zipFileName;
+			if (File.Exists(zipFilePath))
+				File.Delete(zipFilePath);
+
+			var zipFileUrl = pluginsUrl + (name + "/" + zipFileName).Replace("//", "/");
+			client.DownloadFile(zipFileUrl, zipFilePath);
+
+			StopPlugin(name);
+			DeleteAllFiles(pluginPath);
+
+			using (var zipFile = new ZipFile(zipFilePath))
+			{
+				zipFile.TempFileFolder = Path.GetTempPath();
+				zipFile.ExtractAll(pluginPath);
+			}
+
+			{
+				var localVersion = File.ReadAllText(localVersionFile).Trim();
+				ReportEvent(string.Format("Update to version {0} is successful", localVersion));
 			}
 		}
 
@@ -139,75 +168,25 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		private void StartWorkerDomain()
+		private void EnsurePluginsStarted()
 		{
-			var newDomain = CreateAppDomain(Const.WorkingAreaBinPath, Const.WorkerAssemblyPath + ".config");
-			try
-			{
-				InvokeCrossDomain(newDomain, "Start");
-			}
-			catch (AppDomainUnloadedException exc)
-			{
-				Report(exc);
-				newDomain = null;
-			}
-			catch (Exception exc)
-			{
-				Report(exc);
-				AppDomain.Unload(newDomain);
-				throw;
-			}
-
-			_appDomain = newDomain;
-
-			ReportEvent("Started collecting");
+			
 		}
 
-		void StopWorkerDomain()
+		private void EnsurePluginsStopped()
 		{
-			if (_appDomain == null)
-				return;
 
-			InvokeCrossDomain(_appDomain, "Stop");
-			AppDomain.Unload(_appDomain);
-			_appDomain = null;
 		}
 
-		static AppDomain CreateAppDomain(string basePath, string configPath)
+		private void StopPlugin(string pluginName)
 		{
-			var setup = new AppDomainSetup
-				{
-					ApplicationBase = basePath,
-					ConfigurationFile = configPath,
-				};
-			var appDomain = AppDomain.CreateDomain("LatencyCollectorCore", null, setup);
-			return appDomain;
+
 		}
 
-		private void EnsureWorkerDomainStarted()
+		private void EnsurePluginStarted(string pluginName)
 		{
-			if (_appDomain != null)
-			{
-				try
-				{
-					var tmp = _appDomain.Id;
-				}
-				catch (AppDomainUnloadedException exc)
-				{
-					Report(exc);
-					_appDomain = null;
-				}
-			}
+			var exePath = Const.GetPluginExePath(pluginName);
 
-			if (_appDomain == null)
-				StartWorkerDomain();
-		}
-
-		private static void InvokeCrossDomain(AppDomain newDomain, string methodName)
-		{
-			var args = new object[] { "LatencyCollectorCore.Program", methodName, null };
-			newDomain.CreateInstanceFromAndUnwrap(Const.WorkerAssemblyPath,
-				"LatencyCollectorCore.Proxy", false, BindingFlags.Default, null, args, CultureInfo.InvariantCulture, null);
 		}
 
 		public static void ReportEvent(string message, EventLogEntryType type = EventLogEntryType.Information)
@@ -232,7 +211,8 @@ namespace AppMetrics.AgentService
 		private readonly object _sync = new object();
 		private Thread _thread;
 		private volatile bool _terminated;
-		private AppDomain _appDomain;
 		private static readonly TimeSpan AutoUpdateCheckPeriod = TimeSpan.FromMinutes(1);
+
+		private readonly Dictionary<string, PluginInfo> _plugins = new Dictionary<string, PluginInfo>();
 	}
 }
