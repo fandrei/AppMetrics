@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -12,7 +13,8 @@ namespace AppMetrics.AgentService
 			Name = name;
 		}
 
-		public string Name;
+		public string Name { get; private set; }
+		public Process Process { get; set; }
 
 		public override string ToString()
 		{

@@ -65,6 +65,9 @@ namespace AppMetrics.AgentService
 				{
 					try
 					{
+						Init();
+						FindPlugins();
+						EnsurePluginsStopped();
 						ApplyUpdates();
 						EnsurePluginsStarted();
 					}
@@ -85,13 +88,25 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		void ApplyUpdates()
+		private static void Init()
 		{
 			if (!Directory.Exists(Const.WorkingAreaBinPath))
 				Directory.CreateDirectory(Const.WorkingAreaBinPath);
 			if (!Directory.Exists(Const.WorkingAreaTempPath))
 				Directory.CreateDirectory(Const.WorkingAreaTempPath);
+		}
 
+		void FindPlugins()
+		{
+			foreach (var directory in Directory.GetDirectories(Const.WorkingAreaBinPath))
+			{
+				var pluginName = Path.GetFileName(directory);
+				RegisterPlugin(pluginName);
+			}
+		}
+
+		void ApplyUpdates()
+		{
 			var settings = AppSettings.Load();
 
 			using (var client = new WebClient())
@@ -112,13 +127,6 @@ namespace AppMetrics.AgentService
 					UpdatePlugin(client, settings.PluginsUrl, name, version);
 				}
 			}
-		}
-
-		private void RegisterPlugin(string name)
-		{
-			PluginInfo pluginInfo;
-			if (!_plugins.TryGetValue(name, out pluginInfo))
-				_plugins.Add(name, new PluginInfo(name));
 		}
 
 		private void UpdatePlugin(WebClient client, string pluginsUrl, string name, string newVersion)
@@ -170,23 +178,80 @@ namespace AppMetrics.AgentService
 
 		private void EnsurePluginsStarted()
 		{
-			
+			lock (_pluginsSync)
+			{
+				foreach (var pair in _plugins)
+				{
+					EnsurePluginStarted(pair.Value);
+				}
+			}
 		}
 
 		private void EnsurePluginsStopped()
 		{
-
+			lock (_pluginsSync)
+			{
+				foreach (var pair in _plugins)
+				{
+					StopPlugin(pair.Value);
+				}
+			}
 		}
 
-		private void StopPlugin(string pluginName)
+		private void EnsurePluginStarted(PluginInfo plugin)
 		{
-
+			var exePath = Const.GetPluginExePath(plugin.Name);
+			var startInfo = new ProcessStartInfo(exePath)
+				{
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
+					CreateNoWindow = true,
+					RedirectStandardInput = true,
+				};
+			var process = Process.Start(startInfo);
+			plugin.Process = process;
 		}
 
-		private void EnsurePluginStarted(string pluginName)
+		private void StopPlugin(PluginInfo plugin)
 		{
-			var exePath = Const.GetPluginExePath(pluginName);
+			var exePath = Const.GetPluginExePath(plugin.Name);
+			if (plugin.Process == null)
+			{
+				// stop any processes left from the previous agent launch, if any. normally this should not happen
+				var processName = Path.GetFileNameWithoutExtension(exePath);
+				var processes = Process.GetProcessesByName(processName);
+				foreach (var process in processes)
+				{
+					StopProcess(process);
+				}
+			}
+			else
+			{
+				StopProcess(plugin.Process);
+				plugin.Process = null;
+			}
+		}
 
+		private void StopProcess(Process process)
+		{
+			try
+			{
+				process.StandardInput.WriteLine(" "); // send keypress to the process
+				process.WaitForExit(3 * 1000);
+			}
+			catch (InvalidOperationException)
+			{ }
+
+			process.Kill();
+		}
+
+		private void StopPlugin(string name)
+		{
+			lock (_pluginsSync)
+			{
+				var plugin = _plugins[name];
+				StopPlugin(plugin);
+			}
 		}
 
 		public static void ReportEvent(string message, EventLogEntryType type = EventLogEntryType.Information)
@@ -208,11 +273,22 @@ namespace AppMetrics.AgentService
 			ReportEvent(exc.ToString(), EventLogEntryType.Warning);
 		}
 
+		private readonly Dictionary<string, PluginInfo> _plugins = new Dictionary<string, PluginInfo>();
+		private readonly object _pluginsSync = new object();
+
+		private void RegisterPlugin(string name)
+		{
+			lock (_pluginsSync)
+			{
+				PluginInfo pluginInfo;
+				if (!_plugins.TryGetValue(name, out pluginInfo))
+					_plugins.Add(name, new PluginInfo(name));
+			}
+		}
+
 		private readonly object _sync = new object();
 		private Thread _thread;
 		private volatile bool _terminated;
 		private static readonly TimeSpan AutoUpdateCheckPeriod = TimeSpan.FromMinutes(1);
-
-		private readonly Dictionary<string, PluginInfo> _plugins = new Dictionary<string, PluginInfo>();
 	}
 }
