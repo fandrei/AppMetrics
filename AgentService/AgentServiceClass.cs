@@ -237,11 +237,16 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				process.StandardInput.WriteLine(" "); // send keypress to the process
+				// signal the process to close
+				var stopEvent = EventWaitHandle.OpenExisting(process.ProcessName + process.Id);
+				stopEvent.Set();
+
 				process.WaitForExit(3 * 1000);
 			}
-			catch (InvalidOperationException)
-			{ }
+			catch (Exception exc)
+			{
+				Report(exc);
+			}
 
 			process.Kill();
 		}
