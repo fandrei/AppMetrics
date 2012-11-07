@@ -218,32 +218,35 @@ namespace AppMetrics.AgentService
 
 		private void StopPlugin(PluginInfo plugin)
 		{
-			try
+			lock (_pluginsSync)
 			{
-				// signal the process to close
-				var stopEvent = EventWaitHandle.OpenExisting("AppMetrics_" + plugin.Name);
-				stopEvent.Set();
-			}
-			catch (Exception exc)
-			{
-				Report(exc);
-			}
-
-			var exePath = Const.GetPluginExePath(plugin.Name);
-			if (plugin.Process == null)
-			{
-				// stop any processes left from the previous agent launch, if any. normally this should not happen
-				var processName = Path.GetFileNameWithoutExtension(exePath);
-				var processes = Process.GetProcessesByName(processName);
-				foreach (var process in processes)
+				try
 				{
-					StopProcess(process);
+					// send signal to close
+					var stopEvent = EventWaitHandle.OpenExisting("AppMetrics_" + plugin.Name);
+					stopEvent.Set();
 				}
-			}
-			else
-			{
-				StopProcess(plugin.Process);
-				plugin.Process = null;
+				catch (Exception exc)
+				{
+					Report(exc);
+				}
+
+				var exePath = Const.GetPluginExePath(plugin.Name);
+				if (plugin.Process == null)
+				{
+					// stop any processes left from the previous agent launch, if any. normally this should not happen
+					var processName = Path.GetFileNameWithoutExtension(exePath);
+					var processes = Process.GetProcessesByName(processName);
+					foreach (var process in processes)
+					{
+						StopProcess(process);
+					}
+				}
+				else
+				{
+					StopProcess(plugin.Process);
+					plugin.Process = null;
+				}
 			}
 		}
 
