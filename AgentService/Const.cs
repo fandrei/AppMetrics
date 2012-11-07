@@ -26,7 +26,7 @@ namespace AppMetrics.AgentService
 
 		public static string GetPluginExePath(string name)
 		{
-			return GetPluginBinPath(name) + @"\" + name + ".exe";
+			return GetPluginBinPath(name) + @"\AppMetrics_" + name + ".exe";
 		}
 
 		public static string WorkingAreaBinPath
