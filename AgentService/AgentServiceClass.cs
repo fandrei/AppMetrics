@@ -201,6 +201,9 @@ namespace AppMetrics.AgentService
 
 		private void EnsurePluginStarted(PluginInfo plugin)
 		{
+			if (plugin.Process != null)
+				return;
+
 			var exePath = Const.GetPluginExePath(plugin.Name);
 			var startInfo = new ProcessStartInfo(exePath)
 				{
