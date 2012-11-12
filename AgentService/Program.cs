@@ -38,7 +38,7 @@ namespace AppMetrics.AgentService
 							ManagedInstallerClass.InstallHelper(new[] { ExePath, "/LogFile=" });
 							SetRecoveryOptions(Const.AppName);
 						}
-						catch (InvalidOperationException)
+						catch (InvalidOperationException exc)
 						{
 						}
 					}
@@ -48,7 +48,7 @@ namespace AppMetrics.AgentService
 						{
 							ManagedInstallerClass.InstallHelper(new[] { "/u", ExePath, "/LogFile=" });
 						}
-						catch (InvalidOperationException)
+						catch (InvalidOperationException exc)
 						{
 						}
 					}
