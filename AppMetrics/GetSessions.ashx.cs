@@ -17,7 +17,10 @@ namespace AppMetrics
 		{
 			try
 			{
-				context.Server.ScriptTimeout = 5 * 60;
+				context.Server.ScriptTimeout = PageTimeout;
+
+				WebUtil.TryEnableCompression(context);
+				context.Response.ContentType = "text/plain";
 
 				var requestParams = context.Request.Params;
 
@@ -27,8 +30,6 @@ namespace AppMetrics
 
 				var sessions = DataReader.GetSessions(appKey, period);
 
-				WebUtil.TryEnableCompression(context);
-				context.Response.ContentType = "text/plain";
 				foreach (var session in sessions)
 				{
 					context.Response.Write(session.Serialize());
@@ -41,6 +42,8 @@ namespace AppMetrics
 				throw;
 			}
 		}
+
+		private const int PageTimeout = 5 * 60;
 
 		public bool IsReusable
 		{

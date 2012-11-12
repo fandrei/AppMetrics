@@ -20,9 +20,9 @@ namespace AppMetrics.AnalyticsSite
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			context.Server.ScriptTimeout = 5 * 60;
-
+			context.Server.ScriptTimeout = PageTimeout;
 			context.Response.ContentType = "text/plain";
+
 			var queryString = context.Request.Url.Query;
 			try
 			{
@@ -83,6 +83,8 @@ namespace AppMetrics.AnalyticsSite
 				ReportLog(message);
 			}
 		}
+
+		private const int PageTimeout = 5 * 60;
 
 		private static AnalysisOptions GetOptions(NameValueCollection requestParams)
 		{
