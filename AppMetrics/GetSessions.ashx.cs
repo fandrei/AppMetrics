@@ -39,7 +39,7 @@ namespace AppMetrics
 			catch (Exception exc)
 			{
 				WebLogger.Report(exc);
-				throw;
+				context.Response.Write(exc.ToString());
 			}
 		}
 
