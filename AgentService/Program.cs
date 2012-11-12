@@ -33,23 +33,18 @@ namespace AppMetrics.AgentService
 					else if (arg == "-install")
 					{
 						InitWorkingArea();
-						try
+
+						if (GetServiceStatus() == null)
 						{
-							ManagedInstallerClass.InstallHelper(new[] { ExePath, "/LogFile=" });
+							ManagedInstallerClass.InstallHelper(new[] {ExePath, "/LogFile="});
 							SetRecoveryOptions(Const.AppName);
-						}
-						catch (InvalidOperationException exc)
-						{
 						}
 					}
 					else if (arg == "-uninstall")
 					{
-						try
+						if (GetServiceStatus() != null)
 						{
 							ManagedInstallerClass.InstallHelper(new[] { "/u", ExePath, "/LogFile=" });
-						}
-						catch (InvalidOperationException exc)
-						{
 						}
 					}
 					else if (arg == "-start")
@@ -81,6 +76,19 @@ namespace AppMetrics.AgentService
 				{
 					controller.Start();
 				}
+			}
+		}
+
+		private static ServiceControllerStatus? GetServiceStatus()
+		{
+			try
+			{
+				var sc = new ServiceController { ServiceName = Const.AppName };
+				return sc.Status;
+			}
+			catch (InvalidOperationException)
+			{
+				return null;
 			}
 		}
 
