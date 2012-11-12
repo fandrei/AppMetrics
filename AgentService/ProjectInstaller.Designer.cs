@@ -39,7 +39,7 @@
 			// 
 			// serviceInstaller1
 			// 
-			this.serviceInstaller1.ServiceName = "AppMetrics Agent Service";
+			this.serviceInstaller1.ServiceName = "AppMetrics Agent";
 			this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
 			// 
 			// ProjectInstaller

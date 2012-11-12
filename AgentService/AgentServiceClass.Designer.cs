@@ -31,7 +31,7 @@
 			// 
 			// AgentService
 			// 
-			this.ServiceName = "AppMetrics Agent Service";
+			this.ServiceName = "AppMetrics Agent";
 
 		}
 
