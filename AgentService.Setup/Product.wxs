@@ -60,7 +60,7 @@
 
     <CustomAction Id="RunConfig" Directory="APPLICATIONROOTDIRECTORY"
                   Execute="deferred" Impersonate="no" Return="ignore"
-                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe" />
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe -config" />
 
     <CustomAction Id="StartService" Directory="APPLICATIONROOTDIRECTORY"
                   Execute="deferred" Impersonate="no" Return="ignore"
