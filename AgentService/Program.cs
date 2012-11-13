@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Configuration.Install;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.ServiceProcess;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace AppMetrics.AgentService
 {
@@ -50,6 +52,10 @@ namespace AppMetrics.AgentService
 					else if (arg == "-start")
 					{
 						StartService();
+					}
+					else if (arg == "-config")
+					{
+						SetConfig(args.Skip(1));
 					}
 				}
 				catch (Exception exc)
@@ -111,6 +117,75 @@ namespace AppMetrics.AgentService
 		{
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
+		}
+
+		static void SetConfig(IEnumerable<string> args)
+		{
+			var argsDic = new Dictionary<string, string>();
+			foreach (var arg in args)
+			{
+				if (arg.StartsWith("-") || arg.StartsWith("/"))
+				{
+					var tmp = arg.Substring(1);
+					if (!tmp.Contains(":"))
+					{
+						argsDic.Add(tmp.ToLower(), "");
+					}
+					else
+					{
+						var parts = tmp.Split(':');
+						var value = parts[1];
+						if (parts.Count() > 2)
+						{
+							value = string.Join(":", parts.Skip(1));
+						}
+
+						argsDic.Add(parts[0].ToLower(), value);
+					}
+				}
+			}
+
+			if (argsDic.Count == 0)
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new ConfigForm());
+				return;
+			}
+
+			var settings = AppSettings.Load();
+
+			string userName;
+			argsDic.TryGetValue("username", out userName);
+
+			string password;
+			argsDic.TryGetValue("password", out password);
+
+			if (!string.IsNullOrEmpty(userName))
+			{
+				settings.UserName = userName;
+				settings.Password = password;
+
+				settings.Save();
+			}
+
+			string nodeName;
+			argsDic.TryGetValue("nodename", out nodeName);
+			if (!string.IsNullOrEmpty(nodeName))
+			{
+				settings.NodeName = nodeName;
+
+				settings.Save();
+			}
+
+			string configServer;
+			argsDic.TryGetValue("configserver", out configServer);
+			if (!string.IsNullOrEmpty(configServer))
+			{
+				settings.ConfigBaseUrl = configServer;
+
+				settings.Save();
+			}
 		}
 
 		static void ShowMessage(string message)

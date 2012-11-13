@@ -61,6 +61,12 @@
       <DependentUpon>AgentServiceClass.cs</DependentUpon>
     </Compile>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Const.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Program.cs" />
@@ -75,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AgentServiceClass.resx">
       <DependentUpon>AgentServiceClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>

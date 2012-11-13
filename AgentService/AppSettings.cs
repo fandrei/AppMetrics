@@ -16,6 +16,11 @@ namespace AppMetrics.AgentService
 			return res;
 		}
 
+		public void Save()
+		{
+			Save<AppSettings>(FileName);
+		}
+
 		private static readonly string FileName = Const.WorkingAreaPath + "AppSettings.xml";
 
 		public string ConfigBaseUrl { get; set; }
@@ -64,6 +69,14 @@ namespace AppMetrics.AgentService
 			if (string.IsNullOrWhiteSpace(ConfigBaseUrl))
 				throw new ApplicationException("ConfigBaseUrl config option is missing");
 			ConfigBaseUrl = ConfigBaseUrl.TrimEnd('/');
+		}
+
+		protected override void OnAfterLoad()
+		{
+			if (UserId.IsNullOrEmpty())
+			{
+				UserId = Guid.NewGuid().ToString();
+			}
 		}
 	}
 }
