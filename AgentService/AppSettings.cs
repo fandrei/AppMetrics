@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Serialization;
+
 using AppMetrics.Shared;
 
 namespace AppMetrics.AgentService
