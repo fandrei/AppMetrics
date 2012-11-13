@@ -21,12 +21,10 @@ Thumbs.db
 *.log
 [Bb]in
 _bin/
-[Dd]ebug/
 *.lib
 *.sbr
 *.chw
-obj/
-[Rr]elease/
+[Oo]bj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 temp/
