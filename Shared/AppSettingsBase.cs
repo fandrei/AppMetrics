@@ -45,6 +45,8 @@ namespace AppMetrics.Shared
 		public void Save<T>(string fileName)
 			where T : AppSettingsBase, new()
 		{
+			OnBeforeSave();
+
 			var directory = Path.GetDirectoryName(fileName);
 			if (!Directory.Exists(directory))
 				Directory.CreateDirectory(directory);

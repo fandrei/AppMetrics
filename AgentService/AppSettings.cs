@@ -13,7 +13,6 @@ namespace AppMetrics.AgentService
 		public static AppSettings Load()
 		{
 			var res = Load<AppSettings>(FileName);
-			res.Normalize();
 			return res;
 		}
 
@@ -65,11 +64,10 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		void Normalize()
+		protected override void OnBeforeSave()
 		{
 			if (string.IsNullOrWhiteSpace(ConfigBaseUrl))
 				throw new ApplicationException("ConfigBaseUrl config option is missing");
-			ConfigBaseUrl = ConfigBaseUrl.TrimEnd('/');
 		}
 
 		protected override void OnAfterLoad()
@@ -78,6 +76,9 @@ namespace AppMetrics.AgentService
 			{
 				UserId = Guid.NewGuid().ToString();
 			}
+
+			if (!string.IsNullOrEmpty(ConfigBaseUrl))
+				ConfigBaseUrl = ConfigBaseUrl.TrimEnd('/');
 		}
 	}
 }
