@@ -34,6 +34,8 @@
       <Component Id="ProductComponent" Guid="{30F914B5-7F73-4A9A-97B1-1C5B3BB17B7F}">
         <File Id='AppMetrics.AgentService.exe' Name='AppMetrics.AgentService.exe'
               Source='$(var.BinPath)\AppMetrics.AgentService.exe' Vital='yes' />
+        <File Id='AppMetrics.Shared.dll' Name='AppMetrics.Shared.dll'
+              Source='$(var.BinPath)\AppMetrics.Shared.dll' Vital='yes' />
         <File Id='Ionic.Zip.dll' Name='Ionic.Zip.dll'
               Source='$(var.BinPath)\Ionic.Zip.dll' Vital='yes' />
       </Component>
@@ -60,7 +62,7 @@
 
     <CustomAction Id="RunConfig" Directory="APPLICATIONROOTDIRECTORY"
                   Execute="deferred" Impersonate="no" Return="ignore"
-                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe" />
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe -config" />
 
     <CustomAction Id="StartService" Directory="APPLICATIONROOTDIRECTORY"
                   Execute="deferred" Impersonate="no" Return="ignore"
