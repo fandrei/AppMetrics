@@ -7,8 +7,9 @@ using System.Xml.Serialization;
 
 namespace AppMetrics.Shared
 {
-	public class AppSettingsBase
+	public abstract class AppSettingsBase
 	{
+		protected abstract void OnAfterLoad();
 		private static XmlSerializer _serializer;
 
 		public static T Load<T>(string fileName)
@@ -31,7 +32,23 @@ namespace AppMetrics.Shared
 			else
 				settings = new T();
 
+			settings.OnAfterLoad();
+
 			return settings;
+		}
+
+		public void Save<T>(string fileName)
+			where T : AppSettingsBase, new()
+		{
+			var directory = Path.GetDirectoryName(fileName);
+			if (!Directory.Exists(directory))
+				Directory.CreateDirectory(directory);
+
+			var s = new XmlSerializer(typeof(T));
+			using (var writer = new StreamWriter(fileName))
+			{
+				s.Serialize(writer, this);
+			}
 		}
 	}
 }

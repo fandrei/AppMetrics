@@ -51,5 +51,10 @@ namespace AppMetrics.Shared
 			var res = val.ToString("yyyy-MM-dd HH:mm:ss");
 			return res;
 		}
+
+		public static bool IsNullOrEmpty(this string val)
+		{
+			return string.IsNullOrEmpty(val);
+		}
 	}
 }
