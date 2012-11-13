@@ -5,13 +5,13 @@ using System.Web.Hosting;
 
 namespace AppMetrics.AgentService.ConfigSite
 {
-	public class Const
+	public static class Const
 	{
 		public static string ConfigBasePath
 		{
 			get
 			{
-				const string tmp = "~/CIAPILatencyCollectorConfig/";
+				const string tmp = "~/plugins/";
 				return HostingEnvironment.MapPath(tmp);
 			}
 		}
