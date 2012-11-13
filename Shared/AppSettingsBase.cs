@@ -9,7 +9,12 @@ namespace AppMetrics.Shared
 {
 	public abstract class AppSettingsBase
 	{
-		protected abstract void OnAfterLoad();
+		protected virtual void OnAfterLoad()
+		{}
+
+		protected virtual void OnBeforeSave()
+		{ }
+
 		private static XmlSerializer _serializer;
 
 		public static T Load<T>(string fileName)
