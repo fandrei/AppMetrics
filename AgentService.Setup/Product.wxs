@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?include "Variables.wxi"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Name="$(var.ProductLongName)" Language="1033"
+         Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)">
+
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" CompressionLevel="high"/>
+
+    <Property Id="OLDERVERSIONBEINGUPGRADED" Secure="yes" />
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion Minimum="$(var.ProductVersion)" IncludeMinimum="no" OnlyDetect="yes"
+                      Property="NEWERVERSIONDETECTED"/>
+      <UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes"
+                      Maximum="$(var.ProductVersion)" IncludeMaximum="no"
+                      Property="OLDERVERSIONBEINGUPGRADED" MigrateFeatures="yes"/>
+    </Upgrade>
+
+    <!-- Installation Parts -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyFolder" Name="$(var.Manufacturer)">
+          <Directory Id="APPLICATIONROOTDIRECTORY" Name="$(var.ProductShortName)"/>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="ProductComponent" Guid="{30F914B5-7F73-4A9A-97B1-1C5B3BB17B7F}">
+        <File Id='AppMetrics.AgentService.exe' Name='AppMetrics.AgentService.exe'
+              Source='$(var.BinPath)\AppMetrics.AgentService.exe' Vital='yes' />
+        <File Id='Ionic.Zip.dll' Name='Ionic.Zip.dll'
+              Source='$(var.BinPath)\Ionic.Zip.dll' Vital='yes' />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="ProductFeature" Title="$(var.ProductShortName)" Level="1">
+      <ComponentRef Id="ProductComponent" />
+    </Feature>
+
+    <!-- Prerequisites -->
+    <PropertyRef Id="NETFRAMEWORK40CLIENT"/>
+
+    <Condition Message="This application requires .NET Framework 4.0. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
+    </Condition>
+
+    <!-- Custom Actions -->
+
+    <CustomAction Id="NewerVersionDetected" Error="2000"/>
+
+    <CustomAction Id="InstallService" Directory="APPLICATIONROOTDIRECTORY"
+                  Execute="deferred" Impersonate="no" Return="ignore"
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe -install" />
+
+    <CustomAction Id="RunConfig" Directory="APPLICATIONROOTDIRECTORY"
+                  Execute="deferred" Impersonate="no" Return="ignore"
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe" />
+
+    <CustomAction Id="StartService" Directory="APPLICATIONROOTDIRECTORY"
+                  Execute="deferred" Impersonate="no" Return="ignore"
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe -start" />
+
+    <CustomAction Id="UninstallService" Directory="APPLICATIONROOTDIRECTORY"
+                  Execute="deferred" Impersonate="no" Return="ignore"
+                  ExeCommand="[APPLICATIONROOTDIRECTORY]AppMetrics.AgentService.exe -uninstall" />
+
+    <InstallExecuteSequence>
+      <Custom Action="NewerVersionDetected" After="FindRelatedProducts">NEWERVERSIONDETECTED</Custom>
+      <RemoveExistingProducts After="InstallInitialize" />
+
+      <Custom Action='RunConfig' After='InstallFiles'>
+        $ProductComponent = 3 AND NOT UILevel = 2 <!-- product is installing and UILevel is not INSTALLUILEVEL_NONE -->
+      </Custom>
+
+      <Custom Action='InstallService' Before='StartService' >
+        <!-- Going to install, repair or no action -->
+        $ProductComponent = 3 OR $ProductComponent = 5 OR $ProductComponent = -1
+      </Custom>
+
+      <Custom Action='StartService' Before='InstallFinalize' >
+        $ProductComponent = 3 OR $ProductComponent = 5 OR $ProductComponent = -1
+      </Custom>
+
+      <Custom Action='UninstallService' After='InstallInitialize' >
+        ?ProductComponent = 3
+      </Custom>
+
+    </InstallExecuteSequence>
+
+    <UIRef Id="WixUI_Common" />
+    <!--<WixVariable Id="WixUIBannerBmp"  Value="$(sys.SOURCEFILEDIR)\..\Common\LogoLabs.bmp" />-->
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
+    <UI>
+      <Error Id="2000">A newer version of this product is already installed</Error>
+
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+      <TextStyle Id="PseudoHyperlinkStyle" FaceName="Tahoma" Size="8" Underline="yes"/>
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Minimal" />
+      <!-- No "change features" button -->
+      <Property Id="ARPNOMODIFY" Value="1" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+      <DialogRef Id="WelcomeEulaDlg" />
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+    </UI>
+  </Product>
+</Wix>
