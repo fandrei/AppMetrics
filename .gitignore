@@ -33,6 +33,8 @@ AppMetrics/App_Data/
 AppMetrics/log.txt
 AppMetrics.AnalyticsSite/App_Data/
 
+AgentService.ConfigSite/plugins/
+
 _data/
 _data.IIS/
 _nuget/
@@ -40,3 +42,4 @@ _package/
 
 ~$*
 _reports/*
+
