@@ -81,7 +81,7 @@
       ReplacementText="version&gt;$(FullVersion)&lt;/version" />
 
     <FileUpdate
-      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.WebUtils.nuspec"
+      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.AgentService.PluginBase.nuspec"
       Regex="version&gt;(.*?)&lt;/version"
       ReplacementText="version&gt;$(FullVersion)&lt;/version" />
 
