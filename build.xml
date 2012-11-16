@@ -123,6 +123,10 @@
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
       Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Analytics\AppMetrics.Analytics.zip" />
 
+    <!-- package agent service config site -->
+    <MSBuild Projects="$(MSBuildProjectDirectory)\AgentService.ConfigSite\AgentService.ConfigSite.csproj" Targets="Package"
+      Properties="Configuration=$(Configuration);PackageLocation=$(WebPackageDir)\AgentService.ConfigSite\AgentService.ConfigSite.zip" />
+
   </Target>
 
 </Project>
