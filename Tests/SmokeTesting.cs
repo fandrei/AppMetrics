@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
-using AppMetrics.Shared;
+
 using NUnit.Framework;
 
+using AppMetrics;
 using AppMetrics.Client;
 
 namespace Tests

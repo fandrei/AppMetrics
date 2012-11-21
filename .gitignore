@@ -19,8 +19,10 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-[Bb]in
+
+[Bb]in/
 _bin/
+
 *.lib
 *.sbr
 *.chw

@@ -68,6 +68,10 @@
       <Project>{C331A108-6E8F-47AB-A043-723BE19AE51F}</Project>
       <Name>AppMetrics.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AppMetrics\AppMetrics.csproj">
+      <Project>{136b2c53-0675-4bb0-9eb5-2406a0027794}</Project>
+      <Name>AppMetrics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{C88815D0-6E1C-4673-878A-54D1F62C0C47}</Project>
       <Name>Shared</Name>
