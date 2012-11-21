@@ -11,5 +11,6 @@
   </metadata>
   <files>
     <file src="..\_bin\Release\AppMetrics.AgentService.PluginBase.dll" target="lib\net40"/>
+    <file src="..\_bin\Release\AppMetrics.Shared.dll" target="lib\net40"/>
   </files>
 </package>
