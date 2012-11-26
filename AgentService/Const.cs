@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AppMetrics.AgentService
 {
-	static class Const
+	public static class Const
 	{
 		public const string AppName = "AppMetrics Agent";
 
