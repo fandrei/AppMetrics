@@ -211,7 +211,7 @@ namespace AppMetrics.Client
 			if (_terminated)
 				return;
 
-			var valText = Shared.Util.Escape(val ?? "");
+			var valText = Escape(val ?? "");
 
 			lock (Sync)
 			{
@@ -450,6 +450,12 @@ namespace AppMetrics.Client
 		static ulong ToMegabytes(ulong val)
 		{
 			return val / (1024 * 1024);
+		}
+
+		static string Escape(string val)
+		{
+			var res = val.Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
+			return res;
 		}
 
 		public string Url { get; private set; }
