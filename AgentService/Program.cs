@@ -11,6 +11,8 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Windows.Forms;
 
+using AppMetrics.AgentService.PluginBase;
+
 namespace AppMetrics.AgentService
 {
 	static class Program

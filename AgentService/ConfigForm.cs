@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using AppMetrics.AgentService.PluginBase;
+
 namespace AppMetrics.AgentService
 {
 	public partial class ConfigForm : Form

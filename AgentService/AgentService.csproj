@@ -60,14 +60,12 @@
     <Compile Include="AgentServiceClass.Designer.cs">
       <DependentUpon>AgentServiceClass.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppSettings.cs" />
     <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Const.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -93,6 +91,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgentService.PluginBase\AgentService.PluginBase.csproj">
+      <Project>{7f672a33-aecd-4265-be95-2026e188e290}</Project>
+      <Name>AgentService.PluginBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{c88815d0-6e1c-4673-878a-54d1f62c0c47}</Project>
       <Name>Shared</Name>

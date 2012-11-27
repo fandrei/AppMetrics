@@ -9,6 +9,8 @@ using System.Threading;
 
 using Ionic.Zip;
 
+using AppMetrics.AgentService.PluginBase;
+
 namespace AppMetrics.AgentService
 {
 	public partial class AgentServiceClass : ServiceBase

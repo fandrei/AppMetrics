@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AppMetrics.AgentService
+namespace AppMetrics.AgentService.PluginBase
 {
 	public static class Const
 	{

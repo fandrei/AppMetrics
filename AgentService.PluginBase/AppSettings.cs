@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 using AppMetrics.Shared;
 
-namespace AppMetrics.AgentService
+namespace AppMetrics.AgentService.PluginBase
 {
 	public class AppSettings : AppSettingsBase
 	{
@@ -24,6 +24,8 @@ namespace AppMetrics.AgentService
 		private static readonly string FileName = Const.WorkingAreaPath + "AppSettings.xml";
 
 		public string ConfigBaseUrl { get; set; }
+
+		public string LogEventUrl { get; set; }
 
 		public string UserId { get; set; }
 		public string NodeName { get; set; }
