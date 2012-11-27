@@ -18,6 +18,7 @@ namespace AppMetrics.AgentService.ConfigSite
 			var configText = "";
 
 			var nodeName = context.Request.Params.Get("NodeName");
+			var pluginName = context.Request.Params.Get("PluginName");
 			var nodeStatus = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 
 			if (File.Exists(Const.StopFileName))
@@ -27,14 +28,15 @@ namespace AppMetrics.AgentService.ConfigSite
 			}
 			else
 			{
-				var configPath = Const.ConfigBasePath + nodeName + "/" + Const.NodeSettingsFileName;
+				var configRoot = Const.ConfigBasePath + "/" + pluginName + "/config/";
+				var configPath = configRoot + nodeName + "/" + Const.NodeSettingsFileName;
 				if (File.Exists(configPath))
 				{
 					configText = File.ReadAllText(configPath);
 				}
 				else
 				{
-					var defaultConfigPath = Const.ConfigBasePath + Const.NodeSettingsFileName;
+					var defaultConfigPath = configRoot + Const.NodeSettingsFileName;
 					if (File.Exists(defaultConfigPath))
 						configText = File.ReadAllText(defaultConfigPath);
 				}
