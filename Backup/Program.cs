@@ -24,13 +24,7 @@ namespace AppMetrics.Backup
 				{
 					if (args[1] == "-config")
 					{
-						if (args.Length != 4)
-							ExitAndShowManual();
-
-						AppSettings.Instance.AmazonAccessKey = args[2];
-						AppSettings.Instance.AmazonSecretAccessKey = args[3];
-
-						AppSettings.Instance.Save();
+						ExitAndShowManual();
 
 						return;
 					}

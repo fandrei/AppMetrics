@@ -42,7 +42,6 @@ namespace AppMetrics.Backup
 				}
 
 				MoveOldZipFiles(dataStoragePath);
-				SyncAllToS3(dataStoragePath, reportLog);
 
 				reportLog("Finished ok");
 			}
@@ -86,81 +85,6 @@ namespace AppMetrics.Backup
 			}
 		}
 
-		static void SyncAllToS3(string dataStoragePath, ReportLogDelegate reportLog)
-		{
-			if (string.IsNullOrEmpty(AppSettings.Instance.AmazonAccessKey) ||
-					string.IsNullOrEmpty(AppSettings.Instance.AmazonSecretAccessKey))
-				return;
-
-			using (var client = CreateAmazonS3Client())
-			{
-				var storedFiles = ListS3Objects(client, new ListObjectsRequest { BucketName = AppMetricsBucketName });
-				var storedFilesDic = storedFiles.ToDictionary(storedObject => storedObject.Key);
-
-				foreach (var filePath in Directory.GetFiles(dataStoragePath, "*.zip", SearchOption.AllDirectories))
-				{
-					var storageKey = GetStorageKey(dataStoragePath, filePath);
-
-					S3Object storedObject;
-					if (storedFilesDic.TryGetValue(storageKey, out storedObject))
-					{
-						var remoteLastModified = DateTime.Parse(storedObject.LastModified).ToUniversalTime();
-						var localFileInfo = new FileInfo(filePath);
-						if (localFileInfo.LastWriteTimeUtc <= remoteLastModified)
-							continue;
-					}
-
-					reportLog(string.Format("Sending {0}", filePath));
-					SendFileToS3(client, filePath, storageKey);
-				}
-			}
-		}
-
-		static void SendFileToS3(AmazonS3Client client, string fileName, string storageKey)
-		{
-			using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-			{
-				client.PutObject(
-					new PutObjectRequest
-						{
-							BucketName = AppMetricsBucketName,
-							Key = storageKey,
-							InputStream = stream,
-							ContentType = "application/zip"
-						});
-			}
-		}
-
-		static List<S3Object> ListS3Objects(AmazonS3Client client, ListObjectsRequest request)
-		{
-			var res = new List<S3Object>(1000);
-
-			while (true)
-			{
-				var response = client.ListObjects(request);
-
-				res.AddRange(response.S3Objects);
-
-				if (response.IsTruncated)
-					request.Marker = response.NextMarker;
-				else
-					break;
-			}
-
-			return res;
-		}
-
-		private static string GetStorageKey(string dataStoragePath, string filePath)
-		{
-			if (!filePath.StartsWith(dataStoragePath))
-				throw new ApplicationException();
-			var res = filePath.Substring(dataStoragePath.Length);
-			res = res.Replace('\\', '/');
-			if (res.StartsWith("/"))
-				res = res.Substring(1);
-			return res;
-		}
-
 		private static string GetHierarchyName(string filePath)
 		{
 			var fileName = Path.GetFileName(filePath);
@@ -176,12 +100,6 @@ namespace AppMetrics.Backup
 			return yearMonth + "/" + day + "/" + fileName;
 		}
 
-		static AmazonS3Client CreateAmazonS3Client()
-		{
-			return new AmazonS3Client(AppSettings.Instance.AmazonAccessKey, AppSettings.Instance.AmazonSecretAccessKey);
-		}
-
-		private const string AppMetricsBucketName = "cityindex.appmetrics";
 		private static readonly TimeSpan NonArchivePeriod = TimeSpan.FromDays(60);
 	}
 }
