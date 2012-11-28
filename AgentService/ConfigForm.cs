@@ -30,6 +30,8 @@ namespace AppMetrics.AgentService
 				PasswordEdit.Text = settings.Password;
 
 				NodeNameEdit.Text = settings.NodeName;
+
+				MetricsUrlEdit.Text = settings.MetricsServerUrl;
 			}
 			catch (Exception exc)
 			{
@@ -49,6 +51,8 @@ namespace AppMetrics.AgentService
 				settings.Password = PasswordEdit.Text;
 
 				settings.NodeName = NodeNameEdit.Text;
+
+				settings.MetricsServerUrl = MetricsUrlEdit.Text;
 
 				settings.Save();
 

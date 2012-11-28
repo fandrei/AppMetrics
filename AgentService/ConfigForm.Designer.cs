@@ -38,16 +38,18 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.ConfigServerEdit = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
+			this.MetricsUrlEdit = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// OkControl
 			// 
 			this.OkControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.OkControl.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.OkControl.Location = new System.Drawing.Point(183, 170);
+			this.OkControl.Location = new System.Drawing.Point(183, 182);
 			this.OkControl.Name = "OkControl";
 			this.OkControl.Size = new System.Drawing.Size(75, 23);
-			this.OkControl.TabIndex = 4;
+			this.OkControl.TabIndex = 5;
 			this.OkControl.Text = "OK";
 			this.OkControl.UseVisualStyleBackColor = true;
 			this.OkControl.Click += new System.EventHandler(this.OkButton_Click);
@@ -93,10 +95,10 @@
 			// 
 			this.CancelControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.CancelControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.CancelControl.Location = new System.Drawing.Point(264, 170);
+			this.CancelControl.Location = new System.Drawing.Point(264, 182);
 			this.CancelControl.Name = "CancelControl";
 			this.CancelControl.Size = new System.Drawing.Size(75, 23);
-			this.CancelControl.TabIndex = 5;
+			this.CancelControl.TabIndex = 6;
 			this.CancelControl.Text = "Cancel";
 			this.CancelControl.UseVisualStyleBackColor = true;
 			this.CancelControl.Click += new System.EventHandler(this.CancelButton_Click);
@@ -136,12 +138,32 @@
 			this.label4.TabIndex = 34;
 			this.label4.Text = "Config server";
 			// 
+			// MetricsUrlEdit
+			// 
+			this.MetricsUrlEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.MetricsUrlEdit.Location = new System.Drawing.Point(98, 133);
+			this.MetricsUrlEdit.Name = "MetricsUrlEdit";
+			this.MetricsUrlEdit.Size = new System.Drawing.Size(243, 20);
+			this.MetricsUrlEdit.TabIndex = 4;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(10, 133);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(73, 13);
+			this.label5.TabIndex = 36;
+			this.label5.Text = "Metrics server";
+			// 
 			// ConfigForm
 			// 
 			this.AcceptButton = this.OkControl;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(354, 205);
+			this.ClientSize = new System.Drawing.Size(354, 217);
+			this.Controls.Add(this.MetricsUrlEdit);
+			this.Controls.Add(this.label5);
 			this.Controls.Add(this.ConfigServerEdit);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.NodeNameEdit);
@@ -174,5 +196,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox ConfigServerEdit;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox MetricsUrlEdit;
+		private System.Windows.Forms.Label label5;
 	}
 }

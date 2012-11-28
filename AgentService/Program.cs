@@ -188,6 +188,15 @@ namespace AppMetrics.AgentService
 
 				settings.Save();
 			}
+
+			string metricsServer;
+			argsDic.TryGetValue("metricserver", out metricsServer);
+			if (!string.IsNullOrEmpty(metricsServer))
+			{
+				settings.MetricsServerUrl = metricsServer;
+
+				settings.Save();
+			}
 		}
 
 		static void ShowMessage(string message)

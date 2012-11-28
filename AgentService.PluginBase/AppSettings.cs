@@ -25,7 +25,7 @@ namespace AppMetrics.AgentService.PluginBase
 
 		public string ConfigBaseUrl { get; set; }
 
-		public string LogEventUrl { get; set; }
+		public string MetricsServerUrl { get; set; }
 
 		public string UserId { get; set; }
 		public string NodeName { get; set; }
