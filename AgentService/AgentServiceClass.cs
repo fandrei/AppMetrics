@@ -100,8 +100,14 @@ namespace AppMetrics.AgentService
 				lock (_trackerSync)
 				{
 					var settings = AppSettings.Load();
+
 					var tracker = Tracker.Create(settings.MetricsServerUrl, Const.AppName, "{APPMETRICS_ACCESS_KEY}");
 					_tracker = tracker;
+
+					_tracker.Log("Info_UserId", settings.UserId);
+					_tracker.Log("Info_NodeName", settings.NodeName);
+					var curAssembly = typeof(AgentServiceClass).Assembly;
+					_tracker.Log("Info_ProcessVersion", curAssembly.FullName);
 				}
 			}
 			catch (Exception exc)
