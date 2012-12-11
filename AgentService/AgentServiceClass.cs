@@ -217,6 +217,8 @@ namespace AppMetrics.AgentService
 			if (plugin.Process != null)
 				return;
 
+			ReportEvent("Start plugin: " + plugin.Name);
+
 			var exePath = Const.GetPluginExePath(plugin.Name);
 			var startInfo = new ProcessStartInfo(exePath)
 				{
@@ -231,6 +233,8 @@ namespace AppMetrics.AgentService
 
 		private void StopPlugin(PluginInfo plugin)
 		{
+			ReportEvent("Stop plugin: " + plugin.Name);
+
 			lock (_pluginsSync)
 			{
 				try
@@ -287,7 +291,7 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		public static void ReportEvent(string message, string category = "Event", EventLogEntryType type = EventLogEntryType.Information)
+		static void ReportEvent(string message, string category = "Event", EventLogEntryType type = EventLogEntryType.Information)
 		{
 			Trace.WriteLine(message);
 
@@ -307,7 +311,7 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		public static void Report(Exception exc)
+		static void Report(Exception exc)
 		{
 			ReportEvent(exc.ToString(), "Exception", EventLogEntryType.Warning);
 		}
