@@ -141,7 +141,7 @@ namespace AppMetrics.AgentService
 					if (parts.Count() != 2)
 						throw new ApplicationException();
 					var name = parts[0];
-					var version = parts[1];
+					var version = parts[1].Trim();
 
 					RegisterPlugin(name);
 					UpdatePlugin(client, settings.PluginsUrl, name, version);
@@ -159,7 +159,7 @@ namespace AppMetrics.AgentService
 			var localVersionFile = pluginPath + "version.txt";
 			if (File.Exists(localVersionFile))
 			{
-				var localVersion = File.ReadAllText(localVersionFile);
+				var localVersion = File.ReadAllText(localVersionFile).Trim();
 				if (newVersion == localVersion)
 					return;
 				ReportEvent(string.Format("Trying to update plugin {0} to version {1}", name, newVersion));
