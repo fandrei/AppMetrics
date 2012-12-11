@@ -40,6 +40,8 @@
               Source='$(var.BinPath)\AppMetrics.AgentService.PluginBase.dll' Vital='yes' />
         <File Id='Ionic.Zip.dll' Name='Ionic.Zip.dll'
               Source='$(var.BinPath)\Ionic.Zip.dll' Vital='yes' />
+        <File Id='AppMetrics.Client.dll' Name='AppMetrics.Client.dll'
+              Source='$(var.BinPath)\AppMetrics.Client.dll' Vital='yes' />
       </Component>
     </DirectoryRef>
 

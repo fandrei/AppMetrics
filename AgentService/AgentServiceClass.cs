@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.ServiceProcess;
 using System.Threading;
-
+using AppMetrics.Client;
 using Ionic.Zip;
 
 using AppMetrics.AgentService.PluginBase;
@@ -88,12 +88,26 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		private static void Init()
+		private void Init()
 		{
 			if (!Directory.Exists(Const.WorkingAreaBinPath))
 				Directory.CreateDirectory(Const.WorkingAreaBinPath);
 			if (!Directory.Exists(Const.WorkingAreaTempPath))
 				Directory.CreateDirectory(Const.WorkingAreaTempPath);
+
+			try
+			{
+				lock (_trackerSync)
+				{
+					var settings = AppSettings.Load();
+					var tracker = Tracker.Create(settings.MetricsServerUrl, Const.AppName, "{APPMETRICS_ACCESS_KEY}");
+					_tracker = tracker;
+				}
+			}
+			catch (Exception exc)
+			{
+				Report(exc);
+			}
 		}
 
 		void FindPlugins()
@@ -271,7 +285,7 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		public static void ReportEvent(string message, EventLogEntryType type = EventLogEntryType.Information)
+		public static void ReportEvent(string message, string category = "Event", EventLogEntryType type = EventLogEntryType.Information)
 		{
 			Trace.WriteLine(message);
 
@@ -283,11 +297,17 @@ namespace AppMetrics.AgentService
 			{
 				Trace.WriteLine(exc);
 			}
+
+			lock (_trackerSync)
+			{
+				if (_tracker != null)
+					_tracker.Log(category, message);
+			}
 		}
 
 		public static void Report(Exception exc)
 		{
-			ReportEvent(exc.ToString(), EventLogEntryType.Warning);
+			ReportEvent(exc.ToString(), "Exception", EventLogEntryType.Warning);
 		}
 
 		private readonly Dictionary<string, PluginInfo> _plugins = new Dictionary<string, PluginInfo>();
@@ -307,5 +327,8 @@ namespace AppMetrics.AgentService
 		private Thread _thread;
 		private volatile bool _terminated;
 		private static readonly TimeSpan AutoUpdateCheckPeriod = TimeSpan.FromMinutes(1);
+
+		private static Tracker _tracker;
+		private static readonly object _trackerSync = new object();
 	}
 }
