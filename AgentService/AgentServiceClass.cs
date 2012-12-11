@@ -41,6 +41,8 @@ namespace AppMetrics.AgentService
 			{
 				try
 				{
+					ReportEvent("Stopping the service");
+
 					_terminated = true;
 					_thread.Abort();
 
