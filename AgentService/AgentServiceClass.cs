@@ -239,6 +239,8 @@ namespace AppMetrics.AgentService
 					var stopEvent = EventWaitHandle.OpenExisting("AppMetrics_" + plugin.Name);
 					stopEvent.Set();
 				}
+				catch (WaitHandleCannotBeOpenedException)
+				{ }
 				catch (Exception exc)
 				{
 					Report(exc);
@@ -267,7 +269,7 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				if (!process.WaitForExit(3*1000))
+				if (!process.WaitForExit(3 * 1000))
 					process.Kill();
 			}
 			catch (Exception exc)
