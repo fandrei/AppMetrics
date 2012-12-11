@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <NUnit-ToolPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnit-ToolPath>
     <OpenCover-ToolPath>$(SolutionRoot)\packages\OpenCover.4.0.804\</OpenCover-ToolPath>
-    <ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.6.0.0\</ReportGenerator-ToolPath>
+    <ReportGenerator-ToolPath>$(SolutionRoot)\packages\ReportGenerator.1.7.1.0\</ReportGenerator-ToolPath>
     <MSBuildCommunityTasksPath>$(SolutionRoot)\Build\</MSBuildCommunityTasksPath>
   </PropertyGroup>
 
