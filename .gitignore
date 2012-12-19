@@ -17,17 +17,16 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+*.lib
+*.sbr
+*.chw
+_ReSharper*/
+[Tt]est[Rr]esult*
 
 [Bb]in/
 _bin/
 [Oo]bj/
 
-*.lib
-*.sbr
-*.chw
-[Oo]bj/
-_ReSharper*/
-[Tt]est[Rr]esult*
 temp/
 
 AppMetrics/App_Data/
