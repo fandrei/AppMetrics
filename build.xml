@@ -123,6 +123,11 @@
     <MSBuild Projects="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\AppMetrics.AnalyticsSite.csproj" Targets="Package"
       Properties="Configuration=$(Configuration);PackageLocation=$(PackagingPath)\Analytics\AppMetrics.Analytics.zip" />
 
+    <Zip Files="$(SetupDir)\AppMetrics.AgentService.msi" Flatten="true"
+       WorkingDirectory="$(TargetDir)"
+       ZipFileName="$(MSBuildProjectDirectory)\AgentService.ConfigSite\setup\AppMetrics.AgentService.msi.zip"
+       ZipLevel="9" />
+    
     <!-- package agent service config site -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\AgentService.ConfigSite\AgentService.ConfigSite.csproj" Targets="Package"
       Properties="Configuration=$(Configuration);PackageLocation=$(WebPackageDir)\AgentService.ConfigSite\AgentService.ConfigSite.zip" />

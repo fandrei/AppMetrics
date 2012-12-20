@@ -180,6 +180,7 @@
     <Content Include="packages.config" />
     <Content Include="plugins\List.ashx" />
     <None Include="Properties\PublishProfiles\ConfigSitePackage.pubxml" />
+    <Content Include="setup\AppMetrics.AgentService.msi.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMetrics.WebUtils\AppMetrics.WebUtils.csproj">
