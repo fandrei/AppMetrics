@@ -6,9 +6,10 @@ using System.Linq;
 using System.Net;
 using System.ServiceProcess;
 using System.Threading;
-using AppMetrics.Client;
+
 using Ionic.Zip;
 
+using AppMetrics.Client;
 using AppMetrics.AgentService.PluginBase;
 
 namespace AppMetrics.AgentService
@@ -55,6 +56,8 @@ namespace AppMetrics.AgentService
 				{
 					Report(exc);
 				}
+
+				Tracker.Terminate();
 			}
 		}
 
