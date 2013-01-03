@@ -86,22 +86,29 @@ namespace AppMetrics.Client
 
 		public static void Terminate(bool waitAll = false)
 		{
-			lock (Sync)
+			try
 			{
-				foreach (var session in Sessions)
+				lock (Sync)
 				{
-					session.Dispose();
+					foreach (var session in Sessions)
+					{
+						session.Dispose();
+					}
+				}
+
+				_terminated = true;
+				var period = waitAll ? Timeout.Infinite : 5*1000;
+				LoggingThread.Join(period);
+				LoggingThread.Abort();
+
+				lock (Sync)
+				{
+					Sessions.Clear();
 				}
 			}
-
-			_terminated = true;
-			var period = waitAll ? Timeout.Infinite : 5 * 1000;
-			LoggingThread.Join(period);
-			LoggingThread.Abort();
-
-			lock (Sync)
+			catch (Exception exc)
 			{
-				Sessions.Clear();
+				Trace.WriteLine(exc);
 			}
 		}
 
