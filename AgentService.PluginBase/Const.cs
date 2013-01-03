@@ -38,5 +38,10 @@ namespace AppMetrics.AgentService.PluginBase
 		{
 			get { return WorkingAreaPath + @"\temp\"; }
 		}
+
+		public static string GetStopEventName(int processId)
+		{
+			return "AppMetrics_" + processId;
+		}
 	}
 }

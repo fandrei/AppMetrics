@@ -215,7 +215,17 @@ namespace AppMetrics.AgentService
 			{
 				foreach (var pair in _plugins)
 				{
-					StopPlugin(pair.Value);
+					SendPluginStopSignal(pair.Value);
+				}
+			}
+
+			Thread.Sleep(WaitPluginPeriod);
+
+			lock (_pluginsSync)
+			{
+				foreach (var pair in _plugins)
+				{
+					TerminatePlugin(pair.Value);
 				}
 			}
 		}
@@ -241,23 +251,41 @@ namespace AppMetrics.AgentService
 
 		private void StopPlugin(PluginInfo plugin)
 		{
+			SendPluginStopSignal(plugin);
+			Thread.Sleep(WaitPluginPeriod);
+			TerminatePlugin(plugin);
+		}
+
+		private void SendPluginStopSignal(PluginInfo plugin)
+		{
 			ReportEvent("Stop plugin: " + plugin.Name);
 
 			lock (_pluginsSync)
 			{
+				if (plugin.Process == null)
+					return;
+
 				try
 				{
 					// send signal to close
-					var stopEvent = EventWaitHandle.OpenExisting("AppMetrics_" + plugin.Name);
+					var eventName = Const.GetStopEventName(plugin.Process.Id);
+					var stopEvent = EventWaitHandle.OpenExisting(eventName);
 					stopEvent.Set();
 				}
 				catch (WaitHandleCannotBeOpenedException)
-				{ }
+				{
+				}
 				catch (Exception exc)
 				{
 					Report(exc);
 				}
+			}
+		}
 
+		private void TerminatePlugin(PluginInfo plugin)
+		{
+			lock (_pluginsSync)
+			{
 				var exePath = Const.GetPluginExePath(plugin.Name);
 				if (plugin.Process == null)
 				{
@@ -266,22 +294,22 @@ namespace AppMetrics.AgentService
 					var processes = Process.GetProcessesByName(processName);
 					foreach (var process in processes)
 					{
-						StopProcess(process);
+						KillProcess(process);
 					}
 				}
 				else
 				{
-					StopProcess(plugin.Process);
+					KillProcess(plugin.Process);
 					plugin.Process = null;
 				}
 			}
 		}
 
-		private void StopProcess(Process process)
+		private void KillProcess(Process process)
 		{
 			try
 			{
-				if (!process.WaitForExit(3 * 1000))
+				if (!process.WaitForExit(1))
 					process.Kill();
 			}
 			catch (Exception exc)
@@ -336,6 +364,8 @@ namespace AppMetrics.AgentService
 					_plugins.Add(name, new PluginInfo(name));
 			}
 		}
+
+		private static readonly TimeSpan WaitPluginPeriod = TimeSpan.FromSeconds(3);
 
 		private readonly object _sync = new object();
 		private Thread _thread;
