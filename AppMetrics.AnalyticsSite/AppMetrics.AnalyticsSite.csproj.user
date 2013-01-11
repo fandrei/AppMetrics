@@ -4,7 +4,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <StartPageUrl>GetReport.ashx?Application=CiapiLatencyCollector&amp;Type=LatencySummaries&amp;SliceByLocation=CountriesAndCities&amp;FunctionFilter=CIAPI&amp;SliceByFunctions=yes&amp;Period=1.0:0:0</StartPageUrl>
+          <StartPageUrl>GetReport.ashx?Application=CiapiLatencyCollector.AllServiceMonitor.BuiltIn.Live&amp;Type=LatencySummaries&amp;SliceByLocation=Countries&amp;FunctionFilter=CIAPI&amp;SliceByFunctions=yes&amp;StartTime=2012-06-01 00:00:00</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>

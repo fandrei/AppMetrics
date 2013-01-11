@@ -37,6 +37,7 @@ AgentService.ConfigSite/plugins/
 
 _data/
 _data.IIS/
+
 _nuget/
 _package/
 
