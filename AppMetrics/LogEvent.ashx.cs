@@ -210,10 +210,8 @@ namespace AppMetrics
 			}
 			else
 			{
-				var time = DateTime.UtcNow.ToString("yyyy-MM-dd HH_mm_ss");
-				var filePath = Path.GetFullPath(string.Format("{0}\\{1}.{2}.txt", dataRootPath, time, sessionId));
-				if (!filePath.StartsWith(dataRootPath)) // block malicious session ids
-					throw new ArgumentException(filePath);
+				var time = DateTime.UtcNow;
+				var filePath = Const.FormatFilePath(dataRootPath, sessionId, time);
 				return filePath;
 			}
 		}
