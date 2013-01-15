@@ -1,0 +1,50 @@
+```{r init, echo=FALSE}
+library("ggplot2")
+library("RCurl")
+library("plyr")
+library("scales")
+readRenviron("~/.Renviron") # Make sure you have a APPMETRICS_CREDENTIALS=username:password entry
+metrics_credentials <- Sys.getenv(c("APPMETRICS_CREDENTIALS"))
+```
+
+```{r fetchData, echo=FALSE}
+application <- "CIAPILatencyCollector" # note that https://github.com/fandrei/AppMetrics/issues/101 causes an extra 50ms delay to be introduced by the client side library.
+startTime <- "2012-10-08 00:00:00"
+endTime <- "2012-10-11 23:59:59"
+data_url <- URLencode(paste("http://metrics.cityindex.com/GetRecords.ashx?Application=",application,"&StartTime=",startTime,'&EndTime=',endTime, sep = ''))
+
+webpage <- getURL(data_url,userpwd=metrics_credentials, httpauth = 1L)
+logdata <- read.table(tc <- textConnection(webpage), header=F, sep="\t", fill=TRUE, as.is=c(1,4)); 
+close(tc)
+colnames(logdata)=c('session','timestamp','key','value')
+```
+
+```{r groupSessionByNodes, echo=FALSE}
+nodes <- logdata[logdata$"key" %in% c("Info_NodeName"), ]
+nodes$nodeName = nodes$value
+nodes <- subset(nodes, select=c(-timestamp,-key,-value))
+```
+
+Resource usage on CIAPI Latency Collector nodes
+-----------------------------------
+```{r service_latency_plot, fig.width=10, fig.height = 7, tidy=FALSE, warning=FALSE}
+rpc2 <- logdata[logdata$"key" %in% c("Client_PrivateMemorySize" ), ]
+
+rpc2$datetime <- strptime(rpc2$timestamp, "%Y-%m-%d %H:%M:%S")
+rpc2$key <- sub('Latency CIAPI.', '',rpc2$key)
+rpc2 <- join(rpc2, nodes, by = "session", match = "first")
+
+#rpc2 <- rpc2[rpc2$nodeName %in% c("AWS(Ireland)_eu-west-1b_46.137.187.155",
+#                                  "AWS(NorthCalifornia)_us-west-1b_184.169.142.250",
+#                                  "AWS(Tokyo)_ap-northeast-1b_54.248.116.221",
+#                                  "AWS(SaoPaolo)_sa-east-1b_177.71.182.25"
+#                                  ),]
+
+d <- ggplot(rpc2, aes(x=datetime, y=as.double(value)))
+d <- d + theme_bw()
+d <- d + geom_line()
+d <- d + xlab("Measurement time (UTC)")
+d <- d + facet_grid(. ~ key, scales = "free_y")
+d <- d + opts(strip.text.y = theme_text( angle=0))
+print(d)
+```
