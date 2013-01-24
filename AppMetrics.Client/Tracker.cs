@@ -205,7 +205,12 @@ namespace AppMetrics.Client
 			var diff = watch.Elapsed;
 			watch.Stop();
 
-			Log("Latency " + label, diff.TotalSeconds);
+			LogLatency(label, diff.TotalSeconds);
+		}
+
+		public void LogLatency(string label, double value)
+		{
+			Log("Latency " + label, value);
 		}
 
 		private const string WarningName = "AppMetrics.Warning";
