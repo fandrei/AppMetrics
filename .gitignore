@@ -22,6 +22,7 @@ Thumbs.db
 *.chw
 _ReSharper*/
 [Tt]est[Rr]esult*
+*.*.user
 
 [Bb]in/
 _bin/
