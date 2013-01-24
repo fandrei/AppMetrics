@@ -218,10 +218,11 @@ namespace AppMetrics.Client
 
 		private void AddMessage(string name, string val, MessagePriority priority)
 		{
-			if (_disposed)
-				throw new ObjectDisposedException("Tracker");
-			if (_terminated)
+			if (_disposed || _terminated)
+			{
+				Trace.Write("WARNING.AppMetrics.Client: message ignored");
 				return;
+			}
 
 			var valText = Escape(val ?? "");
 
