@@ -1,13 +1,13 @@
-Stop/start collection of Amazon instances based on tag
+Stop/start collection of Amazon EC2 instances based on tag
 ======================================================
 
-These scripts can be used to quickly stop or start a group of AWS instances based
+These scripts can be used to quickly list, stop or start a group of AWS instances based
 on an instance tag.
 
 For example, say you needed to quickly stop all the instances that were running 
 the CIAPI Latency Collector service.  From a PowerShell command prompt you would run:
 
-PS > stop_all_tagged_nodes.ps1 --access_key="AWS-access-key" --secret_access_key="AWS-secret" --tag="CIAPILatencyCollector"
+PS > stop_all_tagged_nodes.ps1 -access_key="AWS-access-key" -secret_access_key="AWS-secret" -tag="CIAPILatencyCollector"
 
 Installation
 ============
@@ -20,8 +20,8 @@ Installation
          {
            "Statement": [
              {
-               "Sid": "Stmt1344443650816",
                "Action": [
+			     "ec2:DescribeRegions",
                  "ec2:DescribeInstanceStatus",
                  "ec2:DescribeInstances",
                  "ec2:DescribeTags",
@@ -39,5 +39,6 @@ Installation
 Running
 =======
 
+1.  To list ```list_all_tagged_nodes.ps1 -tag isLatencyCollector -accessKeyID AKI******** -secretAccessKeyID 1VVllumsz*** ```
 1.  To stop ```stop_all_tagged_nodes.ps1 -tag isLatencyCollector -accessKeyID AKI******** -secretAccessKeyID 1VVllumsz*** ```
 1.  To start ```start_all_tagged_nodes.ps1 -tag isLatencyCollector -accessKeyID AKI******** -secretAccessKeyID 1VVllumsz*** ```
