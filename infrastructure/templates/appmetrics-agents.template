@@ -248,6 +248,7 @@
                 }
             },
             "Properties": {
+                "IamInstanceProfile": "AppMetrics",
                 "ImageId": {
                     "Fn::FindInMap": [
                         "RegionMapAgents",
