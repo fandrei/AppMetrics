@@ -243,6 +243,9 @@
                                     ]
                                 }
                             }
+                        },
+                        "sources": {
+                            "c:\\install\\Carbon": "https://cfn-labs-cityindex-com-us-east-1.s3.amazonaws.com/files/Carbon-0.5.0.0.zip"
                         }
                     }
                 }
@@ -298,6 +301,9 @@
                                 {
                                     "Ref": "AWS::Region"
                                 },
+                                "\n",
+                                "Import-Module C:\\install\\Carbon\\Carbon",
+                                "\n",
                                 "</powershell>"
                             ]
                         ]
