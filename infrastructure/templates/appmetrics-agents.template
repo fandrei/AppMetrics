@@ -1,6 +1,100 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-   "Resources": {
+    "Parameters": {
+        "InstanceTypeAgents": {
+            "Description": "Agents EC2 instance type",
+            "Type": "String",
+            "Default": "m1.small",
+            "AllowedValues": [
+                "t1.micro",
+                "m1.small",
+                "m1.medium",
+                "m1.large",
+                "m1.xlarge",
+                "m2.xlarge",
+                "m2.2xlarge",
+                "m2.4xlarge",
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c1.medium",
+                "c1.xlarge",
+                "cg1.4xlarge"
+            ],
+            "ConstraintDescription": "must be a valid EC2 instance type."
+        },
+        "NumAgents": {
+            "Type": "Number",
+            "Description": "Number of agents to start.",
+            "Default": "1"
+        },
+        "SpotPriceAgents": {
+            "Type": "Number",
+            "Description": "Spot price for agents to start.",
+            "Default": "0.02"
+        },
+        "KeyName": {
+            "Description": "Name of an existing EC2 key pair to enable remote access to the instance",
+            "Type": "String",
+            "Default": "labs-commander"
+        }
+    },
+    "Mappings": {
+        "RegionMapAgents": {
+            "us-east-1": {
+                "AMI": "ami-5f42c036"
+            },
+            "us-west-1": {
+                "AMI": "ami-5eb7961b"
+            },
+            "us-west-2": {
+                "AMI": "ami-1679f126"
+            },
+            "eu-west-1": {
+                "AMI": "ami-8e969bfa"
+            },
+            "sa-east-1": {
+                "AMI": "ami-9fc41c82"
+            },
+            "ap-northeast-1": {
+                "AMI": "ami-2210a823"
+            },
+            "ap-southeast-1": {
+                "AMI": "ami-b8f8bbea"
+            },
+            "ap-southeast-2": {
+                "AMI": "ami-a740d79d"
+            }
+        }
+    },
+    "Resources": {
+        "IAMUser": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "CloudFormation",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": "CloudFormation:DescribeStackResource",
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "IAMUserAccessKey": {
+            "Type": "AWS::IAM::AccessKey",
+            "Properties": {
+                "UserName": {
+                    "Ref": "IAMUser"
+                }
+            }
+        },
         "AppMetricsSG": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
@@ -75,6 +169,175 @@
                 "SourceSecurityGroupName": {
                     "Ref": "AppMetricsSG"
                 }
+            }
+        },
+        "AgentsLC": {
+            "Type": "AWS::AutoScaling::LaunchConfiguration",
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "config": {
+                        "files": {
+                            "c:\\cfn\\cfn-credentials": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "AWSAccessKeyId=",
+                                            {
+                                                "Ref": "IAMUserAccessKey"
+                                            },
+                                            "\n",
+                                            "AWSSecretKey=",
+                                            {
+                                                "Fn::GetAtt": [
+                                                    "IAMUserAccessKey",
+                                                    "SecretAccessKey"
+                                                ]
+                                            },
+                                            "\n"
+                                        ]
+                                    ]
+                                }
+                            },
+                            "c:\\cfn\\cfn-hup.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[main]\n",
+                                            "stack=",
+                                            {
+                                                "Ref": "AWS::StackName"
+                                            },
+                                            "\n",
+                                            "credential-file=c:\\cfn\\cfn-credentials\n",
+                                            "region=",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n"
+                                        ]
+                                    ]
+                                }
+                            },
+                            "c:\\cfn\\hooks.d\\cfn-auto-reloader.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[cfn-auto-reloader-hook]\n",
+                                            "triggers=post.update\n",
+                                            "path=Resources.AgentsLC.Metadata.AWS::CloudFormation::Init\n",
+                                            "action=cfn-init.exe --verbose --stack ",
+                                            {
+                                                "Ref": "AWS::StackName"
+                                            },
+                                            " --resource AgentsLC",
+                                            " --credential-file c:\\cfn\\cfn-credentials",
+                                            " --region ",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n"
+                                        ]
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Properties": {
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMapAgents",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "AMI"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "InstanceTypeAgents"
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "SecurityGroups": [
+                    {
+                        "Ref": "AppMetricsSG"
+                    }
+                ],
+                "SpotPrice": {
+                    "Ref": "SpotPriceAgents"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "<powershell>\n",
+                                "cfn-init.exe --verbose --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " --resource AgentsLC",
+                                " --access-key ",
+                                {
+                                    "Ref": "IAMUserAccessKey"
+                                },
+                                " --secret-key ",
+                                {
+                                    "Fn::GetAtt": [
+                                        "IAMUserAccessKey",
+                                        "SecretAccessKey"
+                                    ]
+                                },
+                                " --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "</powershell>"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "AgentsASG": {
+            "Type": "AWS::AutoScaling::AutoScalingGroup",
+            "Version": "2009-05-15",
+            "Properties": {
+                "AvailabilityZones": {
+                    "Fn::GetAZs": ""
+                },
+                "LaunchConfigurationName": {
+                    "Ref": "AgentsLC"
+                },
+                "MinSize": "1",
+                "DesiredCapacity": {
+                    "Ref": "NumAgents"
+                },
+                "MaxSize": {
+                    "Ref": "NumAgents"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    {
+                                        "Ref": "AWS::StackName"
+                                    },
+                                    " [Agent]"
+                                ]
+                            ]
+                        },
+                        "PropagateAtLaunch": "true"
+                    }
+                ]
             }
         }
     }
