@@ -382,6 +382,11 @@
                             ]
                         },
                         "PropagateAtLaunch": "true"
+                    },
+                    {
+                        "Key": "isLatencyCollector",
+                        "Value": "true",
+                        "PropagateAtLaunch": "true"
                     }
                 ]
             }
