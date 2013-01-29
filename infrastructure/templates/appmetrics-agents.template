@@ -36,6 +36,16 @@
             "Description": "Name of an existing EC2 key pair to enable remote access to the instance",
             "Type": "String",
             "Default": "labs-commander"
+        },
+        "MetricsAgentUsername": {
+            "Description": "Username of the local user for the metrics agent",
+            "Type": "String",
+            "Default": "MetricsAgent"
+        },
+        "MetricsAgentPassword": {
+            "Description": "Password of the local user for the metrics agent",
+            "Type": "String",
+            "Default": "WhiteRice2"
         }
     },
     "Mappings": {
@@ -302,7 +312,36 @@
                                     "Ref": "AWS::Region"
                                 },
                                 "\n",
+                                "$username = '",
+                                {
+                                    "Ref": "MetricsAgentUsername"
+                                },
+                                "'",
+                                "\n",
+                                "$password = '",
+                                {
+                                    "Ref": "MetricsAgentPassword"
+                                },
+                                "'",
+                                "\n",
                                 "Import-Module C:\\install\\Carbon\\Carbon",
+                                "\n",
+                                "Install-User -Username $username -Password $password",
+                                "\n",
+                                "Add-GroupMembers -Name Administrators -Members $username",
+                                "\n",
+                                "Add-GroupMembers -Name 'Performance Monitor Users' -Members $username",
+                                "\n",
+                                "$publicHostname = Invoke-RestMethod http://169.254.169.254/latest/meta-data/public-hostname",
+                                "\n",
+                                "$data = $publicHostname + ',' + $username + ',' + $password",
+                                "\n",
+                                "cfn-signal.exe --data $data --exit-code $LASTEXITCODE ",
+                                {
+                                    "Fn::Base64": {
+                                        "Ref": "AgentsRemoteAccessWCH"
+                                    }
+                                },
                                 "\n",
                                 "</powershell>"
                             ]
@@ -346,6 +385,33 @@
                     }
                 ]
             }
+        },
+        "AgentsRemoteAccessWCH": {
+            "Type": "AWS::CloudFormation::WaitConditionHandle"
+        },
+        "AgentsRemoteAccessWC": {
+            "Type": "AWS::CloudFormation::WaitCondition",
+            "DependsOn": "AgentsASG",
+            "Properties": {
+                "Handle": {
+                    "Ref": "AgentsRemoteAccessWCH"
+                },
+                "Timeout": "1920",
+                "Count": {
+                    "Ref": "NumAgents"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "AgentsRemoteAccess": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "AgentsRemoteAccessWC",
+                    "Data"
+                ]
+            },
+            "Description": "The assembled agents remote access info passed back as part of signalling the WaitCondition."
         }
     }
 }
