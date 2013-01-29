@@ -1,0 +1,81 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+   "Resources": {
+        "AppMetricsSG": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Remote Access Security Group",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "icmp",
+                        "FromPort": "3",
+                        "ToPort": "4",
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": "3389",
+                        "ToPort": "3389",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            }
+        },
+        "ICMPIngressSGSelf": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "AppMetricsSG"
+                },
+                "IpProtocol": "icmp",
+                "FromPort": "-1",
+                "ToPort": "-1",
+                "SourceSecurityGroupName": {
+                    "Ref": "AppMetricsSG"
+                }
+            }
+        },
+        "TCPIngressSGSelf": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "AppMetricsSG"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "0",
+                "ToPort": "65535",
+                "SourceSecurityGroupName": {
+                    "Ref": "AppMetricsSG"
+                }
+            }
+        },
+        "UDPIngressSGSelf": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "AppMetricsSG"
+                },
+                "IpProtocol": "udp",
+                "FromPort": "0",
+                "ToPort": "65535",
+                "SourceSecurityGroupName": {
+                    "Ref": "AppMetricsSG"
+                }
+            }
+        },
+        "RDPIngressSGSelf": {
+            "Type": "AWS::EC2::SecurityGroupIngress",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "AppMetricsSG"
+                },
+                "IpProtocol": "tcp",
+                "FromPort": "3389",
+                "ToPort": "3389",
+                "SourceSecurityGroupName": {
+                    "Ref": "AppMetricsSG"
+                }
+            }
+        }
+    }
+}
