@@ -22,15 +22,14 @@
             ],
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
+        "ElasticIPAddress": {
+            "Type": "String",
+            "Description": "The designated Elastic IP Address (EIP) for the single agent."
+        },
         "MetricsTLD": {
             "Type": "String",
             "Description": "The AppMetrics Top Level Domain (TLD) where the server resides (yields http://metrics.{MetricsTLD}).",
             "Default": "cil.stack.me"
-        },
-        "NumAgents": {
-            "Type": "Number",
-            "Description": "Number of agents to start.",
-            "Default": "1"
         },
         "SpotPriceAgents": {
             "Type": "Number",
@@ -346,6 +345,12 @@
                                 },
                                 "'",
                                 "\n",
+                                "$elasticIPAddress = '",
+                                {
+                                    "Ref": "ElasticIPAddress"
+                                },
+                                "'",
+                                "\n",
                                 "Import-Module C:\\install\\Carbon\\Carbon",
                                 "\n",
                                 "Import-Module Pscx",
@@ -375,6 +380,10 @@
                                     }
                                 },
                                 "\n",
+                                "$instanceId = Invoke-RestMethod http://169.254.169.254/latest/meta-data/instance-id",
+                                "\n",
+                                "Register-EC2Address -InstanceId $instanceId -PublicIp $elasticIPAddress -Region $region",
+                                "\n",
                                 "</powershell>"
                             ]
                         ]
@@ -393,12 +402,8 @@
                     "Ref": "AgentsLC"
                 },
                 "MinSize": "1",
-                "DesiredCapacity": {
-                    "Ref": "NumAgents"
-                },
-                "MaxSize": {
-                    "Ref": "NumAgents"
-                },
+                "DesiredCapacity": "1",
+                "MaxSize":  "1",
                 "Tags": [
                     {
                         "Key": "Name",
@@ -434,9 +439,7 @@
                     "Ref": "AgentsRemoteAccessWCH"
                 },
                 "Timeout": "1920",
-                "Count": {
-                    "Ref": "NumAgents"
-                }
+                "Count":  "1"
             }
         }
     },
