@@ -22,6 +22,11 @@
             ],
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
+        "MetricsTLD": {
+            "Type": "String",
+            "Description": "The AppMetrics Top Level Domain (TLD) where the server resides (yields http://metrics.{MetricsTLD}).",
+            "Default": "cil.stack.me"
+        },
         "NumAgents": {
             "Type": "Number",
             "Description": "Number of agents to start.",
@@ -254,6 +259,11 @@
                                 }
                             }
                         },
+                        "packages": {
+                            "msi": {
+                                "pscx": "https://cfn-labs-cityindex-com-us-east-1.s3.amazonaws.com/files/Pscx-3.0.0.msi"
+                            }
+                        },
                         "sources": {
                             "c:\\install\\Carbon": "https://cfn-labs-cityindex-com-us-east-1.s3.amazonaws.com/files/Carbon-0.5.0.0.zip"
                         }
@@ -312,6 +322,12 @@
                                     "Ref": "AWS::Region"
                                 },
                                 "\n",
+                                "$region = '",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "'",
+                                "\n",
                                 "$username = '",
                                 {
                                     "Ref": "MetricsAgentUsername"
@@ -324,7 +340,15 @@
                                 },
                                 "'",
                                 "\n",
+                                "$metricsTLD = '",
+                                {
+                                    "Ref": "MetricsTLD"
+                                },
+                                "'",
+                                "\n",
                                 "Import-Module C:\\install\\Carbon\\Carbon",
+                                "\n",
+                                "Import-Module Pscx",
                                 "\n",
                                 "Install-User -Username $username -Password $password",
                                 "\n",
@@ -334,7 +358,15 @@
                                 "\n",
                                 "$publicHostname = Invoke-RestMethod http://169.254.169.254/latest/meta-data/public-hostname",
                                 "\n",
-                                "$data = $publicHostname + ',' + $username + ',' + $password",
+                                "$domainParts = $publicHostname.Split('.')",
+                                "\n",
+                                "$agentName =  'aws-' + $region +'-' + $domainParts[0]",
+                                "\n",
+                                "$metricsURL =  'http://metrics.' + $metricsTLD",
+                                "\n",
+                                "$configURL =  'http://config.metrics.' + $metricsTLD",
+                                "\n",
+                                "$data = $publicHostname + ',' + $username + ',' + $password + ',' + $agentName",
                                 "\n",
                                 "cfn-signal.exe --data $data --exit-code $LASTEXITCODE ",
                                 {
