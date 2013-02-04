@@ -127,6 +127,8 @@
        WorkingDirectory="$(TargetDir)"
        ZipFileName="$(MSBuildProjectDirectory)\AgentService.ConfigSite\setup\AppMetrics.AgentService.msi.zip"
        ZipLevel="9" />
+
+    <Copy SourceFiles="$(SetupDir)\AppMetrics.AgentService.msi" DestinationFolder="$(MSBuildProjectDirectory)\AgentService.ConfigSite\setup\" />
     
     <!-- package agent service config site -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\AgentService.ConfigSite\AgentService.ConfigSite.csproj" Targets="Package"

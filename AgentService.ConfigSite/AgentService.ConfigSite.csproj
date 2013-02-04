@@ -181,6 +181,7 @@
     <Content Include="plugins\List.ashx" />
     <None Include="Properties\PublishProfiles\ConfigSitePackage.pubxml" />
     <Content Include="setup\AppMetrics.AgentService.msi.zip" />
+    <Content Include="setup\AppMetrics.AgentService.msi" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppMetrics.WebUtils\AppMetrics.WebUtils.csproj">
