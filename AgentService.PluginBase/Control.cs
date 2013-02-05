@@ -17,6 +17,10 @@ namespace AppMetrics.AgentService.PluginBase
 					return true; // always true when running from VS
 
 				var masterProcesses = Process.GetProcessesByName("AppMetrics.AgentService");
+				if (masterProcesses.Length > 0)
+					return true;
+
+				masterProcesses = Process.GetProcessesByName("AppMetrics.AgentService.vshost");
 				return (masterProcesses.Length > 0);
 			}
 		}
