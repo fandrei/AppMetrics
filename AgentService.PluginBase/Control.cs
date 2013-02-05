@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AppMetrics.AgentService.PluginBase
 {
-	class Control
+	public class Control
 	{
 		public static bool IsMasterRunning
 		{
