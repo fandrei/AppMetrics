@@ -16,7 +16,7 @@ namespace AppMetrics.AgentService.PluginBase
 				if (processFile.EndsWith(".vshost.exe"))
 					return true; // always true when running from VS
 
-				var masterProcesses = Process.GetProcesses("AppMetrics.AgentService.exe");
+				var masterProcesses = Process.GetProcessesByName("AppMetrics.AgentService");
 				return (masterProcesses.Length > 0);
 			}
 		}
