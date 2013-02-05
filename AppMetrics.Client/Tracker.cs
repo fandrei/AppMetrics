@@ -220,7 +220,7 @@ namespace AppMetrics.Client
 		{
 			if (_disposed || _terminated)
 			{
-				Trace.Write("WARNING.AppMetrics.Client: message ignored");
+				Trace.WriteLine("WARNING.AppMetrics.Client: message ignored");
 				return;
 			}
 
