@@ -81,7 +81,8 @@
       <RemoveExistingProducts After="InstallInitialize" />
 
       <Custom Action='RunConfig' After='InstallFiles'>
-        $ProductComponent = 3 AND NOT UILevel = 2 <!-- product is installing and UILevel is not INSTALLUILEVEL_NONE -->
+        <!-- product is installing and UILevel is INSTALLUILEVEL_REDUCED or INSTALLUILEVEL_FULL -->
+        $ProductComponent = 3 AND (UILevel = 4 OR UILevel = 5)
       </Custom>
 
       <Custom Action='InstallService' Before='StartService' >
