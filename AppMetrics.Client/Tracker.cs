@@ -327,7 +327,7 @@ namespace AppMetrics.Client
 			{ }
 			catch (Exception exc)
 			{
-				Trace.WriteLine(exc);
+				Log("Exception", exc.ToString());
 			}
 		}
 
