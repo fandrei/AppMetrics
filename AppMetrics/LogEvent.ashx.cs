@@ -128,12 +128,13 @@ namespace AppMetrics
 			if (lines.Length == 0)
 				return;
 
+			var fileAlreadyExists = File.Exists(filePath);
+
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
 				using (var writer = new StreamWriter(stream)) // by default, encoding is UTF8 without BOM
 				{
-					var fileExisted = writer.BaseStream.Length > 0;
-					if (fileExisted)
+					if (fileAlreadyExists)
 					{
 						writer.BaseStream.Seek(0, SeekOrigin.End);
 					}
