@@ -97,7 +97,7 @@ namespace AppMetrics.Client
 				}
 
 				_terminated = true;
-				var period = waitAll ? Timeout.Infinite : 5*1000;
+				var period = waitAll ? Timeout.Infinite : 5 * 1000;
 				LoggingThread.Join(period);
 				LoggingThread.Abort();
 
@@ -294,9 +294,10 @@ namespace AppMetrics.Client
 				{
 					while (true)
 					{
-						if (_packet.Length == 0)
+						string packet = null;
+						lock (Sync)
 						{
-							lock (Sync)
+							if (_packet.Length == 0)
 							{
 								if (_messages.Count == 0)
 									return;
@@ -316,10 +317,16 @@ namespace AppMetrics.Client
 								var messagesSent = i;
 								_messages.RemoveRange(0, messagesSent);
 							}
+
+							packet = _packet.ToString();
 						}
 
-						SendPacket(client, Url, AccessKey, ApplicationKey, _packet.ToString());
-						_packet.Clear(); // clear packet if succeeded
+						SendPacket(client, Url, AccessKey, ApplicationKey, packet);
+
+						lock (Sync)
+						{
+							_packet.Clear(); // clear packet only if succeeded
+						}
 					}
 				}
 			}
