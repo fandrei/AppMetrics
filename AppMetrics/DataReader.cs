@@ -86,7 +86,7 @@ namespace AppMetrics
 			return res;
 		}
 
-		static DateTime GetSessionLastWriteTime(string filePath)
+		public static DateTime GetSessionLastWriteTime(string filePath)
 		{
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
