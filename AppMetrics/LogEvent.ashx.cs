@@ -134,11 +134,14 @@ namespace AppMetrics
 						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", request.UserAgent);
 					}
 
+					var buf = new StringBuilder();
 					foreach (var item in lines)
 					{
 						var line = string.Join("\t", item);
-						writer.WriteLine(line);
+						buf.AppendLine(line);
 					}
+
+					writer.Write(buf);
 				}
 			}
 		}
