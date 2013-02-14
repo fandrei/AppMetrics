@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
+using AppMetrics.Shared;
 using AppMetrics.WebUtils;
 
 namespace AppMetrics
@@ -129,6 +130,15 @@ namespace AppMetrics
 				return;
 
 			var fileAlreadyExists = File.Exists(filePath);
+			if (fileAlreadyExists)
+			{
+				var lastWriteTime = DataReader.GetSessionLastWriteTime(filePath);
+				var messageFirstTime = Util.ParseDateTime(lines[0][0]);
+				if (messageFirstTime < lastWriteTime)
+				{
+					ReportLog(string.Format("Time conflict - {0} {1} {2}", filePath, Util.Format(messageFirstTime), Util.Format(lastWriteTime)));
+				}
+			}
 
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
