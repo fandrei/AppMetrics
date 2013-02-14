@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Web;
 
 using AppMetrics.WebUtils;
@@ -111,10 +112,22 @@ namespace AppMetrics
 
 		private static void WriteData(HttpRequest request, string appKey, string sessionId, string[][] lines)
 		{
+			var filePath = GetDataFilePath(appKey, sessionId);
+
+			using (var mutex = new Mutex(false, "AppMetrics:" + sessionId))
+			{
+				if (!mutex.WaitOne(TimeSpan.FromSeconds(5)))
+					throw new ApplicationException(string.Format("Can't open file: {0}", filePath));
+
+				WriteDataRaw(request, filePath, lines);
+			}
+		}
+
+		private static void WriteDataRaw(HttpRequest request, string filePath, string[][] lines)
+		{
 			if (lines.Length == 0)
 				return;
 
-			var filePath = GetDataFilePath(appKey, sessionId);
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
 				using (var writer = new StreamWriter(stream)) // by default, encoding is UTF8 without BOM
