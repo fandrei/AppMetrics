@@ -361,7 +361,8 @@ namespace AppMetrics.Client
 
 		public static long GetServedRequestsCount()
 		{
-			return _requestsSent;
+			var res = Interlocked.Read(ref _requestsSent);
+			return res;
 		}
 
 		private bool _systemInfoIsReported;
