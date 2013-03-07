@@ -10,12 +10,13 @@ namespace AppMetrics.Shared
 	public abstract class AppSettingsBase
 	{
 		protected virtual void OnAfterLoad()
-		{}
+		{ }
 
 		protected virtual void OnBeforeSave()
 		{ }
 
 		private static XmlSerializer _serializer;
+		private static string _fileName;
 
 		public static T Load<T>(string fileName)
 			where T : AppSettingsBase, new()
@@ -38,6 +39,7 @@ namespace AppMetrics.Shared
 				settings = new T();
 
 			settings.OnAfterLoad();
+			_fileName = fileName;
 
 			return settings;
 		}
@@ -56,6 +58,12 @@ namespace AppMetrics.Shared
 			{
 				s.Serialize(writer, this);
 			}
+		}
+
+		public void Save<T>()
+			where T : AppSettingsBase, new()
+		{
+			Save<T>(_fileName);
 		}
 	}
 }
