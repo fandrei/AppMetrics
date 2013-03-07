@@ -6,51 +6,37 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml.Serialization;
 
+using AppMetrics.Shared;
+using AppMetrics.WebUtils;
+
 namespace AppMetrics
 {
-	public class AppSettings
+	public class AppSettings : AppSettingsBase
 	{
 		public bool RequireAccessKey { get; set; }
 		public string[] AccessKeys { get; set; }
 
 		private static AppSettings _instance;
+		static readonly object Sync = new object();
 
 		public static AppSettings Instance
 		{
-			get { return _instance; }
-		}
-
-		private static string FileName;
-
-		public static void Load(string dataPath)
-		{
-			FileName = dataPath + "\\settings.xml";
-			AppSettings settings;
-
-			if (File.Exists(FileName))
+			get
 			{
-				var s = new XmlSerializer(typeof(AppSettings));
-				using (var rd = new StreamReader(FileName))
+				lock (Sync)
 				{
-					settings = (AppSettings)s.Deserialize(rd);
+					if (_instance == null)
+						Load(SiteConfig.DataStoragePath + @"\settings.xml");
+					return _instance;
 				}
 			}
-			else
-				settings = new AppSettings();
-
-			_instance = settings;
 		}
 
-		public void Save()
+		public static void Load(string fileName)
 		{
-			var directory = Path.GetDirectoryName(FileName);
-			if (!Directory.Exists(directory))
-				Directory.CreateDirectory(directory);
-
-			var s = new XmlSerializer(typeof(AppSettings));
-			using (var writer = new StreamWriter(FileName))
+			lock (Sync)
 			{
-				s.Serialize(writer, this);
+				_instance = Load<AppSettings>(fileName);
 			}
 		}
 	}

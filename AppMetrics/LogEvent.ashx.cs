@@ -19,11 +19,6 @@ namespace AppMetrics
 	{
 		public static void Init()
 		{
-			lock (Sync)
-			{
-				if (AppSettings.Instance == null)
-					AppSettings.Load(SiteConfig.DataStoragePath);
-			}
 		}
 
 		public void ProcessRequest(HttpContext context)

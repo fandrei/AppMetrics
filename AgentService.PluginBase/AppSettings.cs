@@ -16,11 +16,6 @@ namespace AppMetrics.AgentService.PluginBase
 			return res;
 		}
 
-		public void Save()
-		{
-			Save<AppSettings>(FileName);
-		}
-
 		protected static readonly string FileName = Const.WorkingAreaPath + "AppSettings.xml";
 
 		public string ConfigBaseUrl { get; set; }

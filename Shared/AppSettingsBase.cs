@@ -16,7 +16,7 @@ namespace AppMetrics.Shared
 		{ }
 
 		private static XmlSerializer _serializer;
-		private static string _fileName;
+		private string _fileName;
 
 		public static T Load<T>(string fileName)
 			where T : AppSettingsBase, new()
@@ -39,13 +39,12 @@ namespace AppMetrics.Shared
 				settings = new T();
 
 			settings.OnAfterLoad();
-			_fileName = fileName;
+			settings._fileName = fileName;
 
 			return settings;
 		}
 
-		public void Save<T>(string fileName)
-			where T : AppSettingsBase, new()
+		public void Save(string fileName)
 		{
 			OnBeforeSave();
 
@@ -53,17 +52,16 @@ namespace AppMetrics.Shared
 			if (!Directory.Exists(directory))
 				Directory.CreateDirectory(directory);
 
-			var s = new XmlSerializer(typeof(T));
+			var s = new XmlSerializer(GetType());
 			using (var writer = new StreamWriter(fileName))
 			{
 				s.Serialize(writer, this);
 			}
 		}
 
-		public void Save<T>()
-			where T : AppSettingsBase, new()
+		public void Save()
 		{
-			Save<T>(_fileName);
+			Save(_fileName);
 		}
 	}
 }
