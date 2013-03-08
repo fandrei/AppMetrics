@@ -18,16 +18,18 @@ namespace AppMetrics.Shared
 		private static XmlSerializer _serializer;
 		private string _fileName;
 
-		public static T Load<T>(string fileName)
+		public static T Load<T>(string fileName, string rootName = null)
 			where T : AppSettingsBase, new()
 		{
 			T settings;
 
 			if (File.Exists(fileName))
 			{
-				var rootAttr = new XmlRootAttribute("AppSettings");
 				if (_serializer == null)
 				{
+					if (string.IsNullOrEmpty(rootName))
+						rootName = typeof(T).Name;
+					var rootAttr = new XmlRootAttribute(rootName);
 					_serializer = new XmlSerializer(typeof(T), null, null, rootAttr, "");
 				}
 				using (var rd = new StreamReader(fileName))
