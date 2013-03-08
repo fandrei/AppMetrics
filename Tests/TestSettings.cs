@@ -74,6 +74,7 @@ namespace Tests
 			var settings = Load<TestSettings>(fileName);
 
 			Console.WriteLine("### Loaded settings ###");
+			Console.WriteLine(settings.ServiceRootUrl);
 			Console.WriteLine(settings.ServiceRootFolder);
 			Console.WriteLine(settings.DataFolder);
 			Console.WriteLine(settings.UserName);
