@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousIntegration", "ContinuousIntegration", "{03255D26-5B9E-4A54-9499-BB9FB3822722}"
 	ProjectSection(SolutionItems) = preProject
 		ContinuousIntegration\publishToNuGet.xml = ContinuousIntegration\publishToNuGet.xml
+		ContinuousIntegration\ReadParams.xml = ContinuousIntegration\ReadParams.xml
 		ContinuousIntegration\test.xml = ContinuousIntegration\test.xml
 		ContinuousIntegration\testAndCover.xml = ContinuousIntegration\testAndCover.xml
 	EndProjectSection
