@@ -72,10 +72,11 @@ namespace Tests
 			var fileName = Util.GetAppLocation() + @"\TestSettings.xml";
 			var settings = Load<TestSettings>(fileName);
 
-			Trace.WriteLine("### Loaded settings ###");
-			Trace.WriteLine(settings.ServiceRootFolder);
-			Trace.WriteLine(settings.DataFolder);
-			Trace.WriteLine("######");
+			Console.WriteLine("### Loaded settings ###");
+			Console.WriteLine(settings.ServiceRootFolder);
+			Console.WriteLine(settings.DataFolder);
+			Console.WriteLine(settings.UserName);
+			Console.WriteLine("######");
 
 			return settings;
 		}
