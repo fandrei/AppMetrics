@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
+using AppMetrics.Shared;
+
 namespace Tests
 {
-	public class TestSettings
+	public class TestSettings : AppSettingsBase
 	{
 		public string ServiceRootFolder { get; set; }
 		public string ServiceRootUrl { get; set; }
@@ -35,7 +37,7 @@ namespace Tests
 			return res;
 		}
 
-		private void SetDefaultsIfEmpty()
+		protected override void OnAfterLoad()
 		{
 			if (string.IsNullOrEmpty(ServiceRootFolder))
 				ServiceRootFolder = Environment.GetEnvironmentVariable("AppMetricsTest_ServiceRootFolder");
@@ -65,29 +67,10 @@ namespace Tests
 			get { return _instance ?? (_instance = Load()); }
 		}
 
-		private static readonly string FileName = Util.GetAppLocation() + @"\TestSettings.xml";
-
-		public static void Reload()
-		{
-			_instance = Load();
-		}
-
 		public static TestSettings Load()
 		{
-			TestSettings settings;
-
-			if (File.Exists(FileName))
-			{
-				var s = new XmlSerializer(typeof(TestSettings));
-				using (var rd = new StreamReader(FileName))
-				{
-					settings = (TestSettings)s.Deserialize(rd);
-				}
-			}
-			else
-				settings = new TestSettings();
-
-			settings.SetDefaultsIfEmpty();
+			var fileName = Util.GetAppLocation() + @"\TestSettings.xml";
+			var settings = Load<TestSettings>(fileName);
 
 			Trace.WriteLine("### Loaded settings ###");
 			Trace.WriteLine(settings.ServiceRootFolder);
@@ -95,19 +78,6 @@ namespace Tests
 			Trace.WriteLine("######");
 
 			return settings;
-		}
-
-		public void Save()
-		{
-			var directory = Path.GetDirectoryName(FileName);
-			if (!Directory.Exists(directory))
-				Directory.CreateDirectory(directory);
-
-			var s = new XmlSerializer(typeof(TestSettings));
-			using (var writer = new StreamWriter(FileName))
-			{
-				s.Serialize(writer, this);
-			}
 		}
 
 		#endregion
