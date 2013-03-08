@@ -70,6 +70,7 @@ namespace Tests
 		public static TestSettings Load()
 		{
 			var fileName = Util.GetAppLocation() + @"\TestSettings.xml";
+			Console.WriteLine("Trying to read TestSettings from {0}", fileName);
 			var settings = Load<TestSettings>(fileName);
 
 			Console.WriteLine("### Loaded settings ###");
