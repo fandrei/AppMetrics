@@ -43,8 +43,10 @@
     <OpenCoverFilter>+[*]* -[Test*]* -[ApiGeoIP*]* -[CassiniDev*]*</OpenCoverFilter>
   </PropertyGroup>
 
-  <Target Name="RunTests" DependsOnTargets="ReadParams" >
+  <Target Name="RunTests" >
     <Message Text="Executing Unit Tests and running OpenCover to check code coverage..." />
+
+    <CallTarget Targets="ReadParams" />
 
     <MakeDir Directories="$(AppMetricsTest_DataFolder)" />
 

@@ -15,7 +15,8 @@
     <NUnitPath>$(SolutionRoot)\packages\NUnit.Runners.2.6.1\tools\</NUnitPath>
   </PropertyGroup>
 
-  <Target Name="Test" DependsOnTargets="ReadParams" >
+  <Target Name="Test">
+    <CallTarget Targets="ReadParams" />
     <CreateItem Include="$(SolutionRoot)\_bin\$(Configuration)\Tests.dll">
       <Output TaskParameter="Include" ItemName="TestAssembly1" />
     </CreateItem>
