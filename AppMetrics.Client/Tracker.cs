@@ -286,41 +286,45 @@ namespace AppMetrics.Client
 
 		private void SendMessages()
 		{
-			try
+			lock (SendingSync)
 			{
-				ReportPeriodicInfoAllSessions();
-
-				using (var client = new WebClient())
+				try
 				{
-					while (true)
+					ReportPeriodicInfoAllSessions();
+
+					using (var client = new WebClient())
 					{
-						string packet = null;
-						lock (Sync)
+						while (true)
 						{
-							if (_packet.Length == 0)
+							string packet = null;
+							lock (Sync)
 							{
-								if (_messages.Count == 0)
-									return;
-								BuildPacket();
+								if (_packet.Length == 0)
+								{
+									if (_messages.Count == 0)
+										return;
+									BuildPacket();
+								}
+
+								packet = _packet.ToString();
 							}
 
-							packet = _packet.ToString();
-						}
+							SendPacket(client, Url, AccessKey, ApplicationKey, packet);
 
-						SendPacket(client, Url, AccessKey, ApplicationKey, packet);
-
-						lock (Sync)
-						{
-							_packet.Clear(); // clear packet only if succeeded
+							lock (Sync)
+							{
+								_packet.Clear(); // clear packet only if succeeded
+							}
 						}
 					}
 				}
-			}
-			catch (ThreadInterruptedException)
-			{ }
-			catch (Exception exc)
-			{
-				Log("Exception", exc.ToString());
+				catch (ThreadInterruptedException)
+				{
+				}
+				catch (Exception exc)
+				{
+					Log("Exception", exc.ToString());
+				}
 			}
 		}
 
@@ -489,6 +493,7 @@ namespace AppMetrics.Client
 		public string AccessKey { get; private set; }
 
 		private static readonly object Sync = new object();
+		private static readonly object SendingSync = new object();
 
 		private readonly List<MessageInfo> _messages = new List<MessageInfo>(MaxMessagesCount);
 		private readonly StringBuilder _packet = new StringBuilder(MaxPacketSize);
