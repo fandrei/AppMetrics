@@ -301,21 +301,7 @@ namespace AppMetrics.Client
 							{
 								if (_messages.Count == 0)
 									return;
-
-								int i = 0;
-								for (; i < _messages.Count; i++)
-								{
-									var message = _messages[i];
-									var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
-										message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
-
-									if (_packet.Length + cur.Length > _packet.Capacity)
-										break;
-									_packet.Append(cur);
-								}
-
-								var messagesSent = i;
-								_messages.RemoveRange(0, messagesSent);
+								BuildPacket();
 							}
 
 							packet = _packet.ToString();
@@ -336,6 +322,24 @@ namespace AppMetrics.Client
 			{
 				Log("Exception", exc.ToString());
 			}
+		}
+
+		private void BuildPacket()
+		{
+			int i = 0;
+			for (; i < _messages.Count; i++)
+			{
+				var message = _messages[i];
+				var cur = string.Format("{0}\t{1}\t{2}\t{3}\r\n", message.SessionId,
+					message.Time.ToString("yyyy-MM-dd HH:mm:ss.fffffff"), message.Name, message.Value);
+
+				if (_packet.Length + cur.Length > _packet.Capacity)
+					break;
+				_packet.Append(cur);
+			}
+
+			var messagesSent = i;
+			_messages.RemoveRange(0, messagesSent);
 		}
 
 		static void SendPacket(WebClient client, string url, string accessKey, string appKey, string packet)
