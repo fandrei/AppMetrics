@@ -114,10 +114,7 @@ namespace AppMetrics.Client
 
 		public void FlushMessages()
 		{
-			lock (Sync)
-			{
-				SendMessages();
-			}
+			SendMessages();
 		}
 
 		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
