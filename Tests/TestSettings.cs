@@ -77,7 +77,13 @@ namespace Tests
 			Console.WriteLine(settings.ServiceRootUrl);
 			Console.WriteLine(settings.ServiceRootFolder);
 			Console.WriteLine(settings.DataFolder);
-			Console.WriteLine(settings.UserName);
+			var buf = new StringBuilder();
+			foreach (var ch in settings.UserName)
+			{
+				buf.Append(ch);
+				buf.Append(' ');
+			}
+			Console.WriteLine(buf.ToString());
 			Console.WriteLine("######");
 
 			return settings;
