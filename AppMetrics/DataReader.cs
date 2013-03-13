@@ -275,11 +275,11 @@ namespace AppMetrics
 			var lineTime = GetLineTime(line);
 
 			return new Record
-					{
-						Time = lineTime,
-						Name = name,
-						Value = fields[2],
-					};
+				{
+					Time = lineTime,
+					Name = name,
+					Value = fields[2],
+				};
 		}
 
 		static bool IsServiceMessage(string name)
