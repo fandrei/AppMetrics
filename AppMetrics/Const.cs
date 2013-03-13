@@ -22,6 +22,11 @@ namespace AppMetrics
 				throw new ArgumentException(filePath);
 			return filePath;
 		}
+
+		public static string GetFileMutexName(string sessionId)
+		{
+			return "AppMetrics.File:" + sessionId;
+		}
 	}
 
 	public enum LogPriority { Low, High }

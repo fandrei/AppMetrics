@@ -110,9 +110,9 @@ namespace AppMetrics
 		{
 			var filePath = GetDataFilePath(appKey, sessionId);
 
-			using (var mutex = new Mutex(false, "AppMetrics:" + sessionId))
+			using (var mutex = new Mutex(false, Const.GetFileMutexName(sessionId)))
 			{
-				if (!mutex.WaitOne(TimeSpan.FromSeconds(5)))
+				if (!mutex.WaitOne(TimeSpan.FromSeconds(10)))
 					throw new ApplicationException(string.Format("Can't open file: {0}", filePath));
 
 				WriteDataRaw(request, filePath, lines);
