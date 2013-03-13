@@ -100,8 +100,12 @@ namespace AppMetrics
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			var lines = textLines.Select(line => line.Split(new[] { separator })).ToArray();
-			if (lines.Any(line => line.Length != 3))
-				throw new ApplicationException("Invalid count of items in the line");
+
+			foreach (var line in lines)
+			{
+				if (line.Length != 3)
+					throw new ApplicationException(string.Format("Invalid count of items in the line ({0}): \"{1}\"", sessionId, line));
+			}
 
 			WriteData(request, applicationKey, sessionId, lines);
 		}
