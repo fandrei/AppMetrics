@@ -168,10 +168,10 @@ namespace AppMetrics
 				throw new ApplicationException("No session ID");
 
 			var filePath = GetDataFilePath(applicationKey, sessionId);
-			WriteData(filePath, context);
+			WriteData(sessionId, filePath, context);
 		}
 
-		private static void WriteData(string filePath, HttpContext context)
+		private static void WriteData(string sessionId, string filePath, HttpContext context)
 		{
 			var name = context.Request.Params["MessageName"];
 			var data = context.Request.Params["MessageData"];
@@ -180,6 +180,7 @@ namespace AppMetrics
 
 			var clientTime = context.Request.Params["MessageTime"];
 
+			using (var mutex = Utils.TryLockFile(sessionId, filePath))
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
 				using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
