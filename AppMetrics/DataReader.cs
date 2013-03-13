@@ -53,7 +53,7 @@ namespace AppMetrics
 				if (sessionCreationTime > period.EndTime)
 					return null;
 
-				var lastUpdateTime = GetSessionLastWriteTime(filePath);
+				var lastUpdateTime = GetSessionLastWriteTime(sessionId, filePath);
 				if (lastUpdateTime < period.StartTime)
 					return null;
 
@@ -86,8 +86,9 @@ namespace AppMetrics
 			return res;
 		}
 
-		public static DateTime GetSessionLastWriteTime(string filePath)
+		public static DateTime GetSessionLastWriteTime(string sessionId, string filePath)
 		{
+			using (var mutex = Utils.TryLockFile(sessionId, filePath))
 			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				var encoding = DetectEncoding(stream);
@@ -188,6 +189,7 @@ namespace AppMetrics
 		{
 			var res = new List<Record>();
 
+			using (var mutex = Utils.TryLockFile(session.Id, session.FileName))
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				var encoding = DetectEncoding(stream);

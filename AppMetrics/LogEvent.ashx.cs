@@ -114,11 +114,8 @@ namespace AppMetrics
 		{
 			var filePath = GetDataFilePath(appKey, sessionId);
 
-			using (var mutex = new Mutex(false, Const.GetFileMutexName(sessionId)))
+			using (var mutex = Utils.TryLockFile(sessionId, filePath))
 			{
-				if (!mutex.WaitOne(TimeSpan.FromSeconds(10)))
-					throw new ApplicationException(string.Format("Can't open file (access locked): {0}", filePath));
-
 				WriteDataRaw(request, filePath, lines);
 			}
 		}
