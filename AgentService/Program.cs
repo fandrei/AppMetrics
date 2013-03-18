@@ -157,6 +157,15 @@ namespace AppMetrics.AgentService
 
 			var settings = AppSettings.Load();
 
+			string configServer;
+			argsDic.TryGetValue("configserver", out configServer);
+			if (!string.IsNullOrEmpty(configServer))
+			{
+				settings.ConfigBaseUrl = configServer;
+
+				settings.Save();
+			}
+
 			string userName;
 			argsDic.TryGetValue("username", out userName);
 
@@ -176,15 +185,6 @@ namespace AppMetrics.AgentService
 			if (!string.IsNullOrEmpty(nodeName))
 			{
 				settings.NodeName = nodeName;
-
-				settings.Save();
-			}
-
-			string configServer;
-			argsDic.TryGetValue("configserver", out configServer);
-			if (!string.IsNullOrEmpty(configServer))
-			{
-				settings.ConfigBaseUrl = configServer;
 
 				settings.Save();
 			}
