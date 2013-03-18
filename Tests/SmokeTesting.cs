@@ -20,6 +20,7 @@ namespace Tests
 		[Test]
 		public void SmokeTest()
 		{
+			Console.WriteLine("Running tests from: {0}", Util.GetAppLocation());
 			Console.WriteLine("\r\nTesting service located at {0}\r\n", TestSettings.Instance.ServiceRootUrl);
 
 			var startTime = DateTime.UtcNow;
