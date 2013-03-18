@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Web;
 
 using AppMetrics.Shared;
@@ -197,7 +196,7 @@ namespace AppMetrics
 						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
 					}
 
-					data = Shared.Util.Escape(data);
+					data = Util.Escape(data);
 					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
 				}
 			}
