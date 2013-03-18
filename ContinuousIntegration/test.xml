@@ -20,10 +20,11 @@
     <CreateItem Include="$(SolutionRoot)\_bin\$(Configuration)\Tests.dll">
       <Output TaskParameter="Include" ItemName="TestAssembly1" />
     </CreateItem>
-    <NUnit ToolPath="$(NUnitPath)" DisableShadowCopy="true" Assemblies="@(TestAssembly1)" />
+    <Exec Command='"$(NUnitPath)\nunit-console-x86.exe" /nologo /noshadow @(TestAssembly1)' ContinueOnError='false' />
   </Target>
 
   <Target Name="DoItAll" DependsOnTargets="Test" >
   </Target>
 
 </Project>
+
