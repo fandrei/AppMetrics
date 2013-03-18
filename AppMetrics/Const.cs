@@ -25,7 +25,7 @@ namespace AppMetrics
 
 		public static string GetFileMutexName(string sessionId)
 		{
-			return "AppMetrics.File:" + sessionId;
+			return "AppMetrics.File." + sessionId;
 		}
 	}
 
