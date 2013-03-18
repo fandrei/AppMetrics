@@ -25,24 +25,32 @@ namespace Tests
 
 			var startTime = DateTime.UtcNow;
 
-			var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey, TestSettings.Instance.AccessKey);
-			tracker.Log("TestMessage", "TestValue");
-			tracker.FlushMessages();
-
-			using (var client = new WebClient())
+			using (var tracker = Tracker.Create(TestSettings.Instance.MetricsLoggingUrl, AppKey, TestSettings.Instance.AccessKey))
 			{
-				client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
-				client.QueryString["AppKey"] = AppKey;
-				client.QueryString["StartTime"] = startTime.ToString("u");
+				tracker.Log("TestMessage", "TestValue");
+				tracker.FlushMessages();
 
-				var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
-				var sessions = Session.Parse(response);
+				using (var client = new WebClient())
+				{
+					client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
+					client.QueryString["AppKey"] = AppKey;
+					client.QueryString["StartTime"] = startTime.ToString("u");
 
-				Assert.IsTrue(sessions.Count() > 0);
+					var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
+					var sessions = Session.Parse(response);
 
-				var thisSession = sessions.Find(session => session.Id == tracker.SessionId);
-				Assert.IsTrue(thisSession != null);
+					Assert.IsTrue(sessions.Count() > 0);
+
+					var thisSession = sessions.Find(session => session.Id == tracker.SessionId);
+					Assert.IsTrue(thisSession != null);
+				}
 			}
+		}
+
+		[TearDown]
+		public void Cleanup()
+		{
+			Tracker.Terminate(true);
 		}
 	}
 }
