@@ -248,8 +248,6 @@ namespace AppMetrics
 			}
 		}
 
-		static readonly object Sync = new object();
-
 		public bool IsReusable
 		{
 			get
