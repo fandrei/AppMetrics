@@ -247,7 +247,7 @@ namespace AppMetrics
 		{
 			get
 			{
-				return true;
+				return false;
 			}
 		}
 	}
