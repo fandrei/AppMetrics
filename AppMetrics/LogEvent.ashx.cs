@@ -16,16 +16,10 @@ namespace AppMetrics
 	/// </summary>
 	public class LogEvent : IHttpHandler
 	{
-		public static void Init()
-		{
-		}
-
 		public void ProcessRequest(HttpContext context)
 		{
 			try
 			{
-				Init();
-
 				var applicationKey = context.Request.Params["MessageAppKey"];
 				if (string.IsNullOrEmpty(applicationKey))
 					throw new ApplicationException("No application key");

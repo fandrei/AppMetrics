@@ -14,7 +14,6 @@ namespace AppMetrics
 			try
 			{
 				WebUtil.CheckIpAddress();
-				LogEvent.Init();
 
 				if (!Page.IsPostBack)
 				{
