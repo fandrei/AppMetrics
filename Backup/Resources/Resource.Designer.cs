@@ -63,7 +63,6 @@ namespace AppMetrics.Backup.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Command line format:
         ///backup.exe PathToData
-        ///backup.exe PathToData -config AmazonKey AmazonSecretKey.
         /// </summary>
         internal static string Manual {
             get {
