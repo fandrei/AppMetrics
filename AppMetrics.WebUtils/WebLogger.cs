@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Threading;
 
 namespace AppMetrics.WebUtils
 {
@@ -23,7 +23,18 @@ namespace AppMetrics.WebUtils
 				var buf = (multiLineData)
 					? string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n", time, Delimiter, text, Delimiter)
 					: string.Format("{0}\t{1}\r\n", time, text);
-				File.AppendAllText(filePath, buf);
+
+				if (Monitor.TryEnter(Sync, 10 * 1000))
+				{
+					try
+					{
+						File.AppendAllText(filePath, buf);
+					}
+					finally
+					{
+						Monitor.Exit(Sync);
+					}
+				}
 			}
 			catch (Exception exc)
 			{
@@ -33,5 +44,6 @@ namespace AppMetrics.WebUtils
 
 		static readonly string Delimiter = new string('-', 80);
 		public const string FileName = "log.txt";
+		static readonly object Sync = new object();
 	}
 }
