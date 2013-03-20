@@ -156,12 +156,11 @@ namespace AppMetrics
 
 		private static void ProcessMessage(HttpContext context, string applicationKey)
 		{
-			ReportLog("Single message mode used: " + applicationKey);
-
 			var sessionId = context.Request.Params["MessageSession"];
 			if (string.IsNullOrEmpty(sessionId))
 				throw new ApplicationException("No session ID");
 
+			ReportLog(string.Format("Single message mode used: {0} {1}", applicationKey, sessionId));
 			var filePath = GetDataFilePath(applicationKey, sessionId);
 			WriteData(sessionId, filePath, context);
 		}
