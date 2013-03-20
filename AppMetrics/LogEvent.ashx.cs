@@ -107,7 +107,7 @@ namespace AppMetrics
 		{
 			var filePath = GetDataFilePath(appKey, sessionId);
 
-			using (var mutex = Utils.TryLockFile(sessionId, filePath))
+			using (var mutex = Utils.TryLockFile(sessionId))
 			{
 				WriteDataRaw(request, filePath, lines);
 			}
@@ -174,7 +174,7 @@ namespace AppMetrics
 
 			var clientTime = context.Request.Params["MessageTime"];
 
-			using (var mutex = Utils.TryLockFile(sessionId, filePath))
+			using (var mutex = Utils.TryLockFile(sessionId))
 			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
 			{
 				using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
