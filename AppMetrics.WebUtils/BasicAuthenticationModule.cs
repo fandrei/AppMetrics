@@ -132,7 +132,8 @@ namespace AppMetrics.WebUtils
 					return null;
 
 				UserCredentials res;
-				_users.TryGetValue(name, out res);
+				if (!_users.TryGetValue(name, out res))
+					WebLogger.Report(string.Format("User '{0}' not found", name));
 				return res;
 			}
 		}
