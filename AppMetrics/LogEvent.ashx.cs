@@ -56,6 +56,10 @@ namespace AppMetrics
 				else
 					ProcessMessage(context, applicationKey);
 			}
+			catch (ApplicationException exc)
+			{
+				ReportLog(exc.Message);
+			}
 			catch (Exception exc)
 			{
 				ReportLog(exc);

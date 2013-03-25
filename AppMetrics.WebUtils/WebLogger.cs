@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Web;
 
 namespace AppMetrics.WebUtils
 {
@@ -14,6 +15,18 @@ namespace AppMetrics.WebUtils
 			try
 			{
 				var text = val.ToString();
+
+				var address = "";
+				try
+				{
+					address = HttpContext.Current.Request.UserHostAddress;
+				}
+				catch (Exception exc)
+				{
+					Trace.WriteLine(exc);
+				}
+
+				text = text + " :" + address;
 				Trace.WriteLine(text);
 
 				var filePath = Path.Combine(WebUtil.AppDataPath, FileName);
