@@ -103,6 +103,8 @@ namespace AppMetrics.WebUtils
 				{
 					if (_users == null)
 					{
+						WebLogger.Report(string.Format("Reading user credentials from '{0}'", CredentialsFileName));
+
 						var text = File.ReadAllText(CredentialsFileName);
 
 						_users = new Dictionary<string, UserCredentials>();
@@ -121,6 +123,9 @@ namespace AppMetrics.WebUtils
 								_users.Add(user.Name, user);
 							}
 						}
+
+						var userNames = _users.Keys.ToArray();
+						WebLogger.Report(string.Format("Found users '{0}'", String.Join(" ", userNames)));
 					}
 				}
 				catch (Exception exc)
