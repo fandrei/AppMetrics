@@ -86,7 +86,7 @@ namespace AppMetrics.WebUtils
 			if (user != null)
 			{
 				if (CheckPassword(user, password))
-					return new GenericPrincipal(new GenericIdentity(userName), new[] { "Administrator", "User" });
+					return new GenericPrincipal(new GenericIdentity(userName), new string[0]);
 			}
 
 			return null;
