@@ -169,6 +169,8 @@ namespace AppMetrics.WebUtils
 		{
 			var hash = GetPasswordHash(user.Salt, password);
 			var res = (user.PasswordHash == hash);
+			if (!res)
+				WebLogger.Report(string.Format("User '{0}': password '{1}' is not correct", user.Name, password));
 			return res;
 		}
 
