@@ -66,9 +66,6 @@ namespace AppMetrics
 			{
 				context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 				ReportLog(exc);
-#if DEBUG
-				context.Response.Write(exc);
-#endif
 			}
 		}
 
