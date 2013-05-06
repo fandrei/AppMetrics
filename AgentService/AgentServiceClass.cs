@@ -114,7 +114,7 @@ namespace AppMetrics.AgentService
 
 			try
 			{
-				lock (_trackerSync)
+				lock (TrackerSync)
 				{
 					var settings = AppSettings.Load();
 
@@ -355,7 +355,7 @@ namespace AppMetrics.AgentService
 				Trace.WriteLine(exc);
 			}
 
-			lock (_trackerSync)
+			lock (TrackerSync)
 			{
 				if (_tracker != null)
 					_tracker.Log(category, message);
@@ -388,6 +388,6 @@ namespace AppMetrics.AgentService
 		private static readonly TimeSpan AutoUpdateCheckPeriod = TimeSpan.FromMinutes(1);
 
 		private static Tracker _tracker;
-		private static readonly object _trackerSync = new object();
+		private static readonly object TrackerSync = new object();
 	}
 }
