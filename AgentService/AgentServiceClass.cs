@@ -74,6 +74,18 @@ namespace AppMetrics.AgentService
 					try
 					{
 						ApplyUpdates();
+					}
+					catch (ThreadAbortException)
+					{
+						break;
+					}
+					catch (Exception exc)
+					{
+						Report(exc);
+					}
+
+					try
+					{
 						EnsurePluginsStarted();
 					}
 					catch (ThreadAbortException)
