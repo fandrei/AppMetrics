@@ -247,21 +247,28 @@ namespace AppMetrics.AgentService
 
 		private void EnsurePluginStarted(PluginInfo plugin)
 		{
-			if (plugin.Process != null)
-				return;
+			try
+			{
+				if (plugin.Process != null)
+					return;
 
-			ReportEvent("Start plugin: " + plugin.Name);
+				ReportEvent("Start plugin: " + plugin.Name);
 
-			var exePath = Const.GetPluginExePath(plugin.Name);
-			var startInfo = new ProcessStartInfo(exePath)
-				{
-					UseShellExecute = false,
-					RedirectStandardOutput = true,
-					CreateNoWindow = true,
-					RedirectStandardInput = true,
-				};
-			var process = Process.Start(startInfo);
-			plugin.Process = process;
+				var exePath = Const.GetPluginExePath(plugin.Name);
+				var startInfo = new ProcessStartInfo(exePath)
+					{
+						UseShellExecute = false,
+						RedirectStandardOutput = true,
+						CreateNoWindow = true,
+						RedirectStandardInput = true,
+					};
+				var process = Process.Start(startInfo);
+				plugin.Process = process;
+			}
+			catch (Exception exc)
+			{
+				Report(exc);
+			}
 		}
 
 		private void StopPlugin(PluginInfo plugin)
