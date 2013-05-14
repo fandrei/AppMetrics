@@ -387,7 +387,7 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		private static readonly TimeSpan WaitPluginPeriod = TimeSpan.FromSeconds(3);
+		private static readonly TimeSpan WaitPluginPeriod = TimeSpan.FromSeconds(30);
 
 		private readonly object _sync = new object();
 		private Thread _thread;
