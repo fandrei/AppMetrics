@@ -65,36 +65,54 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				Init();
-				FindPlugins();
-				EnsurePluginsStopped();
-
 				while (!_terminated)
 				{
-					try
+					if (!_initDone)
 					{
-						ApplyUpdates();
-					}
-					catch (ThreadAbortException)
-					{
-						break;
-					}
-					catch (Exception exc)
-					{
-						Report(exc);
+						try
+						{
+							Init();
+							FindPlugins();
+							EnsurePluginsStopped();
+							_initDone = true;
+						}
+						catch (ThreadAbortException)
+						{
+							break;
+						}
+						catch (Exception exc)
+						{
+							Report(exc);
+						}
 					}
 
-					try
+					if (_initDone)
 					{
-						EnsurePluginsStarted();
-					}
-					catch (ThreadAbortException)
-					{
-						break;
-					}
-					catch (Exception exc)
-					{
-						Report(exc);
+						try
+						{
+							ApplyUpdates();
+						}
+						catch (ThreadAbortException)
+						{
+							break;
+						}
+						catch (Exception exc)
+						{
+							Report(exc);
+						}
+
+						try
+						{
+							EnsurePluginsStarted();
+						}
+						catch (ThreadAbortException)
+						{
+							break;
+						}
+						catch (Exception exc)
+						{
+							Report(exc);
+						}
 					}
 
 					Thread.Sleep(AutoUpdateCheckPeriod);
@@ -392,6 +410,7 @@ namespace AppMetrics.AgentService
 		private readonly object _sync = new object();
 		private Thread _thread;
 		private volatile bool _terminated;
+		private volatile bool _initDone;
 		private static readonly TimeSpan AutoUpdateCheckPeriod = TimeSpan.FromMinutes(1);
 
 		private static Tracker _tracker;
