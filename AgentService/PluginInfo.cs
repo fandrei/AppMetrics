@@ -20,5 +20,18 @@ namespace AppMetrics.AgentService
 		{
 			return Name;
 		}
+
+		public bool IsStarted
+		{
+			get
+			{
+				if (Process == null)
+					return false;
+				var isStopped = Process.WaitForExit(0);
+				if (isStopped)
+					Process = null;
+				return !isStopped;
+			}
+		}
 	}
 }

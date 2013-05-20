@@ -267,7 +267,7 @@ namespace AppMetrics.AgentService
 		{
 			try
 			{
-				if (plugin.Process != null)
+				if (plugin.IsStarted)
 					return;
 
 				ReportEvent("Start plugin: " + plugin.Name);
@@ -298,13 +298,12 @@ namespace AppMetrics.AgentService
 
 		private void SendPluginStopSignal(PluginInfo plugin)
 		{
-			ReportEvent("Stop plugin: " + plugin.Name);
-
 			lock (_pluginsSync)
 			{
-				if (plugin.Process == null)
+				if (!plugin.IsStarted)
 					return;
 
+				ReportEvent("Stop plugin: " + plugin.Name);
 				try
 				{
 					// send signal to close
