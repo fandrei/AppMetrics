@@ -209,7 +209,7 @@ namespace AppMetrics.AgentService
 			client.DownloadFile(zipFileUrl, zipFilePath);
 
 			StopPlugin(name);
-			DeleteAllFiles(pluginPath);
+			FileUtil.DeleteAllFiles(pluginPath);
 
 			using (var zipFile = new ZipFile(zipFilePath))
 			{
@@ -220,14 +220,6 @@ namespace AppMetrics.AgentService
 			{
 				var localVersion = File.ReadAllText(localVersionFile).Trim();
 				ReportEvent(string.Format("Update of plugin {0} to version {1} is successful", name, localVersion));
-			}
-		}
-
-		private static void DeleteAllFiles(string path)
-		{
-			foreach (var file in Directory.GetFiles(path))
-			{
-				File.Delete(file);
 			}
 		}
 
