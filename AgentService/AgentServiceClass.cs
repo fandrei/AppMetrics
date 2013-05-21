@@ -273,6 +273,9 @@ namespace AppMetrics.AgentService
 				ReportEvent("Start plugin: " + plugin.Name);
 
 				var exePath = Const.GetPluginExePath(plugin.Name);
+				var version = FileVersionInfo.GetVersionInfo(exePath).FileVersion;
+
+				ReportEvent(string.Format("Plugin version: {0} {1}", plugin.Name, version));
 				var startInfo = new ProcessStartInfo(exePath)
 					{
 						UseShellExecute = false,
