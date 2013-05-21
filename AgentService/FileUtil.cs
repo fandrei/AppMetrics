@@ -9,6 +9,22 @@ namespace AppMetrics.AgentService
 {
 	public static class FileUtil
 	{
+		public static void SetAttributes(string fileName, FileAttributes attr)
+		{
+			File.SetAttributes(fileName, File.GetAttributes(fileName) | attr);
+		}
+
+		public static void ResetAttributes(string fileName, FileAttributes attr)
+		{
+			if (HasAttributes(fileName, attr))
+				File.SetAttributes(fileName, File.GetAttributes(fileName) & ~attr);
+		}
+
+		public static bool HasAttributes(string fileName, FileAttributes attr)
+		{
+			return ((File.GetAttributes(fileName) & attr) == attr);
+		}
+
 		public static void DeleteAllFiles(string path)
 		{
 			var repeatCount = 10;
@@ -19,6 +35,7 @@ namespace AppMetrics.AgentService
 				{
 					foreach (var file in Directory.GetFiles(path))
 					{
+						ResetAttributes(file, FileAttributes.ReadOnly);
 						File.Delete(file);
 					}
 					break;
