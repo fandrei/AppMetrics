@@ -244,7 +244,17 @@ namespace AppMetrics.AgentService
 				}
 			}
 
-			Thread.Sleep(WaitPluginPeriod);
+			var startTime = DateTime.UtcNow;
+			while ((DateTime.UtcNow - startTime) < WaitPluginPeriod)
+			{
+				lock (_pluginsSync)
+				{
+					var stoppedPlugins = _plugins.Values.Where(plugin => !plugin.IsStarted).ToArray();
+					if (stoppedPlugins.Count() == _plugins.Count)
+						break;
+				}
+				Thread.Sleep(TimeSpan.FromSeconds(1));
+			}
 
 			lock (_pluginsSync)
 			{
@@ -268,6 +278,7 @@ namespace AppMetrics.AgentService
 				var version = FileVersionInfo.GetVersionInfo(exePath).FileVersion;
 
 				ReportEvent(string.Format("Plugin version: {0} {1}", plugin.Name, version));
+
 				var startInfo = new ProcessStartInfo(exePath)
 					{
 						UseShellExecute = false,
@@ -286,9 +297,20 @@ namespace AppMetrics.AgentService
 
 		private void StopPlugin(PluginInfo plugin)
 		{
-			SendPluginStopSignal(plugin);
-			Thread.Sleep(WaitPluginPeriod);
-			TerminatePlugin(plugin);
+			lock (_pluginsSync)
+			{
+				SendPluginStopSignal(plugin);
+
+				var startTime = DateTime.UtcNow;
+				while ((DateTime.UtcNow - startTime) < WaitPluginPeriod)
+				{
+					if (!plugin.IsStarted)
+						return;
+					Thread.Sleep(TimeSpan.FromSeconds(1));
+				}
+
+				TerminatePlugin(plugin);
+			}
 		}
 
 		private void SendPluginStopSignal(PluginInfo plugin)
@@ -299,6 +321,7 @@ namespace AppMetrics.AgentService
 					return;
 
 				ReportEvent("Stop plugin: " + plugin.Name);
+
 				try
 				{
 					// send signal to close
@@ -399,7 +422,7 @@ namespace AppMetrics.AgentService
 			}
 		}
 
-		private static readonly TimeSpan WaitPluginPeriod = TimeSpan.FromSeconds(30);
+		private static readonly TimeSpan WaitPluginPeriod = TimeSpan.FromSeconds(10);
 
 		private readonly object _sync = new object();
 		private Thread _thread;
