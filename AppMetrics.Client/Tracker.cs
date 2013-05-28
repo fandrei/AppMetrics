@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading;
+
 using Microsoft.VisualBasic.Devices;
 
 namespace AppMetrics.Client
@@ -289,29 +288,26 @@ namespace AppMetrics.Client
 				{
 					ReportPeriodicInfoAllSessions();
 
-					using (var client = new WebClient())
+					while (true)
 					{
-						while (true)
+						string packet = null;
+						lock (Sync)
 						{
-							string packet = null;
-							lock (Sync)
+							if (_packet.Length == 0)
 							{
-								if (_packet.Length == 0)
-								{
-									if (_messages.Count == 0)
-										return;
-									BuildPacket();
-								}
-
-								packet = _packet.ToString();
+								if (_messages.Count == 0)
+									return;
+								BuildPacket();
 							}
 
-							SendPacket(client, Url, AccessKey, ApplicationKey, packet);
+							packet = _packet.ToString();
+						}
 
-							lock (Sync)
-							{
-								_packet.Clear(); // clear packet only if succeeded
-							}
+						SendPacket(Url, AccessKey, ApplicationKey, packet);
+
+						lock (Sync)
+						{
+							_packet.Clear(); // clear packet only if succeeded
 						}
 					}
 				}
@@ -343,18 +339,18 @@ namespace AppMetrics.Client
 			_messages.RemoveRange(0, messagesSent);
 		}
 
-		static void SendPacket(WebClient client, string url, string accessKey, string appKey, string packet)
+		static void SendPacket(string url, string accessKey, string appKey, string packet)
 		{
-			var vals = new NameValueCollection
+			var args = new Dictionary<string, string>()
 				{
 					{ "AccessKey", accessKey },
 					{ "MessageAppKey", appKey },
 					{ "MessagesList", packet }, 
 				};
 
-			var response = client.UploadValues(url, "POST", vals);
+			var responseText = HttpUtil.Request(url, "POST", args);
+
 			CountNewRequest();
-			var responseText = Encoding.ASCII.GetString(response);
 			if (!string.IsNullOrEmpty(responseText))
 				throw new ApplicationException(responseText);
 		}
