@@ -15,21 +15,25 @@ namespace AppMetrics.Shared
 		protected virtual void OnBeforeSave()
 		{ }
 
+		private static readonly object Sync = new object();
+		private static readonly Dictionary<Tuple<Type, string>, XmlSerializer> Serializers = new Dictionary<Tuple<Type, string>, XmlSerializer>();
+
 		private string _fileName;
 
-		public static T Load<T>(string fileName)
+		public static T Load<T>(string fileName, string rootName = null)
 			where T : AppSettingsBase, new()
 		{
 			T settings;
 
 			if (File.Exists(fileName))
 			{
-				// http://blogs.msdn.com/b/tess/archive/2006/02/15/532804.aspx
-				// beware of memory leak if you modify the next line
-				var serializer = new XmlSerializer(typeof(T));
-				using (var rd = new StreamReader(fileName))
+				lock (Sync)
 				{
-					settings = (T)serializer.Deserialize(rd);
+					var serializer = GetSerializer(typeof(T), rootName);
+					using (var rd = new StreamReader(fileName))
+					{
+						settings = (T)serializer.Deserialize(rd);
+					}
 				}
 			}
 			else
@@ -42,7 +46,7 @@ namespace AppMetrics.Shared
 			return settings;
 		}
 
-		public void Save(string fileName)
+		public void Save(string fileName, string rootName = null)
 		{
 			OnBeforeSave();
 
@@ -50,10 +54,33 @@ namespace AppMetrics.Shared
 			if (!Directory.Exists(directory))
 				Directory.CreateDirectory(directory);
 
-			var serializer = new XmlSerializer(GetType());
-			using (var writer = new StreamWriter(fileName))
+			lock (Sync)
 			{
-				serializer.Serialize(writer, this);
+				var serializer = GetSerializer(GetType(), rootName);
+				using (var writer = new StreamWriter(fileName))
+				{
+					serializer.Serialize(writer, this);
+				}
+			}
+		}
+
+		// cache serializers to prevent memory leak
+		// http://blogs.msdn.com/b/tess/archive/2006/02/15/532804.aspx
+		static XmlSerializer GetSerializer(Type type, string rootName)
+		{
+			lock (Sync)
+			{
+				if (rootName == null)
+					rootName = type.Name;
+				var key = new Tuple<Type, string>(type, rootName);
+				XmlSerializer res;
+				if (!Serializers.TryGetValue(key, out res))
+				{
+					var rootAttr = new XmlRootAttribute(rootName);
+					res = new XmlSerializer(type, null, null, rootAttr, "");
+					Serializers.Add(key, res);
+				}
+				return res;
 			}
 		}
 
