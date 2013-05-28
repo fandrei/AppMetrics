@@ -52,6 +52,7 @@ namespace Tests
 		{
 			Trace.WriteLine("Stopping CassiniDev server");
 			_server.StopServer();
+			_server.Dispose();
 		}
 
 		protected string NormalizeUrl(string relativeUrl)
