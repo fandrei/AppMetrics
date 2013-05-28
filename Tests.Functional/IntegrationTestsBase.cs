@@ -2,12 +2,13 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using CassiniDev;
 using NUnit.Framework;
 
 namespace Tests
 {
-	[TestFixture]
 	public class IntegrationTestsBase
 	{
 		private readonly CassiniDevServer _server = new CassiniDevServer();
@@ -18,7 +19,9 @@ namespace Tests
 			{
 				var basePath = FindAppMetricsPath();
 				Trace.WriteLine(string.Format("Starting CassiniDev server ({0})", basePath));
-				_server.StartServer(basePath, Port, "/AppMetrics", "");
+				if (_port == 0)
+					_port = FindFreePort();
+				_server.StartServer(basePath, _port, "/AppMetrics", "");
 				return;
 			}
 			catch (InvalidOperationException operationException)
@@ -48,11 +51,25 @@ namespace Tests
 			return p;
 		}
 
+		static int FindFreePort()
+		{
+			var listener = new TcpListener(IPAddress.Loopback, 0);
+			try
+			{
+				listener.Start();
+				var port = ((IPEndPoint) listener.LocalEndpoint).Port;
+				return port;
+			}
+			finally
+			{
+				listener.Stop();
+			}
+		}
+
 		protected void StopWebServer()
 		{
 			Trace.WriteLine("Stopping CassiniDev server");
 			_server.StopServer();
-			_server.Dispose();
 		}
 
 		protected string NormalizeUrl(string relativeUrl)
@@ -61,6 +78,6 @@ namespace Tests
 			return res;
 		}
 
-		const int Port = 15668;
+		int _port;
 	}
 }
