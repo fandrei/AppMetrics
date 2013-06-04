@@ -9,7 +9,10 @@ namespace AppMetrics.Client
 {
 	public static class HttpUtil
 	{
-		public static string Request(string url, string method = "GET", Dictionary<string, string> args = null, ICredentials credentials = null)
+		private const int DefaultTimeout = 100 * 1000;
+
+		public static string Request(string url, string method = "GET", Dictionary<string, string> args = null,
+			int timeout = DefaultTimeout, ICredentials credentials = null)
 		{
 			var buf = new StringBuilder();
 			if (args != null)
@@ -31,7 +34,7 @@ namespace AppMetrics.Client
 
 			var request = (HttpWebRequest)WebRequest.Create(url);
 			request.Method = method;
-			request.Timeout = 5000;
+			request.Timeout = timeout;
 			request.ReadWriteTimeout = request.Timeout;
 			request.Credentials = credentials;
 
@@ -62,9 +65,9 @@ namespace AppMetrics.Client
 			}
 		}
 
-		public static string Request(string url, ICredentials credentials)
+		public static string Request(string url, ICredentials credentials, int timeout = DefaultTimeout)
 		{
-			return Request(url, "GET", null, credentials);
+			return Request(url, "GET", null, timeout, credentials);
 		}
 	}
 }
