@@ -55,13 +55,11 @@ namespace AppMetrics.Client
 				}
 			}
 
-			var response = request.GetResponse();
+			using (var response = request.GetResponse())
 			using (var responseStream = response.GetResponseStream())
+			using (var reader = new StreamReader(responseStream, Encoding.UTF8))
 			{
-				using (var reader = new StreamReader(responseStream, Encoding.UTF8))
-				{
-					return reader.ReadToEnd();
-				}
+				return reader.ReadToEnd();
 			}
 		}
 
