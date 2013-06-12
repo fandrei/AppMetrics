@@ -19,6 +19,4 @@ namespace AppMetrics.Client
 			return res;
 		}
 	}
-
-	public enum MessagePriority { Low = 0, High }
 }

@@ -94,12 +94,12 @@ namespace AppMetrics.Client
 			}
 		}
 
-		public void FlushMessages()
+		public override void FlushMessages()
 		{
 			SendMessages();
 		}
 
-		public void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
+		public override void Log(string name, string val, MessagePriority priority = MessagePriority.Low)
 		{
 			lock (Sync)
 			{
@@ -126,70 +126,6 @@ namespace AppMetrics.Client
 
 				AddMessage(name, val, priority);
 			}
-		}
-
-		public void Log(Exception exc)
-		{
-			Log("Exception", exc.ToString(), MessagePriority.High);
-		}
-
-		public void Log(string name, object val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(), priority);
-		}
-
-		public void Log(string name, double val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
-		}
-
-		public void Log(string name, float val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
-		}
-
-		public void Log(string name, decimal val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
-		}
-
-		public void Log(string name, long val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
-		}
-
-		public void Log(string name, ulong val, MessagePriority priority = MessagePriority.Low)
-		{
-			Log(name, val.ToString(CultureInfo.InvariantCulture), priority);
-		}
-
-		public void LogFormat(string name, MessagePriority priority, string format, params object[] args)
-		{
-			var text = string.Format(CultureInfo.InvariantCulture, format, args);
-			Log(name, text, priority);
-		}
-
-		public void LogFormat(string name, string format, params object[] args)
-		{
-			LogFormat(name, MessagePriority.Low, format, args);
-		}
-
-		public Stopwatch StartMeasure()
-		{
-			return Stopwatch.StartNew();
-		}
-
-		public void EndMeasure(Stopwatch watch, string label)
-		{
-			var diff = watch.Elapsed;
-			watch.Stop();
-
-			LogLatency(label, diff.TotalSeconds);
-		}
-
-		public void LogLatency(string label, double value)
-		{
-			Log("Latency " + label, value);
 		}
 
 		private const string WarningName = "AppMetrics.Warning";
