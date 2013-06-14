@@ -48,7 +48,7 @@ namespace AppMetrics.Client
 
 				using (var stream = request.GetRequestStream())
 				{
-					using (var writer = new StreamWriter(stream, Encoding.UTF8))
+					using (var writer = new StreamWriter(stream)) // UTF8 without BOM
 					{
 						writer.Write(buf.ToString());
 					}
