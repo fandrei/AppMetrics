@@ -86,11 +86,7 @@ namespace AppMetrics
 				if (!lines.Any())
 					continue;
 
-				foreach (var line in lines)
-				{
-					if (line.Length != 3)
-						throw new ApplicationException(string.Format("Invalid count of items in the line ({0}): \"{1}\"", sessionId, line));
-				}
+				ValidateLines(sessionId, separator, lines);
 
 				WriteData(request, applicationKey, sessionId, lines);
 			}
@@ -101,13 +97,21 @@ namespace AppMetrics
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			var lines = textLines.Select(line => line.Split(new[] { separator })).ToArray();
 
+			ValidateLines(sessionId, separator, lines);
+
+			WriteData(request, applicationKey, sessionId, lines);
+		}
+
+		private static void ValidateLines(string sessionId, char separator, string[][] lines)
+		{
 			foreach (var line in lines)
 			{
 				if (line.Length != 3)
-					throw new ApplicationException(string.Format("Invalid count of items in the line ({0}): \"{1}\"", sessionId, line));
+				{
+					var lineText = string.Join(new string(separator, 1), line);
+					throw new ApplicationException(string.Format("Invalid count of items in the line ({0}): \"{1}\"", sessionId, lineText));
+				}
 			}
-
-			WriteData(request, applicationKey, sessionId, lines);
 		}
 
 		private static void WriteData(HttpRequest request, string appKey, string sessionId, string[][] lines)
