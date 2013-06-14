@@ -62,8 +62,9 @@ namespace AppMetrics.Client
 			lock (Sync)
 			{
 				_lastSentPeriodic = DateTime.UtcNow;
+				LoggingThread.Name = "AppMetrics_MessageSending";
+				LoggingThread.Start();
 			}
-			LoggingThread.Start();
 		}
 
 		public static void Terminate(bool waitAll = false)
