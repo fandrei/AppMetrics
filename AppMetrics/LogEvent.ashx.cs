@@ -83,17 +83,20 @@ namespace AppMetrics
 			{
 				var sessionId = pair.Key;
 				var lines = pair.Value;
-				if (lines.Count() == 0)
+				if (!lines.Any())
 					continue;
 
-				if (lines.Any(line => line.Length != 3))
-					throw new ApplicationException("Invalid count of items in the line");
+				foreach (var line in lines)
+				{
+					if (line.Length != 3)
+						throw new ApplicationException(string.Format("Invalid count of items in the line ({0}): \"{1}\"", sessionId, line));
+				}
+
 				WriteData(request, applicationKey, sessionId, lines);
 			}
 		}
 
-		private static void ProcessMessages(HttpRequest request,
-			string applicationKey, string sessionId, string messagesText, char separator)
+		private static void ProcessMessages(HttpRequest request, string applicationKey, string sessionId, string messagesText, char separator)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 			var lines = textLines.Select(line => line.Split(new[] { separator })).ToArray();
