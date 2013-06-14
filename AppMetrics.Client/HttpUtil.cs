@@ -19,7 +19,7 @@ namespace AppMetrics.Client
 			{
 				foreach (var val in args)
 				{
-					buf.AppendFormat("{0}={1}&", Uri.EscapeUriString(val.Key), Uri.EscapeUriString(val.Value));
+					buf.AppendFormat("{0}={1}&", Uri.EscapeDataString(val.Key), Uri.EscapeDataString(val.Value));
 				}
 			}
 
