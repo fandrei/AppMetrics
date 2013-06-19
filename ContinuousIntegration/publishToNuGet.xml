@@ -15,17 +15,20 @@
 
   <Target Name="Package" >
     <Message Text="Packaging with NuGet" />
-    
+
     <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Client.nuspec' ContinueOnError='false' 
           WorkingDirectory='$(SolutionRoot)\_nuget\'/>
 
     <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.AgentService.PluginBase.nuspec' ContinueOnError='false'
       WorkingDirectory='$(SolutionRoot)\_nuget\'/>
+
+    <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Client.Log4Net.nuspec' ContinueOnError='false'
+      WorkingDirectory='$(SolutionRoot)\_nuget\'/>
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package" >
     <Message Text="Publishing to NuGet.org" />
-    
+
     <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
           ContinueOnError='false' />
 

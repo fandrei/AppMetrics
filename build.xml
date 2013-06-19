@@ -114,6 +114,11 @@
       Regex="version&gt;(.*?)&lt;/version"
       ReplacementText="version&gt;$(FullVersion)&lt;/version" />
 
+    <FileUpdate
+      Files="$(MSBuildProjectDirectory)\_nuget\AppMetrics.Client.Log4Net.nuspec"
+      Regex="version&gt;(.*?)&lt;/version"
+      ReplacementText="version&gt;$(FullVersion)&lt;/version" />
+
     <!-- package analytics website -->
     <FileUpdate
       Files="$(MSBuildProjectDirectory)\AppMetrics.AnalyticsSite\App_Data\web.config"
