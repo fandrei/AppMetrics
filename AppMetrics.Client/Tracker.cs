@@ -268,7 +268,7 @@ namespace AppMetrics.Client
 					{ "MessagesList", packet }, 
 				};
 
-			var responseText = HttpUtil.Request(url, "POST", args);
+			var responseText = HttpUtil.Request(url, args, "POST");
 
 			CountNewRequest();
 			if (!string.IsNullOrEmpty(responseText))

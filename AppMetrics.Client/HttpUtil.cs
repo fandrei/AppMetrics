@@ -11,7 +11,7 @@ namespace AppMetrics.Client
 	{
 		private const int DefaultTimeout = 100 * 1000;
 
-		public static string Request(string url, string method = "GET", Dictionary<string, string> args = null,
+		public static string Request(string url, Dictionary<string, string> args = null, string method = "GET", 
 			int timeout = DefaultTimeout, ICredentials credentials = null)
 		{
 			var buf = new StringBuilder();
@@ -63,9 +63,9 @@ namespace AppMetrics.Client
 			}
 		}
 
-		public static string Request(string url, ICredentials credentials, int timeout = DefaultTimeout)
+		public static string Request(string url, ICredentials credentials, Dictionary<string, string> args = null, int timeout = DefaultTimeout)
 		{
-			return Request(url, "GET", null, timeout, credentials);
+			return Request(url, args, "GET", timeout, credentials);
 		}
 	}
 }
