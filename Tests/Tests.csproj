@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Log4NetTest.cs" />
+    <Compile Include="Log4NetTesting.cs" />
     <Compile Include="TestSettings.cs" />
     <Compile Include="SmokeTesting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

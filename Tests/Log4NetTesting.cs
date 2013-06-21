@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+
 using log4net.Appender;
 using log4net.Config;
 using log4net.Layout;
 using NUnit.Framework;
 
+using AppMetrics;
 using AppMetrics.Client;
 using AppMetrics.Client.Log4Net;
 
 namespace Tests
 {
 	[TestFixture]
-	class Log4NetTest
+	class Log4NetTesting
 	{
+		private const string AppKey = "Tracking.Log4NetTesting";
+
 		[SetUp]
 		public void Init()
 		{
@@ -26,9 +31,11 @@ namespace Tests
 					Layout = layout,
 					Server = TestSettings.Instance.MetricsLoggingUrl,
 					AccessKey = TestSettings.Instance.AccessKey,
-					ApplicationKey = GetType().FullName,
+					ApplicationKey = AppKey,
 				};
 			appender.ActivateOptions();
+
+			_tracker = appender.Tracker;
 
 			var appender2 = new TraceAppender
 				{
@@ -42,7 +49,23 @@ namespace Tests
 		[Test]
 		public void SmokeTest()
 		{
-			Log.Debug("TestMessage.Log4Net");
+			var startTime = DateTime.UtcNow;
+
+			var message = "TestMessage.Log4Net." + Guid.NewGuid().ToString();
+			_log.Debug(message);
+
+			_tracker.FlushMessages();
+
+			var credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
+			var args = new Dictionary<string, string>
+				{
+					{ "Application", AppKey }, 
+					{ "StartTime", startTime.ToString("u") }
+				};
+
+			var response = HttpUtil.Request(TestSettings.Instance.RecordsExportUrl, credentials, args);
+
+			Assert.IsTrue(response.Contains(message));
 		}
 
 		[TearDown]
@@ -51,6 +74,7 @@ namespace Tests
 			Tracker.Terminate(true);
 		}
 
-		private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Log4NetTest));
+		private readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(Log4NetTesting));
+		private TrackerBase _tracker;
 	}
 }

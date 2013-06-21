@@ -23,8 +23,12 @@ namespace Tests
 
 		[XmlIgnore]
 		public string MetricsLoggingUrl { get { return CombineUri(ServiceRootUrl, "LogEvent.ashx"); } }
+
 		[XmlIgnore]
 		public string SessionsExportUrl { get { return CombineUri(ServiceRootUrl, "GetSessions.ashx"); } }
+
+		[XmlIgnore]
+		public string RecordsExportUrl { get { return CombineUri(ServiceRootUrl, "GetRecords.ashx"); } }
 
 		public static string CombineUri(string root, string tail)
 		{
