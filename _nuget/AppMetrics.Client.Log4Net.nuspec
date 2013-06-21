@@ -8,10 +8,10 @@
     <description>.NET client library for the AppMetrics application runtime intelligence system</description>
     <language>en-GB</language>
     <licenseUrl>https://github.com/fandrei/AppMetrics/raw/master/LICENSE.txt</licenseUrl>
+    <dependencies>
+      <dependency id="AppMetrics.Client" />
+    </dependencies>
   </metadata>
-  <dependencies>
-    <dependency id="AppMetrics.Client" />
-  </dependencies>
   <files>
     <file src="..\_bin\Release\AppMetrics.Client.Log4Net.dll" target="lib\net40"/>
   </files>
