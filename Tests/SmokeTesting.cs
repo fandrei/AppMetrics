@@ -50,7 +50,6 @@ namespace Tests
 		[TearDown]
 		public void Cleanup()
 		{
-			Tracker.Terminate(true);
 		}
 	}
 }

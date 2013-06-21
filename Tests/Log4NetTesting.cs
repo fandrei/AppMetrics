@@ -71,7 +71,8 @@ namespace Tests
 		[TearDown]
 		public void Cleanup()
 		{
-			Tracker.Terminate(true);
+			_tracker.FlushMessages();
+			_tracker.Dispose();
 		}
 
 		private readonly log4net.ILog _log = log4net.LogManager.GetLogger(typeof(Log4NetTesting));
