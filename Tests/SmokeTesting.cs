@@ -33,7 +33,7 @@ namespace Tests
 				using (var client = new WebClient())
 				{
 					client.Credentials = new NetworkCredential(TestSettings.Instance.UserName, TestSettings.Instance.Password);
-					client.QueryString["AppKey"] = AppKey;
+					client.QueryString["Application"] = AppKey;
 					client.QueryString["StartTime"] = startTime.ToString("u");
 
 					var response = client.DownloadString(TestSettings.Instance.SessionsExportUrl);
