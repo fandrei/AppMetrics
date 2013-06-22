@@ -1,7 +1,8 @@
-Configuring AppMetrics and log4net integration
+### Configuring AppMetrics and log4net integration
 
 1. To send all Log4Net output to AppMetrics, add the following config elements to your App.Config file:
 
+```
 <configuration>
   <log4net>
     <appender name="AppMetrics" type="AppMetrics.Client.Log4Net.Log4NetAppender">
@@ -14,5 +15,6 @@ Configuring AppMetrics and log4net integration
     </appender>
   </log4net>
 </configuration>
+```
 
-2. When you need to send data both to log4net and AppMetrics, use the AppMetrics.Client.Log4Net.Log4NetTracker class instead of AppMetrics.Client.Tracker; it will ensure formatting is recognized by AppMetrics Analytics correctly.
+1. When you need to send data both to log4net and AppMetrics, use the AppMetrics.Client.Log4Net.Log4NetTracker class instead of AppMetrics.Client.Tracker; it will ensure formatting is recognized by AppMetrics Analytics correctly.
