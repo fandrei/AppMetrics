@@ -32,6 +32,9 @@
     <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.$(FullVersion).nupkg $(NuGetApiKey)' 
           ContinueOnError='false' />
 
+    <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.Log4Net.$(FullVersion).nupkg $(NuGetApiKey)'
+      ContinueOnError='false' />
+
     <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.AgentService.PluginBase.$(FullVersion).nupkg $(NuGetApiKey)'
           ContinueOnError='false' />
   </Target>
