@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>AppMetrics.Client</id>
-    <title>AppMetrics.Client</title>
+    <id>AppMetrics.Client.Log4Net</id>
+    <title>AppMetrics.Client.Log4Net</title>
     <version>1.0.0.0</version>
     <authors>CityIndex Ltd, Andrei Faber</authors>
-    <description>.NET client library for the AppMetrics application runtime intelligence system</description>
+    <description>.NET client library for the AppMetrics and Log4Net integration</description>
     <language>en-GB</language>
     <licenseUrl>https://github.com/fandrei/AppMetrics/raw/master/LICENSE.txt</licenseUrl>
     <dependencies>
