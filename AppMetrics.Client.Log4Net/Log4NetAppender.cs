@@ -23,7 +23,7 @@ namespace AppMetrics.Client.Log4Net
 				Tracker.Log("Event", loggingEvent.MessageObject);
 		}
 
-		public TrackerBase Tracker
+		public Tracker Tracker
 		{
 			get
 			{
