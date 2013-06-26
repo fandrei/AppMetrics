@@ -24,6 +24,10 @@
 
     <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Client.Log4Net.nuspec' ContinueOnError='false'
       WorkingDirectory='$(SolutionRoot)\_nuget\'/>
+
+    <Exec Command='"$(NuGetEXE)" pack $(SolutionRoot)\_nuget\AppMetrics.Shared.nuspec' ContinueOnError='false'
+      WorkingDirectory='$(SolutionRoot)\_nuget\'/>
+
   </Target>
 
   <Target Name="Publish" DependsOnTargets="Package" >
@@ -34,6 +38,9 @@
 
     <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Client.Log4Net.$(FullVersion).nupkg $(NuGetApiKey)'
       ContinueOnError='false' />
+
+    <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.Shared.$(FullVersion).nupkg $(NuGetApiKey)'
+          ContinueOnError='false' />
 
     <Exec Command='"$(NuGetEXE)" push $(SolutionRoot)\_nuget\AppMetrics.AgentService.PluginBase.$(FullVersion).nupkg $(NuGetApiKey)'
           ContinueOnError='false' />

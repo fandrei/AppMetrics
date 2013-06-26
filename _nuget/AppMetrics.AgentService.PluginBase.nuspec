@@ -8,9 +8,11 @@
     <description>AppMetrics - agent service plugin</description>
     <language>en-GB</language>
     <licenseUrl>https://github.com/fandrei/AppMetrics/raw/master/LICENSE.txt</licenseUrl>
+    <dependencies>
+      <dependency id="AppMetrics.Shared" />
+    </dependencies>
   </metadata>
   <files>
     <file src="..\_bin\Release\AppMetrics.AgentService.PluginBase.dll" target="lib\net40"/>
-    <file src="..\_bin\Release\AppMetrics.Shared.dll" target="lib\net40"/>
   </files>
 </package>
