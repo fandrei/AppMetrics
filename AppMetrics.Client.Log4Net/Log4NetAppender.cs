@@ -30,7 +30,7 @@ namespace AppMetrics.Client.Log4Net
 				lock (_sync)
 				{
 					if (_tracker == null)
-						_tracker = Client.Tracker.Create(Server, ApplicationKey, AccessKey);
+						_tracker = Tracker.Create(Server, ApplicationKey, AccessKey);
 					return _tracker;
 				}
 			}
