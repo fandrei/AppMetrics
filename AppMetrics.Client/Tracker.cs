@@ -309,8 +309,19 @@ namespace AppMetrics.Client
 
 				Log("System_ClrVersion", Environment.Version.ToString());
 
-				Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
-				Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
+
+				if (!IsUnderMono)
+				{
+					Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
+					Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
+				}
+				else
+				{
+					using (var pc = new PerformanceCounter("Mono Memory", "Total Physical Memory"))
+					{
+						Log("System_PhysicalMemory", ToMegabytes((ulong) pc.RawValue));
+					}
+				}
 
 				Log("System_CurrentCulture", Thread.CurrentThread.CurrentCulture.Name);
 				Log("System_CurrentUiCulture", Thread.CurrentThread.CurrentUICulture.Name);
