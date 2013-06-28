@@ -327,7 +327,7 @@ namespace AppMetrics.Client
 				var offset = timeZone.GetUtcOffset(DateTime.Now);
 				Log("System_TimeZoneOffset", offset.TotalHours);
 
-				var processFile = Process.GetCurrentProcess().MainModule.FileName;
+				var processFile = AppDomain.CurrentDomain.BaseDirectory + AppDomain.CurrentDomain.FriendlyName;
 				Log("Client_ProcessName", processFile);
 
 				var processVersion = FileVersionInfo.GetVersionInfo(processFile).FileVersion;
@@ -398,6 +398,15 @@ namespace AppMetrics.Client
 		{
 			var res = val.Replace("\r", "\\r").Replace("\n", "\\n").Replace("\t", "\\t");
 			return res;
+		}
+
+		static bool IsUnderMono
+		{
+			get
+			{
+				var t = Type.GetType("Mono.Runtime");
+				return (t != null);
+			}
 		}
 
 		public string Url { get; private set; }
