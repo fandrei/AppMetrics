@@ -387,8 +387,11 @@ namespace AppMetrics.Client
 
 				var computerInfo = new ComputerInfo();
 
-				Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
-				Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
+				if (!IsUnderMono)
+				{
+					Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
+					Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
+				}
 
 				var processorSecondsUsed = curProcess.TotalProcessorTime.TotalSeconds;
 				if (_lastProcessorTimeUsage != 0)
