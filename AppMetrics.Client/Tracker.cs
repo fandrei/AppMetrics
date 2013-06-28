@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -309,6 +310,10 @@ namespace AppMetrics.Client
 
 				Log("System_ClrVersion", Environment.Version.ToString());
 
+				if (IsUnderMono)
+				{
+					Log("System_MonoRuntimeVersion", GetMonoRuntimeVersion());
+				}
 
 				if (!IsUnderMono)
 				{
@@ -418,6 +423,18 @@ namespace AppMetrics.Client
 				var t = Type.GetType("Mono.Runtime");
 				return (t != null);
 			}
+		}
+
+		static string GetMonoRuntimeVersion()
+		{
+			var type = Type.GetType("Mono.Runtime");
+			if (type != null)
+			{
+				MethodInfo displayName = type.GetMethod("GetDisplayName", BindingFlags.NonPublic | BindingFlags.Static);
+				if (displayName != null)
+					return (string)(displayName.Invoke(null, null));
+			}
+			return "";
 		}
 
 		public string Url { get; private set; }
