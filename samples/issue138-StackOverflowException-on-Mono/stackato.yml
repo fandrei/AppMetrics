@@ -1,0 +1,11 @@
+name: issue138-StackOverflowException
+instances: 1
+framework:
+  type: buildpack
+env:
+  BUILDPACK_URL: git://github.com/mrdavidlaing/stackato-buildpack-mono.git
+mem: 128
+app-dir: app
+ignores: ["config", "logs", "runtimes"]
+services:
+    ${name}-cache: filesystem
