@@ -385,10 +385,9 @@ namespace AppMetrics.Client
 				var privateMemorySize = ToMegabytes((ulong)curProcess.PrivateMemorySize64);
 				Log("Client_PrivateMemorySize", privateMemorySize);
 
-				var computerInfo = new ComputerInfo();
-
 				if (!IsUnderMono)
 				{
+					var computerInfo = new ComputerInfo();
 					Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
 					Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
 				}
