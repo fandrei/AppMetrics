@@ -300,9 +300,12 @@ namespace AppMetrics.Client
 
 			try
 			{
-				var computerInfo = new ComputerInfo();
+				if (!IsUnderMono)
+				{
+					var computerInfo = new ComputerInfo();
+					Log("System_OsName", computerInfo.OSFullName);
+				}
 
-				Log("System_OsName", computerInfo.OSFullName);
 				Log("System_OsVersion", Environment.OSVersion.VersionString);
 
 				Log("System_ComputerName", Environment.MachineName);
@@ -317,6 +320,7 @@ namespace AppMetrics.Client
 
 				if (!IsUnderMono)
 				{
+					var computerInfo = new ComputerInfo();
 					Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
 					Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
 				}
