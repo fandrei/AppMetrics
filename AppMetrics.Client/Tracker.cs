@@ -320,15 +320,15 @@ namespace AppMetrics.Client
 
 				if (!IsUnderMono)
 				{
-					var computerInfo = new ComputerInfo();
-					Log("System_PhysicalMemory", ToMegabytes(computerInfo.TotalPhysicalMemory));
-					Log("System_VirtualMemory", ToMegabytes(computerInfo.TotalVirtualMemory));
+					var memInfo = SafeNativeMethods.GetMemoryStatus();
+					Log("System_PhysicalMemory", ToMegabytes(memInfo.ullTotalPhys));
+					Log("System_VirtualMemory", ToMegabytes(memInfo.ullTotalVirtual));
 				}
 				else
 				{
 					using (var pc = new PerformanceCounter("Mono Memory", "Total Physical Memory"))
 					{
-						Log("System_PhysicalMemory", ToMegabytes((ulong) pc.RawValue));
+						Log("System_PhysicalMemory", ToMegabytes((ulong)pc.RawValue));
 					}
 				}
 
@@ -391,9 +391,9 @@ namespace AppMetrics.Client
 
 				if (!IsUnderMono)
 				{
-					var computerInfo = new ComputerInfo();
-					Log("System_AvailablePhysicalMemory", ToMegabytes(computerInfo.AvailablePhysicalMemory));
-					Log("System_AvailableVirtualMemory", ToMegabytes(computerInfo.AvailableVirtualMemory));
+					var memInfo = SafeNativeMethods.GetMemoryStatus();
+					Log("System_AvailablePhysicalMemory", ToMegabytes(memInfo.ullAvailPhys));
+					Log("System_AvailableVirtualMemory", ToMegabytes(memInfo.ullAvailVirtual));
 				}
 
 				var processorSecondsUsed = curProcess.TotalProcessorTime.TotalSeconds;
