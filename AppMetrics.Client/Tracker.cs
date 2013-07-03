@@ -7,8 +7,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 
-using Microsoft.VisualBasic.Devices;
-
 namespace AppMetrics.Client
 {
 	public class Tracker : TrackerBase
@@ -300,12 +298,6 @@ namespace AppMetrics.Client
 
 			try
 			{
-				if (!IsUnderMono)
-				{
-					var computerInfo = new ComputerInfo();
-					Log("System_OsName", computerInfo.OSFullName);
-				}
-
 				Log("System_OsVersion", Environment.OSVersion.VersionString);
 
 				Log("System_ComputerName", Environment.MachineName);
