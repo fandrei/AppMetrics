@@ -381,6 +381,12 @@ namespace AppMetrics.Client
 				var privateMemorySize = ToMegabytes((ulong)curProcess.PrivateMemorySize64);
 				Log("Client_PrivateMemorySize", privateMemorySize);
 
+				var virtualMemorySize = ToMegabytes((ulong)curProcess.VirtualMemorySize64);
+				Log("Client_VirtualMemorySize", virtualMemorySize);
+
+				var threadsCount = curProcess.Threads.Count;
+				Log("Client_ThreadCount", threadsCount);
+
 				if (!IsUnderMono)
 				{
 					var memInfo = SafeNativeMethods.GetMemoryStatus();
