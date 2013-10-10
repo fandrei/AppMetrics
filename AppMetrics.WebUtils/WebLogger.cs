@@ -26,7 +26,7 @@ namespace AppMetrics.WebUtils
 					Trace.WriteLine(exc);
 				}
 
-				text = text + " :" + address;
+				text = address + " > " + text;
 				Trace.WriteLine(text);
 
 				var filePath = Path.Combine(WebUtil.AppDataPath, FileName);

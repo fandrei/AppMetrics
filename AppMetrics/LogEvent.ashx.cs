@@ -21,11 +21,13 @@ namespace AppMetrics
 		{
 			try
 			{
-				var applicationKey = context.Request.Params["MessageAppKey"];
-				if (string.IsNullOrEmpty(applicationKey))
-					throw new ApplicationException("No application key");
+				var request = context.Request;
 
-				var accessKey = context.Request.Params["AccessKey"];
+				var applicationKey = request.Params["MessageAppKey"];
+				if (string.IsNullOrEmpty(applicationKey))
+					throw new ApplicationException("No application key\r\n" + request.Params);
+
+				var accessKey = request.Params["AccessKey"];
 				if (string.IsNullOrEmpty(accessKey))
 				{
 					var appKeyParts = applicationKey.Split('|');
@@ -35,24 +37,27 @@ namespace AppMetrics
 						accessKey = appKeyParts[1];
 					}
 				}
+
+				if (string.IsNullOrWhiteSpace(accessKey))
+					ReportLog("No access key\r\n" + request.Params);
 				AccessKeys.VerifyAccess(accessKey);
 
 				// NOTE that client side has to escape data if it contains the same char that is used as line separator char
-				var tmp = context.Request.Params["LineSeparator"];
+				var tmp = request.Params["LineSeparator"];
 				if (string.IsNullOrEmpty(tmp))
 					tmp = "\t";
 				if (tmp.Length > 1)
 					throw new ApplicationException("Invalid line separator");
 				var separator = tmp[0];
 
-				var messages = context.Request.Params["MessagesList"];
+				var messages = request.Params["MessagesList"];
 				if (!string.IsNullOrEmpty(messages))
 				{
-					var sessionId = context.Request.Params["MessageSession"];
+					var sessionId = request.Params["MessageSession"];
 					if (string.IsNullOrEmpty(sessionId))
-						ProcessMessages(context.Request, applicationKey, messages, separator);
+						ProcessMessages(request, applicationKey, messages, separator);
 					else
-						ProcessMessages(context.Request, applicationKey, sessionId, messages, separator);
+						ProcessMessages(request, applicationKey, sessionId, messages, separator);
 				}
 				else
 					ProcessMessage(context, applicationKey);

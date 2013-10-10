@@ -11,7 +11,7 @@ namespace AppMetrics
 			if (!AppSettings.Instance.RequireAccessKey)
 				return;
 			if (string.IsNullOrWhiteSpace(key) || !IsAllowed(key))
-				throw new ApplicationException("Wrong access key");
+				throw new ApplicationException("Wrong access key '" + key + "'");
 		}
 
 		static bool IsAllowed(string key)
