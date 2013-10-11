@@ -74,8 +74,6 @@ namespace AppMetrics
 			}
 		}
 
-		#region Multi-message mode
-
 		private static void ProcessMessages(HttpRequest request, string applicationKey, string messagesText, char separator)
 		{
 			var textLines = messagesText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -166,10 +164,7 @@ namespace AppMetrics
 			}
 		}
 
-		#endregion
-
-		#region Single-message mode
-
+		// for compatibility
 		private static void ProcessMessage(HttpContext context, string applicationKey)
 		{
 			var sessionId = context.Request.Params["MessageSession"];
@@ -178,42 +173,18 @@ namespace AppMetrics
 
 			ReportLog(string.Format("Single message mode used: {0} {1}", applicationKey, sessionId));
 			var filePath = GetDataFilePath(applicationKey, sessionId);
-			WriteData(sessionId, filePath, context);
-		}
 
-		private static void WriteData(string sessionId, string filePath, HttpContext context)
-		{
 			var name = context.Request.Params["MessageName"];
 			var data = context.Request.Params["MessageData"];
 			if (string.IsNullOrEmpty(data))
 				return;
+			data = Util.Escape(data);
 
 			var clientTime = context.Request.Params["MessageTime"];
 
-			using (var mutex = Utils.TryLockFile(sessionId))
-			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
-			{
-				using (var writer = new StreamWriter(stream)) // by default, encoding is Encoding.UTF8 without BOM
-				{
-					var fileExisted = writer.BaseStream.Length > 0;
-					writer.BaseStream.Seek(0, SeekOrigin.End);
-
-					if (!fileExisted)
-					{
-						writer.BaseStream.Write(Const.Utf8Bom, 0, Const.Utf8Bom.Length);
-
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientIP", context.Request.UserHostAddress);
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientHostName", context.Request.UserHostName);
-						writer.WriteLine("{0}\t{1}\t{2}", clientTime, "ClientUserAgent", context.Request.UserAgent);
-					}
-
-					data = Util.Escape(data);
-					writer.WriteLine("{0}\t{1}\t{2}", clientTime, name, data);
-				}
-			}
+			var lines = new[] { new[] { clientTime, name, data } };
+			WriteDataRaw(context.Request, filePath, lines);
 		}
-
-		#endregion
 
 		private static string GetDataFilePath(string applicationKey, string sessionId)
 		{
