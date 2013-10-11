@@ -25,7 +25,7 @@ namespace AppMetrics
 
 				var applicationKey = request.Params["MessageAppKey"];
 				if (string.IsNullOrEmpty(applicationKey))
-					throw new ApplicationException("No application key\r\n" + request.Params);
+					throw new ApplicationException("No application key\r\n" + Uri.UnescapeDataString(request.Params.ToString()));
 
 				var accessKey = request.Params["AccessKey"];
 				if (string.IsNullOrEmpty(accessKey))
@@ -39,7 +39,7 @@ namespace AppMetrics
 				}
 
 				if (string.IsNullOrWhiteSpace(accessKey))
-					ReportLog("No access key\r\n" + request.Params);
+					ReportLog("No access key\r\n" + Uri.UnescapeDataString(request.Params.ToString()));
 				AccessKeys.VerifyAccess(accessKey);
 
 				// NOTE that client side has to escape data if it contains the same char that is used as line separator char
