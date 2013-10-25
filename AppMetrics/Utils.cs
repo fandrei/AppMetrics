@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -10,9 +11,10 @@ namespace AppMetrics
 {
 	static class Utils
 	{
-		public static MutexLocker TryLockFile(string sessionId)
+		public static MutexLocker TryLockFile(string filePath)
 		{
-			return new MutexLocker(Const.GetFileMutexName(sessionId));
+			var mutexName = Const.GetFileMutexName(Path.GetFullPath(filePath).GetHashCode().ToString("X"));
+			return new MutexLocker(mutexName);
 		}
 	}
 

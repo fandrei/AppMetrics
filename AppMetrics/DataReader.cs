@@ -53,7 +53,7 @@ namespace AppMetrics
 				if (sessionCreationTime > period.EndTime)
 					return null;
 
-				var lastUpdateTime = GetSessionLastWriteTime(sessionId, filePath);
+				var lastUpdateTime = GetSessionLastWriteTime(filePath);
 				if (lastUpdateTime < period.StartTime)
 					return null;
 
@@ -86,17 +86,11 @@ namespace AppMetrics
 			return res;
 		}
 
-		public static DateTime GetSessionLastWriteTime(string sessionId, string filePath)
+		public static DateTime GetSessionLastWriteTime(string filePath)
 		{
-			using (var mutex = Utils.TryLockFile(sessionId))
-			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-			{
-				var encoding = DetectEncoding(stream);
-
-				var lastLine = ReadLastLine(stream, encoding);
-				var res = GetLineTime(lastLine);
-				return res;
-			}
+			var lastLine = ReadLastLine(filePath);
+			var res = GetLineTime(lastLine);
+			return res;
 		}
 
 		static Encoding DetectEncoding(Stream stream)
@@ -134,13 +128,13 @@ namespace AppMetrics
 			return res;
 		}
 
-		private static DateTime GetLineTime(string line)
+		public static DateTime GetLineTime(string line)
 		{
 			var text = line.Split('\t')[0];
 			return Util.ParseDateTime(text);
 		}
 
-		private static string ReadLastLine(Stream stream, Encoding encoding)
+		public static string ReadLastLine(Stream stream, Encoding encoding)
 		{
 			var buf = new byte[1024 * 128];
 			var seekPos = Math.Min(buf.Length, stream.Length - stream.Position);
@@ -162,6 +156,18 @@ namespace AppMetrics
 
 			var lastLine = encoding.GetString(buf, i, lastBlockLength - i);
 			return lastLine;
+		}
+
+		public static string ReadLastLine(string filePath)
+		{
+			using (var mutex = Utils.TryLockFile(filePath))
+			using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+			{
+				var encoding = DetectEncoding(stream);
+
+				var lastLine = ReadLastLine(stream, encoding);
+				return lastLine;
+			}
 		}
 
 		public static List<Record> GetRecords(string appKey, TimePeriod period)
@@ -189,7 +195,7 @@ namespace AppMetrics
 		{
 			var res = new List<Record>();
 
-			using (var mutex = Utils.TryLockFile(session.Id))
+			using (var mutex = Utils.TryLockFile(session.FileName))
 			using (var stream = new FileStream(session.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 			{
 				var encoding = DetectEncoding(stream);
