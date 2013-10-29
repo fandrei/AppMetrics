@@ -121,7 +121,7 @@ namespace AppMetrics
 		{
 			var filePath = GetDataFilePath(appKey, sessionId);
 
-			using (var mutex = Utils.TryLockFile(sessionId))
+			using (var mutex = Utils.TryLockFile(filePath))
 			{
 				WriteDataRaw(request, filePath, lines);
 			}
