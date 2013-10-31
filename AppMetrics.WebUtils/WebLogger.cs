@@ -34,7 +34,7 @@ namespace AppMetrics.WebUtils
 				var time = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
 				bool multiLineData = text.Contains('\n');
 				var buf = (multiLineData)
-					? string.Format("{0}\r\n{1}\r\n{2}\r\n{3}\r\n", time, Delimiter, text, Delimiter)
+					? string.Format("{0} {1}\r\n{2}\r\n{3}\r\n", time, DelimiterShort, text, Delimiter)
 					: string.Format("{0}\t{1}\r\n", time, text);
 
 				if (Monitor.TryEnter(Sync, 10 * 1000))
@@ -56,6 +56,7 @@ namespace AppMetrics.WebUtils
 		}
 
 		static readonly string Delimiter = new string('-', 80);
+		static readonly string DelimiterShort = new string('-', 80 - 20);
 		public const string FileName = "log.txt";
 		static readonly object Sync = new object();
 	}
