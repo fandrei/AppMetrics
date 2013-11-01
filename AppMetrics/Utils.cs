@@ -40,13 +40,13 @@ namespace AppMetrics
 
 			if (doesNotExist)
 			{
-				_mutex = new Mutex(false, id);
-
 				var allowEveryoneRule = new MutexAccessRule(
 					new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow);
 				var securitySettings = new MutexSecurity();
 				securitySettings.AddAccessRule(allowEveryoneRule);
-				_mutex.SetAccessControl(securitySettings);
+
+				bool createdNew;
+				_mutex = new Mutex(false, id, out createdNew, securitySettings);
 			}
 			else if (unauthorized)
 			{
@@ -91,10 +91,13 @@ namespace AppMetrics
 				}
 
 				_mutex.Dispose();
+				_mutex = null;
 			}
+
+			GC.SuppressFinalize(this);
 		}
 
-		private readonly Mutex _mutex;
+		private Mutex _mutex;
 	}
 
 }
